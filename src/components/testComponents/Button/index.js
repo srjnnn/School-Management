@@ -1,4 +1,4 @@
-import { loadTemplate } from "../../utils/loadTemplate.js";
+import { loadTemplate } from "../../../utils/loadTemplate.js";
 
 class ButtonComponent extends HTMLElement {
   constructor() {

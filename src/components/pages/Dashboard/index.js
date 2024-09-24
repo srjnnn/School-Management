@@ -1,4 +1,4 @@
-import "../Button/index.js";
+import "../../testComponents/Button/index.js";
 
 class DashboardComponent extends HTMLElement {
   constructor() {
