@@ -1,4 +1,3 @@
-import "../Button/index.js";
 
 class DashboardComponent extends HTMLElement {
   constructor() {
@@ -26,8 +25,9 @@ class DashboardComponent extends HTMLElement {
           <div>
             <my-header></my-header>
             <my-main-content>
-              <my-button></my-button>
+            
             </my-main-content>
+            <my-list> </my-list>
           </div>
         </div>
       `;
