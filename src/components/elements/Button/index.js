@@ -1,0 +1,36 @@
+
+class ButtonComponent extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+  }
+  connectedCallback(){
+    this.render();
+  }
+
+  render(){
+    this.shadowRoot.innerHTML = `
+      <style>
+        button{
+           width: Fixed (185px)px;
+           height: Fixed (36px)px;
+           padding: 10px 16px 10px 16px;
+           border-radius: 6px 0px 0px 0px;
+           border: 1px 0px 0px 0px;
+           opacity: 0px;
+           background-color: rgba(0, 122, 255, 0.15);
+           cursor: pointer;
+
+
+
+        }
+    </style>
+    <button>Button</button>
+  `;
+
+  }
+
+  }
+
+
+customElements.define("my-button", ButtonComponent);
