@@ -1,5 +1,3 @@
-import "../../testComponents/Button/index.js";
-
 class DashboardComponent extends HTMLElement {
   constructor() {
     super();
@@ -49,4 +47,6 @@ class DashboardComponent extends HTMLElement {
   }
 }
 
-customElements.define("my-dashboard", DashboardComponent);
+const DashboardPageElement = customElements.define("my-dashboard", DashboardComponent);
+
+export default DashboardPageElement;

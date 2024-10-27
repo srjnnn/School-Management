@@ -1,3 +1,5 @@
+import "./components/testComponents/index.js";
+
 class MyApp extends HTMLElement {
   constructor() {
     super();
@@ -19,4 +21,6 @@ class MyApp extends HTMLElement {
   }
 }
 
-customElements.define("my-app", MyApp);
+const AppElement = customElements.define("my-app", MyApp);
+
+export default AppElement;

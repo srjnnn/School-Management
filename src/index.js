@@ -1,9 +1,7 @@
-import "./components/testComponents/index.js";
-import "./components/pages/MainContainer/index.js";
-import "./components/pages/Dashboard/index.js";
 import "./App.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const app = document.getElementById("app");
-  app.appendChild(document.createElement("my-app"));
+  const appContainer = document.getElementById("app");
+  const app = document.createElement('my-app');
+  appContainer.appendChild(app);
 });
