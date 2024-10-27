@@ -15,8 +15,10 @@ class MyApp extends HTMLElement {
           <my-sidebar></my-sidebar>
           <div id="main-content"></div>
           <my-button></my-button>
-
+          <my-input></my-input>
+          <bus-summary></bus-summary>
         </div>
+        
       `;
   }
 }

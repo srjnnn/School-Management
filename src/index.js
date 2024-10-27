@@ -6,6 +6,7 @@ import "./components/pages/Dashboard/index.js";
 import "./components/elements/Button/index.js";
 import "./components/elements/input/index.js";
 import "./components/views/Sidebar/index.js";
+import "./components/views/BusSummaryBox/index.js"
 
 document.addEventListener("DOMContentLoaded", () => {
   const app = document.getElementById("app");
