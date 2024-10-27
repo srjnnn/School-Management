@@ -16,20 +16,22 @@ class ButtonComponent extends HTMLElement {
   `;
   }
 
-//   async connectedCallback() {
-//     const templateContent = await loadTemplate("./index.html");
-//     const title = this.getAttribute("title");
-//     const content = this.getAttribute("content");
+  //   async connectedCallback() {
+  //     const templateContent = await loadTemplate("./index.html");
+  //     const title = this.getAttribute("title");
+  //     const content = this.getAttribute("content");
 
-//     const templateClone = templateContent.cloneNode(true);
+  //     const templateClone = templateContent.cloneNode(true);
 
-//     // const filledTemplate = templateContent.querySelector(".custom-button");
-//     // filledTemplate.innerHTML = filledTemplate.innerHTML
-//     //   .replace("{{title}}", title)
-//     //   .replace("{{content}}", content);
+  //     // const filledTemplate = templateContent.querySelector(".custom-button");
+  //     // filledTemplate.innerHTML = filledTemplate.innerHTML
+  //     //   .replace("{{title}}", title)
+  //     //   .replace("{{content}}", content);
 
-//     this.shadowRoot.appendChild(templateClone);
-//   }
+  //     this.shadowRoot.appendChild(templateClone);
+  //   }
 }
 
-customElements.define("my-button", ButtonComponent);
+const ButtonElement = customElements.define("my-button", ButtonComponent);
+
+export default ButtonElement;
