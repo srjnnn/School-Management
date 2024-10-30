@@ -17,4 +17,6 @@ class Note extends HTMLElement {
   }
 }
 
-customElements.define("custom-note", Note);
+const NoteElement = customElements.define("custom-note", Note);
+
+export default NoteElement;

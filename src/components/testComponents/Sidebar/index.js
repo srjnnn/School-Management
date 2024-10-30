@@ -39,5 +39,6 @@ class SidebarComponent extends HTMLElement {
     }
   }
   
-  customElements.define('my-sidebar', SidebarComponent);
+  const SidebarElement = customElements.define('my-sidebar', SidebarComponent);
   
+  export default SidebarElement;

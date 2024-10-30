@@ -26,4 +26,6 @@ class TopNavbarComponent extends HTMLElement {
   }
 }
 
-customElements.define("my-header", TopNavbarComponent);
+const TopNavbarElement = customElements.define("my-header", TopNavbarComponent);
+
+export default TopNavbarElement;

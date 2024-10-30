@@ -1,15 +1,15 @@
 class CardComponent extends HTMLElement {
-    constructor() {
-      super();
-      this.attachShadow({ mode: 'open' });
-    }
-  
-    connectedCallback() {
-      this.render();
-    }
-  
-    render() {
-      this.shadowRoot.innerHTML = `
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+  }
+
+  connectedCallback() {
+    this.render();
+  }
+
+  render() {
+    this.shadowRoot.innerHTML = `
         <style>
           .card {
             padding: 1rem;
@@ -25,12 +25,13 @@ class CardComponent extends HTMLElement {
           }
         </style>
         <div class="card">
-          <h3>${this.getAttribute('title')}</h3>
-          <p>${this.getAttribute('content')}</p>
+          <h3>${this.getAttribute("title")}</h3>
+          <p>${this.getAttribute("content")}</p>
         </div>
       `;
-    }
   }
-  
-  customElements.define('my-card', CardComponent);
-  
+}
+
+const CardElement = customElements.define("my-card", CardComponent);
+
+export default CardElement;

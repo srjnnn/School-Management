@@ -1,10 +1,7 @@
-import "./components/testComponents/TopNavar/index.js";
-import "./components/testComponents/Sidebar/index.js";
-import "./components/pages/MainContainer/index.js";
-import "./components/testComponents/Card/index.js";
-import "./components/pages/Dashboard/index.js";
+import "./App.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const app = document.getElementById("app");
-  app.appendChild(document.createElement("my-dashboard"));
+  const appContainer = document.getElementById("app");
+  const app = document.createElement('my-app');
+  appContainer.appendChild(app);
 });
