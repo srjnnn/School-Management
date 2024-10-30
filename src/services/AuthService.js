@@ -1,3 +1,5 @@
+import LocalDB from "./LocalDB.js";
+
 class AuthService {
   static TOKEN_KEY = "authToken"; // The key used to store the auth token in LocalDB
 
@@ -21,3 +23,5 @@ class AuthService {
     return !!AuthService.getToken();
   }
 }
+
+export default AuthService;

@@ -1,4 +1,7 @@
 import "./components/testComponents/index.js";
+import "./components/pages/index.js";
+import AuthService from "./services/AuthService.js";
+import Router from "./router.js";
 
 class MyApp extends HTMLElement {
   constructor() {
@@ -7,16 +10,28 @@ class MyApp extends HTMLElement {
 
   connectedCallback() {
     this.render();
-    // Router.init();
+    this.loadPage();
+  }
+
+  loadPage() {
+    const page = Router.getMainPage();
+console.log('page', page);
+    const user = AuthService.isLoggedIn();
+    this.clearContainer();
+    const main = document.getElementById("main-app");
+    const pageELement = document.createElement(page);
+    main.appendChild(pageELement);
+  }
+
+  clearContainer() {
+    const main = document.getElementById("main-app");
+    main.innerHTML = "";
   }
 
   render() {
     this.innerHTML = `
-        <my-header></my-header>
-        <div class="app-container">
-          <my-sidebar></my-sidebar>
-          <div id="main-content"></div>
-        </div>
+        <main id="main-app" class="app-container">
+        </main>
       `;
   }
 }

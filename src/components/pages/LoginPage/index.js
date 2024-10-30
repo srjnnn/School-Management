@@ -9,7 +9,9 @@ class LoginPage extends HTMLElement {
 
   render() {
     this.innerHTML = `
-            <div class="login-container>This is the login page </div>
+            <div class="login-container">
+              This is the login page 
+            </div>
         `;
   }
 }

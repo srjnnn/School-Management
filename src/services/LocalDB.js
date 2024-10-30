@@ -20,3 +20,5 @@ class LocalDB {
     localStorage.clear();
   }
 }
+
+export default LocalDB;
