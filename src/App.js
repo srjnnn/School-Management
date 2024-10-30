@@ -15,6 +15,8 @@ class MyApp extends HTMLElement {
           <my-sidebar></my-sidebar>
           <div id="main-content"></div>
           <my-list></my-list>
+          <my-table>
+          </my-table>
         </div>
       `;
   }
