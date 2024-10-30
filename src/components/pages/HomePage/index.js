@@ -12,7 +12,7 @@ class HomePage extends HTMLElement {
      <my-header></my-header>
                <my-sidebar></my-sidebar>
 
-            <div class="login-container>
+            <div class="main-container>
                 This is the home page
             </div>
         `;
