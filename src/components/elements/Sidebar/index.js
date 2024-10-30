@@ -29,11 +29,12 @@ class SidebarComponent extends HTMLElement {
           }
         </style>
         <nav>
-          <ul>
-            <li><a href="#/dashboard">Dashboard</a></li>
-            <li><a href="#/reports">Reports</a></li>
-            <li><a href="#/settings">Settings</a></li>
-          </ul>
+          <img src="/sources/amity-logo.svg" alt="School Logo">
+               <ul>
+                 <li><a href="#/dashboard">Dashboard</a></li>
+                 <li><a href="#/reports">Reports</a></li>
+                 <li><a href="#/settings">Settings</a></li>
+               </ul>
         </nav>
       `;
     }
