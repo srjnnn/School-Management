@@ -24,8 +24,9 @@ class DashboardComponent extends HTMLElement {
           <div>
             <my-header></my-header>
             <my-main-content>
-              <my-button></my-button>
+              
             </my-main-content>
+            <custom-sidebar></custom-sidebar>             
           </div>
         </div>
       `;
