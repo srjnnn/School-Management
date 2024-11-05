@@ -1,31 +1,22 @@
+import { loadTemplate } from "../../../utils/loadTemplate.js";
+
 class TopNavbarComponent extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
   }
 
-  connectedCallback() {
-    this.render();
-  }
-
-  render() {
-    this.shadowRoot.innerHTML = `
-        <style>
-          header {
-            background-color: #0073e6;
-            color: white;
-            padding: 1rem;
-            text-align: center;
-            font-size: 1.5rem;
-          }
-        </style>
-        <header>
-          My Dashboard
-        </header>
-      `;
+  async connectedCallback() {
+    const templateContent = await loadTemplate(
+      "templates/views/TopNavbar.html"
+    );
+    this.shadowRoot.innerHTML = templateContent;
   }
 }
 
-const TopNavbarElement = customElements.define("my-header", TopNavbarComponent);
+const TopNavbarElement = customElements.define(
+  "top-navbar",
+  TopNavbarComponent
+);
 
 export default TopNavbarElement;
