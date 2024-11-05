@@ -1,5 +1,5 @@
-import "./components/testComponents/index.js";
 import "./components/pages/index.js";
+import "./components/elements/index.js";
 import AuthService from "./services/AuthService.js";
 import Router from "./router.js";
 
@@ -14,10 +14,15 @@ class MyApp extends HTMLElement {
   }
 
   loadPage() {
-    const page = Router.getMainPage();
-console.log('page', page);
+    let page;
     const user = AuthService.isLoggedIn();
-    this.clearContainer();
+
+    if (user) {
+      this.clearContainer();
+      page = Router._routePages[Router._routes.HOMEPAGE];
+    } else {
+      page = Router._routePages[Router._routes.LOGIN];
+    }
     const main = document.getElementById("main-app");
     const pageELement = document.createElement(page);
     main.appendChild(pageELement);

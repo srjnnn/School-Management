@@ -4,24 +4,26 @@ class InputComponent extends HTMLElement {
     this.attachShadow({ mode: "open" });
   }
 
-  async connectedCallback(){
-      const templateContent = await this.loadTemplate('templates/InputTempelate.html');
-      this.shadowRoot.appendChild(templateContent);
+  async connectedCallback() {
+    const templateContent = await this.loadTemplate(
+      "templates/InputTempelate.html"
+    );
+    this.shadowRoot.appendChild(templateContent);
 
-  //   this.render();
+    //   this.render();
   }
 
   async loadTemplate(url) {
-      const response = await fetch(url);
-      const templateText = await response.text();
+    const response = await fetch(url);
+    const templateText = await response.text();
 
-      const templateElement = document.createElement('template');
-      templateElement.innerHTML = templateText;
+    const templateElement = document.createElement("template");
+    templateElement.innerHTML = templateText;
 
-      return templateElement.content.cloneNode(true);
+    return templateElement.content.cloneNode(true);
   }
+}
 
-  }
+const Input = customElements.define("my-input", InputComponent);
 
-
-customElements.define("my-input", InputComponent);
+export default Input;

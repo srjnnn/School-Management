@@ -9,7 +9,6 @@ class HomePage extends HTMLElement {
 
   render() {
     this.innerHTML = `
-     <my-header></my-header>
                <my-sidebar></my-sidebar>
 
             <div class="main-container>

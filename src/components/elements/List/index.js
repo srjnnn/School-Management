@@ -1,24 +1,28 @@
-class 
-listComponent extends HTMLElement {
+class listComponent extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
   }
 
-  async connectedCallback(){
-      const templateContent = await this.loadTemplate('templates/listtemplate.html');
-      this.shadowRoot.appendChild(templateContent);
+  async connectedCallback() {
+    const templateContent = await this.loadTemplate(
+      "templates/listtemplate.html"
+    );
+    this.shadowRoot.appendChild(templateContent);
 
-  //   this.render();
+    //   this.render();
   }
 
   async loadTemplate(url) {
-      const response = await fetch(url);
-      const templateText = await response.text();
-      const templateElement = document.createElement('template');
-      templateElement.innerHTML = templateText;
+    const response = await fetch(url);
+    const templateText = await response.text();
+    const templateElement = document.createElement("template");
+    templateElement.innerHTML = templateText;
 
-      return templateElement.content.cloneNode(true);
+    return templateElement.content.cloneNode(true);
   }
-  }
-customElements.define("my-table", listComponent);
+}
+
+const ListElement = customElements.define("my-table", listComponent);
+
+export default ListElement;
