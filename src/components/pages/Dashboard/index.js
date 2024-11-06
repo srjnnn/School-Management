@@ -26,15 +26,12 @@ class DashboardComponent extends HTMLElement {
           <div>
             <my-header></my-header>
             <my-main-content>
-<<<<<<< HEAD
             
             </my-main-content>
             <my-list> </my-list>
-=======
               
             </my-main-content>
             <custom-sidebar></custom-sidebar>             
->>>>>>> 8edac50efd486535fdc96032562cc4aea3ec7229
           </div>
         </div>
       `;
