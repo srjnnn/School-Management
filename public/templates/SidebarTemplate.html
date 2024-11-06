@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar</title>
+</head>
+<body>
+    <style>
+        html{
+            box-sizing: border-box;
+            font-size: 62.5%;
+        }
+        body{
+            height: 100vh;
+        }
+        .SidebarContainer{
+            height: 100%;
+            border-right: 0.1rem solid rgba(207, 226, 255, 1);
+            width: 20rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .imageContainer{
+            display: flex;
+            justify-content: center;
+        }
+        .topWrapper{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .bottomWrapper{
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1rem;
+            align-items: center;
+        }
+        .wrappers{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 0.2rem solid red;
+            height: 100%;
+        }
+    </style>
+    <div class="SidebarContainer">
+        <div class="imageContainer">
+            <img src="../../sources/amity-logo.svg" alt="Amity Logo">
+        </div>
+        <div class="wrappers">
+            <div class="topWrapper">
+                <i><button>Dashboard</button></i>
+                <i><button>Timetable</button></i>
+                <i><button>Teachers</button></i>
+                <i><button>ClassNotes</button></i>
+                <i><button>BusDetails</button></i>
+                <i><button>Location</button></i>
+                
+            </div>
+            
+            <div class="bottomWrapper">
+                <i><button>Settings</button></i>
+                <i><button>Help</button></i>
+                <i><button>Logout</button></i>
+            </div>
+        </div>
+
+
+
+    </div>
+</body>
+</html>
