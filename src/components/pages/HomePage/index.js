@@ -1,21 +1,35 @@
+import { loadTemplate } from "../../../utils/loadTemplate.js";
+
 class HomePage extends HTMLElement {
   constructor() {
     super();
+    this.attachShadow({ mode: "open" });
+    this.templateContent = "";
   }
 
-  connectedCallback() {
+  async connectedCallback() {
+    this.templateContent = await loadTemplate(
+      "templates/pages/HomepageTemplate.html"
+    );
     this.render();
   }
 
   render() {
-    this.innerHTML = `
-     <my-header></my-header>
-               <my-sidebar></my-sidebar>
+    this.shadowRoot.innerHTML = this.templateContent;
+    this.addNavbar();
+    this.addSidebar();
+  }
 
-            <div class="main-container>
-                This is the home page
-            </div>
-        `;
+  addSidebar() {
+    const SidebarContainer = this.shadowRoot.getElementById("sidebar");
+    const sidebarElement = document.createElement("my-sidebar");
+    SidebarContainer.appendChild(sidebarElement);
+  }
+
+  addNavbar() {
+    const navbarContainer = this.shadowRoot.getElementById("top-navbar");
+    const navbarElement = document.createElement("top-navbar");
+    navbarContainer.appendChild(navbarElement);
   }
 }
 
