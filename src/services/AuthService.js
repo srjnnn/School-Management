@@ -23,5 +23,7 @@ class AuthService {
     return !!AuthService.getToken();
   }
 }
+// window.AuthService = AuthService;
+
 
 export default AuthService;

@@ -1,5 +1,6 @@
 import "./components/pages/index.js";
 import "./components/elements/index.js";
+import './components/views/index.js';
 import AuthService from "./services/AuthService.js";
 import Router from "./router.js";
 

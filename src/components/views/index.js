@@ -1,0 +1,1 @@
+export {default as Lgnform} from '../views/LoginForm/index.js'
