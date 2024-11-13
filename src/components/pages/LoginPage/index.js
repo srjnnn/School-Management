@@ -23,7 +23,6 @@ class LoginPage extends HTMLElement {
 
   render() {
     this.shadowRoot.innerHTML = this.templateContent;
-    console.log("From pages");
     const loginData = document.createElement('my-loginform');
     const spaceContainer = this.shadowRoot.querySelector('.spaceContainer');
     spaceContainer.appendChild(loginData);
@@ -32,17 +31,26 @@ class LoginPage extends HTMLElement {
   handleEmailChange(value) {
     if (!value) return;
     this.state.email = value;
-    console.log("state  updated", this.state);
+    console.log("state  updated", this.state.email);
   }
   handlePassChange(value){
     if(!value) return;
     this.state.password = value;
-    console.log("state updated" , this.state);
+    console.log("state updated" , this.state.password);
 
+  }
+  
+  handleButtonActivity(){
+    console.log("Button clicked, handleButtonActivity called"); // Check if this runs
+
+    // if(!button) return;
+    this.handleLogin;
   }
 
   handleLogin() {
-    AuthController.login({email: this.state.email, password: this.state.password});
+    // AuthController.login({email: this.state.email, password: this.state.password});
+    console.log("from pages , the button is doing well");
+
   }
 
   addChildrenProps() {
@@ -51,6 +59,7 @@ class LoginPage extends HTMLElement {
       {
         onEmailChange: this.handleEmailChange,
         onPassChange : this.handlePassChange,
+        onButtonChange : this.handleButtonActivity,
       }
     );
   }

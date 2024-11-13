@@ -9,10 +9,9 @@ class InputComponent extends HTMLElement {
     this.attachShadow({ mode: "open" });
     this.templateContent = "";
     this.onValueChange = (value) => {
-      console.log("input value changed", value);
     }
     this.handleEvents = this.handleEvents.bind(this);
-    this.updateStyles = this.updateStyles.bind(this);
+    this.applyAttr = this.applyAttr.bind(this);
 
   }
 
@@ -23,19 +22,16 @@ class InputComponent extends HTMLElement {
     
 
       this.render();
-      this.updateStyles();
+      this.applyAttr();
       this.handleEvents();
   }
 
   attributeChangedCallback(name , oldValue, newValue){
-    console.log('setting attr ======>', name , oldValue, newValue);
-
-    this.updateStyles();
+    this.applyAttr();
   }
   
-  updateStyles(){
+  applyAttr(){
     const input = this.shadowRoot.getElementById("inpt");
-    console.log('adding styes ======>', input);
 
     if(!input) return;
 
@@ -43,7 +39,6 @@ class InputComponent extends HTMLElement {
     const height = this.getAttribute("height");
     const width = this.getAttribute("width");
     const val = this.getAttribute("val");
-console.log('adding styes ======>', height);
     if(height) input.style.height = height;
     if(width) input.style.width = width;
     if(val) input.placeholder = val;
@@ -51,10 +46,8 @@ console.log('adding styes ======>', height);
 
   handleEvents() {
     const inputEl = this.shadowRoot.querySelector("input");
-    console.log("hanling event", inputEl);
+    console.log("handling event", inputEl);
     if (!inputEl) return;
-    console.log("events", this.onValueChange);
-
     inputEl.addEventListener("input", (e) => {
       this.onValueChange(e.target.value);
     })
@@ -63,7 +56,8 @@ console.log('adding styes ======>', height);
     console.log("rendering input");
     this.shadowRoot.innerHTML = this.templateContent;
   }
-  setStyle({height,width,val}){
+
+  setAttr({height,width,val}){
     if(height) this.setAttribute("height" , height);
     if(width) this.setAttribute("width" , width);
     if(val) this.setAttribute("val" , val);

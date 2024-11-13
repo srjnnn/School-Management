@@ -42,6 +42,7 @@ class LoginformComponent extends HTMLElement {
 
         inputelement.id = "email-input";
         inputelement1.id ="password-input"
+        buttonContainer.id = "bbb"
         // Set Styles to the Input field 
         inputelement.setAttr({height : '2.4rem', width: '16rem' ,val: 'Enter the username' });
         inputelement1.setAttr({height : '2.4rem', width: '16rem' ,val: 'Enter the password' });
@@ -49,12 +50,15 @@ class LoginformComponent extends HTMLElement {
     }
 
     addProps(props) {
-        console.log("ading props", props);
+        // console.log("ading props", props);
         const {onEmailChange} = props;
         this.onEmailChange = onEmailChange;
         const {onPassChange} = props;
         this.onPassChange = onPassChange;
+        const {onButtonChange} = props;
+        this.onButtonChange = onButtonChange;
     }
+ 
 
     passProps() {
         const inputfield = this.shadowRoot.querySelector('#email-input');
@@ -63,6 +67,10 @@ class LoginformComponent extends HTMLElement {
         const inputfield1 = this.shadowRoot.querySelector('#password-input');
         inputfield1.onValueChange = this.onPassChange;
         console.log("email input", inputfield.onValueChange);
+        // Button
+        const buttonElement = this.shadowRoot.querySelector('#bbb');
+        buttonElement.onValueChange = this.onButtonChange;
+        
     }
 }
 

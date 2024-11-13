@@ -8,6 +8,10 @@ export class ButtonComponent extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
+    this.onValueChange = () =>{
+      console.log("Button Clicked , button triggered");
+    }
+    // this.handleEvents = this.handleEvents.bind(this);
     this.templateContent = "";
   }
 
@@ -15,13 +19,16 @@ export class ButtonComponent extends HTMLElement {
     // Load and render the template before setting any styles
     this.templateContent = await loadTemplate("templates/elements/ButtonTemplate.html");
     this.render();
+   
 
     // Now that the element is rendered, apply initial styles if any attributes are set
     this.updateStyles();
+    this.handleEvents();
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
     this.updateStyles();
+    
   }
 
   updateStyles() {
@@ -36,6 +43,13 @@ export class ButtonComponent extends HTMLElement {
     if (height) btn.style.height = height;
     if (width) btn.style.width = width;
     if (val) btn.innerHTML = val;
+  }
+  handleEvents(){
+    const buttonEl = this.shadowRoot.getElementById('bbb');
+    if(!buttonEl) return;
+    buttonEl.addEventListener('click' ,()=>{
+      this.onValueChange();
+    })
   }
 
   render() {
