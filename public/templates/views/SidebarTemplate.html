@@ -1,73 +1,115 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sidebar</title>
-</head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+
 <body>
     <style>
-        html{
+        html {
             box-sizing: border-box;
             font-size: 62.5%;
         }
-        body{
+
+        body {
             height: 100vh;
         }
-        .SidebarContainer{
+
+        .SidebarContainer {
             height: 100%;
             border-right: 0.1rem solid rgba(207, 226, 255, 1);
             width: 20rem;
             display: flex;
             flex-direction: column;
         }
-        .imageContainer{
+
+        .imageContainer {
             display: flex;
             justify-content: center;
+            margin-bottom: 1;
         }
-        .topWrapper{
+
+        .imageContainer img {
+            height: 10rem;
+            width: 10rem;
+        }
+
+        .topWrapper,
+        .bottomWrapper {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-        .bottomWrapper{
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 1rem;
-            align-items: center;
-        }
-        .wrappers{
+
+        .wrappers {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            border: 0.2rem solid red;
             height: 100%;
+        }
+
+        i {
+            font-size: 1.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            padding: 1rem;
+            width: 16rem;
+            margin-top: 0.5rem;
+            transition: background-color 0.3s, border 0.3s;
+            border-radius: 0.5rem;
+        }
+
+        button {
+            border: none;
+            background: none;
+            padding: 0;
+            font-size: 1.6rem;
+            margin-left: 1rem;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        /* Active state style */
+        i.active {
+            background-color: #cfe2ff;
+            border: 0.1rem solid blue;
+            color: blue;
         }
     </style>
     <div class="SidebarContainer">
         <div class="imageContainer">
-            <img src="../../sources/amity-logo.svg" alt="Amity Logo">
+            <img src="../../../public/assets/amity-logo.svg" alt="Amity Logo">
         </div>
         <div class="wrappers">
             <div class="topWrapper">
-                <i><button>Dashboard</button></i>
-                <i><button>Timetable</button></i>
-                <i><button>Teachers</button></i>
-                <i><button>ClassNotes</button></i>
-                <i><button>BusDetails</button></i>
-                <i><button>Location</button></i>
-                
+                <i class="bi bi-house"><button id="dashboard" class="button">Dashboard</button></i>
+                <i class="bi bi-watch"><button id="timetable" class="button">Timetable</button></i>
+                <i class="bi bi-person"><button id="teachers" class="button">Teachers</button></i>
+                <i class="bi bi-book"><button id="classNotes" class="button">Class Notes</button></i>
+                <i class="bi bi-bus-front"><button id="busDetails" class="button">Bus Details</button></i>
+                <i class="bi bi-geo-alt"><button id="location" class="button">Location</button></i>
             </div>
-            
             <div class="bottomWrapper">
-                <i><button>Settings</button></i>
-                <i><button>Help</button></i>
-                <i><button>Logout</button></i>
+                <i class="bi bi-gear"><button id="settings" class="button">Settings</button></i>
+                <i class="bi bi-question-circle"><button id="help" class="button">Help</button></i>
+                <i class="bi bi-box-arrow-left"><button id="logout" class="button">Logout</button></i>
             </div>
         </div>
-
-
-
     </div>
+
+    <script>
+        const buttons = document.getElementsByClassName('button');
+
+        Array.from(buttons).forEach(button => {
+            button.addEventListener('click', (event) => {
+                // Prevent multiple icons from having the active class
+                document.querySelectorAll('i.active').forEach(activeIcon => {
+                    activeIcon.classList.remove('active');
+                });
+
+                // Add active class to the parent <i> of the clicked button
+                button.parentElement.classList.toggle('active');
+            });
+        });
+    </script>
 </body>
-</html>

@@ -1,22 +1,24 @@
-class Sidebar extends HTMLElement {
-    constructor () {
+import { loadTemplate } from "../../../utils/loadTemplate.js";
+class sidebarComponent extends HTMLElement {
+    constructor() {
         super();
-        this.attachShadow({mode: "open"});
+        this.attachShadow({ mode: "open" });
+        this.LoginTemplateContent = "";
     }
 
-    connectedCallback() {
+    async connectedCallback() {
+        this.LoginTemplateContent = await loadTemplate(
+            "templates/views/SidebarTemplate.html"
+        );
+
         this.render();
     }
 
     render() {
-        this.shadowRoot.innerHTML = `
-            <div class="sidebar-container">
-                <my-card> </my-card>
-                <my-input> </my-input>
-                <my-button> </my-button>
-            </div>
-        `;
+        this.shadowRoot.innerHTML = this.LoginTemplateContent;
     }
+
 }
 
-customElements.define("custom-sidebar", Sidebar);
+const sideBar = customElements.define("my-sidebar", sidebarComponent);
+export default sideBar;
