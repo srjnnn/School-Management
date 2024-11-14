@@ -24,7 +24,7 @@ class topNavbarComponent extends HTMLElement {
         // Change the nav Text based on the current routes 
         this.changeNavText()
     }
-    chageNavText(){
+    changeNavText(){
         // add the logic to examine the current route and change the text based on the routes
     }
 
