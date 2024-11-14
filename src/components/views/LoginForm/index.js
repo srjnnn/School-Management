@@ -38,14 +38,14 @@ class LoginformComponent extends HTMLElement {
 
         
         // Set styles on the button
-        buttonelement.setStyle({ height: '2.5rem', width: '6rem', val: 'Login' });
+        buttonelement.setStyle({ height: '4.5rem', width: '9rem', val: 'Login' });
 
         inputelement.id = "email-input";
         inputelement1.id ="password-input"
         buttonContainer.id = "bbb"
         // Set Styles to the Input field 
-        inputelement.setAttr({height : '2.4rem', width: '16rem' ,val: 'Enter the username' });
-        inputelement1.setAttr({height : '2.4rem', width: '16rem' ,val: 'Enter the password' });
+        inputelement.setAttr({height : '3.9rem', width: '22rem' ,val: 'Enter the username' });
+        inputelement1.setAttr({height : '3.9rem', width: '22rem' ,val: 'Enter the password' });
 
     }
 

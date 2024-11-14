@@ -1,31 +1,23 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" /> -->
 
 
 <body>
     <style>
-        html {
-            box-sizing: border-box;
-            font-size: 62.5%;
-        }
-
-        body {
-            height: 100vh;
-        }
-
         .SidebarContainer {
-            height: 100%;
+            height: 100vh;
             border-right: 0.1rem solid rgba(207, 226, 255, 1);
             width: 20rem;
             display: flex;
             flex-direction: column;
+            padding: 1rem;
+            background-color: #ffffff;
         }
 
         .imageContainer {
             display: flex;
             justify-content: center;
-            margin-bottom: 1;
+            margin-bottom: 1rem;
+
         }
 
         .imageContainer img {
@@ -40,6 +32,10 @@
             align-items: center;
         }
 
+        .bottomWrapper {
+            margin-bottom: 2rem;
+        }
+
         .wrappers {
             display: flex;
             flex-direction: column;
@@ -47,30 +43,34 @@
             height: 100%;
         }
 
-        i {
-            font-size: 1.9rem;
+        .button {
+            font-size: 1.6rem;
             display: flex;
             align-items: center;
-            justify-content: left;
+            justify-content: start;
+            width: 100%;
             padding: 1rem;
-            width: 16rem;
-            margin-top: 0.5rem;
-            transition: background-color 0.3s, border 0.3s;
+            color: #333;
+            background: none;
+            border: none;
+            text-align: left;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
             border-radius: 0.5rem;
         }
 
-        button {
-            border: none;
-            background: none;
-            padding: 0;
-            font-size: 1.6rem;
-            margin-left: 1rem;
-            color: inherit;
-            cursor: pointer;
+        .button i {
+            font-size: 2rem;
+            margin-right: 3rem;
         }
 
-        /* Active state style */
-        i.active {
+        .button:hover {
+            background-color: #e9ecef;
+            color: #0056b3;
+        }
+
+
+        .button.active {
             background-color: #cfe2ff;
             border: 0.1rem solid blue;
             color: blue;
@@ -82,34 +82,19 @@
         </div>
         <div class="wrappers">
             <div class="topWrapper">
-                <i class="bi bi-house"><button id="dashboard" class="button">Dashboard</button></i>
-                <i class="bi bi-watch"><button id="timetable" class="button">Timetable</button></i>
-                <i class="bi bi-person"><button id="teachers" class="button">Teachers</button></i>
-                <i class="bi bi-book"><button id="classNotes" class="button">Class Notes</button></i>
-                <i class="bi bi-bus-front"><button id="busDetails" class="button">Bus Details</button></i>
-                <i class="bi bi-geo-alt"><button id="location" class="button">Location</button></i>
+                <button id="dashboard" class="button"><i class="bi bi-house"></i>Dashboard</button>
+                <button id="timetable" class="button"> <i class="bi bi-watch"></i>Timetable</button>
+                <button id="teachers" class="button"><i class="bi bi-person"></i>Teachers</button>
+                <button id="classNotes" class="button"><i class="bi bi-book"></i>Class Notes</button>
+                <button id="busDetails" class="button"><i class="bi bi-bus-front"></i>Bus Details</button>
+                <button id="location" class="button"><i class="bi bi-geo-alt"></i>Location</button>
             </div>
             <div class="bottomWrapper">
-                <i class="bi bi-gear"><button id="settings" class="button">Settings</button></i>
-                <i class="bi bi-question-circle"><button id="help" class="button">Help</button></i>
-                <i class="bi bi-box-arrow-left"><button id="logout" class="button">Logout</button></i>
+                <button id="settings" class="button"><i class="bi bi-gear"></i>Settings</button>
+                <button id="help" class="button"> <i class="bi bi-question-circle"></i>Help</button>
+                <button id="logout" class="button"><i class="bi bi-box-arrow-left"></i>Logout</button>
             </div>
         </div>
     </div>
 
-    <script>
-        const buttons = document.getElementsByClassName('button');
-
-        Array.from(buttons).forEach(button => {
-            button.addEventListener('click', (event) => {
-                // Prevent multiple icons from having the active class
-                document.querySelectorAll('i.active').forEach(activeIcon => {
-                    activeIcon.classList.remove('active');
-                });
-
-                // Add active class to the parent <i> of the clicked button
-                button.parentElement.classList.toggle('active');
-            });
-        });
-    </script>
 </body>
