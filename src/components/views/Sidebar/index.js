@@ -3,12 +3,12 @@ class sidebarComponent extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: "open" });
-        this.LoginTemplateContent = "";
+        this.SideBarTemplateContent = "";
         this.addBootstrapIcons();
     }
 
     async connectedCallback() {
-        this.LoginTemplateContent = await loadTemplate(
+        this.SidebarTemplateContent = await loadTemplate(
             "templates/views/SidebarTemplate.html"
         );
 
@@ -18,7 +18,7 @@ class sidebarComponent extends HTMLElement {
     }
 
     render() {
-        this.shadowRoot.innerHTML += this.LoginTemplateContent;
+        this.shadowRoot.innerHTML += this.SidebarTemplateContent;
     }
     prop(){
 

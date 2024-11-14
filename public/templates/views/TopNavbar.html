@@ -1,18 +1,27 @@
 <style>
-  :host {
-    display: block; /* Allows the host element to behave like a block element */
-    width: 100%;
-    height: 100%;
-  }
   #top-navbar {
-    width: 100%;
-    height: 50px;
-    background: green;
+    height: 10rem;
+    width: auto;
+    display: flex;
+    flex-direction: column-reverse;
+    flex-wrap: wrap;
+  }
+
+  #top-navbar h1 {
+    margin-left: 0.7rem;
+  }
+
+  #left-container {
+    display: flex;
+    flex-direction: column-reverse;
+    flex-wrap: wrap;
   }
 </style>
 
 <header id="top-navbar">
-  <div id="left-container"></div>
+  <div id="left-container">
+    <h1>Dashboard</h1>
+  </div>
 
   <div id="right-container"></div>
 </header>

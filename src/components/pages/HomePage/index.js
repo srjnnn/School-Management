@@ -28,8 +28,9 @@ class HomePage extends HTMLElement {
 
   addNavbar() {
     const navbarContainer = this.shadowRoot.getElementById("top-navbar");
-    const navbarElement = document.createElement("top-navbar");
+    const navbarElement = document.createElement("my-navbar");
     navbarContainer.appendChild(navbarElement);
+    console.log(navbarElement);
   }
 }
 
