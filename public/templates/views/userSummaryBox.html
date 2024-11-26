@@ -1,0 +1,94 @@
+<style>
+  html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+  }
+
+  .container {
+    width: 33.7rem;
+    height: 32rem;
+    border-radius: 1.2rem;
+    border: 1px solid rgba(50, 173, 230, 1)
+  }
+
+  .designSection {
+    width: 33.7rem;
+    border-radius: 1.2rem;
+    height: 5.8rem;
+    background: rgba(207, 226, 255, 1);
+
+  }
+
+  .adjustSection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .imageContainer {
+    height: 8.2rem;
+    width: 8.2rem;
+    border: 1px solid rgba(50, 173, 230, 1);
+    border-radius: 50%;
+  }
+
+  .data-list {
+    max-width: 30rem;
+    border-radius: .5rem;
+    padding: 1rem;
+    margin-top: 7rem;
+  }
+
+  .data-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 .5rem;
+
+  }
+
+  .label {
+    padding: .6rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .value {
+    padding: .6rem;
+    font-size: 1.5rem;
+  }
+</style>
+
+
+<div class="container">
+  <div class="designSection">
+    <div class="adjustSection">
+      <div class="imageContainer"></div>
+    </div>
+  </div>
+  <div class="data-list">
+    <div class="data-item">
+      <span class="label">Name:</span>
+      <span class="value" id="name-value">user-Name</span>
+    </div>
+    <div class="data-item">
+      <span class="label">Class:</span>
+      <span class="value" id="class-value">user-Class</span>
+    </div>
+    <div class="data-item">
+      <span class="label">Roll:</span>
+      <span class="value" id="roll-value">user-RollNo</span>
+    </div>
+    <div class="data-item">
+      <span class="label">Address:</span>
+      <span class="value" id="address-value">user-Address</span>
+    </div>
+    <div class="data-item">
+      <span class="label">PickupAddress:</span>
+      <span class="value" id="pickupAddress-value">user-pickupAddress</span>
+    </div>
+    <div class="data-item">
+      <span class="label">Dropoff Address:</span>
+      <span class="value" id="dropoffAddress-value">user-dropoffAddress</span>
+    </div>
+  </div>

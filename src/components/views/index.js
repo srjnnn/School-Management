@@ -1,3 +1,5 @@
 export {default as Lgnform} from '../views/LoginForm/index.js'
 export {default as sideBar} from '../views/Sidebar/index.js'
 export {default as navBar}  from '../views/TopNavbar/index.js'
+export {default as usrSummary} from '../views/userSUmmaryBox/index.js'
+export {default as busSmmry} from '../views/busSummaryBox/index.js'

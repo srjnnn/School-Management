@@ -6,7 +6,7 @@ class DashboardComponent extends HTMLElement {
 
   connectedCallback() {
     this.render();
-    // this.addCards();
+    this.dashboardPageContent = '';
   }
 
   render() {
@@ -35,20 +35,6 @@ class DashboardComponent extends HTMLElement {
       `;
   }
 
-  addCards() {
-    const mainContent = this.shadowRoot.querySelector("my-main-content");
-
-    const card1 = document.createElement("my-card");
-    card1.setAttribute("title", "Card 1");
-    card1.setAttribute("content", "This is the content of card 1.");
-
-    const card2 = document.createElement("my-card");
-    card2.setAttribute("title", "Card 2");
-    card2.setAttribute("content", "This is the content of card 2.");
-
-    mainContent.addCard(card1);
-    mainContent.addCard(card2);
-  }
 }
 
 const DashboardPageElement = customElements.define("my-dashboard", DashboardComponent);

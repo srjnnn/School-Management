@@ -1,0 +1,116 @@
+<style>
+  html {
+    font-size: 62.5%;
+  }
+
+  .container {
+    width: 49.7rem;
+    height: 22rem;
+    border: 0.2rem solid rgba(50, 173, 230, 1);
+    border-radius: 0.9rem;
+  }
+
+  .design-section {
+    border-radius: 0.8rem;
+    background-color: rgba(207, 226, 255, 1);
+    height: 4rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .data-list {
+    max-width: 30rem;
+    border-radius: .5rem;
+    padding: 0.1rem;
+  }
+
+  .data-item {
+    display: inline-flex;
+    justify-content: space-between;
+  }
+
+  .label {
+    padding: .6rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .value {
+    padding: .6rem;
+    font-size: 1.2rem;
+  }
+
+  .image-container {
+    margin-top: .4rem;
+    display: inline-flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 2.8rem;
+  }
+
+  .frontImageContainer {
+    border: 0.2rem solid black;
+    height: 7rem;
+    width: 9rem;
+
+  }
+
+  .backImageContainer {
+    border: 0.2rem solid black;
+    height: 7rem;
+    width: 9rem;
+  }
+
+  .adjuster {
+    display: flex;
+    gap: 9rem;
+  }
+</style>
+
+<div class="container">
+  <div class="design-section">
+    <div class="head">
+      <h1>Your Bus</h1>
+    </div>
+  </div>
+  <div class="adjuster">
+    <div class="data-list">
+      <div class="data-item">
+        <span class="label">Bus No : </span>
+        <span class="value" id="bus-numberValue">user-busNumber</span>
+      </div>
+      <div class="data-item">
+        <span class="label">No. Plate:</span>
+        <span class="value" id="bus-numberPlateValue">user-busNumberPlate</span>
+      </div>
+      <div class="data-item">
+        <span class="label">Driver's Contact:</span>
+        <span class="value" id="bus-driverContactValue">user-busDriverContact</span>
+      </div>
+      <div class="data-item">
+        <span class="label">Arrival Time:</span>
+        <span class="value" id="bus-arrivalTime">user-busArrivalTime</span>
+      </div>
+      <div class="data-item">
+        <span class="label">Pickup Location:</span>
+        <span class="value" id="bus-pickupLocationValue">user-pickupLocation</span>
+      </div>
+      <div class="data-item">
+        <span class="label">Dropoff Location:</span>
+        <span class="value" id="bus-dropOffLocationValue">user-dropoffLocation</span>
+      </div>
+      <div class="data-item">
+        <span class="label">Route: </span>
+        <span class="value" id="bus-routeValue">user-busRoute</span>
+      </div>
+
+
+
+    </div>
+    <!-- Image container -->
+    <div class="image-container">
+      <div class="frontImageContainer">Front Image of the bus</div>
+      <div class="backImageContainer">Back image of the bus</div>
+    </div>
+  </div>
+</div>

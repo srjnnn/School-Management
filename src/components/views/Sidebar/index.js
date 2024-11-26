@@ -26,6 +26,15 @@ class sidebarComponent extends HTMLElement {
 
         Array.from(buttons).forEach(button => {
             button.addEventListener('click', (event) => {
+                // get the id  of all the buttons that are being clicked 
+                const id = button.id.toUpperCase();
+                // Now change the routes based on the id of the button and also render the respective pages ......
+                
+                console.log(id);
+
+                
+                
+
                 // Remove active class from all buttons
                 this.shadowRoot.querySelectorAll('.button.active').forEach(activeButton => {
                     activeButton.classList.remove('active');
