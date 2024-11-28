@@ -16,6 +16,7 @@ class Router {
   static _routePages = {
     [this._routes.HOMEPAGE]: "home-page",
     [this._routes.LOGIN]: "login-page",
+    [this._routes.DASHBOARD]: "my-dashboard"
   };
 
   static getMainPage = () => {

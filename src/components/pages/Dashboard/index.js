@@ -1,38 +1,39 @@
+import { loadTemplate } from "../../../utils/loadTemplate.js";
+
 class DashboardComponent extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-  }
-
-  connectedCallback() {
-    this.render();
     this.dashboardPageContent = '';
   }
 
+  async connectedCallback() {
+    this.dashboardPageContent = await loadTemplate(
+      "templates/pages/Dashboard.html"
+    )
+    this.render();
+    this.addContents();
+   
+  }
+
   render() {
-    this.shadowRoot.innerHTML = `
-        <style>
-          .dashboard {
-            display: grid;
-            grid-template-columns: 200px 1fr;
-            height: 100vh;
-            background-color: #e0e0e0;
-          }
-        </style>
-        <div class="dashboard">
-          <my-sidebar></my-sidebar>
-          <div>
-            <my-header></my-header>
-            <my-main-content>
-            
-            </my-main-content>
-            <my-list> </my-list>
-              
-            </my-main-content>
-            <custom-sidebar></custom-sidebar>             
-          </div>
-        </div>
-      `;
+    this.shadowRoot.innerHTML = this.dashboardPageContent;
+   
+  }
+  addContents(){
+    // call and create all the customs element 
+    const userSummary = document.createElement('my-usersummary');
+    const busSumamry = document.createElement('my-bussummary');
+
+    // get all the divs to append this custome elements 
+    const userSummaryContainer = this.shadowRoot.querySelector('.userSummaryContainer');
+    const busSummaryContainer = this.shadowRoot.querySelector('.busSummaryContainer');
+
+    // Append the contents to the respective divs 
+    userSummaryContainer.appendChild(userSummary);
+    busSummaryContainer.appendChild(busSumamry);
+    console.log(busSumamry);
+
   }
 
 }

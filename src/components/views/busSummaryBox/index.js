@@ -6,9 +6,9 @@ class busSummary extends HTMLElement{
     this.attachShadow({mode: 'open'});
     this.busSummaryContent = '';
   }
-  async connectedCallBack(){
+  async connectedCallback(){
     this.busSummaryContent = await loadTemplate(
-      "templates/busSummaryBox.html"
+      "templates/views/busSummaryBox.html"
     );
     this.render();
   }
@@ -17,5 +17,5 @@ class busSummary extends HTMLElement{
   }
 
 }
-const busSmmry = customElements.define("my-busSummary" , busSummary);
+const busSmmry = customElements.define("my-bussummary" , busSummary);
 export default busSmmry;

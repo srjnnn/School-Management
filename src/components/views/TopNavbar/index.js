@@ -12,21 +12,12 @@ class topNavbarComponent extends HTMLElement {
         );
 
         this.render();
-        this.observeNavText();
     }
 
     render() {
         this.shadowRoot.innerHTML = this.navBarTemplateContent;
     }
-    observeNavText(){
-        const navText = this.shadowRoot.getElementById('navHeader');
-        console.log(navText);
-        // Change the nav Text based on the current routes 
-        this.changeNavText()
-    }
-    changeNavText(){
-        // add the logic to examine the current route and change the text based on the routes
-    }
+ 
 
 }
 
