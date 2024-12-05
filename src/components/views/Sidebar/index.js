@@ -1,12 +1,13 @@
 let value = '';
 import Router from "../../../router.js";
+import appState from "../../../utils/appState.js";
 import { loadTemplate } from "../../../utils/loadTemplate.js";
+import LoginPageElement from "../../pages/LoginPage/index.js";
 class sidebarComponent extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: "open" });
         this.SidebarTemplateContent = "";
-        this.addBootstrapIcons();
 
     }
 
@@ -17,6 +18,17 @@ class sidebarComponent extends HTMLElement {
 
         this.render();
         this.prop();
+        this.verifyUserType();
+
+        // Making the dashboard as the default button
+        const dashboard = this.shadowRoot.querySelector('#dashboard');
+        if(dashboard){
+            dashboard.classList.add('active');
+            this.renderPages("my-dashboard");
+            
+        }else{
+            console.error("NO Dashboard button found");
+        }
         
     }
 
@@ -36,9 +48,6 @@ class sidebarComponent extends HTMLElement {
                 console.log(id);
                 this.loadPages(id);
 
-                
-                
-
                 // Remove active class from all buttons
                 this.shadowRoot.querySelectorAll('.button.active').forEach(activeButton => {
                     activeButton.classList.remove('active');
@@ -52,21 +61,22 @@ class sidebarComponent extends HTMLElement {
         
     
     };
-    addBootstrapIcons() {
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css';
-        this.shadowRoot.appendChild(link);
-    };
+    verifyUserType(){ //this is responsible for identifiying the userType and render the features accordingly
+     const userType = appState.getUserType();
+        console.log(userType)
+        if(userType === 'norm'){
+            this.shadowRoot.querySelector('#Students').style.display = "none"; 
+        }
+
+        return userType;
+
+    }
     loadPages(path){
         switch(path){
             case  "DASHBOARD":
                 value = this.renderPages("my-dashboard");
                 this.changeHeaderRoutes(path);
                 // Call the change Routes and header method
-                
-            
-                 
               break;
             case "TIMETABLE":
                 value = this.renderPages("my-custompage");
@@ -84,7 +94,6 @@ class sidebarComponent extends HTMLElement {
                 value = this.renderPages("my-custompage");
                 this.changeHeaderRoutes(path);
                 break;
-                value = this.renderPages("my-custompage");
             case "LOCATION":
                 value = this.renderPages("my-custompage");
                 this.changeHeaderRoutes(path);
@@ -97,19 +106,22 @@ class sidebarComponent extends HTMLElement {
                 value = this.renderPages("my-custompage");
                 this.changeHeaderRoutes(path);
                 break;
+            case "STUDENTS":
+                value = this.renderPages("my-custompage");
+                this.changeHeaderRoutes(path);
+                break;
             case "LOGOUT":
-                localStorage.clear();
-                window.location.reload();
+                value =  this.renderPages("my-logout");
+                this.changeHeaderRoutes(path);
                 break;
                 
             default:
-                break;    
+                break;
 
 
         }
         
     };
-    // && Homepage.tagName === "home-page"
     renderPages(customElement){
         const homePage = this.getRootNode().host;
         if (homePage){
@@ -153,9 +165,6 @@ class sidebarComponent extends HTMLElement {
        
 
     };
-    logoutAlert(){
-        // animation for the logout alert
-    }
 
 
 }

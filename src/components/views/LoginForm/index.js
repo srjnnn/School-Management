@@ -6,6 +6,7 @@ class LoginformComponent extends HTMLElement {
         this.LoginTemplateContent = "";
         this.onEmailChange = null;
         this.onPassChange = null;
+        this.onButtonChange =null;
     }
 
     async connectedCallback() {
@@ -24,7 +25,7 @@ class LoginformComponent extends HTMLElement {
         const inputelement = document.createElement('my-input');
         const inputelement1 = document.createElement('my-input');
         const buttonelement = document.createElement('my-button');
-
+        buttonelement.onValueChange = this.onButtonChange;
         // Select containers to append elements
         const inputfield = this.shadowRoot.querySelector('.inputContainer');
         const buttonContainer = this.shadowRoot.querySelector('.loginButton');

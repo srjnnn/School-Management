@@ -11,6 +11,8 @@ export class ButtonComponent extends HTMLElement {
     this.onValueChange = () =>{
       console.log("Button Clicked , button triggered");
     }
+    // this.onValueChange = this.onButtonChange;
+    
     // this.handleEvents = this.handleEvents.bind(this);
     this.templateContent = "";
   }
@@ -19,6 +21,7 @@ export class ButtonComponent extends HTMLElement {
     // Load and render the template before setting any styles
     this.templateContent = await loadTemplate("templates/elements/ButtonTemplate.html");
     this.render();
+    
    
 
     // Now that the element is rendered, apply initial styles if any attributes are set

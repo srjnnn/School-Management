@@ -1,0 +1,66 @@
+<style>
+  * {
+    font-size: 1.9rem;
+    columns: black;
+  }
+
+  #lgout {
+    color: red;
+    height: 1.5rem;
+    width: 20rem;
+    cursor: pointer;
+  }
+
+  #lgyes {
+    background-color: red;
+  }
+
+  #lgNo {
+    background-color: green;
+  }
+
+  .popupButtons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding: 1rem 0rem;
+  }
+
+  .popupContainer {
+    border: 0.1rem solid black;
+    /* height: 50%; */
+  }
+
+  .popup {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  button {
+    height: 4rem;
+    border: none;
+    cursor: pointer;
+    width: 8rem;
+    border-radius: 1rem;
+  }
+
+  button:focus {
+    color: blue;
+  }
+</style>
+
+<div class="popup">
+  <div class="popupContainer">
+    <div class="popupText">Are you Sure You want to Log Out?</div>
+    <div class="popupButtons">
+      <button id="lgYes">Yes</button>
+      <button id="lgNo">No</button>
+    </div>
+  </div>
+</div>
