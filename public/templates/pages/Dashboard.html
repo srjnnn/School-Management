@@ -1,20 +1,27 @@
 <style>
   .top-container {
     display: flex;
-    flex-direction: row;
-    /* gap: 1rem; */
     justify-content: space-between;
   }
 
+  .bottom-container {
+    display: flex;
+  }
+
   .userSummaryContainer,
-  .busSummaryContainer {
+  .busSummaryContainer,
+  .timeLineContainer {
     margin: 1rem;
-    padding: 1rem;
+    padding: 0.3rem;
+    display: flex;
   }
 </style>
 <div class="main-container">
   <div class="top-container">
     <div class="userSummaryContainer"></div>
     <div class="busSummaryContainer"></div>
+  </div>
+  <div class="bottom-container">
+    <div class="timeLineContainer"></div>
   </div>
 </div>

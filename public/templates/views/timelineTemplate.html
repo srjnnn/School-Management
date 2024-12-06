@@ -1,13 +1,77 @@
 <style>
-  .header-section h1 {
-    font-weight: 300;
+  * {
+    font-size: 1.5rem;
+  }
+
+  .timeLineContainer {
+    height: 18.9rem;
+    width: 43.8rem;
+    border: 0.2rem solid rgba(50, 173, 230, 1);
+    border-radius: 1.2rem;
+  }
+
+  .header h1 {
+    font-size: 2rem;
+    margin: 0;
+    padding: 1rem 0.5rem;
+    font-weight: 400;
+    /* margin-bottom: 1rem; */
+  }
+
+  .dataContainer {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    align-items: flex-start;
+  }
+
+  .timeContainer {
+    font-weight: bold;
+  }
+
+
+  ul {
+    padding-left: 2rem;
+    margin: 0;
+
   }
 </style>
 
-
-<div class="main-container">
-  <div class="header-section">
+<div class="timeLineContainer">
+  <div class="header">
     <h1>Your Timeline</h1>
-
   </div>
+  <ul>
+    <li>
+      <div class="dataContainer">
+        <div class="timeContainer">
+          7:30 - 8:00:
+        </div>
+        <div class="subjectsContainer">
+          Social
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="dataContainer">
+        <div class="timeContainer">
+          8:00 - 8:30:
+        </div>
+        <div class="subjectsContainer">
+          Computer
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="dataContainer">
+        <div class="timeContainer">
+          8:30 - 9:00:
+        </div>
+        <div class="subjectsContainer">
+          English
+        </div>
+      </div>
+    </li>
+  </ul>
+
 </div>
