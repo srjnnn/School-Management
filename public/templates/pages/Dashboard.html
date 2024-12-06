@@ -1,5 +1,5 @@
 <style>
-  .top-container {
+  /*.top-container {
     display: flex;
     justify-content: space-between;
   }
@@ -8,20 +8,78 @@
     display: flex;
   }
 
+  .busSummaryContainer {
+    height: 30rem;
+  }
+
   .userSummaryContainer,
   .busSummaryContainer,
-  .timeLineContainer {
+  .timeLineContainer,
+  .upComingEventsContainer,
+  .recentClassNotesContainer {
     margin: 1rem;
     padding: 0.3rem;
-    display: flex;
+  
+  }
+    */
+  .main-container {
+    /* border: .2rem solid black; */
+    display: grid;
+    grid-template-rows: min-content;
+    grid-template-columns: repeat(3, auto);
+    gap: 1rem;
+    justify-content: space-evenly;
+  }
+
+  .userSummaryContainer {
+    grid-row: 1;
+    grid-column: 1/2;
+    align-self: stretch;
+
+  }
+
+  .busSummaryContainer {
+    grid-row: 1;
+    grid-column: 2/4;
+    justify-self: end;
+    align-self: start;
+
+  }
+
+  .timeLineContainer {
+    grid-row: 2;
+    grid-column: 1;
+  }
+
+  .upComingEventsContainer {
+    grid-row: 2;
+    grid-column: 2;
+    align-self: end;
+  }
+
+  .recentClassNotesContainer {
+    grid-row: 2;
+    grid-column: 3;
+
+  }
+
+  .top-container,
+  .userSummaryContainer,
+  .busSummaryContainer,
+  .timelineContainer,
+  .upComingEventsContainer,
+  .recentClassNotesContainer {
+    border: 0.2rem solid black;
   }
 </style>
 <div class="main-container">
-  <div class="top-container">
-    <div class="userSummaryContainer"></div>
-    <div class="busSummaryContainer"></div>
-  </div>
-  <div class="bottom-container">
-    <div class="timeLineContainer"></div>
-  </div>
+  <!-- <div class="top-container"> -->
+  <div class="userSummaryContainer"></div>
+  <div class="busSummaryContainer"></div>
+  <!-- </div> -->
+  <!-- <div class="bottom-container"> -->
+  <div class="timeLineContainer"></div>
+  <div class="upComingEventsContainer"></div>
+  <div class="recentClassNotesContainer"></div>
+  <!-- </div> -->
 </div>

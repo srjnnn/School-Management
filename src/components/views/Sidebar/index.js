@@ -26,8 +26,6 @@ class sidebarComponent extends HTMLElement {
             dashboard.classList.add('active');
             this.renderPages("my-dashboard");
             
-        }else{
-            console.error("NO Dashboard button found");
         }
         
     }
@@ -41,19 +39,11 @@ class sidebarComponent extends HTMLElement {
 
         Array.from(buttons).forEach(button => {
             button.addEventListener('click', (event) => {
-                // get the id  of all the buttons that are being clicked 
                 const id = button.id.toUpperCase();
-                // Now change the routes based on the id of the button and also render the respective pages ......
-                
-                console.log(id);
                 this.loadPages(id);
-
-                // Remove active class from all buttons
                 this.shadowRoot.querySelectorAll('.button.active').forEach(activeButton => {
                     activeButton.classList.remove('active');
                 });
-                
-                // Add active class to the clicked button
                 button.classList.add('active');
                 return id;
             });
@@ -63,13 +53,10 @@ class sidebarComponent extends HTMLElement {
     };
     verifyUserType(){ //this is responsible for identifiying the userType and render the features accordingly
      const userType = appState.getUserType();
-        console.log(userType)
         if(userType === 'norm'){
             this.shadowRoot.querySelector('#Students').style.display = "none"; 
         }
-
         return userType;
-
     }
     loadPages(path){
         switch(path){
@@ -127,20 +114,15 @@ class sidebarComponent extends HTMLElement {
         if (homePage){
         const mainContainer = homePage.shadowRoot.querySelector('#main-content-container');
         if (mainContainer.children.length > 0) {
-            console.log("Yes, they have child nodes");
-            console.log(mainContainer);
             mainContainer.replaceChildren();
             this.addPage(customElement, mainContainer);
 
             
         } else {
-            console.log("No, doesn't have child nodes");
             this.addPage(customElement, mainContainer);
         }
         
 
-        }else{
-            console.log("Not working from the sidebar index js");
         }
         return homePage;
 

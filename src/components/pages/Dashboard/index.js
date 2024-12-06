@@ -25,17 +25,19 @@ class DashboardComponent extends HTMLElement {
     const userSummary = document.createElement('my-usersummary');
     const busSumamry = document.createElement('my-bussummary');
     const timeline = document.createElement('my-timeline');
+    const upcomingEvents = document.createElement('my-upcomingevents');
 
     // get all the divs to append this custome elements 
     const userSummaryContainer = this.shadowRoot.querySelector('.userSummaryContainer');
     const busSummaryContainer = this.shadowRoot.querySelector('.busSummaryContainer');
     const timeLineContainer = this.shadowRoot.querySelector('.timeLineContainer');
+    const upcomingEventsContainer =this.shadowRoot.querySelector('.upComingEventsContainer');
 
     // Append the contents to the respective divs 
     userSummaryContainer.appendChild(userSummary);
     busSummaryContainer.appendChild(busSumamry);
     timeLineContainer.appendChild(timeline);
-    console.log(busSumamry);
+    upcomingEventsContainer.appendChild(upcomingEvents);
 
   }
 
