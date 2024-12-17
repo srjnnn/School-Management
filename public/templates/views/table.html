@@ -1,0 +1,203 @@
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  #mainHeader {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  #mainHeader p,
+  #mainHeader .line {
+    margin: 0;
+  }
+
+  #Days {
+    align-self: flex-start;
+    font-size: 2rem;
+  }
+
+  #Periods {
+    align-self: flex-end;
+    font-size: 2rem;
+  }
+
+  .line {
+    height: 10%;
+    width: 100%;
+    border: 0.3rem solid rgba(134, 182, 255, 1);
+    transform: rotate(12.2deg);
+  }
+
+  table {
+    width: 100%;
+    border-top: 0.4rem solid rgba(222, 226, 230, 1);
+    border-collapse: collapse;
+  }
+
+  td,
+  th {
+    padding: 10px;
+    text-align: center;
+  }
+
+  td {
+    height: 50px;
+    width: 150px;
+  }
+
+  th {
+    width: 15rem;
+  }
+
+  tr:nth-child(even) {
+    background-color: rgba(207, 226, 255, 1);
+  }
+
+  .periodsList p {
+    margin: 0;
+    justify-content: space-evenly;
+  }
+
+  .dataheader {
+    font-weight: 600;
+    font-size: 2rem;
+  }
+
+
+  .dataTime {
+    font-weight: 300;
+    font-size: 1.8rem;
+  }
+
+  .topHeader {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-self: right;
+  }
+
+  .dataDays {
+    font-size: 2rem;
+  }
+
+
+  #timetableEdit {
+    font-size: 2rem;
+    cursor: pointer;
+    width: 9rem;
+    height: 3.5rem;
+    background-color: rgba(0, 122, 255, 0.15);
+    border: 0.1rem solid rgba(50, 173, 230, 1);
+    border-radius: 0.4rem;
+    padding: 0 .3rem;
+    /*font-size: 1.5rem;
+    font-weight: 500; */
+
+  }
+
+  #timetableEdit img {
+
+    margin-right: .5rem;
+    font-size: 3.5rem;
+
+  }
+
+  .classSelector select {
+    height: 4rem;
+    width: 13rem;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 1);
+
+  }
+
+  select:focus {
+    border: none;
+  }
+</style>
+<div class="topHeader">
+  <div class="classSelector">
+    <select name="selectClass" id="selectClass">
+      <option value="default" selected disabled>Class</option>
+      <option value="1A">1A</option>
+      <option value="1A">2A</option>
+      <option value="1A">3A</option>
+      <option value="1A">4A</option>
+      <option value="1A">5A</option>
+      <option value="1A">6A</option>
+      <option value="1A">7A</option>
+      <option value="1A">8A</option>
+      <option value="1A">9A</option>
+      <option value="1A">10A</option>
+      <option value="1A">11A</option>
+    </select>
+  </div>
+  <div class="editButton">
+    <button id="timetableEdit"><img src="/public/assets/icons/pencil-square.svg" alt="Edit Icon">Edit</button>
+  </div>
+</div>
+<div class="tableContainer">
+  <table>
+    <tr>
+      <th id="mainHeader">
+        <p id="Periods">Periods</p>
+        <div class="line"></div>
+        <p id="Days">Days</p>
+      </th>
+      <th class="periodsList">
+        <p class="dataheader">First</p>
+        <p class="dataTime">Time</p>
+      </th>
+      <th class="periodsList">
+        <p class="dataheader">Second</p>
+        <p class="dataTime">Time</p>
+      </th>
+      <th class="periodsList">
+        <p class="dataheader">Third</p>
+        <p class="dataTime">Time</p>
+      </th>
+      <th class="periodsList">
+        <p class="dataheader">Fourth</p>
+        <p class="dataTime">Time</p>
+      </th>
+      <th class="periodsList">
+        <p class="dataheader">Fifth</p>
+        <p class="dataTime">Time</p>
+      </th>
+      <th class="periodsList">
+        <p class="dataheader">Sixth</p>
+        <p class="dataTime">Time</p>
+      </th>
+      <th class="periodsList">
+        <p class="dataheader">Seventh</p>
+        <p class="dataTime">Time</p>
+      </th>
+    </tr>
+    <tr>
+      <td id="dataSunday" class="dataDays">Sunday</td>
+    </tr>
+    <tr>
+      <td id="dataMonday" class="dataDays">Monday</td>
+    </tr>
+    <tr>
+      <td id="dataTuesday" class="dataDays">Tuesday</td>
+    </tr>
+    <tr>
+      <td id="dataWednesday" class="dataDays">Wednesday</td>
+    </tr>
+    <tr>
+      <td id="dataThursday" class="dataDays">Thursday</td>
+    </tr>
+    <tr>
+      <td id="dataFriday" class="dataDays">Friday</td>
+    </tr>
+    <tr>
+      <td id="dataSaturday" class="dataDays">Saturday</td>
+    </tr>
+  </table>
+</div>

@@ -66,7 +66,8 @@ class sidebarComponent extends HTMLElement {
                 // Call the change Routes and header method
               break;
             case "TIMETABLE":
-                value = this.renderPages("my-custompage");
+                value = this.renderPages("timetable-page");
+                console.log(value);
                 this.changeHeaderRoutes(path);
                 break;
             case "TEACHERS":
