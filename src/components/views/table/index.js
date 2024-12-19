@@ -9,6 +9,7 @@ class table extends HTMLElement{
   async connectedCallback(){
     this.tableContent = await loadTemplate("templates/views/table.html");
     this.render();
+    this.dispatchEvent(new Event('rendered'));
   }
   render(){
     this.shadowRoot.innerHTML = this.tableContent;
