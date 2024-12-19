@@ -31,7 +31,7 @@
     height: 10%;
     width: 100%;
     border: 0.3rem solid rgba(134, 182, 255, 1);
-    transform: rotate(12.2deg);
+    transform: rotate(13.2deg);
   }
 
   table {
@@ -175,6 +175,31 @@
     background-color: rgba(123, 134, 122, 0.263);
     cursor: pointer;
   }
+
+  button {
+    height: 4rem;
+    border: none;
+    cursor: pointer;
+    width: 8rem;
+    border-radius: 1rem;
+  }
+
+  #tableSave {
+    background-color: rgba(34, 139, 34, 0.8);
+  }
+
+  #tableCancel {
+    background-color: rgba(220, 20, 60, 0.8);
+  }
+
+  .buttonContainer {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 2rem;
+    padding: 2rem;
+    height: 9rem;
+    justify-content: flex-start;
+  }
 </style>
 <div class="topHeader">
   <div class="classSelector">
@@ -199,7 +224,7 @@
       <div class="crossButton">
         <img src="/public/assets/icons/x.svg" alt="Close Icon" id="cross-img">
       </div>
-      <a href="#">Existing Details</a>
+      <a href="#" id="existingData">Existing Details</a>
       <a href="#">Add new Timetable</a>
     </div>
   </div>
@@ -313,4 +338,10 @@
 
     </tr>
   </table>
+  <div class="tableActionsButtons hidden">
+    <div class="buttonContainer">
+      <button id="tableSave" class="button" disabled>Save</button>
+      <button id="tableCancel" class="button">Cancel</button>
+    </div>
+  </div>
 </div>
