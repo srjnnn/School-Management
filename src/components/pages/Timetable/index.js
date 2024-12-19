@@ -8,9 +8,7 @@ class TimetablePage extends HTMLElement{
   }
   async connectedCallback(){
     this.templateContent = await loadTemplate("templates/pages/Timetable.html");
-    this.render();
-    this.addEventListners();
-    
+    this.render();    
   }
   render(){
     this.shadowRoot.innerHTML = this.templateContent;
@@ -22,10 +20,6 @@ class TimetablePage extends HTMLElement{
     const tableContainer = this.shadowRoot.querySelector('.tableContainer');
     const table = document.createElement('my-table');
     tableContainer.appendChild(table);
-    const editButton = table.shadowRoot.querySelector('timetableEdit')
-    editButton.addEventListener('click' ,()=>{
-      alert('jfk')
-    })
 
     
   }
@@ -40,12 +34,6 @@ class TimetablePage extends HTMLElement{
     const detailsContainer = this.shadowRoot.querySelector('.detailsContainer');
     const details = document.createElement('my-classdetails');
     detailsContainer.appendChild(details);
-  }
-  addEventListners(){
-    const editButton = this.shadowRoot.querySelector('.editButton');
-    console.log(editButton);
-   
-
   }
 }
 const timetablePage = customElements.define('timetable-page', TimetablePage);
