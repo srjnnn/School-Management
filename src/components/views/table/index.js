@@ -27,6 +27,7 @@ class Table extends HTMLElement {
     const saveButton = this.shadowRoot.querySelector("#tableSave");
     const cancelButton = this.shadowRoot.querySelector("#tableCancel");
     const table = this.shadowRoot.querySelector("table");
+    const dataTimeFields = this.shadowRoot.querySelectorAll(".dataTime");
   
     if (!popup || !editButton || !crossImage || !table) return;
   
@@ -43,7 +44,7 @@ class Table extends HTMLElement {
     // Edit existing data
     existingDataEditButton?.addEventListener("click", () => {
       popup.classList.add("hidden");
-      const cells = table.querySelectorAll("td"); // Only target `td` cells
+      const cells = table.querySelectorAll("td, .dataTime"); // Include `dataTime` fields
   
       cells.forEach((cell) => {
         if (cell.contentEditable === "true") {
@@ -54,39 +55,40 @@ class Table extends HTMLElement {
           cell.contentEditable = true;
           cell.classList.add("editable");
           tableActionButtonsDiv?.classList.remove("hidden");
+          if(cell.classList.contains('dataDays')){
+            cell.contentEditable=false;
+          }
+          
         }
       });
     });
   
-    // Save initial data for body cells (td) only, not th
+    // Save initial data
     table.querySelectorAll("tbody tr").forEach((row, rowIndex) => {
       row.querySelectorAll("td").forEach((cell, cellIndex) => {
         this.originalData[`${rowIndex}-${cellIndex}`] = cell.textContent.trim();
       });
     });
   
+    // Save initial `dataTime` values
+    dataTimeFields.forEach((field, index) => {
+      this.originalData[`dataTime-${index}`] = field.textContent.trim();
+    });
+  
     // Enable save button if changes are detected
-    table.addEventListener("input", (event) => {
-      const cell = event.target;
-      const rowIndex = cell.parentElement.rowIndex - 1; // Adjust for header row
-      const cellIndex = cell.cellIndex;
-  
-      const originalValue = this.originalData[`${rowIndex}-${cellIndex}`];
-      const currentValue = cell.textContent.trim();
-  
+    table.addEventListener("input", () => {
       const hasChanges = Array.from(table.querySelectorAll("tbody tr")).some(
         (row, rIndex) =>
           Array.from(row.querySelectorAll("td")).some(
             (cell, cIndex) =>
               cell.textContent.trim() !== this.originalData[`${rIndex}-${cIndex}`]
           )
+      ) || Array.from(dataTimeFields).some(
+        (field, index) =>
+          field.textContent.trim() !== this.originalData[`dataTime-${index}`]
       );
   
       saveButton.disabled = !hasChanges;
-  
-      if (currentValue === originalValue) {
-        saveButton.disabled = !hasChanges;
-      }
     });
   
     // Save changes
@@ -96,26 +98,34 @@ class Table extends HTMLElement {
           this.originalData[`${rowIndex}-${cellIndex}`] = cell.textContent.trim();
         });
       });
+  
+      dataTimeFields.forEach((field, index) => {
+        this.originalData[`dataTime-${index}`] = field.textContent.trim();
+      });
+  
       saveButton.disabled = true;
       alert("Changes saved!");
     });
   
     // Cancel changes
     cancelButton.addEventListener("click", () => {
-      // Only reset the td cells, not th
       table.querySelectorAll("tbody tr").forEach((row, rowIndex) => {
         row.querySelectorAll("td").forEach((cell, cellIndex) => {
           cell.textContent = this.originalData[`${rowIndex}-${cellIndex}`];
           cell.contentEditable = false;
-      tableActionButtonsDiv?.classList.add("hidden");
-
         });
       });
+  
+      dataTimeFields.forEach((field, index) => {
+        field.textContent = this.originalData[`dataTime-${index}`];
+        field.contentEditable = false;
+      });
+  
       saveButton.disabled = true;
-
-
+      tableActionButtonsDiv?.classList.add("hidden");
     });
   }
+  
   
   
 }
