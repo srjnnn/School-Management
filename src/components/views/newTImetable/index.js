@@ -23,22 +23,22 @@ class newTimetable extends HTMLElement{
   tableContainer.appendChild(table);
 
  }
- observe(){
-    const observer = new MutationObserver((mutationList , observer)=>{
-      mutationList.forEach((mutation)=>{
-        mutation.addedNodes.forEach((node)=>{
-          if(node.id === "topHeader"){
-            alert("Div found : " + node);
-            observer.disconnect();
-          }
-        });
-      });
-    });
-    observer.observe(this.shadowRoot,{
-      childList:true,
-      subtree : true
-    })
- }
+//  observe(){
+//     const observer = new MutationObserver((mutationList , observer)=>{
+//       mutationList.forEach((mutation)=>{
+//         mutation.addedNodes.forEach((node)=>{
+//           if(node.id === "topHeader"){
+//             alert("Div found : " + node);
+//             observer.disconnect();
+//           }
+//         });
+//       });
+//     });
+//     observer.observe(this.shadowRoot,{
+//       childList:true,
+//       subtree : true
+//     })
+//  }
 }
 
 const newTimeTable = customElements.define("new-timetable",newTimetable);
