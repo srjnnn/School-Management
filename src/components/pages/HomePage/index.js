@@ -1,4 +1,7 @@
+import goBackButton from "../../../services/goBackButton.js";
+import LoadPage from "../../../services/loadPages.js";
 import { loadTemplate } from "../../../utils/loadTemplate.js";
+
 
 class HomePage extends HTMLElement {
   constructor() {
@@ -18,6 +21,7 @@ class HomePage extends HTMLElement {
     this.shadowRoot.innerHTML = this.templateContent;
     this.addNavbar();
     this.addSidebar();
+    this.addEventListeners();
   }
 
   addSidebar() {
@@ -32,7 +36,49 @@ class HomePage extends HTMLElement {
     navbarContainer.appendChild(navbarElement);
     console.log(navbarElement);
   }
+    //  Adding the event listner to the go-back button in the sidebar
+  addEventListeners(){
+    const GoBackButton = this.shadowRoot.querySelector('#gobackButton');
+    GoBackButton.addEventListener('click',()=>{
+     const History = goBackButton.getPagesRendered();
+     const Header = goBackButton.getPagesHeader();
+
+    //  get the length of the History 
+    const length = History.length;
+    const headerLength = Header.length;
+    // get the index
+    const index = length-1;
+    // const headerIndex = headerLength-1;
+
+    const previousPage = History[index-1];
+    const previousPageHeader = Header[index-1];
+
+    // loading the main page
+    const mainPage = this.shadowRoot.getRootNode().host;
+    
+    // Loading the previos page here : 
+   
+    LoadPage.renderPages(previousPage,mainPage) ;
+    LoadPage.changeHeaderRoutes(mainPage,previousPageHeader);
+    // Get the sidebar element 
+    // const sidebarElement  = goBackButton.getSidebarElem();
+    const sidebar = goBackButton.getSidebarElement();
+    console.log("From the homepage got the sidebar : ", sidebar);
+    LoadPage.changeClassList(sidebar,previousPageHeader);
+
+        //deleting the last index
+        History.splice(index-1,1); 
+        Header.splice(index-1,1);
+        goBackButton.getEventDetails(mainPage);
+        console.log("sidebar : ",this.shadowRoot);
+        
+
+    
+    })
+  };
+
 }
+
 
 const HomePageElement = customElements.define("home-page", HomePage);
 
