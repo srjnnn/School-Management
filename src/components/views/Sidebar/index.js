@@ -1,8 +1,8 @@
 let value = '';
-import Router from "../../../router.js";
+import goBackButton from "../../../services/goBackButton.js";
+import LoadPage from "../../../services/loadPages.js";
 import appState from "../../../utils/appState.js";
 import { loadTemplate } from "../../../utils/loadTemplate.js";
-import LoginPageElement from "../../pages/LoginPage/index.js";
 class sidebarComponent extends HTMLElement {
     constructor() {
         super();
@@ -23,8 +23,11 @@ class sidebarComponent extends HTMLElement {
         // Making the dashboard as the default button
         const dashboard = this.shadowRoot.querySelector('#dashboard');
         if(dashboard){
+            var hostElement = this.getHostElement();
             dashboard.classList.add('active');
-            this.renderPages("my-dashboard");
+            LoadPage.renderPages("my-dashboard",hostElement);
+            goBackButton.savePagesRendered("my-dashboard","DASHBOARD");
+            this.getSidebarElement();
             
         }
         
@@ -61,46 +64,76 @@ class sidebarComponent extends HTMLElement {
     loadPages(path){
         switch(path){
             case  "DASHBOARD":
-                value = this.renderPages("my-dashboard");
-                this.changeHeaderRoutes(path);
+               var hostElement = this.getHostElement();
+                LoadPage.renderPages("my-dashboard",hostElement);
+                LoadPage.changeHeaderRoutes(hostElement,path);
                 // Call the change Routes and header method
+                // Add the history of the rendered pages
+                goBackButton.savePagesRendered("my-dashboard",path);
+                goBackButton.getEventDetails(hostElement);
               break;
             case "TIMETABLE":
-                value = this.renderPages("timetable-page");
-                console.log(value);
-                this.changeHeaderRoutes(path);
+               var hostElement = this.getHostElement();
+                LoadPage.renderPages("timetable-page",hostElement);
+                LoadPage.changeHeaderRoutes(hostElement,path);
+                goBackButton.savePagesRendered("timetable-page",path);
+                goBackButton.getEventDetails(hostElement);
                 break;
             case "TEACHERS":
-                value = this.renderPages("my-custompage");
-                this.changeHeaderRoutes(path);
+               var hostElement = this.getHostElement();
+                LoadPage.renderPages("my-custompage",hostElement);
+                LoadPage.changeHeaderRoutes(hostElement,path);
+                goBackButton.savePagesRendered("my-custompage",path);
+                goBackButton.getEventDetails(hostElement);
                  break;
             case "CLASSNOTES":
-                value = this.renderPages("my-custompage");
-                this.changeHeaderRoutes(path);
+               var hostElement = this.getHostElement();
+                LoadPage.renderPages("my-custompage",hostElement);
+                LoadPage.changeHeaderRoutes(hostElement,path);
+                goBackButton.savePagesRendered("my-custompage" ,path);
+                goBackButton.getEventDetails(hostElement);
                 break;
             case "BUSDETAILS":
-                value = this.renderPages("my-custompage");
-                this.changeHeaderRoutes(path);
+               var hostElement = this.getHostElement();
+                LoadPage.renderPages("my-custompage",hostElement);
+                LoadPage.changeHeaderRoutes(hostElement,path);
+                goBackButton.savePagesRendered("my-custompage",path);
+                goBackButton.getEventDetails(hostElement);
                 break;
             case "LOCATION":
-                value = this.renderPages("my-custompage");
-                this.changeHeaderRoutes(path);
+               var hostElement = this.getHostElement();
+                LoadPage.renderPages("my-custompage",hostElement);
+                LoadPage.changeHeaderRoutes(hostElement,path);
+                goBackButton.savePagesRendered("my-custompage",path);
+                goBackButton.getEventDetails(hostElement);
                 break;
             case "HELP":
-                value = this.renderPages("my-custompage");
-                this.changeHeaderRoutes(path);
+               var hostElement = this.getHostElement();
+                LoadPage.renderPages("my-custompage",hostElement);
+                LoadPage.changeHeaderRoutes(hostElement,path);
+                goBackButton.savePagesRendered("my-custompage",path);
+                goBackButton.getEventDetails(hostElement);
                 break;
             case "SETTINGS":
-                value = this.renderPages("my-custompage");
-                this.changeHeaderRoutes(path);
+               var hostElement = this.getHostElement();
+                LoadPage.renderPages("my-custompage",hostElement);
+                LoadPage.changeHeaderRoutes(hostElement,path);
+                goBackButton.savePagesRendered("my-custompage",path);
+                goBackButton.getEventDetails(hostElement);
                 break;
             case "STUDENTS":
-                value = this.renderPages("my-custompage");
-                this.changeHeaderRoutes(path);
+               var hostElement = this.getHostElement();
+                LoadPage.renderPages("my-custompage",hostElement);
+                LoadPage.changeHeaderRoutes(hostElement,path);
+                goBackButton.savePagesRendered("my-custompage",path);
+                goBackButton.getEventDetails(hostElement);
                 break;
             case "LOGOUT":
-                value =  this.renderPages("my-logout");
-                this.changeHeaderRoutes(path);
+               var hostElement = this.getHostElement();
+                LoadPage.renderPages("my-logout",hostElement);
+                goBackButton.getEventDetails(hostElement);
+                LoadPage.changeHeaderRoutes(hostElement,path);
+                goBackButton.savePagesRendered("my-logout",path);
                 break;
                 
             default:
@@ -110,47 +143,21 @@ class sidebarComponent extends HTMLElement {
         }
         
     };
-    renderPages(customElement){
-        const homePage = this.getRootNode().host;
-        if (homePage){
-        const mainContainer = homePage.shadowRoot.querySelector('#main-content-container');
-        if (mainContainer.children.length > 0) {
-            mainContainer.replaceChildren();
-            this.addPage(customElement, mainContainer);
-
-            
-        } else {
-            this.addPage(customElement, mainContainer);
-        }
-        
-
-        }
-        return homePage;
-
-    };
-    // Add page to the main container 
-    addPage(customElement , mainContainer){
-        const customPage = document.createElement(customElement);
-        mainContainer.appendChild(customPage);
-
-    };
-  
-    changeHeaderRoutes(path){
-        // change the nav header here 
-        const homePage = value;
-        const homepageShadowRoot = homePage.shadowRoot;
-        const navBar = homepageShadowRoot.querySelector('my-navbar');
-        const navBarShadowRoot = navBar.shadowRoot;
-        const header = navBarShadowRoot.querySelector('#navHeader');
-
-        // change the header based on the routes they goooooo... 
-        header.innerHTML = path;
-       
-
-    };
-
+    getHostElement(){
+        const hostElement = this.shadowRoot.getRootNode().host;
+        const mainHostElement = hostElement.getRootNode().host;
+        console.log('host : ',hostElement);
+        return mainHostElement;
+    }
+    getSidebarElement(){
+        const sidebarElem = this.shadowRoot.getRootNode().host;
+        goBackButton.saveSidebarElement(sidebarElem);
+    }
+    
+    
 
 }
+
 
 const sideBar = customElements.define("my-sidebar", sidebarComponent);
 export default sideBar;

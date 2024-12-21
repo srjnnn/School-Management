@@ -24,6 +24,7 @@ class Table extends HTMLElement {
     const crossImage = this.shadowRoot.querySelector("#cross-img");
     const existingDataEditButton = this.shadowRoot.querySelector("#existingData");
     const tableActionButtonsDiv = this.shadowRoot.querySelector(".tableActionsButtons");
+    const newTimetableButton = this.shadowRoot.querySelector('#newTimetable');
     const saveButton = this.shadowRoot.querySelector("#tableSave");
     const cancelButton = this.shadowRoot.querySelector("#tableCancel");
     const table = this.shadowRoot.querySelector("table");
@@ -40,6 +41,23 @@ class Table extends HTMLElement {
     crossImage.addEventListener("click", () => {
       popup.classList.add("hidden");
     });
+
+
+
+    // create a newTimetable
+    newTimetableButton.addEventListener('click',()=>{
+     const newTimetable = document.createElement('new-timetable')
+      const timetablePage = this.getRootNode().host;
+      const homePage = timetablePage.getRootNode().host;
+      const mainContentContainer = homePage.shadowRoot.querySelector('#main-content-container');
+      mainContentContainer.replaceChildren();
+      mainContentContainer.appendChild(newTimetable)
+      popup.classList.add('hidden');
+
+
+
+      
+    })
   
     // Edit existing data
     existingDataEditButton?.addEventListener("click", () => {
@@ -124,7 +142,7 @@ class Table extends HTMLElement {
       saveButton.disabled = true;
       tableActionButtonsDiv?.classList.add("hidden");
     });
-  }
+  };
   
   
   
