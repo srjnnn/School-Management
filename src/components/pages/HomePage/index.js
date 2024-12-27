@@ -1,5 +1,6 @@
 import goBackButton from "../../../services/goBackButton.js";
 import LoadPage from "../../../services/loadPages.js";
+import RestrictUser from "../../../services/restrictUser.js";
 import { loadTemplate } from "../../../utils/loadTemplate.js";
 
 
@@ -34,7 +35,6 @@ class HomePage extends HTMLElement {
     const navbarContainer = this.shadowRoot.getElementById("top-navbar");
     const navbarElement = document.createElement("my-navbar");
     navbarContainer.appendChild(navbarElement);
-    console.log(navbarElement);
   }
     //  Adding the event listner to the go-back button in the sidebar
   addEventListeners(){
@@ -63,14 +63,12 @@ class HomePage extends HTMLElement {
     // Get the sidebar element 
     // const sidebarElement  = goBackButton.getSidebarElem();
     const sidebar = goBackButton.getSidebarElement();
-    console.log("From the homepage got the sidebar : ", sidebar);
     LoadPage.changeClassList(sidebar,previousPageHeader);
 
         //deleting the last index
         History.splice(index-1,1); 
         Header.splice(index-1,1);
         goBackButton.getEventDetails(mainPage);
-        console.log("sidebar : ",this.shadowRoot);
         
 
     

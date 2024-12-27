@@ -31,6 +31,9 @@ class MyApp extends HTMLElement {
     const main = document.getElementById("main-app");
     main.innerHTML = "";
   }
+  clearLocalStorage(){
+    localStorage.clear();
+  }
 
   render() {
     this.shadowRoot.innerHTML = `

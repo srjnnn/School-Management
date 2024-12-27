@@ -2,9 +2,12 @@
   /* * {
     font-size: 62.5%;
   } */
+  * {
+    box-sizing: border-box;
+  }
 
   .mainContainer {
-    height: 100%;
+    height: auto;
     width: 100%;
     border: .1rem solid rgba(164, 169, 194, 1);
 
@@ -57,6 +60,31 @@
     gap: 1rem;
     font-size: 1.9rem;
   }
+
+  button {
+    height: 4rem;
+    border: none;
+    cursor: pointer;
+    width: 8rem;
+    border-radius: 1rem;
+  }
+
+  #tableSave {
+    background-color: rgba(34, 139, 34, 0.8);
+  }
+
+  #tableCancel {
+    background-color: rgba(220, 20, 60, 0.8);
+  }
+
+  .buttonContainer {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 2rem;
+    padding: 2rem;
+    height: 9rem;
+    justify-content: flex-start;
+  }
 </style>
 <div class="mainContainer">
   <div class="textContent">
@@ -106,15 +134,17 @@
       <label for="boysNo">No. of Boys :</label>
       <input type="number">
     </div>
-
-
-
-
-
   </div>
   <div class="design-line"></div>
   <div class="tableContainer">
 
   </div>
 
+</div>
+<div class="tableActionsButtons hidden">
+  <div class="buttonContainer">
+    <button id="tableSave" class="button" disabled>Save</button>
+    <button id="tableCancel" class="button">Cancel</button>
+  </div>
+</div>
 </div>
