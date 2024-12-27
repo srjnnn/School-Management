@@ -93,29 +93,29 @@
   <div class="classDetailsContainer">
     <div class="fieldGroup">
       <label for="Class">Select Class :</label>
-      <select name="" id="">
-        <option value="#">1</option>
-        <option value="#">2</option>
-        <option value="#">3</option>
-        <option value="#">4</option>
-        <option value="#">5</option>
-        <option value="#">6</option>
-        <option value="#">7</option>
-        <option value="#">8</option>
-        <option value="#">9</option>
-        <option value="#">10</option>
+      <select name="" id="selectClass">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
       </select>
 
     </div>
     <div class="fieldGroup">
       <label for="Section">Select Section :</label>
-      <select name="" id="">
-        <option value="#">A</option>
-        <option value="#">B</option>
-        <option value="#">C</option>
-        <option value="#">A1</option>
-        <option value="#">A2</option>
-        <option value="#">A3</option>
+      <select name="" id="section" required>
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+        <option value="A1">A1</option>
+        <option value="A2">A2</option>
+        <option value="A3">A3</option>
       </select>
     </div>
 
@@ -123,16 +123,16 @@
       <label for="totalStudents">
         Enter the Total Students :
       </label>
-      <input type="number">
+      <input type="number" id="totalStudents">
     </div>
 
     <div class="fieldGroup">
       <label for="girlsNo">No. of Girls :</label>
-      <input type="number">
+      <input type="number" id="girlsNo" required>
     </div>
     <div class="fieldGroup">
       <label for="boysNo">No. of Boys :</label>
-      <input type="number">
+      <input type="number" id="boysNo" required>
     </div>
   </div>
   <div class="design-line"></div>
@@ -143,7 +143,7 @@
 </div>
 <div class="tableActionsButtons hidden">
   <div class="buttonContainer">
-    <button id="tableSave" class="button" disabled>Save</button>
+    <button id="tableSave" class="button">Save</button>
     <button id="tableCancel" class="button">Cancel</button>
   </div>
 </div>
