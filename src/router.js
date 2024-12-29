@@ -11,12 +11,16 @@ class Router {
     LOCATION: "/location",
     SETTINGS: "/settings",
     HELP: "/help",
+    editTimetable: "/timeTable/Edit",
+    newTimetable : "/newTimeTable"
   };
 
   static _routePages = {
     [this._routes.HOMEPAGE]: "home-page",
     [this._routes.LOGIN]: "login-page",
-    [this._routes.DASHBOARD]: "my-dashboard"
+    [this._routes.DASHBOARD]: "my-dashboard",
+    [this._routes.TIME_TABLE]:"my-timetable",
+    [this._routes.newTimetable]:"my-newTimetable"
   };
 
   static getMainPage = () => {

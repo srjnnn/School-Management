@@ -1,7 +1,7 @@
 let value = '';
 import goBackButton from "../../../services/goBackButton.js";
 import LoadPage from "../../../services/loadPages.js";
-import appState from "../../../utils/appState.js";
+import RestrictUser from "../../../services/restrictUser.js";
 import { loadTemplate } from "../../../utils/loadTemplate.js";
 class sidebarComponent extends HTMLElement {
     constructor() {
@@ -54,13 +54,16 @@ class sidebarComponent extends HTMLElement {
         
     
     };
-    verifyUserType(){ //this is responsible for identifiying the userType and render the features accordingly
-     const userType = appState.getUserType();
-        if(userType === 'norm'){
-            this.shadowRoot.querySelector('#Students').style.display = "none"; 
+
+    verifyUserType(){
+            const isSuperUser = RestrictUser.IdentifyUserType();
+            console.log("is user a super user ? ",isSuperUser);
+
+            return isSuperUser;
+
+            
         }
-        return userType;
-    }
+
     loadPages(path){
         switch(path){
             case  "DASHBOARD":
@@ -81,9 +84,9 @@ class sidebarComponent extends HTMLElement {
                 break;
             case "TEACHERS":
                var hostElement = this.getHostElement();
-                LoadPage.renderPages("my-custompage",hostElement);
+                LoadPage.renderPages("my-teachers",hostElement);
                 LoadPage.changeHeaderRoutes(hostElement,path);
-                goBackButton.savePagesRendered("my-custompage",path);
+                goBackButton.savePagesRendered("my-teachers",path);
                 goBackButton.getEventDetails(hostElement);
                  break;
             case "CLASSNOTES":
@@ -146,7 +149,6 @@ class sidebarComponent extends HTMLElement {
     getHostElement(){
         const hostElement = this.shadowRoot.getRootNode().host;
         const mainHostElement = hostElement.getRootNode().host;
-        console.log('host : ',hostElement);
         return mainHostElement;
     }
     getSidebarElement(){

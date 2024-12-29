@@ -18,8 +18,6 @@ class goBackButton{
 static getEventDetails(host){
   const history = this.getPagesRendered();
   const Header = this.getPagesHeader();
-  console.log(history.length);
-  console.log(Header.length);
   if(history.length === 1 && Header.length ===1){
     const BackButton = host.shadowRoot.querySelector('#backButton');
     BackButton.classList.add('hidden');
@@ -30,7 +28,6 @@ static getEventDetails(host){
 };
 static saveSidebarElement(sidebar){
   this.sidebarElement = sidebar;
-  console.log("Gotcha sidebar : " ,this.sidebarElement);
 };
 static getSidebarElement(){
   return this.sidebarElement;
