@@ -56,11 +56,31 @@
     padding: .3rem;
     font-size: 1.9rem;
   }
+
+  #close {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+
+  }
+
+  #closeImg {
+    height: 3rem;
+    z-index: 500;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: flex-end;
+  }
 </style>
 
 
 <div class="container">
   <div class="designSection">
+    <div class="buttons">
+      <button id="close" class="close"><img src="/public/assets/icons/x.svg" alt="closeIcon" id="closeImg"></button>
+    </div>
     <div class="adjustSection">
       <div class="imageContainer"></div>
     </div>

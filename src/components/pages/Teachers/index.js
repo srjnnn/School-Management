@@ -35,6 +35,8 @@ class teachersPage extends HTMLElement{
   };
     // Add a new page button actions 
   addNewPage(){
+      const div = this.shadowRoot.querySelector('#mainDiv');
+      div.classList.remove('hidden');
       const addNewTeachers = this.shadowRoot.querySelector("#addNewTeachers");
       addNewTeachers.addEventListener('click',()=>{
         alert("running well")
