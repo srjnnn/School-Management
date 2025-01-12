@@ -1,3 +1,5 @@
+import goBackButton from "../../../services/goBackButton.js";
+import LoadPage from "../../../services/loadPages.js";
 import RestrictUser from "../../../services/restrictUser.js";
 import { loadTemplate } from "../../../utils/loadTemplate.js";
 
@@ -39,7 +41,14 @@ class teachersPage extends HTMLElement{
       div.classList.remove('hidden');
       const addNewTeachers = this.shadowRoot.querySelector("#addNewTeachers");
       addNewTeachers.addEventListener('click',()=>{
-        alert("running well")
+        // render the main page when we cick it 
+        const addNewTeachersPage = document.createElement('add-newteachers');
+        var hostElement = this.getRootNode().host;
+                const path = " Add New Teacher"
+                LoadPage.renderPages("add-newteachers",hostElement);
+                LoadPage.changeHeaderRoutes(hostElement,path);
+                goBackButton.savePagesRendered("add-newteachers",path);
+                goBackButton.getEventDetails(hostElement);
       })
     };
 }

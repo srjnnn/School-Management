@@ -1,0 +1,184 @@
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  .container {
+    height: 100%;
+    width: 100%;
+    border: 0.2rem solid black;
+  }
+
+  .decorationLine {
+    height: 0rem;
+    width: 100%;
+    border: 0.1rem solid black;
+  }
+
+  .headerDiv {
+    font-weight: 100;
+    text-align: center;
+    font-size: 2rem;
+  }
+
+  .detailsContainer {
+    width: 25%;
+    height: auto;
+    padding: 1rem;
+  }
+
+  .dataContainer {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  select {
+    width: 53%;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+</style>
+
+<div class="container">
+  <div class="headerDiv">
+    <p>Fillout the form to add teacher’s detail</p>
+  </div>
+  <div class="decorationLine"></div>
+
+  <div class="detailsContainer">
+    <div class="dataContainer">
+      <p id="labels">Name</p>
+      <p id="decor">:</p>
+      <input type="text">
+    </div>
+    <div class="dataContainer">
+      <p id="labels">Gender</p>
+      <p id="decor">:</p>
+      <select name="" id="">
+        <option disabled selected>Select the Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+    </div>
+    <div class="dataContainer">
+      <p id="labels">Address</p>
+      <p id="decor">:</p>
+      <input type="text">
+    </div>
+    <div class="dataContainer">
+      <p id="labels">Attendence</p>
+      <p id="decor">:</p>
+      <input type="number" id="teachersAttendence">
+    </div>
+    <div class="dataContainer">
+      <p id="labels">Classes</p>
+      <p id="decor">:</p>
+      <select id="classSections" name="classSections" multiple>
+        <!-- Classes 1 to 10 with sections A and B -->
+        <option value="1A">1A</option>
+        <option value="1B">1B</option>
+        <option value="2A">2A</option>
+        <option value="2B">2B</option>
+        <option value="3A">3A</option>
+        <option value="3B">3B</option>
+        <option value="4A">4A</option>
+        <option value="4B">4B</option>
+        <option value="5A">5A</option>
+        <option value="5B">5B</option>
+        <option value="6A">6A</option>
+        <option value="6B">6B</option>
+        <option value="7A">7A</option>
+        <option value="7B">7B</option>
+        <option value="8A">8A</option>
+        <option value="8B">8B</option>
+        <option value="9A">9A</option>
+        <option value="9B">9B</option>
+        <option value="10A">10A</option>
+        <option value="10B">10B</option>
+
+        <!-- Class 11 with faculties CS, BS, HM and sections A1, A2, A3 -->
+        <option value="11-CS-A1">11 CS A1</option>
+        <option value="11-CS-A2">11 CS A2</option>
+        <option value="11-CS-A3">11 CS A3</option>
+        <option value="11-BS-A1">11 BS A1</option>
+        <option value="11-BS-A2">11 BS A2</option>
+        <option value="11-BS-A3">11 BS A3</option>
+        <option value="11-HM-A1">11 HM A1</option>
+        <option value="11-HM-A2">11 HM A2</option>
+        <option value="11-HM-A3">11 HM A3</option>
+
+        <!-- Class 12 with faculties CS, BS, HM and sections A1, A2, A3 -->
+        <option value="12-CS-A1">12 CS A1</option>
+        <option value="12-CS-A2">12 CS A2</option>
+        <option value="12-CS-A3">12 CS A3</option>
+        <option value="12-BS-A1">12 BS A1</option>
+        <option value="12-BS-A2">12 BS A2</option>
+        <option value="12-BS-A3">12 BS A3</option>
+        <option value="12-HM-A1">12 HM A1</option>
+        <option value="12-HM-A2">12 HM A2</option>
+        <option value="12-HM-A3">12 HM A3</option>
+      </select>
+    </div>
+    <div class="dataContainer">
+      <p id="labels">Subjects</p>
+      <p id="decor">:</p>
+      <select name="" id="" multiple>
+        <option value="">English</option>
+        <option value="">Math</option>
+        <option value="">Science</option>
+        <option value="">Computer Science</option>
+        <option value="">Health</option>
+        <option value="">E.P.H</option>
+        <option value="">Accounts</option>
+        <option value="">Social</option>
+        <option value="">Samajik</option>
+        <option value="">Moral</option>
+        <option value="">Business Studies</option>
+        <option value="">Hotel Management</option>
+        <option value="">Nepali</option>
+        <option value="">Optional Maths</option>
+        <option value="">Economics</option>
+      </select>
+    </div>
+
+    <div class="dataContainer">
+      <p id="labels">Select Bus</p>
+      <p id="decor">:</p>
+      <select name="" id="">
+        <option value="">Bus no. 1</option>
+        <option value="">Bus no. 2</option>
+        <option value="">Bus no. 3</option>
+        <option value="">Bus no. 4</option>
+        <option value="">Bus no. 5</option>
+        <option value="">Bus no. 6</option>
+        <option value="">Bus no. 7</option>
+        <option value="">Bus no. 8</option>
+        <option value="">Bus no. 9</option>
+      </select>
+    </div>
+
+    <div class="dataContainer">
+      <p id="labels">Pickup Address</p>
+      <p id="decor">:</p>
+      <input type="text">
+    </div>
+
+    <div class="dataContainer">
+      <p id="labels">Dropoff Address</p>
+      <p id="decor">:</p>
+      <input type="text">
+    </div>
+
+    <div class="dataContainer">
+      <p id="labels">Contact Details</p>
+      <p id="decor">:</p>
+      <input type="text">
+    </div>
+
+  </div>
+
+</div>
