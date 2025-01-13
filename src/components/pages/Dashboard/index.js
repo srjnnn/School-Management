@@ -29,11 +29,20 @@ class DashboardComponent extends HTMLElement {
 
   fetchData() {
     apiRequest(apiRoutes.test.getAllTestData, "GET")
-      .then((data) => {
-        console.log("api data", data);
-        this.testData = data;
+      .then((testData) => {
+        this.testData = testData && testData.data && testData.data[0];
+        console.log("api data", this.testData);
+        this.updateContent();
       })
       .catch((error) => console.error("error fetching data", error));
+
+  }
+  
+  updateContent() {
+    const userSummary = this.shadowRoot.querySelector("my-usersummary");
+    if (userSummary) {
+      userSummary.data = this.testData; // Pass the data as a property
+    }
   }
 
   addContents() {
