@@ -14,8 +14,6 @@ class userSummary extends HTMLElement{
   }
   render(){
     this.shadowRoot.innerHTML = this.userSummaryContent;
-
-
   }
 }
 const usrSummary = customElements.define("my-usersummary" , userSummary);
