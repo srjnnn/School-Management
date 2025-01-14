@@ -134,7 +134,7 @@ class sidebarComponent extends HTMLElement {
             case "LOGOUT":
                var hostElement = this.getHostElement();
                 LoadPage.renderPages("my-logout",hostElement);
-                goBackButton.getEventDetails(hostElement);
+                // goBackButton.getEventDetails(hostElement);
                 // LoadPage.changeHeaderRoutes(hostElement,path);
                 // goBackButton.savePagesRendered("my-logout",path);
                 break;
