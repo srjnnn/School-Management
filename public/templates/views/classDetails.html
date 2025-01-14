@@ -1,0 +1,127 @@
+<style>
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  select {
+    height: 4rem;
+    width: 13rem;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 1);
+  }
+
+  select:focus {
+    border: none;
+  }
+
+  .header p {
+    font-size: 3rem;
+  }
+
+  .detailsContainer {
+    height: auto;
+    width: 48rem;
+    border: 0.3rem solid rgba(134, 182, 255, 1);
+  }
+
+  .header {
+    height: 8rem;
+    padding-left: 1.6rem;
+
+  }
+
+  .label {
+    padding: 1.6rem;
+    font-size: 1.7rem;
+    font-weight: bold;
+  }
+
+  .value {
+
+    font-size: 1.7rem;
+  }
+
+  .data-item {
+    padding: .5rem 0;
+  }
+
+  .techersContainer {
+    padding-left: 1.6rem;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+    font-size: 1.7rem;
+  }
+
+  .teachersNameContainer {
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-direction: column;
+    gap: .5rem;
+  }
+
+  .teachersHeader {
+    font-size: 1.3rem;
+  }
+</style>
+
+
+
+
+<div class="detailsContainer">
+  <div class="header">
+    <p id="detailsHeader">Class Details</p>
+    <select name="selectClass" id="selectClass">
+      <option value="default" selected disabled>Class</option>
+      <option value="1A">1A</option>
+      <option value="1A">2A</option>
+      <option value="1A">3A</option>
+      <option value="1A">4A</option>
+      <option value="1A">5A</option>
+      <option value="1A">6A</option>
+      <option value="1A">7A</option>
+      <option value="1A">8A</option>
+      <option value="1A">9A</option>
+      <option value="1A">10A</option>
+      <option value="1A">11A</option>
+    </select>
+  </div>
+  <div class="dataContainer">
+    <div class="data-item">
+      <span class="label">Class Teacher:</span>
+      <span class="value">class teacher name</span>
+    </div>
+    <div class="data-item">
+      <span class="label">total students:</span>
+      <span class="value">total students value</span>
+    </div>
+    <div class="data-item">
+      <span class="label">No. of Boys:</span>
+      <span class="value"> value</span>
+    </div>
+    <div class="data-item">
+      <span class="label">Number of Girls:</span>
+      <span class="value">value</span>
+    </div>
+    <div class="data-item">
+      <span class="label">Present Students:</span>
+      <span class="value">value</span>
+    </div>
+  </div>
+  <div class="techersContainer">
+    <div class="teachersHeader">
+      <h1>Teachers : </h1>
+      <div class="teachersNameContainer">
+        <a href="#">Teachers Name</a>
+        <a href="#">Teachers Name</a>
+        <a href="#">Teachers Name</a>
+        <a href="#">Teachers Name</a>
+      </div>
+    </div>
+  </div>
+</div>

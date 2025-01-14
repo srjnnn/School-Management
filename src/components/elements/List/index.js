@@ -23,6 +23,6 @@ class listComponent extends HTMLElement {
   }
 }
 
-const ListElement = customElements.define("my-table", listComponent);
+const ListElement = customElements.define("my-list", listComponent);
 
 export default ListElement;

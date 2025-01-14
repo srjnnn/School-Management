@@ -1,0 +1,150 @@
+<style>
+  /* * {
+    font-size: 62.5%;
+  } */
+  * {
+    box-sizing: border-box;
+  }
+
+  .mainContainer {
+    height: auto;
+    width: 100%;
+    border: .1rem solid rgba(164, 169, 194, 1);
+
+  }
+
+  .textContent {
+    display: flex;
+    justify-content: center;
+    border-bottom: .1rem solid rgba(0, 0, 0, 1);
+
+  }
+
+  .textContent p {
+    font-size: 2.4rem;
+
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+
+  }
+
+  input {
+    text-align: center;
+  }
+
+  .classDetailsContainer {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.8rem;
+    gap: 2rem;
+    padding: 2rem;
+  }
+
+  label {
+    display: inline;
+  }
+
+  .design-line {
+    /* height: 0.3rem; */
+    margin: 0 auto;
+    width: 80%;
+    border: 0.1rem solid rgba(157, 157, 164, 1);
+  }
+
+  .fieldGroup {
+    display: flex;
+    gap: 1rem;
+    font-size: 1.9rem;
+  }
+
+  button {
+    height: 4rem;
+    border: none;
+    cursor: pointer;
+    width: 8rem;
+    border-radius: 1rem;
+  }
+
+  #tableSave {
+    background-color: rgba(34, 139, 34, 0.8);
+  }
+
+  #tableCancel {
+    background-color: rgba(220, 20, 60, 0.8);
+  }
+
+  .buttonContainer {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 2rem;
+    padding: 2rem;
+    height: 9rem;
+    justify-content: flex-start;
+  }
+</style>
+<div class="mainContainer">
+  <div class="textContent">
+    <p>Fillout the form to add timetable of a class</p>
+  </div>
+  <div class="classDetailsContainer">
+    <div class="fieldGroup">
+      <label for="Class">Select Class :</label>
+      <select name="" id="selectClass">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+      </select>
+
+    </div>
+    <div class="fieldGroup">
+      <label for="Section">Select Section :</label>
+      <select name="" id="section" required>
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+        <option value="A1">A1</option>
+        <option value="A2">A2</option>
+        <option value="A3">A3</option>
+      </select>
+    </div>
+
+    <div class="fieldGroup">
+      <label for="totalStudents">
+        Enter the Total Students :
+      </label>
+      <input type="number" id="totalStudents">
+    </div>
+
+    <div class="fieldGroup">
+      <label for="girlsNo">No. of Girls :</label>
+      <input type="number" id="girlsNo" required>
+    </div>
+    <div class="fieldGroup">
+      <label for="boysNo">No. of Boys :</label>
+      <input type="number" id="boysNo" required>
+    </div>
+  </div>
+  <div class="design-line"></div>
+  <div class="tableContainer">
+
+  </div>
+
+</div>
+<div class="tableActionsButtons hidden">
+  <div class="buttonContainer">
+    <button id="tableSave" class="button">Save</button>
+    <button id="tableCancel" class="button">Cancel</button>
+  </div>
+</div>
+</div>

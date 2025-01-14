@@ -1,0 +1,109 @@
+<body>
+    <style>
+        .SidebarContainer {
+            height: 100vh;
+            border-right: 0.1rem solid rgba(207, 226, 255, 1);
+            width: 20rem;
+            display: flex;
+            flex-direction: column;
+            background-color: #ffffff;
+        }
+
+        .imageContainer {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1rem;
+
+        }
+
+        .imageContainer img {
+            height: 10rem;
+            width: 10rem;
+        }
+
+        .topWrapper,
+        .bottomWrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .bottomWrapper {
+            margin-bottom: 2rem;
+        }
+
+        .wrappers {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .button {
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            width: 100%;
+            padding: 1rem;
+            color: #333;
+            background: none;
+            border: none;
+            text-align: left;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            border-radius: 0.5rem;
+        }
+
+        .button img {
+            font-size: 2.5rem;
+            margin-right: 2.5rem;
+        }
+
+        .button:hover {
+            background-color: #e9ecef;
+            color: #0056b3;
+        }
+
+
+        .button.active {
+            background-color: #cfe2ff;
+            border: 0.1rem solid blue;
+            color: blue;
+        }
+    </style>
+    <div class="SidebarContainer">
+        <div class="imageContainer">
+            <img src="../../../public/assets/amity-logo.svg" alt="Amity Logo">
+        </div>
+        <div class="wrappers">
+            <div class="topWrapper">
+                <button id="dashboard" class="button"><img src="/public/assets/icons/house.svg"
+                        alt="Dashboard Icon">Dashboard</button>
+                <button id="timetable" class="button"> <img src="/public/assets/icons/watch.svg" alt="Timetable Icon">
+                    Timetable</button>
+                <button id="teachers" class="button"><img src="/public/assets/icons/person.svg" alt="Teacher Icon">
+                    Teachers</button>
+                <button id="classnotes" class="button"> <img src="/public/assets/icons/book.svg"
+                        alt="ClassNotes Icon">Class
+                    Notes</button>
+                <button id="busdetails" class="button"><img src="/public/assets/icons/bus-front.svg" alt="Bus Icon"> Bus
+                    Details</button>
+                <button id="location" class="button"> <img src="/public/assets/icons/geo-alt.svg" alt="Location Icon">
+                    Location</button>
+                <button id="students" class="button"> <img src="/public/assets/icons/person.svg"
+                        alt="Students Icons">Students</button>
+            </div>
+            <div class="bottomWrapper">
+                <button id="settings" class="button"> <img src="/public/assets/icons/gear.svg"
+                        alt="Settings Icon">Settings</button>
+                <button id="help" class="button"> <img src="/public/assets/icons/question-circle.svg" alt="Help Icon">
+                    Help</button>
+                <button id="logout" class="button"> <img src="/public/assets/icons/box-arrow-left.svg"
+                        alt="Logout Icon">
+                    Logout</button>
+            </div>
+        </div>
+    </div>
+
+</body>

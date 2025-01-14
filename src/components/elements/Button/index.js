@@ -1,45 +1,72 @@
-class ButtonComponent extends HTMLElement {
+import { loadTemplate } from "../../../utils/loadTemplate.js";
+
+export class ButtonComponent extends HTMLElement {
+  static get observedAttributes() {
+    return ['height', 'width', 'val'];
+  }
+
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-  }
-
-  static get observedAttributes() {
-    return ['label'];
+    this.onValueChange = () =>{
+      console.log("Button Clicked , button triggered");
+    }
+    // this.onValueChange = this.onButtonChange;
+    
+    // this.handleEvents = this.handleEvents.bind(this);
+    this.templateContent = "";
   }
 
   async connectedCallback() {
-    const templateContent = await this.loadTemplate('templates/ButtonTemplate.html');
-    this.shadowRoot.appendChild(templateContent);
+    // Load and render the template before setting any styles
+    this.templateContent = await loadTemplate("templates/elements/ButtonTemplate.html");
+    this.render();
+    
+   
 
-    // Set the initial label if provided
-    if (this.hasAttribute('label')) {
-      this.updateLabel(this.getAttribute('label'));
-    }
-  }
-
-  async loadTemplate(url) {
-    const response = await fetch(url);
-    const templateText = await response.text();
-
-    const templateElement = document.createElement('template');
-    templateElement.innerHTML = templateText;
-
-    return templateElement.content.cloneNode(true);
+    // Now that the element is rendered, apply initial styles if any attributes are set
+    this.updateStyles();
+    this.handleEvents();
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    if (name === 'label') {
-      this.updateLabel(newValue);
-    }
+    this.updateStyles();
+    
   }
 
-  updateLabel(text) {
-    const slotElement = this.shadowRoot.querySelector('slot');
-    if (slotElement) {
-      slotElement.textContent = text;
-    }
+  updateStyles() {
+    const btn = this.shadowRoot.getElementById("bbb");
+    if (!btn) return;
+
+    // Update the button’s style based on current attributes
+    const height = this.getAttribute("height");
+    const width = this.getAttribute("width");
+    const val = this.getAttribute("val");
+
+    if (height) btn.style.height = height;
+    if (width) btn.style.width = width;
+    if (val) btn.innerHTML = val;
+  }
+  handleEvents(){
+    const buttonEl = this.shadowRoot.getElementById('bbb');
+    if(!buttonEl) return;
+    buttonEl.addEventListener('click' ,()=>{
+      this.onValueChange();
+    })
+  }
+
+  render() {
+    this.shadowRoot.innerHTML = this.templateContent;
+  }
+
+  setStyle({ height, width, val }) {
+    if (height) this.setAttribute("height", height);
+    if (width) this.setAttribute("width", width);
+    if (val) this.setAttribute("val", val);
   }
 }
 
-customElements.define("my-button", ButtonComponent);
+if (!customElements.get("my-button")) {
+  customElements.define("my-button", ButtonComponent);
+}
+export default ButtonComponent;

@@ -1,0 +1,128 @@
+<div class="mainContentContainer">
+  <div class="holder">
+    <div class="textContainer">
+      <p>Login To Connect With Amity</p>
+    </div>
+    <div class="inputContainer">
+
+    </div>
+    <div class="passwordContainer">
+
+    </div>
+    <div class="toggleContainer">
+      <div class="toggle-container">
+        <label class="toggle-switch">
+          <input type="checkbox">
+          <span class="slider"></span>
+        </label>
+        <span class="toggle-label">Remember me</span>
+      </div>
+
+
+
+    </div>
+    <div class="loginButton">
+
+
+    </div>
+    <div class="anchor">
+      <a href="#">Forgot Password?</a>
+
+
+    </div>
+  </div>
+</div>
+</div>
+
+<style>
+  .mainContentContainer {
+    height: 23rem;
+    width: 50%;
+    align-items: center;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .inputContainer {
+    /* border: 2px solid black; */
+    text-align: center;
+  }
+
+  .anchor a {
+    color: black;
+    text-decoration: none;
+    font-size: 1.5rem;
+  }
+
+  .toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .toggle-label {
+    color: black;
+    font-weight: 700;
+    font-size: 1.5rem;
+  }
+
+  .toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+  }
+
+  .toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 24px;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+
+  input:checked+.slider {
+    background-color: rgba(111, 142, 255, .8);
+  }
+
+  input:checked+.slider:before {
+    transform: translateX(26px);
+  }
+
+  .textContainer p {
+    font-size: 1.7rem;
+    font-weight: 700;
+    text-align: center;
+
+
+  }
+
+  .holder {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    align-items: center;
+  }
+</style>
