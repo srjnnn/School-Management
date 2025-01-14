@@ -11,6 +11,7 @@ class classNotes extends HTMLElement{
   async connectedCallback(){
     this.templateContent = await loadTemplate("templates/pages/ClassNotesPage.html");
     this.render();
+    this.addNotes();
     if(RestrictUser.IdentifyUserType() === true){
       this.addEventListners();
       // Make the access visible
@@ -28,6 +29,11 @@ class classNotes extends HTMLElement{
   };
   addEventListners(){
     // Add eventistnes to the 
+  }
+  addNotes(){
+    const classNotesContainer = this.shadowRoot.querySelector('.classNotesContainer');
+    const classNotesCard = document.createElement('class-notes');
+    classNotesContainer.appendChild(classNotesCard);
   }
 
 }
