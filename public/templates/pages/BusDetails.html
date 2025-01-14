@@ -1,0 +1,210 @@
+<style>
+  a {
+    color: black;
+    text-decoration: none;
+    display: flex;
+    margin-top: 3rem;
+    width: 65%;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    height: 2.8rem;
+    border-bottom: 0.1rem solid rgba(222, 226, 230, 1);
+  }
+
+  .active {
+    background-color: rgba(207, 226, 255, 1);
+  }
+
+  .busListContainer {
+    height: 100%;
+    width: 18rem;
+    border: 0.1rem solid rgba(207, 226, 255, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .busListContainer p {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  .busNumber {
+    margin-left: 5rem;
+  }
+
+  .busNumber h1 {
+    font-size: 2rem;
+    text-decoration: underline;
+  }
+
+  .busListContainer p {
+    font-size: 2rem;
+  }
+
+  img {
+    height: 2rem;
+  }
+
+  .mainContainer {
+    display: flex;
+  }
+
+  .firstRow {
+    padding: 2rem;
+    display: flex;
+    gap: 3rem;
+  }
+
+  .topText h1 {
+    font-size: 2rem;
+  }
+
+  .busDetails {
+    display: flex;
+    flex-direction: column;
+  }
+
+  table {
+    font-size: 2rem;
+    border: 0.1rem solid rgba(207, 226, 255, 1);
+
+  }
+
+  th,
+  td {
+    border: 0.1rem solid rgba(207, 226, 255, 1);
+    height: 4rem;
+    width: 30rem;
+  }
+
+  .studentsIntheBus {
+    display: flex;
+    flex-direction: column;
+    height: 39rem;
+    border: 0.1rem solid rgba(50, 173, 230, 1);
+    border-radius: 1rem;
+    overflow-y: scroll;
+    margin-top: 5rem;
+  }
+
+  .studentsIntheBus button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .studentsIntheBus button {
+    height: 3rem;
+    width: 12rem;
+    margin: 0 auto;
+  }
+
+  .studentsIntheBus h1 {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .design {
+    height: 0rem;
+    width: 50%;
+    margin: 0 auto;
+    border: 0.1rem solid rgba(207, 226, 255, 1);
+    margin-bottom: 1rem;
+  }
+
+  .secondRow {
+    display: flex;
+    justify-content: center;
+  }
+</style>
+
+
+<div class="mainContainer">
+
+  <div class="busList">
+    <div class="busNumber">
+      <h1 id="BusName">Bus no.1</h1>
+    </div>
+    <div class="busListContainer">
+
+      <p>Bus List</p>
+      <a href="#" class="active">Bus No.1</a>
+      <a href="#">Bus No.2</a>
+      <a href="#">Bus No.3</a>
+      <a href="#">Bus No.4</a>
+      <a href="#">Bus No.5</a>
+      <a href="#">Bus No.6</a>
+      <a href="#">Bus No.7</a>
+      <a href="#">Bus No.8</a>
+      <a href="#">Bus No.9</a>
+      <a href="#">Bus No.10</a>
+      <a href="#">Bus No.11</a>
+      <a href="#">Bus No.12</a>
+      <a href="#"><img src="/public/assets/icons/plus.svg" alt="Plus Icon">Add Bus</a>
+    </div>
+  </div>
+  <div class="busDetails">
+    <div class="firstRow">
+
+      <div class="driversSummary">
+        <div class="topText">
+          <h1>Driver's Information</h1>
+        </div>
+      </div>
+      <div class="studentsIntheBus">
+        <!-- Table for the Students in the Bus -->
+        <table>
+          <h1>Student's in the bus</h1>
+          <div class="design"></div>
+          <tr>
+            <th>Student's Name </th>
+            <th>Pickup Address</th>
+            <th>Dropoff Address</th>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+        <button><img src="/public/assets/icons/plus.svg" alt="Plus Icon">Add Students</button>
+      </div>
+    </div>
+    <div class="secondRow">
+      <div class="busInfo"></div>
+    </div>
+  </div>
+</div>
