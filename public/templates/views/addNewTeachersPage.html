@@ -25,6 +25,7 @@
     width: 25%;
     height: auto;
     padding: 1rem;
+    font-size: 2rem;
   }
 
   .dataContainer {
@@ -33,13 +34,45 @@
   }
 
   select {
-    width: 53%;
+    width: 35%;
+    margin: 1rem 0;
+  }
+
+  select {
+    font-size: 1.5rem;
   }
 
   input[type="number"]::-webkit-inner-spin-button,
   input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
+  }
+
+  input {
+    height: 3rem;
+    width: 15rem;
+  }
+
+  button {
+    cursor: pointer;
+    height: 5rem;
+    width: 10rem;
+    border-radius: 0.5rem;
+
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 2rem;
+  }
+
+  #Save {
+    background-color: green;
+  }
+
+  #cancel {
+    background-color: red;
   }
 </style>
 
@@ -59,7 +92,7 @@
       <p id="labels">Gender</p>
       <p id="decor">:</p>
       <select name="" id="">
-        <option disabled selected>Select the Gender</option>
+        <option selected>Select the Gender</option>
         <option value="male">Male</option>
         <option value="female">Female</option>
       </select>
@@ -180,5 +213,8 @@
     </div>
 
   </div>
-
+  <div class="buttons">
+    <button id="Save">Save</button>
+    <button id="cancel">Cancel</button>
+  </div>
 </div>

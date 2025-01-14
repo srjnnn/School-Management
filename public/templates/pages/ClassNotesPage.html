@@ -1,0 +1,101 @@
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  .headers {
+    display: flex;
+    justify-content: space-between;
+    /* it's not working */
+  }
+
+  .text {
+    display: inline-flex;
+    background-color: rgba(0, 122, 255, 0.15);
+    height: 4rem;
+    width: 11rem;
+    align-items: center;
+    justify-content: center;
+
+  }
+
+  .text p {
+    display: inline;
+    font-size: 2rem;
+  }
+
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.5rem;
+    height: 4rem;
+    width: 12rem;
+    border: 0.2rem solid rgba(134, 182, 255, 0.9373);
+    background-color: rgba(207, 226, 255, 0.9373);
+  }
+
+  img {
+    height: 2rem;
+  }
+
+  select {
+    font-size: 1.5rem;
+    width: 14rem;
+    text-align: center;
+    height: 4rem;
+    margin-left: 1rem;
+  }
+
+  option {
+    font-size: 1.5rem;
+  }
+
+  .filterby {
+    display: flex;
+  }
+
+  .hidden {
+    display: none;
+  }
+</style>
+
+
+
+
+<div class="mainContainer">
+  <div class="headers">
+    <div class="filterby">
+      <div class="text">
+        <p>Filter By : </p>
+      </div>
+      <!-- Teachers  -->
+      <select name="" id="">
+        <option value="all" selected>Teachers</option>
+      </select>
+      <!--Date  -->
+      <select name="" id="">
+        <option value="all" selected>Date</option>
+      </select>
+      <!-- Subject -->
+      <select name="" id="">
+        <option value="all" selected>Subject</option>
+      </select>
+      <!-- Class /// only visible to teachers -->
+      <select name="" id="class" class="hidden">
+        <option value="all" selected>Class</option>
+      </select>
+
+    </div>
+    <div class="addNoteDiv">
+      <Button class="hidden" id="addNotes"><img src="../../../public/assets/icons/plus.svg" alt="Plus-Icon">Add
+        Notes</Button>
+    </div>
+  </div>
+  <div class="classNotesContainer">
+
+  </div>
+</div>
