@@ -1,0 +1,179 @@
+<style>
+  .headers {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  select {
+    width: 15rem;
+    text-align: center;
+    font-size: 1.5rem;
+    border: 0.1rem solid rgba(207, 226, 255, 1);
+    height: 3rem;
+  }
+
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border: 0.1rem solidrgba(50, 173, 230, 1);
+    background-color: rgba(0, 122, 255, 0.15);
+    border-radius: 0.3rem;
+    height: 3rem;
+
+  }
+
+  img {
+    height: 2rem;
+  }
+
+  .tableContainer {
+    height: 100%;
+    width: 100%;
+
+  }
+
+  table {
+    text-align: center;
+    margin: 0 auto;
+    font-size: 2rem;
+  }
+
+  tr {
+    cursor: pointer;
+
+  }
+
+  tr:nth-child(even) {
+    background-color: rgba(207, 226, 255, 1);
+  }
+
+  td:first-child {
+    width: 15rem;
+  }
+
+  td {
+    border: 0.1rem solid rgba(108, 149, 255, 1);
+    padding: 1rem;
+    width: 40rem;
+
+  }
+
+  th {
+    border: 0.1rem solid rgba(108, 149, 255, 1);
+    padding: 1rem;
+    margin: 1rem;
+
+  }
+
+  tr td:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    width: 30rem;
+  }
+
+  .absoluteDiv {
+    position: absolute;
+    background-color: white;
+    top: 0%;
+    left: 70%;
+    border-radius: 1.2rem;
+  }
+
+  #contentDiv {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+</style>
+<div class="mainContainer">
+  <div class="headers">
+    <div class="selectClass">
+      <select name="" id="">
+        <option value="class" selected disabled>Class</option>
+        <option value="1">1</option>
+      </select>
+    </div>
+    <div class="addButton">
+      <button><img src="/public/assets/icons/plus.svg" alt="Plus Icon">Add Students</button>
+    </div>
+
+  </div>
+  <div class="tableContainer">
+    <table id="teachersDetails">
+      <tr>
+        <th>SN No.</th>
+        <th>Name</th>
+        <th>Contact</th>
+        <th>Address</th>
+        <th>Attendence</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Students Name</td>
+        <td>Students COntact</td>
+        <td>Students Address</td>
+        <td>Students Attendence</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Students Name</td>
+        <td>Students COntact</td>
+        <td>Students Address</td>
+        <td>Students Attendence</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Students Name</td>
+        <td>Students COntact</td>
+        <td>Students Address</td>
+        <td>Students Attendence</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Students Name</td>
+        <td>Students COntact</td>
+        <td>Students Address</td>
+        <td>Students Attendence</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Students Name</td>
+        <td>Students COntact</td>
+        <td>Students Address</td>
+        <td>Students Attendence</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>Students Name</td>
+        <td>Students COntact</td>
+        <td>Students Address</td>
+        <td>Students Attendence</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>Students Name</td>
+        <td>Students COntact</td>
+        <td>Students Address</td>
+        <td>Students Attendence</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>Students Name</td>
+        <td>Students COntact</td>
+        <td>Students Address</td>
+        <td>Students Attendence</td>
+      </tr>
+
+
+    </table>
+
+  </div>
+</div>
+<div class="absoluteDiv hidden" id="absoluteDiv">
+  <div class="contentDiv" id="contentDiv"></div>
+
+</div>
