@@ -6,3 +6,4 @@ export {default as TeachersPage} from './Teachers/index.js';
 export {default as ClassNotes} from './classNotesPage/index.js';
 export {default as busdetails} from './busDetailsPage/index.js'
 export {default as StudentPages} from './StudentsPages/index.js'
+export {default as Attendence} from './studentsAttendence/index.js'

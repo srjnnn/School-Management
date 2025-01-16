@@ -105,7 +105,7 @@ class sidebarComponent extends HTMLElement {
                 break;
             case "ATTENDENCE":
                var hostElement = this.getHostElement();
-                LoadPage.renderPages("my-custompage",hostElement);
+                LoadPage.renderPages("attendence-page",hostElement);
                 LoadPage.changeHeaderRoutes(hostElement,path);
                 // goBackButton.savePagesRendered("my-custompage",path);
                 // goBackButton.getEventDetails(hostElement);
