@@ -1,3 +1,5 @@
+import { apiRoutes } from "../../../globalConstants.js";
+import apiRequest from "../../../utils/api.js";
 import { loadTemplate } from "../../../utils/loadTemplate.js";
 
 class studentsPage extends HTMLElement{
@@ -5,20 +7,49 @@ class studentsPage extends HTMLElement{
     super();
     this.attachShadow({mode:'open'});
     this.templateContent = "";
+    this.studentData = null;
   }
   async connectedCallback(){
     this.templateContent = await loadTemplate('templates/pages/StudentPages.html');
     this.render();
-    this.addEditButtons();
-    this.StudentsDetailsClick();
+    this.getStudentsData();
+    
   }
+  getStudentsData(){
+    apiRequest(apiRoutes.students.getAllStudentsData, "GET")
+    .then((studentData)=>{
+      this.studentData = studentData && studentData.data;
+      this.addTable();
+      this.addEditButtons();
+    this.StudentsDetailsClick();
+    console.log(studentData)
 
+
+    })
+  }
+  addTable(){
+    const tableDiv = this.shadowRoot.querySelector('#studentsDetails');
+
+    this.studentData.forEach(data=>{
+      const row = document.createElement('tr');
+      row.dataset.id = data.id;
+      row.innerHTML = `
+      <tr>
+        <td> ${data.id|| "NA"} </td>
+        <td> ${data.fullname|| "NA"}</td>
+        <td> ${data.phone|| "NA" }</td>
+        <td> ${data.address || "NA"}</td>
+        <td> ${data.attendence|| "NA" }</td>
+      `
+      tableDiv.appendChild(row);
+    })
+  }
   render(){
     this.shadowRoot.innerHTML = this.templateContent;
   }
   // Add eventlistners and all
   addEditButtons(){
-    const rows = this.shadowRoot.querySelectorAll("#teachersDetails tr");
+    const rows = this.shadowRoot.querySelectorAll("#studentsDetails tr");
     rows.forEach(row =>{
       const lastCell = row.querySelector('td:last-child');
       if(lastCell){
@@ -29,10 +60,15 @@ class studentsPage extends HTMLElement{
     });
   }
   StudentsDetailsClick(){
-    const rows = this.shadowRoot.querySelectorAll("#teachersDetails tr");
-    console.log(rows)
+    const rows = this.shadowRoot.querySelectorAll("#studentsDetails tr");
     rows.forEach(row=>{
       row.addEventListener('click',()=>{
+        // logic for adding the student id 
+            const studentId = row.dataset.id;
+            const studentData = this.studentData.find(student => student.id == studentId)
+
+            
+
         // Rest logic on how to append the child 
         const absoluteDiv = this.shadowRoot.querySelector('#absoluteDiv');
         const contentDiv = this.shadowRoot.querySelector('#contentDiv');
@@ -61,8 +97,13 @@ class studentsPage extends HTMLElement{
         // Create a summary box 
         const summaryBox = document.createElement('my-usersummary');
         if(contentDiv){
+         
           contentDiv.replaceChildren();
           contentDiv.appendChild(summaryBox);
+          
+          console.log("Sent data : ",studentData)
+        //  Logic for providing the data 
+          this.sendData(studentData);
           // ALso append the close button to the div 
           const closeButton = document.createElement('div');
           // closeButton.style.background = 'transparent'
@@ -103,6 +144,14 @@ class studentsPage extends HTMLElement{
       })
     })
   };
+ // Add data to the summary box 
+ sendData(studentData){
+   const userSummaryBox = this.shadowRoot.querySelector('my-usersummary');
+   if(userSummaryBox){
+     userSummaryBox.data = studentData;
+     console.log("updated data",userSummaryBox.data)
+   }
+  }
 
 }
 const StudentsPage = customElements.define('students-page',studentsPage);

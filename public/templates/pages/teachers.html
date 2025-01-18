@@ -1,5 +1,5 @@
 <style>
-  button {
+  #addNewTeachers {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -14,12 +14,12 @@
     border-radius: 0.6rem;
   }
 
-  button img {
+  #addNewTeachers img {
     height: 2.5rem;
     width: auto;
   }
 
-  button:hover {
+  #addNewTeachers:hover {
     cursor: pointer;
   }
 
@@ -32,6 +32,61 @@
   .hidden {
     display: none;
   }
+
+  table {
+    text-align: center;
+    margin: 0 auto;
+    font-size: 2rem;
+  }
+
+  tr {
+    cursor: pointer;
+
+  }
+
+  tr:nth-child(even) {
+    background-color: rgba(207, 226, 255, 1);
+  }
+
+  td:first-child {
+    width: 15rem;
+  }
+
+  td {
+    border: 0.1rem solid rgba(108, 149, 255, 1);
+    padding: 1rem;
+    width: 40rem;
+
+  }
+
+  th {
+    border: 0.1rem solid rgba(108, 149, 255, 1);
+    padding: 1rem;
+    margin: 1rem;
+
+  }
+
+  tr td:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    width: 30rem;
+  }
+
+
+  .absoluteDiv {
+    position: absolute;
+    background-color: white;
+    top: 0%;
+    left: 70%;
+    border-radius: 1.2rem;
+  }
+
+  #contentDiv {
+    display: flex;
+    flex-direction: column-reverse;
+  }
 </style>
 
 
@@ -39,6 +94,17 @@
   <button id="addNewTeachers"><img src="/public/assets/icons/plus.svg" alt="Plus Icon">Add</button>
 </div>
 <div class="tableContainer">
+  <table id="teachersDetails">
+    <tr>
+      <th>SN No.</th>
+      <th>Name</th>
+      <th>Subjects</th>
+      <th>Attendence</th>
+    </tr>
 
+  </table>
+  <div class="absoluteDiv hidden" id="absoluteDiv">
+    <div class="contentDiv" id="contentDiv"></div>
 
+  </div>
 </div>

@@ -6,4 +6,10 @@ export const apiRoutes = {
   test: {
     getAllTestData: `${v1Api}/test`,
   },
+  students:{
+    getAllStudentsData : `${v1Api}/students`,
+  },
+  teachers:{
+    getAllTeachersData : `${v1Api}/teachers`
+  }
 };

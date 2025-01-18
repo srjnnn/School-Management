@@ -17,6 +17,7 @@ class userSummary extends HTMLElement {
   set data(value) {
     this._data = value;
     this.updateContent(); // Update content when data is set
+    console.log(this.data)
   }
 
   get data() {
@@ -32,12 +33,28 @@ class userSummary extends HTMLElement {
       // Update the DOM with the new data
       const userNameElement = this.shadowRoot.querySelector("#name-value");
       const userRollElement = this.shadowRoot.querySelector("#roll-value");
+      const userClassElement = this.shadowRoot.querySelector('#class-value');
+      const userAddressElement = this.shadowRoot.querySelector('#address-value');
+      const userPickupAddressElement = this.shadowRoot.querySelector('#pickupAddress-value');
+      const userDropOffElement = this.shadowRoot.querySelector('#dropoffAddress-value');
       // Example: Assuming your HTML has placeholders for user name and email
       if (userNameElement) {
         userNameElement.textContent = this._data.name || "No name available";
       }
       if (userRollElement) {
         userRollElement.textContent = this._data.score || "No email available";
+      }
+      if(userClassElement){
+        userClassElement.textContent = this._data.class || "Null"
+      }
+      if(userAddressElement){
+        userAddressElement.textContent = this._data.address || "Null"
+      }
+      if(userPickupAddressElement){
+        userPickupAddressElement.textContent = this._data.pickup || "Null";
+      }
+      if(userDropOffElement){
+        userDropOffElement.textContent = this._data.drop || "Null"
       }
     }
   }

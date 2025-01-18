@@ -41,7 +41,9 @@ class DashboardComponent extends HTMLElement {
   updateContent() {
     const userSummary = this.shadowRoot.querySelector("my-usersummary");
     if (userSummary) {
-      userSummary.data = this.testData; // Pass the data as a property
+      userSummary.data = this.testData; // 
+      console.log(this.testData);
+      // Pass the data as a property
     }
   }
 
