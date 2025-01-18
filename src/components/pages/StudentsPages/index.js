@@ -1,4 +1,5 @@
 import { apiRoutes } from "../../../globalConstants.js";
+import LoadPage from "../../../services/loadPages.js";
 import apiRequest from "../../../utils/api.js";
 import { loadTemplate } from "../../../utils/loadTemplate.js";
 
@@ -13,6 +14,7 @@ class studentsPage extends HTMLElement{
     this.templateContent = await loadTemplate('templates/pages/StudentPages.html');
     this.render();
     this.getStudentsData();
+    this.renderAddNewStudentsPage();
     
   }
   getStudentsData(){
@@ -151,6 +153,16 @@ class studentsPage extends HTMLElement{
      userSummaryBox.data = studentData;
      console.log("updated data",userSummaryBox.data)
    }
+  }
+
+  renderAddNewStudentsPage(){
+    const button = this.shadowRoot.querySelector('#addStudentsButton');
+    const path = "Add new Student"
+    button.addEventListener('click',()=>{
+      const hostElem = this.getRootNode().host;
+      LoadPage.renderPages("addnew-students" , hostElem);
+      LoadPage.changeHeaderRoutes(hostElem,path);
+    })
   }
 
 }

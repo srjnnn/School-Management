@@ -1,0 +1,205 @@
+<style>
+  .top {
+    display: flex;
+    justify-content: center;
+    border: 0.1rem solid black;
+  }
+
+  .top h1 {
+    font-size: 2rem;
+    font-weight: 400;
+  }
+
+  .dataContainer {
+    display: flex;
+    gap: 3rem;
+    margin: 1rem 1rem;
+  }
+
+  label {
+    height: 4rem;
+    width: 23rem;
+    font-size: 1.8rem;
+  }
+
+  select {
+    text-align: center;
+    width: 18rem;
+  }
+
+  input {
+    width: 18rem;
+  }
+
+  :placeholder-shown {
+    text-align: center;
+  }
+
+  .imageContainer {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    width: 80%;
+    border: 0.1rem solid black;
+  }
+
+  .text {
+    font-size: 2rem;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="file"] {
+    font-size: 1.2rem;
+  }
+
+  #imageText {
+    font-size: 1.2rem;
+  }
+
+  .buttonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  #submit,
+  #reset {
+    cursor: pointer;
+    height: 3rem;
+    width: 8rem;
+    border-radius: 0.6rem;
+  }
+
+  #reset {
+    background-color: red;
+  }
+
+  #submit {
+    background-color: green;
+  }
+
+  address {
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
+
+<div class="mainContainer">
+  <div class="top">
+    <h1>Fill out the form to input student's detail</h1>
+  </div>
+  <form action="#" id="StudentsForm">
+    <div class="dataContainer">
+      <label for="ID">Enter Student id</label>
+      <div class="text">:</div>
+      <input type="text" id="ID">
+
+
+    </div>
+
+
+    <div class="dataContainer">
+      <label for="Name">Name</label>
+      <div class="text">:</div>
+      <input type="text" placeholder="Enter the Student Name" required id="Name">
+    </div>
+
+    <div class="dataContainer">
+      <label for="Class">Class</label>
+      <div class="text">:</div>
+      <select name="" id="Class" required>
+        <option value="11-CS">11 CS</option>
+        <option value="11-BS">11 BS</option>
+        <option value="11-HM">11 HM</option>
+        <option value="12-CS">12 CS</option>
+        <option value="12-BS">12 BS</option>
+        <option value="12-HM">12 HM</option>
+      </select>
+    </div>
+
+    <div class="dataContainer">
+      <label for="Section">Section</label>
+      <div class="text">:</div>
+      <select name="" id="Section" required>
+        <option value="A1">A1</option>
+        <option value="A2">A2</option>
+        <option value="A3">A3</option>
+      </select>
+    </div>
+
+    <div class="dataContainer">
+      <label for="Roll-no">Roll No.</label>
+      <div class="text">:</div>
+      <input type="number" name="" id="rollno" required>
+    </div>
+
+    <div class="dataContainer">
+      <label for="userName">Username</label>
+      <div class="text">:</div>
+      <input type="text" required placeholder="name@amity.com" id="userName">
+    </div>
+
+    <div class="dataContainer">
+      <label for="Address">Address</label>
+      <div class="text">:</div>
+      <input type="text" required id="address">
+    </div>
+
+    <div class="dataContainer">
+      <label for="Bus">Bus</label>
+      <div class="text">:</div>
+      <select name="" id="bus">
+        <option value="">Null</option>
+        <option value="Bus1">Bus1</option>
+        <option value="Bus2">Bus2</option>
+        <option value="Bus3">Bus3</option>
+        <option value="Bus4">Bus4</option>
+        <option value="Bus5">Bus5</option>
+        <option value="Bus6">Bus6</option>
+        <option value="Bus7">Bus7</option>
+      </select>
+    </div>
+
+    <div class="dataContainer">
+      <label for="pickupAddress">PickupAddress</label>
+      <div class="text">:</div>
+      <input type="text" id="pickup">
+      <address>if not a bus user then leave this empty</address>
+    </div>
+
+    <div class="dataContainer">
+      <label for="dropOffAddress">DropOff Address</label>
+      <div class="text">:</div>
+      <input type="text" id="drop">
+      <address>if not a bus user then leave this empty</address>
+    </div>
+
+    <div class="dataContainer">
+      <label for="parentsContact">Parents Contact</label>
+      <div class="text">:</div>
+      <input type="number" required id="contact">
+    </div>
+    <div class="dataContainer">
+      <label for="Image">Upload Student Photo</label>
+      <div class="text">:</div>
+      <input type="file" id="imageUpload" name="image" accept="image/*" required>
+    </div>
+    <div class="buttonContainer">
+      <button type="reset" id="reset">Reset</button>
+      <button id="submit">Submit</button>
+    </div>
+
+  </form>
+
+</div>
