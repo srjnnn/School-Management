@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Daily Attendance</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .attendance-container {
+      width: 100%;
+      max-width: 1000px;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      border: 0.2rem solid rgba(108, 149, 255, 0.3);
+      margin: 0 auto;
+    }
+
+    .header {
+      background: rgba(108, 149, 255, 1);
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead {
+      background: rgba(108, 149, 255, 0.1);
+    }
+
+    th,
+    td {
+      padding: 1.6rem;
+      text-align: center;
+      border-bottom: 1px solid rgba(108, 149, 255, 0.1);
+    }
+
+    th {
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: rgba(108, 149, 255, 1);
+    }
+
+    td {
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+    tr:nth-child(even) {
+      background: #f9faff;
+    }
+
+    tr:hover {
+      background: rgba(108, 149, 255, 0.05);
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1.2rem;
+      justify-content: center;
+    }
+
+    .btn {
+      padding: 1.5rem 2rem;
+      border: none;
+      border-radius: 1.4rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn.present {
+      background: rgba(108, 149, 255, 1);
+      color: #fff;
+      box-shadow: 0 0.5rem 1rem rgba(108, 149, 255, 0.3);
+    }
+
+    .btn.present:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0.8rem 1.4rem rgba(108, 149, 255, 0.5);
+    }
+
+    .btn.absent {
+      background: rgba(255, 87, 87, 1);
+      color: #fff;
+      box-shadow: 0 0.8rem 1rem rgba(255, 87, 87, 0.3);
+    }
+
+    .btn.absent:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(255, 87, 87, 0.5);
+    }
+
+    .name {
+      /* background-color: rgba(108, 149, 255, 0.1); */
+      border-radius: 1rem;
+      font-weight: bold;
+      outline: none;
+      border: none;
+      text-align: center;
+      font-size: 1.5rem;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 0.2rem;
+      font-size: 1rem;
+      color: #666;
+      background: #f7f8fc;
+      border-top: 0.2rem solid rgba(108, 149, 255, 0.1);
+    }
+
+    select {
+      height: 4.8rem;
+      width: 14rem;
+      border-radius: 0.5rem;
+      text-align: center;
+      border: 0.2rem solid rgba(108, 149, 255, 0.1);
+    }
+
+    option {
+      border: none;
+
+    }
+  </style>
+</head>
+
+<body>
+  <div class="attendance-container">
+    <div class="header">
+      Daily Attendance
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Student Name</th>
+          <th>Status</th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody id="table">
+      </tbody>
+    </table>
+    <div class="footer">
+      <select name="" id="">
+        <option value="Class">Select Class</option>
+        <option value="Class">11 CS A3</option>
+        <option value="Class">12 CS A3</option>
+      </select>
+    </div>
+  </div>
+</body>
+
+</html>

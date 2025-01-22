@@ -1,45 +1,78 @@
 <style>
   * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
+
 
   .container {
-    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     width: 100%;
-    border: 0.2rem solid black;
-  }
-
-  .decorationLine {
-    height: 0rem;
-    width: 100%;
-    border: 0.1rem solid black;
+    padding: 2rem;
+    border: 0.2rem solid #ddd;
+    border-radius: 10px;
+    background-color: white;
   }
 
   .headerDiv {
-    font-weight: 100;
+    font-weight: 600;
     text-align: center;
     font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .decorationLine {
+    height: 1px;
+    width: 100%;
+    background-color: #ccc;
+    margin-bottom: 1rem;
   }
 
   .detailsContainer {
-    width: 25%;
-    height: auto;
-    padding: 1rem;
-    font-size: 1.5rem;
+    width: 80%;
+    max-width: 1000px;
+    margin: 0 auto;
   }
 
   .dataContainer {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+  }
+
+  #labels {
+    font-size: 1.2rem;
+    font-weight: 500;
+    width: 30%;
+  }
+
+  #decor {
+    margin: 0 0.5rem;
+  }
+
+  input,
+  select {
+    height: 2.5rem;
+    font-size: 1.1rem;
+    padding: 0.5rem;
+    width: 60%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  input[type="text"],
+  input[type="number"] {
+    width: 60%;
   }
 
   select {
-    width: 35%;
-    margin: 1rem 0;
-  }
-
-  select {
-    font-size: 1.3rem;
+    width: 60%;
   }
 
   input[type="number"]::-webkit-inner-spin-button,
@@ -48,173 +81,189 @@
     margin: 0;
   }
 
-  input {
-    height: 3rem;
-    width: 12rem;
+  .buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.5rem;
+    margin-top: 2rem;
   }
 
   button {
     cursor: pointer;
     height: 3rem;
-    width: 10rem;
-    border-radius: 0.5rem;
-
-  }
-
-  .buttons {
-    display: flex;
-    justify-content: flex-end;
-    gap: 2rem;
+    width: 8rem;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    border: none;
+    transition: background-color 0.3s ease;
   }
 
   #Save {
-    background-color: green;
+    background-color: #4caf50;
+    color: white;
+  }
+
+  #Save:hover {
+    background-color: #45a049;
   }
 
   #cancel {
-    background-color: red;
+    background-color: #f44336;
+    color: white;
+  }
+
+  #cancel:hover {
+    background-color: #e53935;
+  }
+
+  @media screen and (max-width: 768px) {
+    .container {
+      padding: 1rem;
+    }
+
+    .detailsContainer {
+      width: 100%;
+    }
+
+    .dataContainer {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    #labels {
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+
+    input,
+    select {
+      width: 100%;
+    }
+
+    .buttons {
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 1rem;
+    }
+  }
+
+  select[multiple] {
+    height: 6rem;
+    font-size: 1.1rem;
+  }
+
+  select[multiple] option {
+    padding: 0.5rem;
   }
 </style>
 
 <div class="container">
   <div class="headerDiv">
-    <p>Fillout the form to add teacher’s detail</p>
+    <p>Fill out the form to add teacher’s details</p>
   </div>
   <div class="decorationLine"></div>
 
   <div class="detailsContainer">
     <div class="dataContainer">
+      <p id="labels">ID</p>
+      <p id="decor">:</p>
+      <input type="text" id="ID" required>
+    </div>
+
+    <div class="dataContainer">
       <p id="labels">Name</p>
       <p id="decor">:</p>
-      <input type="text">
+      <input type="text" id="Name" required>
     </div>
+
     <div class="dataContainer">
       <p id="labels">Gender</p>
       <p id="decor">:</p>
-      <select name="" id="">
+      <select id="gender" required>
         <option disabled selected>Select the Gender</option>
         <option value="male">Male</option>
         <option value="female">Female</option>
       </select>
     </div>
+
     <div class="dataContainer">
       <p id="labels">Address</p>
       <p id="decor">:</p>
-      <input type="text">
+      <input type="text" id="address" required>
     </div>
+
     <div class="dataContainer">
-      <p id="labels">Attendence</p>
+      <p id="labels">Attendance</p>
       <p id="decor">:</p>
-      <input type="number" id="teachersAttendence">
+      <input type="number" id="teachersAttendance" required>
     </div>
+
     <div class="dataContainer">
       <p id="labels">Classes</p>
       <p id="decor">:</p>
-      <select id="classSections" name="classSections" multiple>
-        <!-- Classes 1 to 10 with sections A and B -->
+      <select id="classSections" multiple required>
         <option value="1A">1A</option>
         <option value="1B">1B</option>
         <option value="2A">2A</option>
         <option value="2B">2B</option>
         <option value="3A">3A</option>
         <option value="3B">3B</option>
-        <option value="4A">4A</option>
-        <option value="4B">4B</option>
-        <option value="5A">5A</option>
-        <option value="5B">5B</option>
-        <option value="6A">6A</option>
-        <option value="6B">6B</option>
-        <option value="7A">7A</option>
-        <option value="7B">7B</option>
-        <option value="8A">8A</option>
-        <option value="8B">8B</option>
-        <option value="9A">9A</option>
-        <option value="9B">9B</option>
-        <option value="10A">10A</option>
-        <option value="10B">10B</option>
-
-        <!-- Class 11 with faculties CS, BS, HM and sections A1, A2, A3 -->
-        <option value="11-CS-A1">11 CS A1</option>
-        <option value="11-CS-A2">11 CS A2</option>
-        <option value="11-CS-A3">11 CS A3</option>
-        <option value="11-BS-A1">11 BS A1</option>
-        <option value="11-BS-A2">11 BS A2</option>
-        <option value="11-BS-A3">11 BS A3</option>
-        <option value="11-HM-A1">11 HM A1</option>
-        <option value="11-HM-A2">11 HM A2</option>
-        <option value="11-HM-A3">11 HM A3</option>
-
-        <!-- Class 12 with faculties CS, BS, HM and sections A1, A2, A3 -->
-        <option value="12-CS-A1">12 CS A1</option>
-        <option value="12-CS-A2">12 CS A2</option>
-        <option value="12-CS-A3">12 CS A3</option>
-        <option value="12-BS-A1">12 BS A1</option>
-        <option value="12-BS-A2">12 BS A2</option>
-        <option value="12-BS-A3">12 BS A3</option>
-        <option value="12-HM-A1">12 HM A1</option>
-        <option value="12-HM-A2">12 HM A2</option>
-        <option value="12-HM-A3">12 HM A3</option>
+        <!-- More options for classes 4-12 -->
       </select>
     </div>
+
     <div class="dataContainer">
       <p id="labels">Subjects</p>
       <p id="decor">:</p>
-      <select name="" id="" multiple>
-        <option value="">English</option>
-        <option value="">Math</option>
-        <option value="">Science</option>
-        <option value="">Computer Science</option>
-        <option value="">Health</option>
-        <option value="">E.P.H</option>
-        <option value="">Accounts</option>
-        <option value="">Social</option>
-        <option value="">Samajik</option>
-        <option value="">Moral</option>
-        <option value="">Business Studies</option>
-        <option value="">Hotel Management</option>
-        <option value="">Nepali</option>
-        <option value="">Optional Maths</option>
-        <option value="">Economics</option>
+      <select id="subject" multiple required>
+        <option value="English">English</option>
+        <option value="Math">Math</option>
+        <option value="Science">Science</option>
+        <!-- More subjects -->
       </select>
     </div>
 
     <div class="dataContainer">
       <p id="labels">Select Bus</p>
       <p id="decor">:</p>
-      <select name="" id="">
-        <option value="">Bus no. 1</option>
-        <option value="">Bus no. 2</option>
-        <option value="">Bus no. 3</option>
-        <option value="">Bus no. 4</option>
-        <option value="">Bus no. 5</option>
-        <option value="">Bus no. 6</option>
-        <option value="">Bus no. 7</option>
-        <option value="">Bus no. 8</option>
-        <option value="">Bus no. 9</option>
+      <select id="bus" required>
+        <option value="1">Bus no. 1</option>
+        <option value="2">Bus no. 2</option>
+        <!-- More buses -->
       </select>
     </div>
 
     <div class="dataContainer">
       <p id="labels">Pickup Address</p>
       <p id="decor">:</p>
-      <input type="text">
+      <input type="text" id="pickup" required>
+    </div>
+
+    <div class="dataContainer">
+      <p id="labels">Username</p>
+      <p id="decor">:</p>
+      <input type="text" id="userName" required placeholder="name@domain.com">
     </div>
 
     <div class="dataContainer">
       <p id="labels">Dropoff Address</p>
       <p id="decor">:</p>
-      <input type="text">
+      <input type="text" id="drop" required>
     </div>
 
     <div class="dataContainer">
       <p id="labels">Contact Details</p>
       <p id="decor">:</p>
-      <input type="text">
+      <input type="text" id="contact" required>
     </div>
 
-  </div>
-  <div class="buttons">
-    <button id="Save">Save</button>
-    <button id="cancel">Cancel</button>
+    <div class="buttons">
+      <button id="Save">Save</button>
+      <button id="cancel">Reset</button>
+    </div>
   </div>
 </div>

@@ -64,8 +64,14 @@ class studentsPage extends HTMLElement{
   StudentsDetailsClick(){
     const rows = this.shadowRoot.querySelectorAll("#studentsDetails tr");
     rows.forEach(row=>{
-      row.addEventListener('click',()=>{
+      
+      row.addEventListener('click',(event)=>{
         // logic for adding the student id 
+        const lastRow = row.lastElementChild;
+      if(lastRow.contains(event.target)){
+        return;
+      }
+        event.stopPropagation();
             const studentId = row.dataset.id;
             const studentData = this.studentData.find(student => student.id == studentId)
 

@@ -27,6 +27,10 @@ class addNewStudents extends HTMLElement{
     })
     const submitButton = this.shadowRoot.querySelector('#submit');
     submitButton.addEventListener('click',()=>{
+      
+  
+
+
       // Get all the fields value 
       const name = this.shadowRoot.querySelector('#Name').value;
       const Class = this.shadowRoot.querySelector('#Class').value;
@@ -61,14 +65,29 @@ class addNewStudents extends HTMLElement{
   }
   // Method to send the data to the database 
   sendData(){
-    apiRequest(apiRoutes.students.getAllStudentsData, "POST",this.payload)
+    apiRequest(apiRoutes.students.sendStudentData, "POST",this.payload)
     .then((response)=>{
       console.log("Data sent successfully : ",response);
+      this.addSuccessPopup(response);
     })
     .catch((error)=>{
       console.error("Error sending data", error);
     })
-
+  }
+  // Error
+  addSuccessPopup(response){
+    const absoluteDiv = document.createElement('div');
+    absoluteDiv.id = "absoluteDiv";
+    absoluteDiv.className = "absoluteDiv";
+    const popup = document.createElement("success-popup");
+    absoluteDiv.appendChild(popup);
+    this.shadowRoot.appendChild(absoluteDiv);
+    const appendedPopup = this.shadowRoot.querySelector("success-popup")
+    appendedPopup.setAttribute("data-message",response);
+    absoluteDiv.classList.remove('hidden');
+    setTimeout(() => {
+    absoluteDiv.remove();
+    }, 3000);
   }
 
 }

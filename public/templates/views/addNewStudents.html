@@ -1,53 +1,65 @@
 <style>
+  * {
+    box-sizing: border-box;
+  }
+
+
+
+  .mainContainer {
+    width: 90%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
   .top {
     display: flex;
     justify-content: center;
-    border: 0.1rem solid black;
+    border-bottom: 2px solid #000;
+    margin-bottom: 1.5rem;
   }
 
   .top h1 {
-    font-size: 2rem;
-    font-weight: 400;
+    font-size: 2.2rem;
+    font-weight: 500;
+    color: #333;
   }
 
   .dataContainer {
     display: flex;
-    gap: 3rem;
-    margin: 1rem 1rem;
+    gap: 2rem;
+    margin: 1.5rem 0;
   }
 
   label {
-    height: 4rem;
-    width: 23rem;
-    font-size: 1.8rem;
-  }
-
-  select {
-    text-align: center;
-    width: 18rem;
-  }
-
-  input {
-    width: 18rem;
-  }
-
-  :placeholder-shown {
-    text-align: center;
-  }
-
-  .imageContainer {
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 3rem;
-    width: 80%;
-    border: 0.1rem solid black;
+    width: 12rem;
+    font-size: 1.6rem;
+    color: #555;
+    font-weight: 500;
   }
 
   .text {
-    font-size: 2rem;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: #555;
+  }
+
+  input,
+  select {
+    width: 20rem;
+    height: 3rem;
+    padding: 0.5rem;
+    font-size: 1.4rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    outline: none;
+  }
+
+  input[type="file"] {
+    font-size: 1.4rem;
   }
 
   input[type="number"]::-webkit-inner-spin-button,
@@ -56,42 +68,166 @@
     margin: 0;
   }
 
-  input[type="file"] {
-    font-size: 1.2rem;
+  select {
+    text-align: center;
+    font-size: 1.4rem;
   }
 
-  #imageText {
-    font-size: 1.2rem;
+  select[multiple] {
+    height: 8rem;
+  }
+
+  address {
+    font-size: 1.4rem;
+    color: #888;
+    font-style: italic;
+    margin-top: 0.5rem;
+  }
+
+  button {
+    cursor: pointer;
+    height: 3rem;
+    width: 8rem;
+    font-size: 1.4rem;
+    border-radius: 5px;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+
+  #reset {
+    background-color: #f44336;
+    color: white;
+  }
+
+  #reset:hover {
+    background-color: #d32f2f;
+  }
+
+  #submit {
+    background-color: #4caf50;
+    color: white;
+  }
+
+  #submit:hover {
+    background-color: #388e3c;
   }
 
   .buttonContainer {
     display: flex;
-    align-items: center;
     justify-content: center;
     gap: 2rem;
+    margin-top: 2rem;
   }
 
-  #submit,
-  #reset {
-    cursor: pointer;
-    height: 3rem;
-    width: 8rem;
-    border-radius: 0.6rem;
-  }
-
-  #reset {
-    background-color: red;
-  }
-
-  #submit {
-    background-color: green;
-  }
-
-  address {
-    font-size: 2rem;
+  .imageContainer {
+    margin: 2rem auto;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 1.5rem;
+    width: 80%;
+    border: 1px solid #ccc;
+    padding: 2rem;
+    border-radius: 8px;
+  }
+
+  #imageText {
+    font-size: 1.4rem;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .absoluteDiv {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  /* midea queries */
+
+  /* Media Queries */
+  @media (max-width: 768px) {
+    .text {
+      display: none;
+    }
+
+    .mainContainer {
+      padding: 1rem;
+    }
+
+    .top h1 {
+      font-size: 1.8rem;
+    }
+
+    .dataContainer {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    label {
+      width: 100%;
+      text-align: center;
+    }
+
+    input,
+    select {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+
+    .buttonContainer {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    button {
+      width: 100%;
+    }
+
+    .imageContainer {
+      width: 90%;
+    }
+
+    #imageText {
+      font-size: 1.2rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .text {
+      display: none;
+    }
+
+    .top h1 {
+      font-size: 1.6rem;
+    }
+
+    label {
+      font-size: 1.4rem;
+    }
+
+    input,
+    select {
+      font-size: 1.2rem;
+      padding: 0.4rem;
+    }
+
+    button {
+      font-size: 1.2rem;
+    }
+
+    .buttonContainer {
+      gap: 0.5rem;
+    }
+
+    .imageContainer {
+      width: 100%;
+      padding: 1rem;
+    }
   }
 </style>
 
@@ -103,7 +239,7 @@
     <div class="dataContainer">
       <label for="ID">Enter Student id</label>
       <div class="text">:</div>
-      <input type="text" id="ID">
+      <input type="number" id="ID">
 
 
     </div>
@@ -201,5 +337,4 @@
     </div>
 
   </form>
-
 </div>
