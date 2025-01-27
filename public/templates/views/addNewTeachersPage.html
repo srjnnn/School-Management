@@ -159,6 +159,17 @@
   select[multiple] option {
     padding: 0.5rem;
   }
+
+  :placeholder-shown {
+    text-align: center;
+  }
+
+  .absoluteDiv {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+  }
 </style>
 
 <div class="container">
@@ -168,102 +179,110 @@
   <div class="decorationLine"></div>
 
   <div class="detailsContainer">
-    <div class="dataContainer">
-      <p id="labels">ID</p>
-      <p id="decor">:</p>
-      <input type="text" id="ID" required>
-    </div>
+    <form action="" id="teachersForm">
 
-    <div class="dataContainer">
-      <p id="labels">Name</p>
-      <p id="decor">:</p>
-      <input type="text" id="Name" required>
-    </div>
+      <div class="dataContainer">
+        <p id="labels">ID</p>
+        <p id="decor">:</p>
+        <input type="number" id="ID" required>
+      </div>
+      <div class="dataContainer">
+        <p id="labels">Name</p>
+        <p id="decor">:</p>
+        <input type="text" id="Name" required>
+      </div>
 
-    <div class="dataContainer">
-      <p id="labels">Gender</p>
-      <p id="decor">:</p>
-      <select id="gender" required>
-        <option disabled selected>Select the Gender</option>
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-      </select>
-    </div>
+      <div class="dataContainer">
+        <p id="labels">Gender</p>
+        <p id="decor">:</p>
+        <select id="gender" required>
+          <option disabled selected>Select the Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
 
-    <div class="dataContainer">
-      <p id="labels">Address</p>
-      <p id="decor">:</p>
-      <input type="text" id="address" required>
-    </div>
+      <div class="dataContainer">
+        <p id="labels">Address</p>
+        <p id="decor">:</p>
+        <input type="text" id="address" required>
+      </div>
 
-    <div class="dataContainer">
-      <p id="labels">Attendance</p>
-      <p id="decor">:</p>
-      <input type="number" id="teachersAttendance" required>
-    </div>
+      <div class="dataContainer">
+        <p id="labels">Attendance</p>
+        <p id="decor">:</p>
+        <input type="number" id="teachersAttendance" required>
+      </div>
 
-    <div class="dataContainer">
-      <p id="labels">Classes</p>
-      <p id="decor">:</p>
-      <select id="classSections" multiple required>
-        <option value="1A">1A</option>
-        <option value="1B">1B</option>
-        <option value="2A">2A</option>
-        <option value="2B">2B</option>
-        <option value="3A">3A</option>
-        <option value="3B">3B</option>
-        <!-- More options for classes 4-12 -->
-      </select>
-    </div>
+      <div class="dataContainer">
+        <p id="labels">Classes</p>
+        <p id="decor">:</p>
+        <select id="classSections" multiple required>
+          <option value="1A">1A</option>
+          <option value="1B">1B</option>
+          <option value="2A">2A</option>
+          <option value="2B">2B</option>
+          <option value="3A">3A</option>
+          <option value="3B">3B</option>
+          <!-- More options for classes 4-12 -->
+        </select>
+      </div>
 
-    <div class="dataContainer">
-      <p id="labels">Subjects</p>
-      <p id="decor">:</p>
-      <select id="subject" multiple required>
-        <option value="English">English</option>
-        <option value="Math">Math</option>
-        <option value="Science">Science</option>
-        <!-- More subjects -->
-      </select>
-    </div>
+      <div class="dataContainer">
+        <p id="labels">Subjects</p>
+        <p id="decor">:</p>
+        <select id="subject" multiple required>
+          <option value="English">English</option>
+          <option value="Math">Math</option>
+          <option value="Science">Science</option>
+          <!-- More subjects -->
+        </select>
+      </div>
 
-    <div class="dataContainer">
-      <p id="labels">Select Bus</p>
-      <p id="decor">:</p>
-      <select id="bus" required>
-        <option value="1">Bus no. 1</option>
-        <option value="2">Bus no. 2</option>
-        <!-- More buses -->
-      </select>
-    </div>
+      <div class="dataContainer">
+        <p id="labels">Select Bus</p>
+        <p id="decor">:</p>
+        <select id="bus" required>
+          <option value="1">Bus no. 1</option>
+          <option value="2">Bus no. 2</option>
+          <!-- More buses -->
+        </select>
+      </div>
 
-    <div class="dataContainer">
-      <p id="labels">Pickup Address</p>
-      <p id="decor">:</p>
-      <input type="text" id="pickup" required>
-    </div>
+      <div class="dataContainer">
+        <p id="labels">Pickup Address</p>
+        <p id="decor">:</p>
+        <input type="text" id="pickup" required placeholder="if not a bus user then leave this empty">
+      </div>
 
-    <div class="dataContainer">
-      <p id="labels">Username</p>
-      <p id="decor">:</p>
-      <input type="text" id="userName" required placeholder="name@domain.com">
-    </div>
+      <div class="dataContainer">
+        <p id="labels">Username</p>
+        <p id="decor">:</p>
+        <input type="text" id="userName" required placeholder="name@amity.com">
+      </div>
 
-    <div class="dataContainer">
-      <p id="labels">Dropoff Address</p>
-      <p id="decor">:</p>
-      <input type="text" id="drop" required>
-    </div>
+      <div class="dataContainer">
+        <p id="labels">Dropoff Address</p>
+        <p id="decor">:</p>
+        <input type="text" id="drop" required placeholder="if not a bus user then leave this empty">
+      </div>
 
-    <div class="dataContainer">
-      <p id="labels">Contact Details</p>
-      <p id="decor">:</p>
-      <input type="text" id="contact" required>
-    </div>
+      <div class="dataContainer">
+        <p id="labels">Contact Details</p>
+        <p id="decor">:</p>
+        <input type="number" id="contact" required>
+      </div>
 
-    <div class="buttons">
-      <button id="Save">Save</button>
-      <button id="cancel">Reset</button>
-    </div>
+      <div class="dataContainer">
+        <p id="labels">Upload Photo</p>
+        <p id="decor">:</p>
+        <input type="file" accept="image/*" id="imageContainer">
+      </div>
+
+      <div class="buttons">
+        <button id="Save">Save</button>
+        <button id="cancel">Reset</button>
+      </div>
+    </form>
   </div>
 </div>

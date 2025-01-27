@@ -1,3 +1,5 @@
+import { apiRoutes } from "../../../globalConstants.js";
+import apiRequest from "../../../utils/api.js";
 import { loadTemplate } from "../../../utils/loadTemplate.js";
 
 class TimetablePage extends HTMLElement{
@@ -5,10 +7,13 @@ class TimetablePage extends HTMLElement{
     super();
     this.attachShadow({mode: "open"});
     this.templateContent = "";
+    this.tableData = null;
   }
   async connectedCallback(){
     this.templateContent = await loadTemplate("templates/pages/Timetable.html");
     this.render();    
+    this.fetchTableData();
+    
   }
   render(){
     this.shadowRoot.innerHTML = this.templateContent;
@@ -20,8 +25,24 @@ class TimetablePage extends HTMLElement{
     const tableContainer = this.shadowRoot.querySelector('.tableContainer');
     const table = document.createElement('my-table');
     tableContainer.appendChild(table);
-
-    
+  }
+  // Fetch the table Data
+  fetchTableData(){
+    apiRequest(apiRoutes.timetable.getAllTimetableData, "GET")
+    .then((timetableData)=>{
+      this.tableData = timetableData && timetableData.data;
+      console.log("table data : " , this.tableData)
+      this.updateTableContent();
+    })
+    .catch((error)=>
+      console.error("Error fetching the table data : ", error));
+  }
+  updateTableContent(){
+    const table = this.shadowRoot.querySelector("my-table");
+    if(table){
+      table.data = this.tableData;
+      console.log("Sent the table data : ")
+    }
   }
   addNotes(){
     const notesContainer = this.shadowRoot.querySelector('.classNotesContainer');

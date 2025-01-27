@@ -34,10 +34,17 @@
     transform: rotate(13.2deg);
   }
 
+  .tableContainer {
+    width: 100%;
+    overflow-x: auto;
+  }
+
   table {
     width: 100%;
-    border-top: 0.4rem solid rgba(222, 226, 230, 1);
     border-collapse: collapse;
+    text-align: center;
+    font-size: 1.6rem;
+    margin: 0 auto;
   }
 
   td,
@@ -52,12 +59,15 @@
   }
 
   th {
-    width: 15rem;
+    background-color: #f2f6ff;
   }
 
   tr:nth-child(even) {
-    background-color: rgba(207, 226, 255, 1);
+    background-color: #e3effd;
   }
+
+
+
 
   .periodsList p {
     margin: 0;
@@ -239,102 +249,53 @@
       </th>
       <th class="periodsList">
         <p class="dataheader">First</p>
-        <p class="dataTime">Time</p>
+        <p class="dataTime">period</p>
       </th>
       <th class="periodsList">
         <p class="dataheader">Second</p>
-        <p class="dataTime">Time</p>
+        <p class="dataTime">period</p>
       </th>
       <th class="periodsList">
         <p class="dataheader">Third</p>
-        <p class="dataTime">Time</p>
+        <p class="dataTime">period</p>
       </th>
       <th class="periodsList">
         <p class="dataheader">Fourth</p>
-        <p class="dataTime">Time</p>
+        <p class="dataTime">period</p>
       </th>
       <th class="periodsList">
         <p class="dataheader">Fifth</p>
-        <p class="dataTime">Time</p>
+        <p class="dataTime">period</p>
       </th>
       <th class="periodsList">
         <p class="dataheader">Sixth</p>
-        <p class="dataTime">Time</p>
+        <p class="dataTime">period</p>
       </th>
       <th class="periodsList">
         <p class="dataheader">Seventh</p>
-        <p class="dataTime">Time</p>
+        <p class="dataTime">period</p>
       </th>
     </tr>
-    <tr>
-      <td id="dataSunday" class="dataDays">Sunday</td>
-      <td>subject</td>
-      <td>subject</td>
-      <td>subject</td>
-      <td>subject</td>
-      <td>subject</td>
-      <td>subject</td>
-      <td>subject</td>
+    <tr id="Sunday">
+      <!-- Data from the backend -->
     </tr>
-    <tr>
-      <td id="dataMonday" class="dataDays">Monday</td>
-      <td>subject</td>
-      <td>subject</td>
-      <td>subject</td>
-      <td>subject</td>
-      <td>subject</td>
-      <td>subject</td>
-      <td>subject</td>
+    <tr id="Monday">
+      <!-- Data from the backend -->
     </tr>
-    <tr>
-      <td id="dataTuesday" class="dataDays">Tuesday</td>
-      <td>subject</td>
-      <td>subject</td>
-      <td>subject</td>
-      <td>subject</td>
-      <td>subject</td>
-      <td>subject</td>
-      <td>subject</td>
+    <tr id="Tuesday">
+      <!-- Data from the backend -->
     </tr>
-    <tr>
-      <td id="dataWednesday" class="dataDays">Wednesday</td>
-      <td>subject</td>
-      <td>subject</td>
-      <td>subject</td>
-      <td>subject</td>
-      <td>subject</td>
-      <td>subject</td>
-      <td>subject</td>
+    <tr id="Wednesday">
+
     </tr>
-    <tr>
-      <td id="dataThursday" class="dataDays">Thursday</td>
-      <td>subject</td>
-      <td>subject</td>
-      <td>subject</td>
-      <td>subject</td>
-      <td>subject</td>
-      <td>subject</td>
-      <td>subject</td>
+    <tr id="Thursday">
+
     </tr>
-    <tr>
-      <td id="dataFriday" class="dataDays">Friday</td>
-      <td>subject</td>
-      <td>subject</td>
-      <td>subject</td>
-      <td>subject</td>
-      <td>subject</td>
-      <td>subject</td>
-      <td>subject</td>
+    <tr id="Friday">
+
     </tr>
-    <tr>
-      <td id="dataSaturday" class="dataDays">Saturday</td>
-      <td>subject</td>
-      <td>subject</td>
-      <td>subject</td>
-      <td>subject</td>
-      <td>subject</td>
-      <td>subject</td>
-      <td>subject</td>
+    <tr id="Saturday">
+
 
     </tr>
   </table>

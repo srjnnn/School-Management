@@ -19,6 +19,7 @@ class sidebarComponent extends HTMLElement {
         this.render();
         this.prop();
         this.verifyUserType();
+        this.toggle();
 
         // Making the dashboard as the default button
         const dashboard = this.shadowRoot.querySelector('#dashboard');
@@ -156,7 +157,14 @@ class sidebarComponent extends HTMLElement {
         goBackButton.saveSidebarElement(sidebarElem);
     }
     
-    
+    toggle(){
+        const button = this.shadowRoot.querySelector('.toggleButton');
+        const sidebar = this.shadowRoot.getElementById('sidebar');
+        button.addEventListener('click', ()=>{
+             sidebar.classList.toggle('open');
+             
+        })
+    }
 
 }
 

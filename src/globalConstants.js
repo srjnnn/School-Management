@@ -15,5 +15,10 @@ export const apiRoutes = {
     getAllTeachersData : `${v1Api}/teachers`,
     sendTeachersData : `${v1Api}/teachers`,
 
+  },
+  timetable:{
+    getAllTimetableData : `${v1Api}/timetable`,
+    sendTimetableData : `${v1Api}/timetable`
   }
+
 };

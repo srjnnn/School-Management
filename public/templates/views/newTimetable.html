@@ -85,6 +85,13 @@
     height: 9rem;
     justify-content: flex-start;
   }
+
+  .absoluteDiv {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+  }
 </style>
 <div class="mainContainer">
   <div class="textContent">
@@ -93,7 +100,8 @@
   <div class="classDetailsContainer">
     <div class="fieldGroup">
       <label for="Class">Select Class :</label>
-      <select name="" id="selectClass">
+      <select name="" id="selectClass" required>
+        <option value="null">Select Class</option>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -104,12 +112,15 @@
         <option value="8">8</option>
         <option value="9">9</option>
         <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
       </select>
 
     </div>
     <div class="fieldGroup">
       <label for="Section">Select Section :</label>
       <select name="" id="section" required>
+        <option value="null">Select Section</option>
         <option value="A">A</option>
         <option value="B">B</option>
         <option value="C">C</option>

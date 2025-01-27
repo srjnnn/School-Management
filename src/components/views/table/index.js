@@ -8,7 +8,7 @@ class Table extends HTMLElement {
     this.attachShadow({ mode: "open" });
     this.tableContent = "";
     this.originalData = {};
-    
+    this.data = null;
   }
 
   async connectedCallback() {
@@ -28,9 +28,65 @@ class Table extends HTMLElement {
 
   }
 
+ 
+  set data(value) {
+    this._data = value;
+    this.updateContent();
+
+  }
+
+  get data(){
+    return this._data;
+  }
+
   render() {
     this.shadowRoot.innerHTML = this.tableContent;
   }
+  updateContent() {
+            //  Get the table 
+    const table = this.shadowRoot.querySelector('table');
+    if(table){
+      // get the data from the table 
+      const data = this.data;
+      // Filter the timetable data 
+      const timetableData = data[0].data;
+
+      // fetch all the days with their data
+      for(const day in timetableData){
+        // get the tr matching the data 
+        const tr = this.shadowRoot.querySelector(`#${day}`)
+        console.log(tr);
+
+        tr.innerHTML = ``;
+        
+        let rowContent = `<td id="${day}" class="dataDays">${day}</td>`;
+
+
+        for(const session of timetableData[day]){
+          console.log(session.subject)
+                       // Clear the trs and append the latest data
+                       rowContent += `
+                       <td>
+                           ${session.subject}
+                       </td>
+                       
+                       `
+                               
+                
+        }
+         // Fill empty cells if there are less than 7 periods
+         const emptyCells = 7 - timetableData[day].length;
+         for (let i = 0; i < emptyCells; i++) {
+             rowContent += `<td>OFF</td>`;
+         }
+        
+         tr.innerHTML = rowContent;
+      }
+    }
+    }
+  
+  
+  
  
   addEventListeners() {
     const topHeader = this.shadowRoot.querySelector('#topHeader');
@@ -88,8 +144,8 @@ class Table extends HTMLElement {
     const tableActionButtonsDiv = this.shadowRoot.querySelector(".tableActionsButtons");
     const saveButton = this.shadowRoot.querySelector("#tableSave");
     const cancelButton = this.shadowRoot.querySelector("#tableCancel");
-    const dataTimeFields = this.shadowRoot.querySelectorAll(".dataTime");
-    const cells = table.querySelectorAll("td, .dataTime"); // Include `dataTime` fields
+    
+    const cells = table.querySelectorAll("td"); // Include `dataTime` fields
   
       cells.forEach((cell) => {
         if (cell.contentEditable === "true") {
@@ -117,10 +173,7 @@ class Table extends HTMLElement {
       });
     });
   
-    // Save initial `dataTime` values
-    dataTimeFields.forEach((field, index) => {
-      this.originalData[`dataTime-${index}`] = field.textContent.trim();
-    });
+
   
     // Enable save button if changes are detected
     table.addEventListener("input", () => {
@@ -130,10 +183,7 @@ class Table extends HTMLElement {
             (cell, cIndex) =>
               cell.textContent.trim() !== this.originalData[`${rIndex}-${cIndex}`]
           )
-      ) || Array.from(dataTimeFields).some(
-        (field, index) =>
-          field.textContent.trim() !== this.originalData[`dataTime-${index}`]
-      );
+      )
   
       saveButton.disabled = !hasChanges;
     });
