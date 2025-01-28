@@ -132,6 +132,12 @@
     margin: 0 auto;
     font-size: 1.5rem;
   }
+
+  .absoluteDiv {
+    position: absolute;
+    top: 50%;
+    left: 30%;
+  }
 </style>
 
 
@@ -156,6 +162,7 @@
     <div class="data">
       <p>Select the subject : </p>
       <select name="" id="notesSubject">
+        <option value="null" selected>Select Subject</option>
         <option value="English">English</option>
         <option value="Science">Science</option>
         <option value="Economics">Economics</option>
@@ -166,6 +173,7 @@
     <div class="data">
       <p>Select the Class</p>
       <select name="" id="Class">
+        <option value="null" selected>Select Class</option>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -183,16 +191,23 @@
     <div class="data">
       <p>Select the Section</p>
       <select name="" id="NotesSection">
+        <option value="null" selected>Select Section</option>
         <option value="A">A</option>
         <option value="B">B</option>
         <option value="C">C</option>
-        <option value="A1">A1</option>
-        <option value="A2">A2</option>
-        <option value="A3">A3</option>
+        <option value="CS-A1"> CS A1</option>
+        <option value="CS-A2"> CS A2</option>
+        <option value="CS-A3"> CS A3</option>
+        <option value="HM-A1"> HM A1</option>
+        <option value="HM-A2"> HM A2</option>
+        <option value="HM-A3"> HM A3</option>
+        <option value="BS-A1"> BS A1</option>
+        <option value="BS-A2"> BS A2</option>
+        <option value="BS-A3"> BS A3</option>
       </select>
     </div>
   </div>
 
-  <button>Submit</button>
+  <button id="submit">Submit</button>
 
 </div>

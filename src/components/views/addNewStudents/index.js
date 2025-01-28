@@ -83,7 +83,7 @@ class addNewStudents extends HTMLElement{
     absoluteDiv.appendChild(popup);
     this.shadowRoot.appendChild(absoluteDiv);
     const appendedPopup = this.shadowRoot.querySelector("success-popup")
-    appendedPopup.setAttribute("data-message",response);
+    appendedPopup.data = response;
     absoluteDiv.classList.remove('hidden');
     setTimeout(() => {
     absoluteDiv.remove();

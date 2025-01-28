@@ -6,27 +6,30 @@ class successPopup extends HTMLElement{
     super();
     this.attachShadow({mode : "open"});
     this.templateContent = "";
-  }
-  static get observedAttributes() {
-    return ['data-message'];
+    this.data = null;
   }
   async connectedCallback(){
     this.templateContent = await loadTemplate("templates/elements/SuccessPopup.html");
     this.render();
   }
-  attributeChangedCallback(name, oldValue, newValue) {
-    if (name === 'data-message') {
-      this.changeData();
-    }
-  }
+ set data(value){
+  this._data = value;
+  this.updateContent();
+ }
+
+ get data(){
+  return this._data;
+ }
   render(){
     this.shadowRoot.innerHTML = this.templateContent;
+    this.updateContent();
   }
-  changeData(){
-    const message = this.getAttribute('data-message');
+  updateContent(){
     const text = this.shadowRoot.querySelector("#popupText");
     if (text) {
-      text.textContent = message; // Update the text content safely
+      text.textContent = this.data.success; // Update the text 
+      // content safely
+      console.log(this.data);
     }
 
   }

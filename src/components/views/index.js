@@ -11,6 +11,6 @@ export {default as Table} from '../views/table/index.js'
 export {default as classDetails} from '../views/classDetails/index.js'
 export {default as newTimetable} from '../views/newTImetable/index.js'
 export {default as addNewTeachers} from '../views/addNewTeacher/index.js'
-export {default as classNotes} from '../views/addNewTeachersViews/index.js'
+export {default as classNotes} from '../views/classNotesViews/index.js'
 export {default as addStudents} from '../views/addNewStudents/index.js'
 export {default as addNotes} from "../views/addNotes/index.js"
