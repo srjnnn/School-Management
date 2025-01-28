@@ -93,13 +93,22 @@ class teachersPage extends HTMLElement{
     TeachersDetailsClick(){
       const rows = this.shadowRoot.querySelectorAll("#teachersDetails tr");
       rows.forEach(row=>{
-        row.addEventListener('click',()=>{
+        const lastRow = row.lastElementChild;
+        row.addEventListener('click',(event)=>{
+          if(lastRow.contains(event.target)){
+            return
+          }
+
+          const teacherID = row.dataset.id;
+          const teachersData = this.teachersData.find(teacher => teacher.id == teacherID)
           
               
   
           // Rest logic on how to append the child 
           const absoluteDiv = this.shadowRoot.querySelector('#absoluteDiv');
+          console.log("Absolute div : ",absoluteDiv)
           const contentDiv = this.shadowRoot.querySelector('#contentDiv');
+          console.log("Content div : ",contentDiv)
           // make the div moveable 
           let isDragging = false;
           let offSetX, offSetY;
@@ -128,6 +137,7 @@ class teachersPage extends HTMLElement{
            
             contentDiv.replaceChildren();
             contentDiv.appendChild(summaryBox);
+            this.sendData(teachersData);
             
            
             // ALso append the close button to the div 
@@ -170,6 +180,12 @@ class teachersPage extends HTMLElement{
         })
       })
     };
+  sendData(teacherData){
+    const summaryBox = this.shadowRoot.querySelector('my-usersummary');
+    if(summaryBox){
+      summaryBox.data = teacherData;
+    }
+  }
 }
 const TeachersPage = customElements.define("my-teachers",teachersPage);
 export default TeachersPage;

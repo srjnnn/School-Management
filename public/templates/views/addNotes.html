@@ -1,0 +1,198 @@
+<style>
+  /* Global Styles */
+  body {
+    font-family: Arial, sans-serif;
+    font-size: 1.6rem;
+    /* 62.5% translates to 1rem = 10px */
+    margin: 0;
+    padding: 0;
+    background-color: rgba(207, 226, 255, 0.2);
+    /* Light background */
+    color: #333;
+    /* Text color */
+  }
+
+  .notesContainer {
+    max-width: 100rem;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: rgba(207, 226, 255, 1);
+    border-radius: 1rem;
+    box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    height: 90%;
+  }
+
+  .notesContainer input[type="text"],
+  .notesContainer input[type="file"],
+  .notesContainer select,
+  .notesContainer button,
+  textarea {
+    margin: 0 auto;
+    width: 90%;
+    padding: 1rem;
+    border: 0.1rem solid rgba(0, 0, 0, 0.2);
+    border-radius: 0.5rem;
+    font-size: 1.6rem;
+    background-color: #fff;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .notesContainer input:focus,
+  .notesContainer select:focus,
+  .notesContainer button:hover,
+  textarea:focus {
+    border-color: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.2);
+  }
+
+  .notesContainer .title,
+  .notesContainer .summary,
+  .notesContainer .Description,
+  .notesContainer .attachFiles,
+  .notesContainer .classAndSubject .data {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .notesContainer .classAndSubject {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .notesContainer .classAndSubject .data {
+    flex: 1;
+    min-width: 15rem;
+  }
+
+  .notesContainer button {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  :placeholder-shown {
+    text-align: center;
+  }
+
+  .notesContainer button:hover {
+    background-color: #0056b3;
+  }
+
+  p {
+    font-size: 1.8rem;
+  }
+
+  .Description,
+  #Description {
+    height: 15rem;
+  }
+
+  @media (max-width: 768px) {
+    .notesContainer {
+      padding: 1.5rem;
+    }
+
+    .notesContainer .classAndSubject {
+      flex-direction: column;
+    }
+  }
+
+  p {
+    margin: 0 auto;
+  }
+
+  textarea:placeholder-shown {
+    text-align: center;
+  }
+
+  textarea:active {
+    border: none;
+  }
+
+  .summary,
+  #summary {
+    height: 8rem;
+  }
+
+  #title {
+    height: 3rem;
+  }
+
+  .header {
+    margin: 0 auto;
+    font-size: 1.5rem;
+  }
+</style>
+
+
+
+<div class="notesContainer">
+  <div class="header">
+    <h1>Add Class Notes</h1>
+  </div>
+  <div class="title">
+    <input type="text" placeholder="Enter the title of the notes" id="title">
+  </div>
+  <div class="summary">
+    <textarea name="" id="summary" placeholder=" Enter the short summary of the Notes"></textarea>
+  </div>
+  <div class="Description">
+    <textarea name="" id="Description" placeholder="Enter the Brief description of the notes"></textarea>
+  </div>
+  <div class="attachFiles">
+    <input type="file" accept="application/pdf" id="pdfFile">
+  </div>
+  <div class="classAndSubject">
+    <div class="data">
+      <p>Select the subject : </p>
+      <select name="" id="notesSubject">
+        <option value="English">English</option>
+        <option value="Science">Science</option>
+        <option value="Economics">Economics</option>
+        <option value="Computer">Computer</option>
+        <option value="EPH">EPH</option>
+      </select>
+    </div>
+    <div class="data">
+      <p>Select the Class</p>
+      <select name="" id="Class">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+      </select>
+    </div>
+    <div class="data">
+      <p>Select the Section</p>
+      <select name="" id="NotesSection">
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+        <option value="A1">A1</option>
+        <option value="A2">A2</option>
+        <option value="A3">A3</option>
+      </select>
+    </div>
+  </div>
+
+  <button>Submit</button>
+
+</div>

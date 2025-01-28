@@ -1,3 +1,4 @@
+import LoadPage from "../../../services/loadPages.js";
 import RestrictUser from "../../../services/restrictUser.js";
 import { loadTemplate } from "../../../utils/loadTemplate.js";
 
@@ -29,6 +30,17 @@ class classNotes extends HTMLElement{
   };
   addEventListners(){
     // Add eventistnes to the 
+    const addButton = this.shadowRoot.querySelector('#addNotes');
+    addButton.addEventListener('click',()=>{
+      const hostElement = this.shadowRoot.getRootNode().host
+      const mainHostElement = hostElement.getRootNode().host;
+      LoadPage.renderPages('add-notes',mainHostElement);
+      LoadPage.changeHeaderRoutes(mainHostElement,"Add class Notes")
+
+
+
+
+    })
   }
   addNotes(){
     const classNotesContainer = this.shadowRoot.querySelector('.classNotesContainer');
