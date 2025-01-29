@@ -24,7 +24,6 @@ class studentsPage extends HTMLElement{
       this.addTable();
       this.addEditButtons();
     this.StudentsDetailsClick();
-    console.log(studentData)
 
 
     })
@@ -109,7 +108,6 @@ class studentsPage extends HTMLElement{
           contentDiv.replaceChildren();
           contentDiv.appendChild(summaryBox);
           
-          console.log("Sent data : ",studentData)
         //  Logic for providing the data 
           this.sendData(studentData);
           // ALso append the close button to the div 
@@ -157,7 +155,6 @@ class studentsPage extends HTMLElement{
    const userSummaryBox = this.shadowRoot.querySelector('my-usersummary');
    if(userSummaryBox){
      userSummaryBox.data = studentData;
-     console.log("updated data",userSummaryBox.data)
    }
   }
 

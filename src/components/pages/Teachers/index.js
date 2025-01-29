@@ -106,9 +106,7 @@ class teachersPage extends HTMLElement{
   
           // Rest logic on how to append the child 
           const absoluteDiv = this.shadowRoot.querySelector('#absoluteDiv');
-          console.log("Absolute div : ",absoluteDiv)
           const contentDiv = this.shadowRoot.querySelector('#contentDiv');
-          console.log("Content div : ",contentDiv)
           // make the div moveable 
           let isDragging = false;
           let offSetX, offSetY;

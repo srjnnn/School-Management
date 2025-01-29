@@ -30,7 +30,6 @@ class userSummary extends HTMLElement {
   }
 
   updateContent() {
-    console.log("Students data = ", this.data);
     if (this._data && this.shadowRoot) {
       // Update the DOM with the new data
       const userNameElement = this.shadowRoot.querySelector("#name-value");
@@ -42,7 +41,6 @@ class userSummary extends HTMLElement {
       // Example: Assuming your HTML has placeholders for user name and email
       if (userNameElement) {
         userNameElement.textContent = this._data.fullname || "No name available";
-        console.log(userNameElement, this.data)
       }
       if (userRollElement) {
         userRollElement.textContent = this._data.score || "No email available";

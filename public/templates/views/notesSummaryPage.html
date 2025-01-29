@@ -1,0 +1,80 @@
+<style>
+  .mainContainer {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .title {
+    height: 6rem;
+    border: 0.2rem solid rgba(207, 226, 255, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .title b {
+    font-size: 2.5rem;
+  }
+
+  .summary {
+    height: 9rem;
+    border: 0.2rem solid rgba(207, 226, 255, 1);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .summary b {
+    font-size: 1.8rem;
+  }
+
+  .summary p {
+    font-size: 1.5rem;
+  }
+
+  .description {
+    height: 15rem;
+    border: 0.2rem solid rgba(207, 226, 255, 1);
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+
+  .description b {
+    font-size: 1.8rem;
+  }
+
+  .description p {
+    font-size: 1.5rem;
+  }
+
+  .file {
+    height: 10rem;
+    border: 0.2rem solid rgba(207, 226, 255, 1);
+  }
+
+  .file b {
+    font-size: 1.8rem;
+  }
+</style>
+
+<div class="mainContainer">
+  <div class="title">
+    <b id="titleContent">Title Content Appears here</b>
+  </div>
+  <div class="summary">
+    <b id="defaultText">Summary</b>
+    <p id="summaryContent">SUmmary content appears here</p>
+  </div>
+  <div class="description">
+    <b>Description</b>
+    <p id="descriptionContent">Description Content Appears Here</p>
+  </div>
+  <div class="file">
+    <b>Attached file</b>
+    <!-- Files uploaded appears here -->
+  </div>
+</div>

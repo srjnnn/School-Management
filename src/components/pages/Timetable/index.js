@@ -31,7 +31,6 @@ class TimetablePage extends HTMLElement{
     apiRequest(apiRoutes.timetable.getAllTimetableData, "GET")
     .then((timetableData)=>{
       this.tableData = timetableData && timetableData.data;
-      console.log("table data : " , this.tableData)
       this.updateTableContent();
     })
     .catch((error)=>
@@ -41,7 +40,6 @@ class TimetablePage extends HTMLElement{
     const table = this.shadowRoot.querySelector("my-table");
     if(table){
       table.data = this.tableData;
-      console.log("Sent the table data : ")
     }
   }
   addNotes(){

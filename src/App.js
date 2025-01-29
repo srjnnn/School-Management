@@ -23,7 +23,6 @@ class MyApp extends HTMLElement {
 
     const main = this.shadowRoot.getElementById("main-app");
     const pageElement = document.createElement(page);
-    console.log("page element", pageElement, main);
     main.appendChild(pageElement);
   }
 

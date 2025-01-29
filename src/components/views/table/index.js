@@ -55,7 +55,6 @@ class Table extends HTMLElement {
       for(const day in timetableData){
         // get the tr matching the data 
         const tr = this.shadowRoot.querySelector(`#${day}`)
-        console.log(tr);
 
         tr.innerHTML = ``;
         
@@ -63,7 +62,6 @@ class Table extends HTMLElement {
 
 
         for(const session of timetableData[day]){
-          console.log(session.subject)
                        // Clear the trs and append the latest data
                        rowContent += `
                        <td>

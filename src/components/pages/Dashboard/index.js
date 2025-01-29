@@ -31,7 +31,6 @@ class DashboardComponent extends HTMLElement {
     apiRequest(apiRoutes.test.getAllTestData, "GET")
       .then((testData) => {
         this.testData = testData && testData.data && testData.data[0];
-        console.log("api data", this.testData);
         this.updateContent();
       })
       .catch((error) => console.error("error fetching data", error));
@@ -42,7 +41,6 @@ class DashboardComponent extends HTMLElement {
     const userSummary = this.shadowRoot.querySelector("my-usersummary");
     if (userSummary) {
       userSummary.data = this.testData; // 
-      console.log(this.testData);
       // Pass the data as a property
     }
   }
