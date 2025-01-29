@@ -1,4 +1,3 @@
-import goBackButton from "../../../services/goBackButton.js";
 import LoadPage from "../../../services/loadPages.js";
 import RestrictUser from "../../../services/restrictUser.js";
 import { loadTemplate } from "../../../utils/loadTemplate.js";
@@ -60,8 +59,6 @@ class HomePage extends HTMLElement {
    
     LoadPage.renderPages(previousPage,mainPage) ;
     LoadPage.changeHeaderRoutes(mainPage,previousPageHeader);
-    // Get the sidebar element 
-    // const sidebarElement  = goBackButton.getSidebarElem();
     const sidebar = goBackButton.getSidebarElement();
     LoadPage.changeClassList(sidebar,previousPageHeader);
 

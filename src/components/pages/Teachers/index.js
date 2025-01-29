@@ -1,5 +1,4 @@
 import { apiRoutes } from "../../../globalConstants.js";
-import goBackButton from "../../../services/goBackButton.js";
 import LoadPage from "../../../services/loadPages.js";
 import RestrictUser from "../../../services/restrictUser.js";
 import apiRequest from "../../../utils/api.js";
@@ -86,8 +85,7 @@ class teachersPage extends HTMLElement{
                 const path = " Add New Teacher"
                 LoadPage.renderPages("add-newteachers",hostElement);
                 LoadPage.changeHeaderRoutes(hostElement,path);
-                goBackButton.savePagesRendered("add-newteachers",path);
-                goBackButton.getEventDetails(hostElement);
+
       })
     };
     TeachersDetailsClick(){
