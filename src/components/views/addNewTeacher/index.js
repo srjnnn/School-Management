@@ -89,15 +89,14 @@ class addNewTeachers extends HTMLElement {
   sendData() {
     apiRequest(apiRoutes.teachers.sendTeachersData, "POST", this.payload)
       .then((response) => {
-        console.log("Data sent successfully:", response);
-        this.addSuccessPopup(response);
+        this.addSuccessPopup();
       })
       .catch((error) => {
         console.error("Error sending data", error);
       });
   }
 
-  addSuccessPopup(response) {
+  addSuccessPopup() {
     const absoluteDiv = document.createElement('div');
     absoluteDiv.id = "absoluteDiv";
     absoluteDiv.className = "absoluteDiv";
@@ -105,7 +104,7 @@ class addNewTeachers extends HTMLElement {
     absoluteDiv.appendChild(popup);
     this.shadowRoot.appendChild(absoluteDiv);
     const appendedPopup = this.shadowRoot.querySelector("success-popup");
-    appendedPopup.data = response;
+    appendedPopup.data = "Successfully added a new teacher";
     absoluteDiv.classList.remove('hidden');
     setTimeout(() => {
       absoluteDiv.remove();

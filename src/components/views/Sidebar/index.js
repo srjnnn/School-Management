@@ -75,47 +75,55 @@ class sidebarComponent extends HTMLElement {
                 LoadPage.renderPages("timetable-page",hostElement);
                 LoadPage.changeHeaderRoutes(hostElement,path);
 
+
                 break;
             case "TEACHERS":
                var hostElement = this.getHostElement();
                 LoadPage.renderPages("my-teachers",hostElement);
                 LoadPage.changeHeaderRoutes(hostElement,path);
 
+
                  break;
             case "CLASSNOTES":
                var hostElement = this.getHostElement();
                 LoadPage.renderPages("classnotes-page",hostElement);
                 LoadPage.changeHeaderRoutes(hostElement,path);
+
                
                 break;
             case "BUSDETAILS":
                var hostElement = this.getHostElement();
                 LoadPage.renderPages("busdetails-page",hostElement);
                 LoadPage.changeHeaderRoutes(hostElement,path);
+
                
                 break;
             case "ATTENDENCE":
                var hostElement = this.getHostElement();
                 LoadPage.renderPages("attendence-page",hostElement);
                 LoadPage.changeHeaderRoutes(hostElement,path);
+
                
                 break;
             case "HELP":
                var hostElement = this.getHostElement();
                 LoadPage.renderPages("my-custompage",hostElement);
                 LoadPage.changeHeaderRoutes(hostElement,path);
+
                 
                 break;
             case "SETTINGS":
                var hostElement = this.getHostElement();
                 LoadPage.renderPages("my-custompage",hostElement);
                 LoadPage.changeHeaderRoutes(hostElement,path);
+
                 
                 break;
             case "STUDENTS":
                var hostElement = this.getHostElement();
                 LoadPage.renderPages("students-page",hostElement);
                 LoadPage.changeHeaderRoutes(hostElement,path);
+
                 
                 break;
             case "LOGOUT":

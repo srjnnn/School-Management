@@ -32,14 +32,11 @@ class classNotes extends HTMLElement{
     // Add eventistnes to the 
     const addButton = this.shadowRoot.querySelector('#addNotes');
     addButton.addEventListener('click',()=>{
+
       const hostElement = this.shadowRoot.getRootNode().host
       const mainHostElement = hostElement.getRootNode().host;
       LoadPage.renderPages('add-notes',mainHostElement);
-      LoadPage.changeHeaderRoutes(mainHostElement,"Add class Notes")
-
-
-
-
+      LoadPage.changeHeaderRoutes(mainHostElement,"Add class Notes");
     })
   }
   addNotes(){

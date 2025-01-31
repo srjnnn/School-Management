@@ -42,7 +42,6 @@ addCards(){
       const mainContentContainer = hostElement.shadowRoot.querySelector('#main-content-container');
       summaryPage.data = data;
       
-      console.log(mainContentContainer);
       mainContentContainer.replaceChildren();
 
       mainContentContainer.appendChild(summaryPage);

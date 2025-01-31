@@ -68,6 +68,7 @@ class addClassNotes extends HTMLElement{
     this.shadowRoot.appendChild(absoluteDiv);
     const appendedPopup = this.shadowRoot.querySelector("success-popup");
     // Send the response here 
+    appendedPopup.data = "Successfylly added Notes"
     absoluteDiv.classList.remove('hidden');
     setTimeout(() => {
     absoluteDiv.remove();

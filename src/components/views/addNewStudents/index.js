@@ -67,15 +67,14 @@ class addNewStudents extends HTMLElement{
   sendData(){
     apiRequest(apiRoutes.students.sendStudentData, "POST",this.payload)
     .then((response)=>{
-      console.log("Data sent successfully : ",response);
-      this.addSuccessPopup(response);
+      this.addSuccessPopup();
     })
     .catch((error)=>{
       console.error("Error sending data", error);
     })
   }
   // Error
-  addSuccessPopup(response){
+  addSuccessPopup(){
     const absoluteDiv = document.createElement('div');
     absoluteDiv.id = "absoluteDiv";
     absoluteDiv.className = "absoluteDiv";
@@ -83,7 +82,7 @@ class addNewStudents extends HTMLElement{
     absoluteDiv.appendChild(popup);
     this.shadowRoot.appendChild(absoluteDiv);
     const appendedPopup = this.shadowRoot.querySelector("success-popup")
-    appendedPopup.data = response;
+    appendedPopup.data = "Successfully added students";
     absoluteDiv.classList.remove('hidden');
     setTimeout(() => {
     absoluteDiv.remove();

@@ -26,11 +26,8 @@ class newTimetable extends HTMLElement {
   addTable() {
     const tableContainer = this.shadowRoot.querySelector('.tableContainer');
     const table = document.createElement('my-table');
-    console.log("Table from the newTimetable : ",table);
-    // const tableShadowRoot = table.shadowRoot;
-    // console.log("Table ShadowRoot : ",tableShadowRoot);
+
     const tableEditDiv = table.querySelector('.editButton');
-    console.log("TAble edit div : ",tableEditDiv);
     tableContainer.appendChild(table);
 
   }
@@ -111,8 +108,7 @@ class newTimetable extends HTMLElement {
 sendData(){
   apiRequest(apiRoutes.timetable.sendTimetableData, "POST", this.payload)
   .then((response)=>{
-    console.log("Data sent successfully : ", response);
-    this.addSuccessPopup(response);
+    this.addSuccessPopup();
   })
   .catch((error)=>{
     console.error("Error sending data, ",error);
@@ -130,7 +126,7 @@ sendData(){
     });
   }
 
-  addSuccessPopup(response) {
+  addSuccessPopup() {
     const absoluteDiv = document.createElement('div');
     absoluteDiv.id = "absoluteDiv";
     absoluteDiv.className = "absoluteDiv";
@@ -138,7 +134,7 @@ sendData(){
     absoluteDiv.appendChild(popup);
     this.shadowRoot.appendChild(absoluteDiv);
     const appendedPopup = this.shadowRoot.querySelector("success-popup");
-    appendedPopup.setAttribute("data-message", response);
+    appendedPopup.data = "Timetable Added Successfully";
     absoluteDiv.classList.remove('hidden');
     setTimeout(() => {
       absoluteDiv.remove();

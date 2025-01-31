@@ -1,4 +1,5 @@
 import { apiRoutes } from "../../../globalConstants.js";
+import breadCrums from "../../../services/addressBar.js";
 import LoadPage from "../../../services/loadPages.js";
 import apiRequest from "../../../utils/api.js";
 import { loadTemplate } from "../../../utils/loadTemplate.js";
@@ -162,6 +163,7 @@ class studentsPage extends HTMLElement{
     const button = this.shadowRoot.querySelector('#addStudentsButton');
     const path = "Add new Student"
     button.addEventListener('click',()=>{
+      breadCrums.getPageData("students-page","addnew-students");
       const hostElem = this.getRootNode().host;
       LoadPage.renderPages("addnew-students" , hostElem);
       LoadPage.changeHeaderRoutes(hostElem,path);

@@ -15,13 +15,13 @@ class HomePage extends HTMLElement {
       "templates/pages/HomepageTemplate.html"
     );
     this.render();
+    this.addBreadCrumbs();
   }
 
   render() {
     this.shadowRoot.innerHTML = this.templateContent;
     this.addNavbar();
     this.addSidebar();
-    this.addEventListeners();
   }
 
   addSidebar() {
@@ -36,41 +36,12 @@ class HomePage extends HTMLElement {
     navbarContainer.appendChild(navbarElement);
   }
     //  Adding the event listner to the go-back button in the sidebar
-  addEventListeners(){
-    const GoBackButton = this.shadowRoot.querySelector('#gobackButton');
-    GoBackButton.addEventListener('click',()=>{
-     const History = goBackButton.getPagesRendered();
-     const Header = goBackButton.getPagesHeader();
 
-    //  get the length of the History 
-    const length = History.length;
-    const headerLength = Header.length;
-    // get the index
-    const index = length-1;
-    // const headerIndex = headerLength-1;
-
-    const previousPage = History[index-1];
-    const previousPageHeader = Header[index-1];
-
-    // loading the main page
-    const mainPage = this.shadowRoot.getRootNode().host;
-    
-    // Loading the previos page here : 
-   
-    LoadPage.renderPages(previousPage,mainPage) ;
-    LoadPage.changeHeaderRoutes(mainPage,previousPageHeader);
-    const sidebar = goBackButton.getSidebarElement();
-    LoadPage.changeClassList(sidebar,previousPageHeader);
-
-        //deleting the last index
-        History.splice(index-1,1); 
-        Header.splice(index-1,1);
-        goBackButton.getEventDetails(mainPage);
-        
-
-    
-    })
-  };
+  addBreadCrumbs(){
+    const container = this.shadowRoot.querySelector('.breadCrumbs');
+    const breadCrumbs = document.createElement('bread-crumbs');
+    container.appendChild(breadCrumbs);
+  }
   
 
 }
