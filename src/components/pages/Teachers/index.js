@@ -36,8 +36,51 @@ class teachersPage extends HTMLElement{
     rows.forEach(row =>{
       const lastCell = row.querySelector('td:last-child');
       if(lastCell){
-         const combinedButtons = document.createElement('combined-buttons');
-         lastCell.appendChild(combinedButtons);
+        const editButton = document.createElement('edit-buttons');
+        const deleteButton = document.createElement('delete-buttons');
+        
+        deleteButton.addEventListener('click',()=>{
+           //  summon a  confirmation popup 
+           const div = document.createElement('div');
+           const box = document.createElement('confirmation-box');
+           div.className = "absoluteDiv"
+           div.appendChild(box);
+           // Now append the div in the main html
+           this.shadowRoot.appendChild(div);
+
+           // add the eventlistners for the box
+           box.cancelEvent = ()=>{
+             div.remove();
+           }
+
+       // When the delete button is clicked 
+        box.deleteEvent = ()=>{
+          const data = {}
+          const teacherId = row.dataset.id;
+          data.id = teacherId;
+          console.log(teacherId);
+          apiRequest(apiRoutes.teachers.deleteTeachersData,"DELETE",data)
+          .then((response)=>{
+            console.log(response);
+            this.addSuccessPopup();
+            div.remove();
+          })
+          .catch((error)=>{
+            console.error(error);
+            div.remove();
+          })
+        }
+        })
+
+
+
+        const buttonDiv = document.createElement('div');
+        buttonDiv.style.display = "flex"
+        buttonDiv.style.gap = "1rem"
+        buttonDiv.appendChild(editButton);
+        buttonDiv.appendChild(deleteButton);
+
+        lastCell.appendChild(buttonDiv);
       }
 
     });
@@ -181,6 +224,22 @@ class teachersPage extends HTMLElement{
     if(summaryBox){
       summaryBox.data = teacherData;
     }
+  }
+
+  addSuccessPopup(){
+    const absoluteDiv = document.createElement('div');
+    absoluteDiv.id = "absoluteDiv";
+    absoluteDiv.className = "absoluteDiv";
+    const popup = document.createElement("success-popup");
+    popup.data = "Deletion of Teacher was successful"
+    absoluteDiv.appendChild(popup);
+    this.shadowRoot.appendChild(absoluteDiv);
+    absoluteDiv.classList.remove('hidden');
+    setTimeout(() => {
+    absoluteDiv.remove();
+    this.connectedCallback();
+
+    }, 3000);
   }
 }
 const TeachersPage = customElements.define("my-teachers",teachersPage);

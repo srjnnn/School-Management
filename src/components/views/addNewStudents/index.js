@@ -27,9 +27,6 @@ class addNewStudents extends HTMLElement{
     })
     const submitButton = this.shadowRoot.querySelector('#submit');
     submitButton.addEventListener('click',()=>{
-      
-  
-
 
       // Get all the fields value 
       const name = this.shadowRoot.querySelector('#Name').value;
@@ -42,6 +39,7 @@ class addNewStudents extends HTMLElement{
       const pickupAddress = this.shadowRoot.querySelector('#pickup').value;
       const dropoffAddress = this.shadowRoot.querySelector('#drop').value;
       const Contact = this.shadowRoot.querySelector('#contact').value;
+      const Attendence = this.shadowRoot.querySelector('#attendence').value;
       const image = this.shadowRoot.querySelector('#imageUpload').value
       const id = this.shadowRoot.querySelector('#ID').value;
       // Pack the data in the object
@@ -56,6 +54,7 @@ class addNewStudents extends HTMLElement{
     studentsData.pickupAddress = pickupAddress;
     studentsData.dropoffAddress = dropoffAddress;
     studentsData.Contact = Contact;
+    studentsData.Attendence = Attendence;
     studentsData.id = id;
     // Not sending the image 
     console.log("Students DAta : ",studentsData);
@@ -86,6 +85,8 @@ class addNewStudents extends HTMLElement{
     absoluteDiv.classList.remove('hidden');
     setTimeout(() => {
     absoluteDiv.remove();
+    this.connectedCallback();
+
     }, 3000);
   }
 

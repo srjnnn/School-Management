@@ -1,0 +1,65 @@
+<style>
+  /* Main Container */
+  .mainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    border-radius: 1rem;
+    background: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Text Container */
+  .textContainer p {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Button Container */
+  .buttonContainer {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  /* Buttons */
+  button {
+    height: 3rem;
+    width: 10rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  #cancelButton {
+    background-color: #6c757d;
+    color: white;
+  }
+
+  #cancelButton:hover {
+    background-color: #5a6268;
+  }
+
+  #deleteButton {
+    background-color: #dc3545;
+    color: white;
+  }
+
+  #deleteButton:hover {
+    background-color: #c82333;
+  }
+</style>
+
+<div class="mainContainer">
+  <div class="textContainer">
+    <p>Are you sure you want to delete the user?</p>
+  </div>
+  <div class="buttonContainer">
+    <button id="cancelButton">Cancel</button>
+    <button id="deleteButton">Delete</button>
+  </div>
+</div>

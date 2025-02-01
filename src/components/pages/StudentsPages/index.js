@@ -1,5 +1,4 @@
 import { apiRoutes } from "../../../globalConstants.js";
-import breadCrums from "../../../services/addressBar.js";
 import LoadPage from "../../../services/loadPages.js";
 import apiRequest from "../../../utils/api.js";
 import { loadTemplate } from "../../../utils/loadTemplate.js";
@@ -55,8 +54,54 @@ class studentsPage extends HTMLElement{
     rows.forEach(row =>{
       const lastCell = row.querySelector('td:last-child');
       if(lastCell){
-         const combinedButtons = document.createElement('combined-buttons');
-         lastCell.appendChild(combinedButtons);
+        const editButton = document.createElement('edit-buttons');
+        const deleteButton = document.createElement('delete-buttons');
+        const buttonDiv = document.createElement('div');
+        buttonDiv.style.display = "flex"
+        // buttonDiv.style.gap = "1rem"
+        buttonDiv.appendChild(editButton);
+        buttonDiv.appendChild(deleteButton);
+
+        lastCell.appendChild(buttonDiv);
+
+
+        deleteButton.addEventListener('click',()=>{
+        //  summon a  confirmation popup 
+            const div = document.createElement('div');
+            const box = document.createElement('confirmation-box');
+            div.className = "absoluteDiv"
+            div.appendChild(box);
+            // Now append the div in the main html
+            this.shadowRoot.appendChild(div);
+
+            // add the eventlistners for the box
+            box.cancelEvent = ()=>{
+              div.remove();
+            }
+            // when the delete Button is triggered
+            box.deleteEvent = ()=>{
+              const data = {}
+              const studentId = row.dataset.id;
+              data.id = studentId;
+              apiRequest(apiRoutes.students.deleteStudentData,"DELETE",data)
+              .then((response)=>{
+                console.log(response);
+                this.addSuccessPopup();
+                div.remove();
+              })
+              .catch((error)=>{
+                console.error(error);
+                div.remove();
+              })
+            }
+
+
+
+            
+
+
+        })
+        
       }
 
     });
@@ -163,11 +208,26 @@ class studentsPage extends HTMLElement{
     const button = this.shadowRoot.querySelector('#addStudentsButton');
     const path = "Add new Student"
     button.addEventListener('click',()=>{
-      breadCrums.getPageData("students-page","addnew-students");
       const hostElem = this.getRootNode().host;
       LoadPage.renderPages("addnew-students" , hostElem);
       LoadPage.changeHeaderRoutes(hostElem,path);
     })
+  }
+  addSuccessPopup(){
+    const absoluteDiv = document.createElement('div');
+    absoluteDiv.id = "absoluteDiv";
+    absoluteDiv.className = "absoluteDiv";
+    const popup = document.createElement("success-popup");
+    popup.data = "Deletion of student was successful"
+    absoluteDiv.appendChild(popup);
+    this.shadowRoot.appendChild(absoluteDiv);
+    const appendedPopup = this.shadowRoot.querySelector("success-popup")
+    absoluteDiv.classList.remove('hidden');
+    setTimeout(() => {
+    absoluteDiv.remove();
+    this.connectedCallback();
+
+    }, 3000);
   }
 
 }

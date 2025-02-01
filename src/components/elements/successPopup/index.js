@@ -27,9 +27,8 @@ class successPopup extends HTMLElement{
   updateContent(){
     const text = this.shadowRoot.querySelector("#popupText");
     if (text) {
-      text.textContent = this.data.success; // Update the text 
+      text.textContent = this.data; // Update the text 
       // content safely
-      console.log(this.data);
     }
 
   }
