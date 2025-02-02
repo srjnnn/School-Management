@@ -1,5 +1,7 @@
 import RestrictUser from "../../../services/restrictUser.js";
 import { loadTemplate } from "../../../utils/loadTemplate.js";
+import apiRequest from "../../../utils/api.js";
+import { apiRoutes } from "../../../globalConstants.js";
 
 class Table extends HTMLElement {
   
@@ -9,6 +11,7 @@ class Table extends HTMLElement {
     this.tableContent = "";
     this.originalData = {};
     this.data = null;
+    this.payLoad = null;
   }
 
   async connectedCallback() {
@@ -193,13 +196,32 @@ class Table extends HTMLElement {
           this.originalData[`${rowIndex}-${cellIndex}`] = cell.textContent.trim();
         });
       });
-  
-      dataTimeFields.forEach((field, index) => {
-        this.originalData[`dataTime-${index}`] = field.textContent.trim();
+      // Now convert the orignal data to server side store form
+      const outputData = {};
+      Object.keys(this.originalData).forEach(key => {
+        const [dayIndex, period] = key.split("-").map(Number);
+        
+        if (period === 0) {
+          outputData[this.originalData[key]] = [];
+        } else {
+          const day = this.originalData[`${dayIndex}-0`]; // Get the day's name
+          outputData[day].push({ period, subject: this.originalData[key] });
+        }
       });
-  
-      saveButton.disabled = true;
-      alert("Changes saved!");
+      // required id , id
+      
+      const addFields = {};
+      addFields.id = this.data[0].id;
+      addFields.Data = outputData;
+      this.payLoad = addFields;
+        
+    
+      // call the api and send the original data 
+       this.updateData();
+       cells.forEach(cell => {
+        cell.contentEditable = false;
+       });
+      tableActionButtonsDiv.classList.add("hidden");
     });
   
     // Cancel changes
@@ -207,10 +229,8 @@ class Table extends HTMLElement {
       
   
       saveButton.disabled = true;
+      tableActionButtonsDiv.classList.add('hidden');
       if(this.getPageMode() === "Create"){
-        
-
-
       }else{
         table.querySelectorAll("tbody tr").forEach((row, rowIndex) => {
           row.querySelectorAll("td").forEach((cell, cellIndex) => {
@@ -218,16 +238,8 @@ class Table extends HTMLElement {
             cell.contentEditable = false;
           });
         });
-    
-        dataTimeFields.forEach((field, index) => {
-          field.textContent = this.originalData[`dataTime-${index}`];
-          field.contentEditable = false;
-          });
         tableActionButtonsDiv?.classList.add("hidden");
-        dataTimeFields.forEach((field, index) => {
-          field.textContent = this.originalData[`dataTime-${index}`];
-        field.contentEditable = false;
-         });
+
         
       }
 
@@ -235,7 +247,31 @@ class Table extends HTMLElement {
     });
 
   }
-  
+  // send the data to the backend 
+updateData(){
+  apiRequest(apiRoutes.timetable.updateTimetableData,"PATCH",this.payLoad)
+  .then((response)=>{
+    this.addSuccessPopup();
+  })
+  .catch((error)=>{
+    console.error("Error sending data , ",error);
+  });
+}
+addSuccessPopup() {
+  const absoluteDiv = document.createElement('div');
+  absoluteDiv.id = "absoluteDiv";
+  absoluteDiv.className = "absoluteDiv";
+  const popup = document.createElement("success-popup");
+  absoluteDiv.appendChild(popup);
+  this.shadowRoot.appendChild(absoluteDiv);
+  const appendedPopup = this.shadowRoot.querySelector("success-popup");
+  appendedPopup.data = "Timetable Updated Successfully";
+  absoluteDiv.classList.remove('hidden');
+  setTimeout(() => {
+    absoluteDiv.remove();
+  }, 3000);
+}
+
   
 }
 

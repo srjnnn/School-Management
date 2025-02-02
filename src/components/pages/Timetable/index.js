@@ -8,6 +8,9 @@ class TimetablePage extends HTMLElement{
     this.attachShadow({mode: "open"});
     this.templateContent = "";
     this.tableData = null;
+    this.reloadEvent = () =>{
+      this.connectedCallback();
+    }
   }
   async connectedCallback(){
     this.templateContent = await loadTemplate("templates/pages/Timetable.html");
@@ -54,6 +57,7 @@ class TimetablePage extends HTMLElement{
     const details = document.createElement('my-classdetails');
     detailsContainer.appendChild(details);
   }
+  
 }
 const timetablePage = customElements.define('timetable-page', TimetablePage);
 export default timetablePage;

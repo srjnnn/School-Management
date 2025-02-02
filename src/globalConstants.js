@@ -19,7 +19,8 @@ export const apiRoutes = {
   },
   timetable:{
     getAllTimetableData : `${v1Api}/timetable`,
-    sendTimetableData : `${v1Api}/timetable`
+    sendTimetableData : `${v1Api}/timetable`,
+    updateTimetableData : `${v1Api}/timetable`
   },
   classNotes:{
     getAllClassNotes : `${v1Api}/classnotes`,
