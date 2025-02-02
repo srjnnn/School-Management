@@ -192,7 +192,6 @@ class studentsPage extends HTMLElement{
 
           })
         };
-      
       })
     })
   };
