@@ -21,44 +21,45 @@ class addNewTeachers extends HTMLElement {
   }
 
   addEventListeners() {
-    const SaveButton = this.shadowRoot.querySelector('#Save');
-    const CancelButton = this.shadowRoot.querySelector('#cancel');
+    const SaveButton = this.shadowRoot.querySelector('#submit');
+    const CancelButton = this.shadowRoot.querySelector('#reset');
 
     SaveButton.addEventListener('click', () => {
-      const name = this.shadowRoot.querySelector('#Name').value.trim();
-      const gender = this.shadowRoot.querySelector('#gender').value.trim();
-      const subject = this.shadowRoot.querySelector('#subject').value.trim();
-      const attendence = this.shadowRoot.querySelector('#teachersAttendance').value.trim();
-      const userName = this.shadowRoot.querySelector('#userName').value.trim();
-      const Address = this.shadowRoot.querySelector("#address").value.trim();
-      const Bus = this.shadowRoot.querySelector('#bus').value.trim();
-      const pickupAddress = this.shadowRoot.querySelector('#pickup').value.trim();
-      const dropoffAddress = this.shadowRoot.querySelector('#drop').value.trim();
-      const Contact = this.shadowRoot.querySelector('#contact').value.trim();
-      const classes = this.shadowRoot.querySelector("#classSections").value.trim();
-      const id = this.shadowRoot.querySelector('#ID').value.trim();
+      const name = this.shadowRoot.querySelector('#Name').value;
+      const gender = this.shadowRoot.querySelector('#gender').value;
+      const subject = this.shadowRoot.querySelector('#subject').value ;
+      const attendence = this.shadowRoot.querySelector('#teachersAttendance').value ;
+      const userName = this.shadowRoot.querySelector('#userName').value ;
+      const Address = this.shadowRoot.querySelector("#address").value ;
+      const Bus = this.shadowRoot.querySelector('#bus').value ;
+      const pickupAddress = this.shadowRoot.querySelector('#pickup').value ;
+      const dropoffAddress = this.shadowRoot.querySelector('#drop').value ;
+      const Contact = this.shadowRoot.querySelector('#contact').value ;
+      const classes = this.shadowRoot.querySelector("#classes").value ;
+      const section = this.shadowRoot.querySelector('#sections').value ;
+      const id = this.shadowRoot.querySelector('#ID').value ;
 
       // Validate all fields
-      if (!name || !gender || !subject || !attendence || !userName || !Address || !Bus ||  !Contact || !classes || !id) {
+      if (!name || !gender || !subject || !attendence || !userName || !Address || !Bus ||  !Contact || !classes || !id || !section) {
         alert("All fields are required. Please fill in all the details.");
         return;
       }
 
       // Pack the data in the object
-      const teachersData = {
-        attendence,
-        subject,
-        gender,
-        fullname: name,
-        classes,
-        username: userName,
-        address: Address,
-        bus: Bus,
-        pickup: pickupAddress,
-        drop: dropoffAddress,
-        phone: Contact,
-        id,
-      };
+      const teachersData = {}
+        teachersData.attendence = attendence;
+        teachersData.subject = subject;
+        teachersData.gender = gender;
+        teachersData.fullname= name;
+        teachersData.classes =classes;
+        teachersData.username= userName;
+        teachersData.address= Address;
+        teachersData.bus=Bus;
+        teachersData.pickup= pickupAddress;
+        teachersData.drop=dropoffAddress;
+        teachersData.phone= Contact;
+        teachersData.id = id;
+        teachersData.section = section;
 
       console.log("Teachers data:", teachersData);
       this.payload = teachersData;

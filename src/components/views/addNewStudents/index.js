@@ -1,5 +1,6 @@
 import { apiRoutes } from "../../../globalConstants.js";
 import apiRequest from "../../../utils/api.js";
+import Common from "../../../utils/common.js";
 import { loadTemplate } from "../../../utils/loadTemplate.js";
 
 class addNewStudents extends HTMLElement{
@@ -66,29 +67,13 @@ class addNewStudents extends HTMLElement{
   sendData(){
     apiRequest(apiRoutes.students.sendStudentData, "POST",this.payload)
     .then((response)=>{
-      this.addSuccessPopup();
+      Common.addSuccessPopup(this.shadowRoot, "Student Added Successfully");
     })
     .catch((error)=>{
       console.error("Error sending data", error);
     })
   }
   // Error
-  addSuccessPopup(){
-    const absoluteDiv = document.createElement('div');
-    absoluteDiv.id = "absoluteDiv";
-    absoluteDiv.className = "absoluteDiv";
-    const popup = document.createElement("success-popup");
-    absoluteDiv.appendChild(popup);
-    this.shadowRoot.appendChild(absoluteDiv);
-    const appendedPopup = this.shadowRoot.querySelector("success-popup")
-    appendedPopup.data = "Successfully added students";
-    absoluteDiv.classList.remove('hidden');
-    setTimeout(() => {
-    absoluteDiv.remove();
-    this.connectedCallback();
-
-    }, 3000);
-  }
 
 }
 export const AddNewStudents = customElements.define("addnew-students",addNewStudents);

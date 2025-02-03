@@ -2,7 +2,7 @@ import { apiRoutes } from "../../../globalConstants.js";
 import LoadPage from "../../../services/loadPages.js";
 import apiRequest from "../../../utils/api.js";
 import { loadTemplate } from "../../../utils/loadTemplate.js";
-
+import Common from "../../../utils/common.js";
 class studentsPage extends HTMLElement{
   constructor(){
     super();
@@ -53,32 +53,46 @@ class studentsPage extends HTMLElement{
     const rows = this.shadowRoot.querySelectorAll("#studentsDetails tr");
     rows.forEach(row =>{
       const lastCell = row.querySelector('td:last-child');
+
+
+      // Append all the students edit and delete button at the last cell
       if(lastCell){
         const editButton = document.createElement('edit-buttons');
         const deleteButton = document.createElement('delete-buttons');
         const buttonDiv = document.createElement('div');
         buttonDiv.style.display = "flex"
-        // buttonDiv.style.gap = "1rem"
         buttonDiv.appendChild(editButton);
         buttonDiv.appendChild(deleteButton);
-
         lastCell.appendChild(buttonDiv);
 
 
+      // Event listners for the edit Button
+      editButton.addEventListener('click',()=>{
+
+      const studentData = this.findStudentDataByID(row);
+      
+        const hostElement = this.getHostElem()
+        LoadPage.renderPages("edit-students",hostElement, studentData);
+
+        LoadPage.changeHeaderRoutes(hostElement,"Edit Student");
+      })
+
+
+        // add the event Listners to all the appended buttons 
         deleteButton.addEventListener('click',()=>{
-        //  summon a  confirmation popup 
             const div = document.createElement('div');
             const box = document.createElement('confirmation-box');
             div.className = "absoluteDiv"
             div.appendChild(box);
-            // Now append the div in the main html
             this.shadowRoot.appendChild(div);
 
-            // add the eventlistners for the box
+
+            // when the cancel button is triggered when we clicked the box
             box.cancelEvent = ()=>{
               div.remove();
             }
-            // when the delete Button is triggered
+
+            // when the delete Button is triggered of the box we appended
             box.deleteEvent = ()=>{
               const data = {}
               const studentId = row.dataset.id;
@@ -86,7 +100,7 @@ class studentsPage extends HTMLElement{
               apiRequest(apiRoutes.students.deleteStudentData,"DELETE",data)
               .then((response)=>{
                 console.log(response);
-                this.addSuccessPopup();
+                Common.addSuccessPopup(this.shadowRoot,"Deletion of Student was Successful");
                 div.remove();
               })
               .catch((error)=>{
@@ -94,18 +108,13 @@ class studentsPage extends HTMLElement{
                 div.remove();
               })
             }
-
-
-
-            
-
-
         })
         
       }
 
     });
   }
+  // When the students data is clicked 
   StudentsDetailsClick(){
     const rows = this.shadowRoot.querySelectorAll("#studentsDetails tr");
     rows.forEach(row=>{
@@ -116,9 +125,7 @@ class studentsPage extends HTMLElement{
       if(lastRow.contains(event.target)){
         return;
       }
-        event.stopPropagation();
-            const studentId = row.dataset.id;
-            const studentData = this.studentData.find(student => student.id == studentId)
+      const studentData = this.findStudentDataByID(row);
 
             
 
@@ -195,6 +202,8 @@ class studentsPage extends HTMLElement{
       })
     })
   };
+
+
  // Add data to the summary box 
  sendData(studentData){
    const userSummaryBox = this.shadowRoot.querySelector('my-usersummary');
@@ -202,7 +211,7 @@ class studentsPage extends HTMLElement{
      userSummaryBox.data = studentData;
    }
   }
-
+// Add new students Page 
   renderAddNewStudentsPage(){
     const button = this.shadowRoot.querySelector('#addStudentsButton');
     const path = "Add new Student"
@@ -212,22 +221,21 @@ class studentsPage extends HTMLElement{
       LoadPage.changeHeaderRoutes(hostElem,path);
     })
   }
-  addSuccessPopup(){
-    const absoluteDiv = document.createElement('div');
-    absoluteDiv.id = "absoluteDiv";
-    absoluteDiv.className = "absoluteDiv";
-    const popup = document.createElement("success-popup");
-    popup.data = "Deletion of student was successful"
-    absoluteDiv.appendChild(popup);
-    this.shadowRoot.appendChild(absoluteDiv);
-    const appendedPopup = this.shadowRoot.querySelector("success-popup")
-    absoluteDiv.classList.remove('hidden');
-    setTimeout(() => {
-    absoluteDiv.remove();
-    this.connectedCallback();
+// get hostElement 
+getHostElem(){
+  const hostElement = this.shadowRoot.getRootNode().host;
+  const mainHostElement = hostElement.getRootNode().host;
+  return mainHostElement;
+};
 
-    }, 3000);
-  }
+// find the student data by id 
+findStudentDataByID(row){
+  const studentId = row.dataset.id;
+  const studentData = this.studentData.find(student => student.id == studentId)
+  return studentData;
+
+}
+  
 
 }
 const StudentsPage = customElements.define('students-page',studentsPage);

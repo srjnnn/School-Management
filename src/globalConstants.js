@@ -9,7 +9,8 @@ export const apiRoutes = {
   students:{
     getAllStudentsData : `${v1Api}/students`,
     sendStudentData : `${v1Api}/students`,
-    deleteStudentData :` ${v1Api}/students`
+    deleteStudentData :` ${v1Api}/students`,
+    updateStudentData : `${v1Api}/students`
   },
   teachers:{
     getAllTeachersData : `${v1Api}/teachers`,
