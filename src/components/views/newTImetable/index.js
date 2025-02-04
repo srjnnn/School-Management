@@ -95,7 +95,6 @@ class newTimetable extends HTMLElement {
                 Data,
               }
 
-      console.log(timeTableData);
 
       this.payload = timeTableData;
 

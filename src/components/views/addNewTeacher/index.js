@@ -1,5 +1,6 @@
 import { apiRoutes } from "../../../globalConstants.js";
 import apiRequest from "../../../utils/api.js";
+import Common from "../../../utils/common.js";
 import { loadTemplate } from "../../../utils/loadTemplate.js";
 
 class addNewTeachers extends HTMLElement {
@@ -28,7 +29,7 @@ class addNewTeachers extends HTMLElement {
       const name = this.shadowRoot.querySelector('#Name').value;
       const gender = this.shadowRoot.querySelector('#gender').value;
       const subject = this.shadowRoot.querySelector('#subject').value ;
-      const attendence = this.shadowRoot.querySelector('#teachersAttendance').value ;
+      const attendence = this.shadowRoot.querySelector('#attendence').value ;
       const userName = this.shadowRoot.querySelector('#userName').value ;
       const Address = this.shadowRoot.querySelector("#address").value ;
       const Bus = this.shadowRoot.querySelector('#bus').value ;
@@ -40,7 +41,7 @@ class addNewTeachers extends HTMLElement {
       const id = this.shadowRoot.querySelector('#ID').value ;
 
       // Validate all fields
-      if (!name || !gender || !subject || !attendence || !userName || !Address || !Bus ||  !Contact || !classes || !id || !section) {
+      if (!name || !gender || !subject || !attendence || !userName || !Address  ||  !Contact || !classes || !id || !section) {
         alert("All fields are required. Please fill in all the details.");
         return;
       }
@@ -61,7 +62,6 @@ class addNewTeachers extends HTMLElement {
         teachersData.id = id;
         teachersData.section = section;
 
-      console.log("Teachers data:", teachersData);
       this.payload = teachersData;
 
       // Clear inputs
@@ -90,7 +90,7 @@ class addNewTeachers extends HTMLElement {
   sendData() {
     apiRequest(apiRoutes.teachers.sendTeachersData, "POST", this.payload)
       .then((response) => {
-        this.addSuccessPopup();
+        Common.addSuccessPopup(this.shadowRoot,"Successfully added Teacher");
       })
       .catch((error) => {
         console.error("Error sending data", error);

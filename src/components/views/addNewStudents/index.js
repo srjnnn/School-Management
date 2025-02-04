@@ -58,7 +58,6 @@ class addNewStudents extends HTMLElement{
     studentsData.Attendence = Attendence;
     studentsData.id = id;
     // Not sending the image 
-    console.log("Students DAta : ",studentsData);
     this.payload = studentsData;
     this.sendData();
     });

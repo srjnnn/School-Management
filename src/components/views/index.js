@@ -16,3 +16,4 @@ export {default as addStudents} from '../views/addNewStudents/index.js'
 export {default as addNotes} from "../views/addNotes/index.js"
 export {default as notesSummaryPage} from '../views/classNotesSummary/index.js';
 export {default as editStudentsPage} from '../views/editStudents/index.js'
+export {default as editTeachersPage} from '../views/editTeachersPage/index.js'

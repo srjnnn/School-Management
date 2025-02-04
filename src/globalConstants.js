@@ -16,6 +16,7 @@ export const apiRoutes = {
     getAllTeachersData : `${v1Api}/teachers`,
     sendTeachersData : `${v1Api}/teachers`,
     deleteTeachersData : `${v1Api}/teachers`,
+    updateTeacherData : `${v1Api}/teachers`
 
   },
   timetable:{

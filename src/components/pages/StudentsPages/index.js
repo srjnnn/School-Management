@@ -17,15 +17,14 @@ class studentsPage extends HTMLElement{
     this.renderAddNewStudentsPage();
     
   }
+
   getStudentsData(){
     apiRequest(apiRoutes.students.getAllStudentsData, "GET")
     .then((studentData)=>{
       this.studentData = studentData && studentData.data;
       this.addTable();
       this.addEditButtons();
-    this.StudentsDetailsClick();
-
-
+      Common.detailsClick(this.shadowRoot, this.studentData,"studentsDetails");
     })
   }
   addTable(){
@@ -68,10 +67,8 @@ class studentsPage extends HTMLElement{
 
       // Event listners for the edit Button
       editButton.addEventListener('click',()=>{
-
       const studentData = this.findStudentDataByID(row);
-      
-        const hostElement = this.getHostElem()
+        const hostElement = Common.getHostElem(this.shadowRoot);
         LoadPage.renderPages("edit-students",hostElement, studentData);
 
         LoadPage.changeHeaderRoutes(hostElement,"Edit Student");
@@ -99,7 +96,6 @@ class studentsPage extends HTMLElement{
               data.id = studentId;
               apiRequest(apiRoutes.students.deleteStudentData,"DELETE",data)
               .then((response)=>{
-                console.log(response);
                 Common.addSuccessPopup(this.shadowRoot,"Deletion of Student was Successful");
                 div.remove();
               })
@@ -114,119 +110,17 @@ class studentsPage extends HTMLElement{
 
     });
   }
-  // When the students data is clicked 
-  StudentsDetailsClick(){
-    const rows = this.shadowRoot.querySelectorAll("#studentsDetails tr");
-    rows.forEach(row=>{
-      
-      row.addEventListener('click',(event)=>{
-        // logic for adding the student id 
-        const lastRow = row.lastElementChild;
-      if(lastRow.contains(event.target)){
-        return;
-      }
-      const studentData = this.findStudentDataByID(row);
-
-            
-
-        // Rest logic on how to append the child 
-        const absoluteDiv = this.shadowRoot.querySelector('#absoluteDiv');
-        const contentDiv = this.shadowRoot.querySelector('#contentDiv');
-        // make the div moveable 
-        let isDragging = false;
-        let offSetX, offSetY;
-        absoluteDiv.addEventListener('mousedown', (e) =>{
-          isDragging = true;
-          offSetX = e.clientX - absoluteDiv.offsetLeft;
-          offSetY = e.clientY - absoluteDiv.offsetTop;
-          absoluteDiv.style.cursor = 'grabbing';
-        })
-        this.shadowRoot.addEventListener('mousemove', (e) => {
-          if (isDragging) {
-              const x = e.clientX - offSetX;
-              const y = e.clientY - offSetY;
-              absoluteDiv.style.left = `${x}px`;
-              absoluteDiv.style.top = `${y}px`;
-          }
-      });
-      this.shadowRoot.addEventListener('mouseup', () => {
-        isDragging = false;
-        absoluteDiv.style.cursor = 'grab';
-    });
-        absoluteDiv.classList.remove('hidden');
-        // Create a summary box 
-        const summaryBox = document.createElement('my-usersummary');
-        if(contentDiv){
-         
-          contentDiv.replaceChildren();
-          contentDiv.appendChild(summaryBox);
-          
-        //  Logic for providing the data 
-          this.sendData(studentData);
-          // ALso append the close button to the div 
-          const closeButton = document.createElement('div');
-          // closeButton.style.background = 'transparent'
-          closeButton.style.position = 'absolute'
-          closeButton.style.top = '0%'
-
-          closeButton.innerHTML = `
-          <style>
-                   #close {
-                   border: none;
-                   background-color: transparent;
-                   cursor: pointer;
-               
-                 }
-               
-                 #closeImg {
-                   height: 3rem;
-                   z-index: 500;
-                 }
-               
-                 .buttons {
-                   display: flex;
-                   justify-content: flex-end;
-                 }
-          </style>
-              <div class="buttons">
-      <button id="close" class="close"><img src="/public/assets/icons/x.svg" alt="closeIcon" id="closeImg"></button>
-    </div>
-     
-          `
-          contentDiv.appendChild(closeButton);
-          closeButton.addEventListener('click',()=>{
-             contentDiv.replaceChildren();
-
-          })
-        };
-      })
-    })
-  };
-
-
- // Add data to the summary box 
- sendData(studentData){
-   const userSummaryBox = this.shadowRoot.querySelector('my-usersummary');
-   if(userSummaryBox){
-     userSummaryBox.data = studentData;
-   }
-  }
+  
 // Add new students Page 
   renderAddNewStudentsPage(){
     const button = this.shadowRoot.querySelector('#addStudentsButton');
     const path = "Add new Student"
     button.addEventListener('click',()=>{
-      const hostElem = this.getRootNode().host;
+      const hostElem = Common.getHostElem(this.shadowRoot);
       LoadPage.renderPages("addnew-students" , hostElem);
       LoadPage.changeHeaderRoutes(hostElem,path);
     })
   }
-// get hostElement 
-getHostElem(){
-  const hostElement = this.shadowRoot.getRootNode().host;
-  const mainHostElement = hostElement.getRootNode().host;
-  return mainHostElement;
-};
 
 // find the student data by id 
 findStudentDataByID(row){

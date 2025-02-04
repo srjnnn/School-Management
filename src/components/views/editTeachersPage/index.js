@@ -3,7 +3,7 @@ import apiRequest from "../../../utils/api.js";
 import { loadTemplate } from "../../../utils/loadTemplate.js";
 import Common from "../../../utils/common.js";
 
-class editStudents extends HTMLElement{
+class editTeachers extends HTMLElement{
   constructor(){
     super();
     this.attachShadow({mode : 'open'});
@@ -14,7 +14,7 @@ class editStudents extends HTMLElement{
 
  async connectedCallback(){
   // Reusing the addNewStudents form
-  this.templateContent = await loadTemplate("templates/views/addNewStudents.html");
+  this.templateContent = await loadTemplate("templates/views/addNewTeachersPage.html");
   this.render();
   }
 
@@ -37,10 +37,11 @@ class editStudents extends HTMLElement{
   getFormFields(){
     return{
        fullname : this.shadowRoot.querySelector('#Name'),
-       Class : this.shadowRoot.querySelector('#Class'),
-       section : this.shadowRoot.querySelector('#Section'),
+       classes : this.shadowRoot.querySelector('#classes'),
+       section : this.shadowRoot.querySelector('#sections'),
        roll_number : this.shadowRoot.querySelector('#rollno'),
        username : this.shadowRoot.querySelector('#userName'),
+       subject : this.shadowRoot.querySelector('#subject'),
        address : this.shadowRoot.querySelector("#address"),
        bus : this.shadowRoot.querySelector('#bus'),
        pickup : this.shadowRoot.querySelector('#pickup'),
@@ -55,6 +56,7 @@ class editStudents extends HTMLElement{
   updateContent(){
     if(this.data && this.shadowRoot){
       const formFields = this.getFormFields();
+
       Object.keys(formFields).forEach((key)=>{
         if(formFields[key] && this.data[key]){
           formFields[key].value = this.data[key];
@@ -65,35 +67,35 @@ class editStudents extends HTMLElement{
   }
   // Send the new data to the server
   getData(){
-    const form = this.shadowRoot.querySelector('#StudentsForm');
+    const form = this.shadowRoot.querySelector('#teachersForm');
     form.addEventListener('submit', (event)=>{
       event.preventDefault();
     })
     const submitButton = this.shadowRoot.querySelector('#submit');
     submitButton.addEventListener('click', ()=>{
       // students data object 
-      const studentsData = {};
+      const teachersData = {};
 
       // Get all the fields value
       const fields = this.getFormFields();
       Object.keys(fields).forEach((key)=>{
-        studentsData[key] = fields[key].value;
+        teachersData[key] = fields[key]?.value;
       })
-      this.payload = studentsData;
+      this.payload = teachersData;
       this.UpdateData();
     })
   }
   // Method to update the data to the database
   UpdateData(){
-    apiRequest(apiRoutes.students.updateStudentData,"PATCH",this.payload)
+    apiRequest(apiRoutes.teachers.updateTeacherData,"PATCH",this.payload)
     .then((response)=>{
-      Common.addSuccessPopup(this.shadowRoot,"Student data Updated SuccessFully");
+      Common.addSuccessPopup(this.shadowRoot,"Teacher data Updated SuccessFully");
     })
     .catch((error)=>{
-      console.error("Error Updating Students data")
+      console.error("Error Updating Teachers data")
     })
   }
 
 }
-export const EditStudents = customElements.define('edit-students',editStudents);
-export default EditStudents;
+export const EditTeachers = customElements.define('edit-teachers',editTeachers);
+export default EditTeachers;
