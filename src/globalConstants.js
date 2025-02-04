@@ -27,6 +27,9 @@ export const apiRoutes = {
   classNotes:{
     getAllClassNotes : `${v1Api}/classnotes`,
     sendClassNotesData : `${v1Api}/classnotes`
+  },
+  attendence:{
+    getStudentsByClassId :(classId,classSection) => `${v1Api}/attendence/${classId}/${classSection}`,
   }
 
 };

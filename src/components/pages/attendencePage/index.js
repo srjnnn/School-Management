@@ -12,16 +12,37 @@ class attendencePage extends HTMLElement{
   async connectedCallback(){
     this.templateContent = await loadTemplate("templates/pages/attendencePage.html");
     this.render();
-    this.getStudentsData();
+    // this.getStudentsData();
+    this.changeClass();
   }
+// Select the selector and identify the change everytime
+changeClass(){
+  const Classselector = this.shadowRoot.querySelector('#classSelector');
+  const sectionSelector = this.shadowRoot.querySelector('#sectionSelector');
+  sectionSelector.disabled = true;
+  Classselector.addEventListener('change', ()=>{
+  sectionSelector.disabled = (Classselector.value === "null");
+  if(sectionSelector.value !== "null"){
+    this.getStudentsData(Classselector.value, sectionSelector.value);
+    this.clearTable();
+  }
+  })
+  sectionSelector.addEventListener('change', ()=>{
+    if(sectionSelector.value !== "null"){
+      this.clearTable();
+      this.getStudentsData(Classselector.value,sectionSelector.value);
+    }
+  })
+}
 
   // get the students data
-  getStudentsData(){
-    apiRequest(apiRoutes.students.getAllStudentsData, "GET")
+  getStudentsData(classValue,sectionValue){
+    apiRequest(apiRoutes.attendence.getStudentsByClassId(classValue,sectionValue), "GET")
     .then((studentsData)=>{
       this.studentsData = studentsData && studentsData.data;
       this.addTableData();
       this.addEventListners();
+      
     })
   }
   render(){
@@ -50,6 +71,11 @@ class attendencePage extends HTMLElement{
   }
   addEventListners(){
     // Code for the event Listners
+  }
+  // Clear table
+  clearTable(){
+    const table = this.shadowRoot.querySelector('#table');
+    table.innerHTML =""
   }
 
 }
