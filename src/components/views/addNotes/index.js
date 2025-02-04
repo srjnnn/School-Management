@@ -1,5 +1,6 @@
 import { apiRoutes } from "../../../globalConstants.js";
 import apiRequest from "../../../utils/api.js";
+import Common from "../../../utils/common.js";
 import { loadTemplate } from "../../../utils/loadTemplate.js";
 
 class addClassNotes extends HTMLElement{
@@ -53,26 +54,11 @@ class addClassNotes extends HTMLElement{
   sendData(){
     apiRequest(apiRoutes.classNotes.sendClassNotesData,"POST", this.payLoad)
     .then((response)=>{
-      this.addSuccessPopup();
+      Common.addSuccessPopup(this.shadowRoot, "Successfully added Notes");
     })
     .catch((error)=>{
       console.error("Error sending data to the backend")
     })
-  }
-  addSuccessPopup(){
-    const absoluteDiv = document.createElement('div');
-    absoluteDiv.id = "absoluteDiv";
-    absoluteDiv.className = "absoluteDiv";
-    const popup = document.createElement("success-popup");
-    absoluteDiv.appendChild(popup);
-    this.shadowRoot.appendChild(absoluteDiv);
-    const appendedPopup = this.shadowRoot.querySelector("success-popup");
-    // Send the response here 
-    appendedPopup.data = "Successfylly added Notes"
-    absoluteDiv.classList.remove('hidden');
-    setTimeout(() => {
-    absoluteDiv.remove();
-    }, 3000);
   }
 }
 const addclassNotes = customElements.define('add-notes', addClassNotes);
