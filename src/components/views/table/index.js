@@ -2,6 +2,7 @@ import RestrictUser from "../../../services/restrictUser.js";
 import { loadTemplate } from "../../../utils/loadTemplate.js";
 import apiRequest from "../../../utils/api.js";
 import { apiRoutes } from "../../../globalConstants.js";
+import Common from "../../../utils/common.js";
 
 class Table extends HTMLElement {
   
@@ -24,23 +25,12 @@ class Table extends HTMLElement {
         this.editableTable();
       }else{
        this.addEventListeners();
-
-
+       this.changeClass();
       }
     }
 
   }
 
- 
-  set data(value) {
-    this._data = value;
-    this.updateContent();
-
-  }
-
-  get data(){
-    return this._data;
-  }
 
   render() {
     this.shadowRoot.innerHTML = this.tableContent;
@@ -49,10 +39,8 @@ class Table extends HTMLElement {
             //  Get the table 
     const table = this.shadowRoot.querySelector('table');
     if(table){
-      // get the data from the table 
-      const data = this.data;
       // Filter the timetable data 
-      const timetableData = data[0].data;
+      const timetableData = this.data;
 
       // fetch all the days with their data
       for(const day in timetableData){
@@ -72,8 +60,6 @@ class Table extends HTMLElement {
                        </td>
                        
                        `
-                               
-                
         }
          // Fill empty cells if there are less than 7 periods
          const emptyCells = 7 - timetableData[day].length;
@@ -251,28 +237,48 @@ class Table extends HTMLElement {
 updateData(){
   apiRequest(apiRoutes.timetable.updateTimetableData,"PATCH",this.payLoad)
   .then((response)=>{
-    this.addSuccessPopup();
+    Common.addSuccessPopup(this.shadowRoot, "successfully updated Timetable")
   })
   .catch((error)=>{
     console.error("Error sending data , ",error);
   });
 }
-addSuccessPopup() {
-  const absoluteDiv = document.createElement('div');
-  absoluteDiv.id = "absoluteDiv";
-  absoluteDiv.className = "absoluteDiv";
-  const popup = document.createElement("success-popup");
-  absoluteDiv.appendChild(popup);
-  this.shadowRoot.appendChild(absoluteDiv);
-  const appendedPopup = this.shadowRoot.querySelector("success-popup");
-  appendedPopup.data = "Timetable Updated Successfully";
-  absoluteDiv.classList.remove('hidden');
-  setTimeout(() => {
-    absoluteDiv.remove();
-  }, 3000);
-}
 
-  
+changeClass(){
+  const Classselector = this.shadowRoot.querySelector('#selectClass');
+  const sectionSelector = this.shadowRoot.querySelector('#section');
+  sectionSelector.disabled = true;
+  Classselector.addEventListener('change', ()=>{
+     sectionSelector.disabled = (Classselector.value === "null");
+     if(sectionSelector.value !== "null"){
+      this.fetchTableData(Classselector.value, sectionSelector.value);
+      // this.clearTable();
+    }
+  });
+  sectionSelector.addEventListener('change', ()=>{
+    if(sectionSelector.value !== "null"){
+      // this.clearTable();
+      this.fetchTableData(Classselector.value,sectionSelector.value);
+    }
+  })
+ 
+}  ;
+
+fetchTableData(Class, classSection){
+  apiRequest(apiRoutes.timetable.getTimetableDataById(Class,classSection), "GET")
+  .then((timetableData)=>{
+   this.data = timetableData;
+   console.log(this.data)
+   this.updateContent();
+  })
+  .catch((error)=>
+    console.error("Error fetching the table data : ", error));
+};
+  // Clear table
+  clearTable(){
+    const table = this.shadowRoot.querySelector('#table');
+    table.innerHTML =""
+  }
 }
 
 customElements.define("my-table", Table);
