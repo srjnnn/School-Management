@@ -14,7 +14,7 @@ class BreadCrumbs extends HTMLElement{
     return this._data;
   }
   async connectedCallback(){
-    this.templateContent = await loadTemplate("templates/elements/breadCrums.html");
+    this.templateContent = await loadTemplate("../public/templates/elements/breadCrums.html");
     this.render();
   }
   render(){

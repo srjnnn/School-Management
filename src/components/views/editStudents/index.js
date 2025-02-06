@@ -14,7 +14,7 @@ class editStudents extends HTMLElement{
 
  async connectedCallback(){
   // Reusing the addNewStudents form
-  this.templateContent = await loadTemplate("templates/views/addNewStudents.html");
+  this.templateContent = await loadTemplate("../public/templates/views/addNewStudents.html");
   this.render();
   }
 

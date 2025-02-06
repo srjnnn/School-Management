@@ -8,7 +8,7 @@ class CardComponent extends HTMLElement {
   }
 
   async connectedCallback() {
-    this.cardComponentContent = await loadTemplate('templates/elements/notesCard.html');
+    this.cardComponentContent = await loadTemplate('../public/templates/elements/notesCard.html');
     this.render();
 
 

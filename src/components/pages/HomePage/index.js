@@ -12,7 +12,7 @@ class HomePage extends HTMLElement {
 
   async connectedCallback() {
     this.templateContent = await loadTemplate(
-      "templates/pages/HomepageTemplate.html"
+      "../public/templates/pages/HomepageTemplate.html"
     );
     this.render();
     this.addBreadCrumbs();

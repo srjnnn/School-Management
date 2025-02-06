@@ -16,7 +16,7 @@ class Table extends HTMLElement {
   }
 
   async connectedCallback() {
-    this.tableContent = await loadTemplate("templates/views/table.html");
+    this.tableContent = await loadTemplate("../public/templates/views/table.html");
     this.render();
     if(RestrictUser.IdentifyUserType()===true){
       const mode = this.getPageMode();

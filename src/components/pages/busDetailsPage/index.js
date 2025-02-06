@@ -7,7 +7,7 @@ class busDetails extends HTMLElement{
     this.attachShadow({mode:'open'});
   }
   async connectedCallback(){
-    this.templateContent = await loadTemplate('templates/pages/BusDetails.html');
+    this.templateContent = await loadTemplate('../public/templates/pages/BusDetails.html');
     this.render();
     this.addEventListeners();
     this.addSummaryBox();

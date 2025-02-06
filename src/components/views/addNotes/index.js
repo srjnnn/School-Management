@@ -12,7 +12,7 @@ class addClassNotes extends HTMLElement{
   }
   async connectedCallback(){
     this.templateContent = await loadTemplate(
-      "templates/views/addNotes.html"
+      "../public/templates/views/addNotes.html"
     );
     this.render();
     this.addEventListeners();

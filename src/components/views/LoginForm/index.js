@@ -11,7 +11,7 @@ class LoginformComponent extends HTMLElement {
 
     async connectedCallback() {
         this.LoginTemplateContent = await loadTemplate(
-            "templates/views/LoginForm.html"
+            "../public/templates/views/LoginForm.html"
         );
 
         this.render();

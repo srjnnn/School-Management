@@ -10,7 +10,7 @@ class classNotes extends HTMLElement{
   }
 
   async connectedCallback(){
-    this.templateContent = await loadTemplate("templates/pages/ClassNotesPage.html");
+    this.templateContent = await loadTemplate("../public/templates/pages/ClassNotesPage.html");
     this.render();
     this.addNotes();
     if(RestrictUser.IdentifyUserType() === true){

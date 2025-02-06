@@ -11,7 +11,7 @@ class studentsPage extends HTMLElement{
     this.studentData = null;
   }
   async connectedCallback(){
-    this.templateContent = await loadTemplate('templates/pages/StudentPages.html');
+    this.templateContent = await loadTemplate('../public/templates/pages/StudentPages.html');
     this.render();
     this.getStudentsData();
     this.renderAddNewStudentsPage();

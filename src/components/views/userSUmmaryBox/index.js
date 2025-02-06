@@ -9,7 +9,7 @@ class userSummary extends HTMLElement {
   }
   async connectedCallback() {
     this.userSummaryContent = await loadTemplate(
-      "templates/views/userSummaryBox.html"
+      "../public/templates/views/userSummaryBox.html"
     );
     this.render();
   }

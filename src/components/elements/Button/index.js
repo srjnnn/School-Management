@@ -19,7 +19,7 @@ export class ButtonComponent extends HTMLElement {
 
   async connectedCallback() {
     // Load and render the template before setting any styles
-    this.templateContent = await loadTemplate("templates/elements/ButtonTemplate.html");
+    this.templateContent = await loadTemplate("../public/templates/elements/ButtonTemplate.html");
     this.render();
     
    

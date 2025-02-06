@@ -12,7 +12,7 @@ class addNewTeachers extends HTMLElement {
   }
 
   async connectedCallback() {
-    this.tempateContent = await loadTemplate("templates/views/addNewTeachersPage.html");
+    this.tempateContent = await loadTemplate("../public/templates/views/addNewTeachersPage.html");
     this.render();
     this.addEventListeners();
   }

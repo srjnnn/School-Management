@@ -9,7 +9,7 @@ class successPopup extends HTMLElement{
     this.data = null;
   }
   async connectedCallback(){
-    this.templateContent = await loadTemplate("templates/elements/SuccessPopup.html");
+    this.templateContent = await loadTemplate("../public/templates/elements/SuccessPopup.html");
     this.render();
   }
  set data(value){

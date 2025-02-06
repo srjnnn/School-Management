@@ -8,7 +8,7 @@ class topNavbarComponent extends HTMLElement {
 
     async connectedCallback() {
         this.navBarTemplateContent = await loadTemplate(
-            "templates/views/TopNavbar.html"
+            "../public/templates/views/TopNavbar.html"
         );
 
         this.render();

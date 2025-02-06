@@ -10,7 +10,7 @@ class attendencePage extends HTMLElement{
     this.studentsData = null;
   }
   async connectedCallback(){
-    this.templateContent = await loadTemplate("templates/pages/attendencePage.html");
+    this.templateContent = await loadTemplate("../public/templates/pages/attendencePage.html");
     this.render();
     // this.getStudentsData();
     this.changeClass();

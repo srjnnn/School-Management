@@ -12,7 +12,7 @@ class sidebarComponent extends HTMLElement {
 
     async connectedCallback() {
         this.SidebarTemplateContent = await loadTemplate(
-            "templates/views/SidebarTemplate.html"
+            "../public/templates/views/SidebarTemplate.html"
         );
 
         this.render();
@@ -26,6 +26,7 @@ class sidebarComponent extends HTMLElement {
             var hostElement = this.getHostElement();
             dashboard.classList.add('active');
             LoadPage.renderPages("my-dashboard",hostElement);
+            window.history.pushState({},"","/DASHBOARD")
             
         }
         
@@ -46,7 +47,6 @@ class sidebarComponent extends HTMLElement {
                     activeButton.classList.remove('active');
                 });
                 button.classList.add('active');
-                return id;
             });
         });
         
@@ -68,12 +68,16 @@ class sidebarComponent extends HTMLElement {
                var hostElement = this.getHostElement();
                 LoadPage.renderPages("my-dashboard",hostElement);
                 LoadPage.changeHeaderRoutes(hostElement,path);
-
+                window.history.pushState({},"",path);
+ 
               break;
             case "TIMETABLE":
                var hostElement = this.getHostElement();
                 LoadPage.renderPages("timetable-page",hostElement);
                 LoadPage.changeHeaderRoutes(hostElement,path);
+                window.history.pushState({},"",path);
+
+ 
 
 
                 break;
@@ -81,6 +85,9 @@ class sidebarComponent extends HTMLElement {
                var hostElement = this.getHostElement();
                 LoadPage.renderPages("my-teachers",hostElement);
                 LoadPage.changeHeaderRoutes(hostElement,path);
+                window.history.pushState({},"",path);
+
+ 
 
 
                  break;
@@ -88,6 +95,9 @@ class sidebarComponent extends HTMLElement {
                var hostElement = this.getHostElement();
                 LoadPage.renderPages("classnotes-page",hostElement);
                 LoadPage.changeHeaderRoutes(hostElement,path);
+                window.history.pushState({},"",path);
+
+ 
 
                
                 break;
@@ -95,6 +105,9 @@ class sidebarComponent extends HTMLElement {
                var hostElement = this.getHostElement();
                 LoadPage.renderPages("busdetails-page",hostElement);
                 LoadPage.changeHeaderRoutes(hostElement,path);
+                window.history.pushState({},"",path);
+
+ 
 
                
                 break;
@@ -102,6 +115,9 @@ class sidebarComponent extends HTMLElement {
                var hostElement = this.getHostElement();
                 LoadPage.renderPages("attendence-page",hostElement);
                 LoadPage.changeHeaderRoutes(hostElement,path);
+                window.history.pushState({},"",path);
+
+ 
 
                
                 break;
@@ -109,6 +125,7 @@ class sidebarComponent extends HTMLElement {
                var hostElement = this.getHostElement();
                 LoadPage.renderPages("my-custompage",hostElement);
                 LoadPage.changeHeaderRoutes(hostElement,path);
+ 
 
                 
                 break;
@@ -116,6 +133,9 @@ class sidebarComponent extends HTMLElement {
                var hostElement = this.getHostElement();
                 LoadPage.renderPages("my-custompage",hostElement);
                 LoadPage.changeHeaderRoutes(hostElement,path);
+                window.history.pushState({},"",path);
+
+ 
 
                 
                 break;
@@ -123,12 +143,18 @@ class sidebarComponent extends HTMLElement {
                var hostElement = this.getHostElement();
                 LoadPage.renderPages("students-page",hostElement);
                 LoadPage.changeHeaderRoutes(hostElement,path);
+                window.history.pushState({},"",path);
+
+ 
 
                 
                 break;
             case "LOGOUT":
                var hostElement = this.getHostElement();
                 LoadPage.renderPages("my-logout",hostElement);
+                window.history.pushState({},"",path);
+
+ 
                 
                 break;
                 

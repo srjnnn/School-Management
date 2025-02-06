@@ -13,6 +13,8 @@ class MyApp extends HTMLElement {
   connectedCallback() {
     this.render();
     this.loadPage();
+    Router.getMainPage();
+    Router.identifyRoutesChange(this.shadowRoot.querySelector('home-page').shadowRoot);
   }
 
   loadPage() {
@@ -20,6 +22,7 @@ class MyApp extends HTMLElement {
     const page = user
       ? Router._routePages[Router._routes.HOMEPAGE]
       : Router._routePages[Router._routes.LOGIN];
+      
 
     const main = this.shadowRoot.getElementById("main-app");
     const pageElement = document.createElement(page);
@@ -27,7 +30,7 @@ class MyApp extends HTMLElement {
   }
 
   clearContainer() {
-    const main = document.getElementById("main-app");
+    const main = document.getElementById("main-content-container");
     main.innerHTML = "";
   }
 

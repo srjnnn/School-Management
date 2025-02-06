@@ -7,7 +7,7 @@ class upcomingEvents extends HTMLElement{
     this.upcomingEventsContent = "";
   }
   async connectedCallback(){
-    this.upcomingEventsContent = await loadTemplate("templates/views/upcomingEvents.html");
+    this.upcomingEventsContent = await loadTemplate("../public/templates/views/upcomingEvents.html");
     this.render();
   }
   render(){

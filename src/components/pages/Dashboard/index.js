@@ -16,7 +16,7 @@ class DashboardComponent extends HTMLElement {
 
   async connectedCallback() {
     this.dashboardPageContent = await loadTemplate(
-      "templates/pages/Dashboard.html"
+      "../public/templates/pages/Dashboard.html"
     );
     this.render();
     this.fetchData();

@@ -9,7 +9,7 @@ class confirmation extends HTMLElement{
      this.deleteEvent = () => {};
   }
   async connectedCallback(){
-       this.templateContent = await loadTemplate("templates/elements/confirmation.html");
+       this.templateContent = await loadTemplate("../public/templates/elements/confirmation.html");
        this.render();
        this.addEventListeners();
   }

@@ -12,7 +12,7 @@ constructor(){
 }
 
 async connectedCallback(){
-  this.templateContent = await loadTemplate('templates/views/classNotesViews.html');
+  this.templateContent = await loadTemplate('../public/templates/views/classNotesViews.html');
   this.render();
   this.fetchData();
 }

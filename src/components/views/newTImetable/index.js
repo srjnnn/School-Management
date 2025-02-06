@@ -13,7 +13,7 @@ class newTimetable extends HTMLElement {
     this.payload = null;
   }
   async connectedCallback() {
-    this.templateContent = await loadTemplate("templates/views/newTimetable.html");
+    this.templateContent = await loadTemplate("../public/templates/views/newTimetable.html");
     this.render();
     this.addTable();
     localStorage.setItem("pageMode",this.pageMode);

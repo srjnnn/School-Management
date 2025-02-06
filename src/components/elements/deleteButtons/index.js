@@ -7,7 +7,7 @@ class deleteButtons extends HTMLElement{
     this.templateContent = ""
   }
   async connectedCallback(){
-    this.templateContent = await loadTemplate("templates/elements/deleteButton.html");
+    this.templateContent = await loadTemplate("../public/templates/elements/deleteButton.html");
     this.render();
   }
   render(){

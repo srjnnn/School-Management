@@ -8,7 +8,7 @@ class busSummary extends HTMLElement{
   }
   async connectedCallback(){
     this.busSummaryContent = await loadTemplate(
-      "templates/views/busSummaryBox.html"
+      "../public/templates/views/busSummaryBox.html"
     );
     this.render();
   }

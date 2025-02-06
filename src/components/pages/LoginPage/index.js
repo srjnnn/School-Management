@@ -16,7 +16,7 @@ class LoginPage extends HTMLElement {
 
   async connectedCallback() {
     this.templateContent = await loadTemplate(
-      "templates/pages/LoginpageTemplate.html"
+      "../public/templates/pages/LoginpageTemplate.html"
     );
     this.render();
     this.addChildrenProps();

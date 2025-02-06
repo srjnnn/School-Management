@@ -13,7 +13,7 @@ class teachersPage extends HTMLElement{
     this.teachersData = null;
   }
   async connectedCallback(){
-    this.templateContent = await loadTemplate("templates/pages/teachers.html");
+    this.templateContent = await loadTemplate("../public/templates/pages/teachers.html");
     this.render();
     this.getTeachersData();
     this.restrictUser();

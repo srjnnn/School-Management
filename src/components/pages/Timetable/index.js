@@ -11,7 +11,7 @@ class TimetablePage extends HTMLElement{
     }
   }
   async connectedCallback(){
-    this.templateContent = await loadTemplate("templates/pages/Timetable.html");
+    this.templateContent = await loadTemplate("../public/templates/pages/Timetable.html");
     this.render();    
 
     

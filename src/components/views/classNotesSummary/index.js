@@ -8,7 +8,7 @@ class classNotesSumamry extends HTMLElement{
     this.data = null;
   }
   async connectedCallback(){
-    this.templateContent = await loadTemplate("templates/views/notesSummaryPage.html");
+    this.templateContent = await loadTemplate("../public/templates/views/notesSummaryPage.html");
     this.render();
   }
   set data(value){

@@ -7,7 +7,7 @@ class editButtons extends HTMLElement{
     this.templateContent = ""
   }
   async connectedCallback(){
-    this.templateContent = await loadTemplate("templates/elements/editButton.html");
+    this.templateContent = await loadTemplate("../public/templates/elements/editButton.html");
     this.render();
   }
   render(){
