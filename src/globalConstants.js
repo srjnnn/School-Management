@@ -31,6 +31,10 @@ export const apiRoutes = {
   },
   attendence:{
     getStudentsByClassId :(classId,classSection) => `${v1Api}/attendence/${classId}/${classSection}`,
+  },
+
+  auth:{
+     login: `${v1Api}/login`
   }
 
 };

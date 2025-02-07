@@ -123,8 +123,10 @@ class sidebarComponent extends HTMLElement {
                 break;
             case "HELP":
                var hostElement = this.getHostElement();
-                LoadPage.renderPages("my-custompage",hostElement);
+                LoadPage.renderPages("help-page",hostElement);
                 LoadPage.changeHeaderRoutes(hostElement,path);
+                window.history.pushState({},"",path);
+
  
 
                 

@@ -10,6 +10,7 @@ export {default as busdetails} from './busDetailsPage/index.js'
 export {default as StudentPages} from './StudentsPages/index.js'
 export {default as AttendencePage} from './attendencePage/index.js'
 export {default as forBidden} from './forbiddenPage/index.js'
+export {default as helpPage} from './helpPage/index.js'
 
 
 

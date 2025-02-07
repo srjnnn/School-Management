@@ -4,10 +4,10 @@
       <p>Login To Connect With Amity</p>
     </div>
     <div class="inputContainer">
-
+      <input type="text" placeholder="Enter the Username" id="Username">
     </div>
     <div class="passwordContainer">
-
+      <input type="text" placeholder="Enter the password" id="Password">
     </div>
     <div class="toggleContainer">
       <div class="toggle-container">
@@ -23,6 +23,7 @@
     </div>
     <div class="loginButton">
 
+      <button id="login">Login</button>
 
     </div>
     <div class="anchor">
@@ -124,5 +125,22 @@
     flex-direction: column;
     gap: .5rem;
     align-items: center;
+  }
+
+  #login {
+    width: 13rem;
+    height: 4rem;
+    padding: 1rem 1.6rem 1rem 1.6rem;
+    border-radius: 0.6rem 0 0 0;
+    border: 0.1rem 0 0 0;
+    background-color: rgba(0, 122, 255, 0.15);
+    cursor: pointer;
+  }
+
+  input {
+    height: 4rem;
+    width: 23rem;
+    border-radius: 0.5rem;
+    text-align: center;
   }
 </style>

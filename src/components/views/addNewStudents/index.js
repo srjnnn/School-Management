@@ -57,16 +57,18 @@ class addNewStudents extends HTMLElement{
     studentsData.Contact = Contact;
     studentsData.Attendence = Attendence;
     studentsData.id = id;
+    studentsData.password = Common.generateRandomPass();
     // Not sending the image 
     this.payload = studentsData;
-    this.sendData();
+    this.sendData(studentsData);
     });
   }
   // Method to send the data to the database 
-  sendData(){
+  sendData(data){
     apiRequest(apiRoutes.students.sendStudentData, "POST",this.payload)
     .then((response)=>{
-      Common.addSuccessPopup(this.shadowRoot, "Student Added Successfully");
+      Common.addSuccessPopup(this.shadowRoot, `Student Added Successfully, Email : ${data.userName}, Password : ${data.password}`,10000);
+      console.log(response);
     })
     .catch((error)=>{
       console.error("Error sending data", error);

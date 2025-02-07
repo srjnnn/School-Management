@@ -2,7 +2,7 @@
 
 class Common {
 // Add success PopUp
- static addSuccessPopup(hostShadowroot,response){
+ static addSuccessPopup(hostShadowroot,response,timer){
     const absoluteDiv = document.createElement('div');
     absoluteDiv.id = "absoluteDiv";
     absoluteDiv.className = "absoluteDiv";
@@ -13,7 +13,7 @@ class Common {
     absoluteDiv.classList.remove('hidden');
     setTimeout(() => {
     absoluteDiv.remove();
-    }, 3000);
+    }, timer);
   };
 //  Moveavle box
  static detailsClick(hostShadowroot,UserData,tableId){
@@ -93,6 +93,18 @@ static getHostElem(shadowRoot){
   const mainHostElement = hostElement.getRootNode().host;
   return mainHostElement;
 };
+//  Generate the random password
+static generateRandomPass(){
+  const characters = "AMITY123456789@#";
+  let password = "";
+  
+  for (let i = 0; i < 6; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      password += characters[randomIndex];
+  }
 
+  return password;
+
+}
 }
 export default Common;

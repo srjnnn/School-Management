@@ -14,7 +14,7 @@ class MyApp extends HTMLElement {
     this.render();
     this.loadPage();
     Router.getMainPage();
-    Router.identifyRoutesChange(this.shadowRoot.querySelector('home-page').shadowRoot);
+    // Router.identifyRoutesChange(this.shadowRoot.querySelector('home-page').shadowRoot);
   }
 
   loadPage() {
