@@ -13,8 +13,22 @@ class Common {
     absoluteDiv.classList.remove('hidden');
     setTimeout(() => {
     absoluteDiv.remove();
-    }, timer);
+    }, timer || 3000);
   };
+  // Add error Popup
+  static addErrorPopup(hostShadowroot, response,timer){
+    const absoluteDiv = document.createElement('div');
+    absoluteDiv.id = "absoluteDiv";
+    absoluteDiv.className = "absoluteDiv";
+    const popup = document.createElement("error-popup");
+    popup.data = response;
+    absoluteDiv.appendChild(popup);
+    hostShadowroot.appendChild(absoluteDiv);
+    absoluteDiv.classList.remove('hidden');
+    setTimeout(() => {
+    absoluteDiv.remove();
+    }, timer || 3000);
+  }
 //  Moveavle box
  static detailsClick(hostShadowroot,UserData,tableId){
   const rows = hostShadowroot.querySelectorAll(`#${tableId} tr`);

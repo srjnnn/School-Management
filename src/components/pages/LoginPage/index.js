@@ -21,12 +21,6 @@ class LoginPage extends HTMLElement {
     const spaceContainer = this.shadowRoot.querySelector('.spaceContainer');
     spaceContainer.appendChild(loginData);
   }
-
-  
-
-  
-
-
 }
 
 const LoginPageElement = customElements.define("login-page", LoginPage);

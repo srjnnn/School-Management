@@ -1,5 +1,8 @@
 import { apiRoutes } from "../../../globalConstants.js";
+import AuthService from "../../../services/AuthService.js";
+import LocalDB from "../../../services/LocalDB.js";
 import apiRequest from "../../../utils/api.js";
+import Common from "../../../utils/common.js";
 import { loadTemplate } from "../../../utils/loadTemplate.js";
 class LoginformComponent extends HTMLElement {
     constructor() {
@@ -36,7 +39,8 @@ class LoginformComponent extends HTMLElement {
           const addFields = {};
          
           if(userNameval === "" || passval === ""){
-            alert("Fields cannot be empty");
+            Common.addErrorPopup(this.shadowRoot, "Fields cannot be empty");
+            return;
           }
          addFields.password = passval;
          addFields.email = userNameval;
@@ -45,15 +49,35 @@ class LoginformComponent extends HTMLElement {
         
         apiRequest(apiRoutes.auth.login, "POST", this.payLoad)
         .then(response =>{
-            console.log(response);
             this.data = response;
+            if(response.status === 200){
+                Common.addSuccessPopup(this.shadowRoot, "Success");
+                setTimeout(() => {
+                this.saveToken(response);
+                }, 1000);
+
+            }
         })
         .catch(error =>{
-            console.log(error);
+            if(error.status === 401){
+                Common.addErrorPopup(this.shadowRoot, "Wrong authentication Credientials");
+            }
         })
-
-
         })
+    }
+    saveToken(response){
+        // check if the user has ticked the remember button or not ??
+        const rememberButton = this.shadowRoot.querySelector('#rememberMe');
+        if(rememberButton.checked){
+            // Store the access token in local storage
+            AuthService.saveToken(response.access_token);
+            window.location.reload();
+        }else{
+            if(response.refresh_token){
+            sessionStorage.setItem("refresh_token", response.refresh_token)
+            }
+            window.location.reload();
+        }
     }
 }
 
