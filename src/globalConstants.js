@@ -34,7 +34,8 @@ export const apiRoutes = {
   },
 
   auth:{
-     login: `${v1Api}/login`
+     login: `${v1Api}/login`,
+     validateToken : `${v1Api}/isValid`
   }
 
 };

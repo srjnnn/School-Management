@@ -1,29 +1,49 @@
+import { apiRoutes } from "../globalConstants.js";
+import apiRequest from "../utils/api.js";
 import LocalDB from "./LocalDB.js";
 
 class AuthService {
   static TOKEN_KEY = "authToken"; // The key used to store the auth token in LocalDB
 
-  // Method to save token in LocalDB
+  // Save token in LocalDB
   static saveToken(token) {
     LocalDB.setItem(AuthService.TOKEN_KEY, token);
   }
 
-  // Method to get the saved token from LocalDB
+  // Get the saved token from LocalDB
   static getToken() {
     return LocalDB.getItem(AuthService.TOKEN_KEY);
   }
 
-  // Method to remove token from LocalDB (log out user)
+  // Remove token from LocalDB (log out user)
   static removeToken() {
     LocalDB.removeItem(AuthService.TOKEN_KEY);
   }
 
-  // Method to check if the user is logged in
-  static isLoggedIn() {
-    return !!AuthService.getToken();
+  // Check if token is valid
+  static async queryToken() {
+    const token = this.getToken();
+    if (!token) return false; // No token found
+
+    const payload = { token };
+
+    try {
+      const response = await apiRequest(apiRoutes.auth.validateToken, "POST", payload);
+      localStorage.setItem("authResponse",JSON.stringify(response) );
+      console.log(response);
+      return true;
+    } catch (error) {
+      console.log(error);
+      localStorage.clear();
+      return false;
+    }
+  }
+
+  // Check if user is logged in
+  static async isLoggedIn() {
+    return await AuthService.queryToken();
   }
 }
+
 // window.AuthService = AuthService;
-
-
 export default AuthService;

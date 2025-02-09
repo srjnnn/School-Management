@@ -17,7 +17,6 @@ class LoginformComponent extends HTMLElement {
         this.LoginTemplateContent = await loadTemplate(
             "../public/templates/views/LoginForm.html"
         );
-
         this.render();
         this.addEventListeners();
     }
@@ -71,6 +70,7 @@ class LoginformComponent extends HTMLElement {
         if(rememberButton.checked){
             // Store the access token in local storage
             AuthService.saveToken(response.access_token);
+            localStorage.setItem("authResponse",JSON.stringify(response) );
             window.location.reload();
         }else{
             if(response.refresh_token){
