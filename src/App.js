@@ -19,7 +19,6 @@ class MyApp extends HTMLElement {
 
   async loadPage() {
     const user =  await AuthService.isLoggedIn();
-    console.log(user)
     const page = user
       ? Router._routePages[Router._routes.HOMEPAGE]
       : Router._routePages[Router._routes.LOGIN];

@@ -30,6 +30,7 @@ class userSummary extends HTMLElement {
   }
 
   updateContent() {
+   console.log(this.data)
     if (this._data && this.shadowRoot) {
       // Update the DOM with the new data
       const userNameElement = this.shadowRoot.querySelector("#name-value");
@@ -38,15 +39,16 @@ class userSummary extends HTMLElement {
       const userAddressElement = this.shadowRoot.querySelector('#address-value');
       const userPickupAddressElement = this.shadowRoot.querySelector('#pickupAddress-value');
       const userDropOffElement = this.shadowRoot.querySelector('#dropoffAddress-value');
+      const imageContainerElem = this.shadowRoot.querySelector('.imageContainer')
       // Example: Assuming your HTML has placeholders for user name and email
       if (userNameElement) {
         userNameElement.textContent = this._data.fullname || "No name available";
       }
       if (userRollElement) {
-        userRollElement.textContent = this._data.score || "No email available";
+        userRollElement.textContent = this._data.roll_number || "No rollNumber available";
       }
       if(userClassElement){
-        userClassElement.textContent = this._data.class || "Null"
+        userClassElement.textContent = this._data.Class || "No Class Available"
       }
       if(userAddressElement){
         userAddressElement.textContent = this._data.address || "Null"
@@ -56,6 +58,12 @@ class userSummary extends HTMLElement {
       }
       if(userDropOffElement){
         userDropOffElement.textContent = this._data.drop || "Null"
+      }
+      if(imageContainerElem){
+        console.log(imageContainerElem)
+        imageContainerElem.style.backgroundImage = `url(${this._data.image || `../public/assets/avatar/${this._data.gender}.png`})`;
+
+
       }
     }
   }

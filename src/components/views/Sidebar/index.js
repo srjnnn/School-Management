@@ -1,6 +1,5 @@
 let value = '';
 import LoadPage from "../../../services/loadPages.js";
-import RestrictUser from "../../../services/restrictUser.js";
 import { loadTemplate } from "../../../utils/loadTemplate.js";
 class sidebarComponent extends HTMLElement {
     constructor() {
@@ -9,15 +8,16 @@ class sidebarComponent extends HTMLElement {
         this.SidebarTemplateContent = "";
 
     }
-
+verifyUser(){
+    const user =  sessionStorage.getItem("User");
+    return user;
+}
     async connectedCallback() {
         this.SidebarTemplateContent = await loadTemplate(
             "../public/templates/views/SidebarTemplate.html"
         );
-
         this.render();
         this.prop();
-        this.verifyUserType();
         this.toggle();
 
         // Making the dashboard as the default button
@@ -52,15 +52,6 @@ class sidebarComponent extends HTMLElement {
         
     
     };
-
-    verifyUserType(){
-            const isSuperUser = RestrictUser.IdentifyUserType();
-            console.log("is user a super user ? ",isSuperUser);
-
-            return isSuperUser;
-
-            
-        }
 
     loadPages(path){
         switch(path){
@@ -112,6 +103,9 @@ class sidebarComponent extends HTMLElement {
                
                 break;
             case "ATTENDENCE":
+                if(this.verifyUser()==="student"){
+                    return
+                }
                var hostElement = this.getHostElement();
                 LoadPage.renderPages("attendence-page",hostElement);
                 LoadPage.changeHeaderRoutes(hostElement,path);
@@ -142,6 +136,9 @@ class sidebarComponent extends HTMLElement {
                 
                 break;
             case "STUDENTS":
+                if(this.verifyUser()==="student"){
+                    return
+                }
                var hostElement = this.getHostElement();
                 LoadPage.renderPages("students-page",hostElement);
                 LoadPage.changeHeaderRoutes(hostElement,path);

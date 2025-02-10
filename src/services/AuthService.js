@@ -30,10 +30,9 @@ class AuthService {
     try {
       const response = await apiRequest(apiRoutes.auth.validateToken, "POST", payload);
       localStorage.setItem("authResponse",JSON.stringify(response) );
-      console.log(response);
+      sessionStorage.setItem("User", response.userData.role);
       return true;
     } catch (error) {
-      console.log(error);
       localStorage.clear();
       return false;
     }

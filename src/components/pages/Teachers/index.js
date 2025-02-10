@@ -1,6 +1,5 @@
 import { apiRoutes } from "../../../globalConstants.js";
 import LoadPage from "../../../services/loadPages.js";
-import RestrictUser from "../../../services/restrictUser.js";
 import apiRequest from "../../../utils/api.js";
 import Common from "../../../utils/common.js";
 import { loadTemplate } from "../../../utils/loadTemplate.js";
@@ -16,7 +15,7 @@ class teachersPage extends HTMLElement{
     this.templateContent = await loadTemplate("../public/templates/pages/teachers.html");
     this.render();
     this.getTeachersData();
-    this.restrictUser();
+// get the user type .....
 
   }
   // get the tachers data
@@ -25,7 +24,11 @@ class teachersPage extends HTMLElement{
     .then((teachersData)=>{
     this.teachersData = teachersData && teachersData.data;
     this.addTable();
-    this.addEditButtons();
+    const user = sessionStorage.getItem("User");
+
+    if(user === "admin"){
+       this.addEditButtons();
+    }
     Common.detailsClick(this.shadowRoot,this.teachersData, "teachersDetails");
     })
   }
@@ -86,14 +89,6 @@ class teachersPage extends HTMLElement{
     
   }
 
-  // Restrict user page 
-  restrictUser(){
-    if(RestrictUser.IdentifyUserType()===true){
-      // add new page EventListner 
-      this.addNewPage();
-    }else{
-    }
-  }
 
   render(){
     this.shadowRoot.innerHTML = this.templateContent;

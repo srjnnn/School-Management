@@ -51,60 +51,10 @@
     display: flex;
   }
 
-  .firstRow {
-    padding: 2rem;
-    display: flex;
-    gap: 3rem;
-  }
+
 
   .topText h1 {
     font-size: 2rem;
-  }
-
-  .busDetails {
-    display: flex;
-    flex-direction: column;
-  }
-
-  table {
-    font-size: 2rem;
-    border: 0.1rem solid rgba(207, 226, 255, 1);
-
-  }
-
-  th,
-  td {
-    border: 0.1rem solid rgba(207, 226, 255, 1);
-    height: 4rem;
-    width: 30rem;
-  }
-
-  .studentsIntheBus {
-    display: flex;
-    flex-direction: column;
-    height: 39rem;
-    border: 0.1rem solid rgba(50, 173, 230, 1);
-    border-radius: 1rem;
-    overflow-y: scroll;
-    margin-top: 5rem;
-  }
-
-  .studentsIntheBus button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-  }
-
-  .studentsIntheBus button {
-    height: 3rem;
-    width: 12rem;
-    margin: 0 auto;
-  }
-
-  .studentsIntheBus h1 {
-    font-size: 2rem;
-    text-align: center;
   }
 
   .design {
@@ -115,9 +65,11 @@
     margin-bottom: 1rem;
   }
 
-  .secondRow {
+  .busDetails {
     display: flex;
     justify-content: center;
+    margin: 0 auto;
+    align-items: center;
   }
 </style>
 
@@ -147,62 +99,6 @@
     </div>
   </div>
   <div class="busDetails">
-    <div class="firstRow">
-
-      <div class="driversSummary">
-        <div class="topText">
-          <h1>Driver's Information</h1>
-        </div>
-      </div>
-      <div class="studentsIntheBus">
-        <!-- Table for the Students in the Bus -->
-        <table>
-          <h1>Student's in the bus</h1>
-          <div class="design"></div>
-          <tr>
-            <th>Student's Name </th>
-            <th>Pickup Address</th>
-            <th>Dropoff Address</th>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        </table>
-        <button><img src="/public/assets/icons/plus.svg" alt="Plus Icon">Add Students</button>
-      </div>
-    </div>
     <div class="secondRow">
       <div class="busInfo"></div>
     </div>

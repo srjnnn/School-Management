@@ -1,5 +1,4 @@
 import LoadPage from "../../../services/loadPages.js";
-import RestrictUser from "../../../services/restrictUser.js";
 import { loadTemplate } from "../../../utils/loadTemplate.js";
 
 class classNotes extends HTMLElement{
@@ -13,7 +12,8 @@ class classNotes extends HTMLElement{
     this.templateContent = await loadTemplate("../public/templates/pages/ClassNotesPage.html");
     this.render();
     this.addNotes();
-    if(RestrictUser.IdentifyUserType() === true){
+    
+    if(["admin", "teachers"].includes(sessionStorage.getItem("User"))){
       this.addEventListners();
       // Make the access visible
       const selectByClass = this.shadowRoot.querySelector('#class');

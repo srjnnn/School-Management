@@ -11,7 +11,8 @@ class DashboardComponent extends HTMLElement {
     this.isLoading = false;
     this.error = false;
 
-    this.testData = null;
+    this.storedData = localStorage.getItem("authResponse");
+    this.data = JSON.parse(this.storedData);
   }
 
   async connectedCallback() {
@@ -19,7 +20,6 @@ class DashboardComponent extends HTMLElement {
       "../public/templates/pages/Dashboard.html"
     );
     this.render();
-    this.fetchData();
     this.addContents();
   }
 
@@ -27,20 +27,11 @@ class DashboardComponent extends HTMLElement {
     this.shadowRoot.innerHTML = this.dashboardPageContent;
   }
 
-  fetchData() {
-    apiRequest(apiRoutes.test.getAllTestData, "GET")
-      .then((testData) => {
-        this.testData = testData && testData.data && testData.data[0];
-        this.updateContent();
-      })
-      .catch((error) => console.error("error fetching data", error));
-
-  }
   
   updateContent() {
     const userSummary = this.shadowRoot.querySelector("my-usersummary");
     if (userSummary) {
-      userSummary.data = this.testData; // 
+      userSummary.data = this.data.userData.profile; // 
       // Pass the data as a property
     }
   }
@@ -75,7 +66,10 @@ class DashboardComponent extends HTMLElement {
     timeLineContainer.appendChild(timeline);
     upcomingEventsContainer.appendChild(upcomingEvents);
     recentClassNotesContainer.appendChild(recentClassNotes);
-  }
+
+    // Update the content 
+    this.updateContent();
+    }
 }
 
 const DashboardPageElement = customElements.define(

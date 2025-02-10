@@ -1,5 +1,4 @@
 import LoadPage from "../../../services/loadPages.js";
-import RestrictUser from "../../../services/restrictUser.js";
 import { loadTemplate } from "../../../utils/loadTemplate.js";
 
 
