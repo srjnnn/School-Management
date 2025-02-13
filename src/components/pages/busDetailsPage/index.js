@@ -10,7 +10,6 @@ class busDetails extends HTMLElement{
     this.templateContent = await loadTemplate('../public/templates/pages/BusDetails.html');
     this.render();
     this.addEventListeners();
-    this.addSummaryBox();
     this.addBusSummaryBox();
 
   };
@@ -35,16 +34,7 @@ class busDetails extends HTMLElement{
       })
     })
   }
-  // Drivers Summary Box
-  addSummaryBox(){
-    const userSUmmaryBox = document.createElement('my-usersummary');
-    const summaryContainer = this.shadowRoot.querySelector('.driversSummary');
-    summaryContainer.appendChild(userSUmmaryBox);
-  }
-  // Update the datas of the table 
-  updateTable(){
 
-  }
   // Add the bus info 
   addBusSummaryBox(){
      const summaryContainer = this.shadowRoot.querySelector('.busInfo');

@@ -19,7 +19,7 @@ class teachersPage extends HTMLElement{
 
   }
   // get the tachers data
-  getTeachersData(){
+  getTeachersData(classId , section){
     apiRequest(apiRoutes.teachers.getAllTeachersData, "GET")
     .then((teachersData)=>{
     this.teachersData = teachersData && teachersData.data;
@@ -28,6 +28,9 @@ class teachersPage extends HTMLElement{
 
     if(user === "admin"){
        this.addEditButtons();
+       const header = this.shadowRoot.querySelector(".headers");
+       header.classList.remove('hidden');
+       this.addNewPage();
     }
     Common.detailsClick(this.shadowRoot,this.teachersData, "teachersDetails");
     })
@@ -87,6 +90,25 @@ class teachersPage extends HTMLElement{
       }
     });
     
+  }
+
+  changeClass(){
+    const Classselector = this.shadowRoot.querySelector('#classSelector');
+    const sectionSelector = this.shadowRoot.querySelector('#sectionSelector');
+    sectionSelector.disabled = true;
+    Classselector.addEventListener('change', ()=>{
+    sectionSelector.disabled = (Classselector.value === "null");
+    if(sectionSelector.value !== "null"){
+      this.getStudentsData(Classselector.value, sectionSelector.value);
+      this.clearTable();
+    }
+    })
+    sectionSelector.addEventListener('change', ()=>{
+      if(sectionSelector.value !== "null"){
+        this.clearTable();
+        this.getStudentsData(Classselector.value,sectionSelector.value);
+      }
+    })
   }
 
 

@@ -42,13 +42,6 @@
     height: 2rem;
   }
 
-  select {
-    font-size: 1.5rem;
-    width: 14rem;
-    text-align: center;
-    height: 4rem;
-    margin-left: 1rem;
-  }
 
   option {
     font-size: 1.5rem;
@@ -61,6 +54,21 @@
   .hidden {
     display: none;
   }
+
+  select {
+    width: 15rem;
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    border: 0.1rem solid #cfe2ff;
+    border-radius: 5px;
+    background-color: #f2f6ff;
+    transition: 0.3s ease;
+  }
+
+  .selectClass select:hover {
+    border-color: #007bff;
+  }
 </style>
 
 
@@ -72,21 +80,46 @@
       <div class="text">
         <p>Filter By : </p>
       </div>
-      <!-- Teachers  -->
-      <select name="" id="">
-        <option value="all" selected>Teachers</option>
-      </select>
       <!--Date  -->
-      <select name="" id="">
-        <option value="all" selected>Date</option>
+      <select name="" id="notesDate">
+        <option value="null" selected>Date</option>
+        <option value="Today">Today</option>
+        <option value="Yesterday">Yesterday</option>
+        <option value="thisWeek">This Week</option>
+        <option value="thisMonth">This Month</option>
       </select>
       <!-- Subject -->
-      <select name="" id="">
+      <select name="" id="notesSubject">
         <option value="all" selected>Subject</option>
+        <option value="Computer">Computer</option>
+        <option value="Nepali">Nepali</option>
+        <option value="English">English</option>
+        <option value="Economics">Economics</option>
+        <option value="Accounts">Accounts</option>
+        <option value="Social">Social/Samajik</option>
+        <option value="Maths">Maths</option>
+        <option value="optMaths">opt.Maths</option>
+        <option value="Science">Science</option>
       </select>
       <!-- Class /// only visible to teachers -->
-      <select name="" id="class" class="hidden">
-        <option value="all" selected>Class</option>
+      <select name="classSelector" class='hidden' id="classSelector">
+        <option value="null" selected>Select Class</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11-CS">11-CS</option>
+        <option value="11-HM">11-HM</option>
+        <option value="11-BS">11-BS</option>
+        <option value="12-CS">12-CS</option>
+        <option value="12-HM">12-HM</option>
+        <option value="12-BS">12-BS</option>
       </select>
 
     </div>

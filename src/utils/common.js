@@ -120,5 +120,7 @@ static generateRandomPass(){
   return password;
 
 }
+
 }
+
 export default Common;

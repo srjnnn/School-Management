@@ -54,6 +54,13 @@ addCards(){
   });
 
 }
+// Add event listners to the select 
+selectEventListners(){
+  const Classselector = this.shadowRoot.querySelector('#classSelector');
+  Classselector.addEventListener('change', ()=>{
+    alert("Changed....................")
+  })
+}
 // Get host elem
 getHostElem(){
   const host = this.shadowRoot.getRootNode().host;

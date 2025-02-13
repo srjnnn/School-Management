@@ -15,16 +15,35 @@ class studentsPage extends HTMLElement{
     this.render();
     this.getStudentsData();
     this.renderAddNewStudentsPage();
+    this.changeClass();
     
   }
 
-  getStudentsData(){
-    apiRequest(apiRoutes.students.getAllStudentsData, "GET")
+  getStudentsData(Class, section){
+    apiRequest(apiRoutes.students.getStudentsDataByClassSection(Class, section), "GET")
     .then((studentData)=>{
       this.studentData = studentData && studentData.data;
       this.addTable();
       this.addEditButtons();
       Common.detailsClick(this.shadowRoot, this.studentData,"studentsDetails");
+    })
+  };
+  changeClass(){
+    const Classselector = this.shadowRoot.querySelector('#classSelector');
+    const sectionSelector = this.shadowRoot.querySelector('#sectionSelector');
+    sectionSelector.disabled = true;
+    Classselector.addEventListener('change', ()=>{
+    sectionSelector.disabled = (Classselector.value === "null");
+    if(sectionSelector.value !== "null"){
+      this.getStudentsData(Classselector.value, sectionSelector.value);
+      this.clearTable();
+    }
+    })
+    sectionSelector.addEventListener('change', ()=>{
+      if(sectionSelector.value !== "null"){
+        this.clearTable();
+        this.getStudentsData(Classselector.value,sectionSelector.value);
+      }
     })
   }
   addTable(){
@@ -130,7 +149,20 @@ findStudentDataByID(row){
 
 }
   
-
+  // Clear table
+  clearTable(){
+    const table = this.shadowRoot.querySelector('#studentsDetails');
+    const rows = table.querySelectorAll("tr");
+    rows.forEach(row =>{
+      console.log(row)
+      if(row.id.includes('first')){
+        return;
+      }else{
+        row.remove();
+      }
+    
+    })
+  }
 }
 const StudentsPage = customElements.define('students-page',studentsPage);
 export default StudentsPage;

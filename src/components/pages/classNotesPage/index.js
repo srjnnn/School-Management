@@ -44,7 +44,8 @@ class classNotes extends HTMLElement{
     const classNotesCard = document.createElement('class-notes');
     classNotesContainer.appendChild(classNotesCard);
   }
-
+  
+  
 }
 const ClassNotes = customElements.define('classnotes-page',classNotes);
 export default ClassNotes;

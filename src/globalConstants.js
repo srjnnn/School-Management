@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:4000/api";
+const baseUrl = "http://localhost:4001/api";
 
 const v1Api = `${baseUrl}/v1`;
 
@@ -10,13 +10,15 @@ export const apiRoutes = {
     getAllStudentsData : `${v1Api}/students`,
     sendStudentData : `${v1Api}/students`,
     deleteStudentData :` ${v1Api}/students`,
-    updateStudentData : `${v1Api}/students`
+    updateStudentData : `${v1Api}/students`,
+    getStudentsDataByClassSection : (classId, classSection) => `${v1Api}/students/${classId}/${classSection}`
   },
   teachers:{
     getAllTeachersData : `${v1Api}/teachers`,
     sendTeachersData : `${v1Api}/teachers`,
     deleteTeachersData : `${v1Api}/teachers`,
-    updateTeacherData : `${v1Api}/teachers`
+    updateTeacherData : `${v1Api}/teachers`,
+    getTeachersbyclassSection: (classId, Section)=>`${v1Api}/teachers/${classId}/${Section}`
 
   },
   timetable:{
@@ -27,7 +29,11 @@ export const apiRoutes = {
   },
   classNotes:{
     getAllClassNotes : `${v1Api}/classnotes`,
-    sendClassNotesData : `${v1Api}/classnotes`
+    sendClassNotesData : `${v1Api}/classnotes`,
+    getClassNotesbySubject : (subject) => `${v1Api}/classnotes/${subject}`,
+    getClassNotesbyClass :(classId) => `${v1Api}/classnotes/${classId}`,
+    getClassNotesbyTime : (time) => `${v1Api}/classnotes/${time}`
+
   },
   attendence:{
     getStudentsByClassId :(classId,classSection) => `${v1Api}/attendence/${classId}/${classSection}`,
@@ -35,7 +41,10 @@ export const apiRoutes = {
 
   auth:{
      login: `${v1Api}/login`,
-     validateToken : `${v1Api}/isValid`
-  }
+     validateToken : `${v1Api}/isValid`,
+     changePassword : `${v1Api}/change`
+  },
+
+  
 
 };
