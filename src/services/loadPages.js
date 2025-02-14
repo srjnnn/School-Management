@@ -2,7 +2,9 @@
 class LoadPage{
   static renderPages(customElement ,homepageElem, data){
     if (homepageElem){
+        console.log(homepageElem);
     const mainContainer = homepageElem.shadowRoot.querySelector('#main-content-container');
+    console.log(mainContainer)
     if (mainContainer.children.length > 0) {
         mainContainer.replaceChildren();
         this.addPage(customElement, mainContainer,data);

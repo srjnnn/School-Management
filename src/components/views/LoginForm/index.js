@@ -1,6 +1,6 @@
 import { apiRoutes } from "../../../globalConstants.js";
 import AuthService from "../../../services/AuthService.js";
-import LocalDB from "../../../services/LocalDB.js";
+import LoadPage from "../../../services/loadPages.js";
 import apiRequest from "../../../utils/api.js";
 import Common from "../../../utils/common.js";
 import { loadTemplate } from "../../../utils/loadTemplate.js";
@@ -31,7 +31,10 @@ class LoginformComponent extends HTMLElement {
         const userName = this.shadowRoot.querySelector('#Username');
         const password = this.shadowRoot.querySelector('#Password');
         const button = this.shadowRoot.querySelector('#login');
-
+        const forgotPasswordButton = this.shadowRoot.querySelector('#forgot-password');
+        forgotPasswordButton.addEventListener('click',()=>{
+            this.loadPageWrap("forgot-password", "Forgot-password");
+        })
         button.addEventListener('click',()=>{
           const  userNameval = userName.value;
           const  passval = password.value;
@@ -79,6 +82,19 @@ class LoginformComponent extends HTMLElement {
             window.location.reload();
         }
     }
+          // Storing the common method 
+          loadPageWrap(customElementsName,path){
+            // console.log(this.shadowRoot)
+            var hostElement = Common.getHostElem(this.shadowRoot.getRootNode().host);
+            console.log(hostElement)
+            const mainContainer = hostElement.shadowRoot.querySelector('#main-app');
+            if(mainContainer.children.length > 0){
+                mainContainer.replaceChildren();
+                const page = document.createElement('forgot-password');
+                mainContainer.appendChild(page);
+            }
+            window.history.pushState({},"",path);
+        }
 }
 
 const Lgnform = customElements.define("my-loginform", LoginformComponent);
