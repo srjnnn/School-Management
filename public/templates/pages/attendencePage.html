@@ -23,6 +23,15 @@
       margin: 0 auto;
     }
 
+    .btn:disabled {
+      background: #ccc;
+      color: #777;
+      cursor: not-allowed;
+      box-shadow: none;
+      transform: none;
+      opacity: 0.6;
+    }
+
     .header {
       background: rgba(108, 149, 255, 1);
       color: #fff;
@@ -159,6 +168,7 @@
       <tbody id="table">
       </tbody>
     </table>
+    <button id="save">Save</button>
     <div class="footer">
       <select name="classSelector" id="classSelector">
         <option value="null">Select Class</option>

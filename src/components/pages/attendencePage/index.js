@@ -8,6 +8,7 @@ class attendencePage extends HTMLElement{
     this.attachShadow({mode:'open'});
     this.templateContent = '';
     this.studentsData = null;
+    this.attendenceData = [];
   }
   async connectedCallback(){
     this.templateContent = await loadTemplate("../public/templates/pages/attendencePage.html");
@@ -49,19 +50,23 @@ changeClass(){
     this.shadowRoot.innerHTML = this.templateContent;
   }
   addTableData(){
+    // First sort the students and display the data
     const table = this.shadowRoot.querySelector('#table');
-    this.studentsData.forEach(data => {
+    const sortedStudentsData = this.studentsData.sort((a,b)=>{
+      return a.fullname.localeCompare(b.fullname);
+    });
+    sortedStudentsData.forEach(data => {
       const htmlContent = `
-    <tr>
+    <tr id = "${data.id}">
       <td>${data.id || "NA"}</td>
       <td class ="name">${data.fullname || "NA"}</td>
        <td>
             <div class="btn-group">
-              <button class="btn present">Present</button>
-              <button class="btn absent">Absent</button>
+              <button class="btn present ${data.fullname}" id="present">Present</button>
+              <button class="btn absent ${data.fullname}" id ="absent">Absent</button>
             </div>
         </td>
-        <td><button class="btn present">Edit</button></td>
+        <td><button class="btn present" id = "edit">Edit</button></td>
     </tr>
     
     `
@@ -70,7 +75,40 @@ changeClass(){
     });
   }
   addEventListners(){
-    // Code for the event Listners
+    const trs = this.shadowRoot.querySelectorAll('tr');
+    trs.forEach(tr =>{
+      tr.addEventListener('click', (event)=>{
+        const button = tr.querySelectorAll('button');
+
+        const studentID = tr.id;
+        if(event.target.id.includes("present")){
+          button.forEach(bttn =>{
+            if(bttn.id !== "present" && bttn.id !== "edit"){
+              bttn.disabled = true;
+            }
+          })
+          this.attendenceData.push({id : studentID, remark : true})
+        }
+        if(event.target.id.includes("absent")){
+          button.forEach(bttn =>{
+            if(bttn.id !== "absent" && bttn.id !== "edit"){
+              bttn.disabled = true;
+            }
+          })
+          this.attendenceData.push({id : tr.id, remark : false});
+        }
+        if(event.target.id.includes("edit")){
+          button.forEach(buttns =>{
+            buttns.disabled = false;
+          })
+        }
+      })
+    })
+    const saveButton = this.shadowRoot.querySelector('#save');
+    saveButton.addEventListener('click',()=>{
+      // Show alert if all the stuents are not marked
+      console.log(this.attendenceData);
+    })
   }
   // Clear table
   clearTable(){

@@ -1,4 +1,5 @@
-import LoadPage from "../../../services/loadPages.js";
+import { apiRoutes } from "../../../globalConstants.js";
+import apiRequest from "../../../utils/api.js";
 import Common from "../../../utils/common.js";
 import { loadTemplate } from "../../../utils/loadTemplate.js";
 
@@ -7,6 +8,7 @@ class forgotPassword extends HTMLElement{
     super();
     this.templateContent = null;
     this.attachShadow({mode : "open"});
+    this.payload =null;
   }
   async connectedCallback(){
     this.templateContent = await loadTemplate("../public/templates/views/forgotPassword.html");
@@ -29,27 +31,29 @@ class forgotPassword extends HTMLElement{
     });
 
     requestButton.addEventListener('click', ()=>{
-      this.shadowRoot.querySelector('#infoText').textContent = 
-      `Verification code has been sent to the email , ${userNameField.value}!`;
-      this.loadPageWrap("otp-verify","verifyOTP");
       
+      const addFields = {};
+      addFields.email = userNameField.value;
+      this.payload = addFields;
+      this.requestPasswordReset(userNameField);
     });
-
+ 
 
 }
-loadPageWrap(customElementsName,path){
-  // console.log(this.shadowRoot)
-   const hostElem = this.shadowRoot.getRootNode().host;
-   const superHostElem = hostElem.getRootNode().host;
-  const mainContainer = superHostElem.shadowRoot.querySelector('#main-app');
-  console.log(mainContainer)
-  if(mainContainer.children.length > 0){
-      mainContainer.replaceChildren();
-      const page = document.createElement(customElementsName);
-      mainContainer.appendChild(page);
-  }
-  window.history.pushState({},"",path);
+
+requestPasswordReset(userNameField){
+  apiRequest(apiRoutes.auth.resetRequest, "POST", this.payload)
+  .then(response =>{
+    this.shadowRoot.querySelector('#infoText').innerHTML = 
+      `Verification code has been sent to the email ,<strong> ${userNameField.value}!</strong>`;
+    console.log(response)
+  })
+  .catch(error =>{
+    console.error(error)
+    Common.addErrorPopup(this.shadowRoot, `An error occured please try again later`)
+  })
 }
+
 }
 
 const ForgotPassword = customElements.define("forgot-password", forgotPassword);

@@ -32,6 +32,7 @@ class addNewStudents extends HTMLElement{
       // Get all the fields value 
       const name = this.shadowRoot.querySelector('#Name').value;
       const Class = this.shadowRoot.querySelector('#Class').value;
+      const Email = this.shadowRoot.querySelector('#email').value;
       const Section = this.shadowRoot.querySelector('#Section').value;
       const rollNumber = this.shadowRoot.querySelector('#rollno').value;
       const userName = this.shadowRoot.querySelector('#userName').value;
@@ -43,9 +44,11 @@ class addNewStudents extends HTMLElement{
       const Attendence = this.shadowRoot.querySelector('#attendence').value;
       const image = this.shadowRoot.querySelector('#imageUpload').value
       const id = this.shadowRoot.querySelector('#ID').value;
+      const gender = this.shadowRoot.querySelector('#gender').value;
       // Pack the data in the object
     const studentsData = {};
     studentsData.fullName = name;
+    studentsData.gender = gender;
     studentsData.Class = Class;
     studentsData.Section = Section;
     studentsData.rollNumber = rollNumber;
@@ -57,6 +60,7 @@ class addNewStudents extends HTMLElement{
     studentsData.Contact = Contact;
     studentsData.Attendence = Attendence;
     studentsData.id = id;
+    studentsData.email = Email;
     studentsData.password = Common.generateRandomPass();
     // Not sending the image 
     this.payload = studentsData;
@@ -67,7 +71,7 @@ class addNewStudents extends HTMLElement{
   sendData(data){
     apiRequest(apiRoutes.students.sendStudentData, "POST",this.payload)
     .then((response)=>{
-      Common.addSuccessPopup(this.shadowRoot, `Student Added Successfully, Email : ${data.userName}, Password : ${data.password}`,10000);
+      Common.addSuccessPopup(this.shadowRoot, `Student Added Successfully, Email : ${data.email}, Password : ${data.password}`,10000);
       console.log(response);
     })
     .catch((error)=>{

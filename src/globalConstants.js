@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:4001/api";
+const baseUrl = "http://localhost:4000/api";
 
 const v1Api = `${baseUrl}/v1`;
 
@@ -42,7 +42,9 @@ export const apiRoutes = {
   auth:{
      login: `${v1Api}/login`,
      validateToken : `${v1Api}/isValid`,
-     changePassword : `${v1Api}/change`
+     changePassword : `${v1Api}/change`,
+     resetRequest : `${v1Api}/reset`,
+     updatePassword :`${v1Api}/update`
   },
 
   

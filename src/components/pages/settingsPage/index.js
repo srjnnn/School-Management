@@ -21,11 +21,7 @@ class Settings extends HTMLElement{
 
     const anchors = this.shadowRoot.querySelector('.anchors');
     anchors.addEventListener('click', (event)=>{
-           if(event.target.matches('#forgot')){
-              this.loadPageWrap("forgot-password", "Forgot-password")
-
-
-          }else if (event.target.matches('#change')){
+           if (event.target.matches('#change')){
             this.loadPageWrap("change-password","Change-password")
            }
     })
