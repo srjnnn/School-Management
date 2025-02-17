@@ -6,6 +6,9 @@ class Common {
     const absoluteDiv = document.createElement('div');
     absoluteDiv.id = "absoluteDiv";
     absoluteDiv.className = "absoluteDiv";
+    absoluteDiv.style.position = "absolute";
+    absoluteDiv.style.top = "50%";
+    absoluteDiv.style.left = "35%";
     const popup = document.createElement("success-popup");
     popup.data = response;
     absoluteDiv.appendChild(popup);
@@ -19,6 +22,9 @@ class Common {
   static addErrorPopup(hostShadowroot, response,timer){
     const absoluteDiv = document.createElement('div');
     absoluteDiv.id = "absoluteDiv";
+    absoluteDiv.style.position = "absolute";
+    absoluteDiv.style.top = "50%";
+    absoluteDiv.style.left = "35%";
     absoluteDiv.className = "absoluteDiv";
     const popup = document.createElement("error-popup");
     popup.data = response;
