@@ -43,6 +43,12 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
+    .btn-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
@@ -168,7 +174,9 @@
       <tbody id="table">
       </tbody>
     </table>
-    <button id="save">Save</button>
+    <div class="btn-container">
+      <button id="save" class="btn present">Save</button>
+    </div>
     <div class="footer">
       <select name="classSelector" id="classSelector">
         <option value="null">Select Class</option>

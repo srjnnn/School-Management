@@ -14,6 +14,8 @@ class attendencePage extends HTMLElement{
     this.class = "";
     this.section = "";
     this.response = null
+    this.updatedData = [];
+    this.updatedEventlistner = false;
   }
   async connectedCallback(){
     this.templateContent = await loadTemplate("../public/templates/pages/attendencePage.html");
@@ -33,9 +35,12 @@ changeClass(){
     this.clearTable();
      await this.checkAttendence();
     if(this.response !== null &&  this.response.attendanceTaken === true){
+      if(this.payload === null){
+        this.shadowRoot.querySelector('#save').disabled = true;
+      }else{
       this.updateContents();
+      }
     }else{
-      console.log(this.response.attendanceTaken)
     this.getStudentsData(Classselector.value, sectionSelector.value);
 
     }
@@ -79,10 +84,10 @@ changeClass(){
     });
     sortedStudentsData.forEach(data => {
       const htmlContent = `
-    <tr id = "${data.id}">
+    <tr id = "${data.id}" studentName = "${data.fullname}">
       <td>${data.id || "NA"}</td>
       <td class ="name">${data.fullname || "NA"}</td>
-       <td>
+        <td>
             <div class="btn-group">
               <button class="btn present ${data.fullname}" id="present">Present</button>
               <button class="btn absent ${data.fullname}" id ="absent">Absent</button>
@@ -111,7 +116,7 @@ changeClass(){
               bttn.disabled = true;
             }
           })
-          this.attendenceData.push({id : studentID, remark : true, class : this.class, section : this.section})
+          this.attendenceData.push({id : studentID, remark : true, class : this.class, section : this.section, fullname : tr.getAttribute("studentName")})
         }
         if(event.target.id.includes("absent")){
           button.forEach(bttn =>{
@@ -119,7 +124,7 @@ changeClass(){
               bttn.disabled = true;
             }
           })
-          this.attendenceData.push({id : tr.id, remark : false, class : this.class, section : this.section});
+          this.attendenceData.push({id : tr.id, remark : false, class : this.class, section : this.section, fullname : tr.getAttribute("studentName")});
         }
         if(event.target.id.includes("edit")){
           button.forEach(buttns =>{
@@ -139,9 +144,8 @@ changeClass(){
         
       }else{
        this.payload = this.attendenceData;
-      this.sendData();
-      console.log(this.attendenceData);
-         
+       console.log(this.payload)
+      this.sendData();     
       }
     })
     this.addEventListnersAdded = true;
@@ -156,7 +160,6 @@ async checkAttendence(){
 
   const response = await apiRequest(apiRoutes.attendence.checkAttendenceData, "POST",checkPayload )
   this.response = response;
-  console.log(response)
   }catch(error){
   console.error("Error chacking the students " ,error)
   }
@@ -166,8 +169,10 @@ sendData(){
    //  Send data 
    apiRequest(apiRoutes.attendence.sendAttendenceData, "POST",this.payload)
    .then(response =>{
-    console.log(response);
     Common.addSuccessPopup(this.shadowRoot, "Successfully added the Attendence of the students")
+    setTimeout(() => {
+      this.connectedCallback();
+    }, 3000);
    })
    .catch(error =>{
     console.error(error);
@@ -178,20 +183,108 @@ sendData(){
     const table = this.shadowRoot.querySelector('#table');
     table.innerHTML =""
   }
-// update contents 
-updateContents(){
-  const table = this.shadowRoot.querySelector('#table')
-  const tr =  document.createElement('tr');
-  const {attendanceData} = this.response;
-  console.log(attendanceData);
-  attendanceData.forEach(studentAttendence =>{
-         tr.innerHTML = `
-         <td id = ${studentAttendence.id}>${studentAttendence.id}</td>
-         <td id = ${studentAttendence.id}>${studentAttendence.id}</td>
-         `
-  })
-}
+  updateContents() {
+    const table = this.shadowRoot.querySelector('#table');
+    const { attendanceData } = this.response;
   
+    attendanceData.forEach(studentAttendance => {
+      const htmlContent = `
+        <tr id="${studentAttendance.studentId }" data-student-name="${studentAttendance.fullname}" attendenceID = ${studentAttendance.id}>  
+          <td>${studentAttendance.studentId || "N/A"}</td>
+          <td class="name">${studentAttendance.fullname || "NA"}</td>
+          <td>
+            <div class="btn-group">
+              <button class="btn present" data-id="${studentAttendance.studentId }">Present</button>
+              <button class="btn absent" data-id="${studentAttendance.studentId }">Absent</button>
+            </div>
+          </td>   
+          <td><button class="btn present" data-id="${studentAttendance.studentID}" id = "edit">Edit</button></td>      
+        </tr>       
+      `;
+      
+      table.innerHTML += htmlContent;
+  
+      // Select the newly added buttons
+      const presentButton = table.querySelector(`.present[data-id="${studentAttendance.studentId }"]`);
+      const absentButton = table.querySelector(`.absent[data-id="${studentAttendance.studentId }"]`);
+  
+      // Disable buttons based on attendance status
+      if (studentAttendance.status === true) {
+        absentButton.disabled = true;
+      } else {
+        presentButton.disabled = true;
+      }
+    });
+
+    this.fetchedEventListners();
+  }
+  fetchedEventListners(){
+    if(this.updatedEventlistner === true) return;
+
+    const trs = this.shadowRoot.querySelectorAll('tr');
+    trs.forEach(tr =>{
+      tr.addEventListener('click', (event)=>{
+        const button = tr.querySelectorAll('button');
+        if(event.target.textContent.includes("Present")){
+          button.forEach(bttn =>{
+            if(bttn.textContent !== "Present" && bttn.textContent !== "Edit"){
+              bttn.disabled = true;
+            }
+          })
+          if(!this.updatedData.some(data => data.id === tr.getAttribute("attendenceID"))){
+          this.updatedData.push({id :tr.getAttribute("attendenceID") , remark : true});
+          }
+        }
+        if(event.target.textContent.includes("Absent")){
+          button.forEach(bttn =>{
+            if(bttn.textContent !== "Absent" && bttn.textContent !== "Edit"){
+              bttn.disabled = true;
+            }
+          })
+          // Check if the data already exists or not 
+          if(!this.updatedData.some(data => data.id === tr.getAttribute("attendenceID"))){
+            this.updatedData.push({id : tr.getAttribute('attendenceID'), remark : false, });
+          }
+        }
+        if(event.target.id.includes("edit")){
+          button.forEach(buttns =>{
+            buttns.disabled = false;
+          })
+        }
+      })
+    })
+    // Add the event listner to the save button 
+    const saveButton = this.shadowRoot.querySelector('#save');
+    saveButton.addEventListener('click',()=>{
+      // Show alert if all the stuents are not marked
+      
+       this.payload = this.updatedData;
+       console.log(this.payload)
+       if(this.payload === null){
+        this.shadowRoot.querySelector('#save').disabled = true;
+       }
+       this.updateAttendence();
+      this.payload = null;
+
+    })
+  }
+  // Api to update attendence 
+  updateAttendence(){
+    // call the backend api and update the data 
+    apiRequest(apiRoutes.attendence.updateAttendence, "PATCH",this.payload)
+    .then(response =>{
+      Common.addSuccessPopup(this.shadowRoot, "Successfully updated Students Data");
+      setTimeout(() => {
+        this.connectedCallback();
+      }, 3000);
+    })
+    .catch(error=>{
+      Common.addErrorPopup(this.shadowRoot, "An error occured while updating the students data please try again later......")
+    })
+
+  }
 }
 const AttendencePage = customElements.define("attendence-page",attendencePage);
 export default AttendencePage;
+
+
