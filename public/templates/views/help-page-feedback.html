@@ -1,0 +1,211 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+  html {
+    font-size: 10px;
+  }
+
+  .container {
+    max-width: 80rem;
+    margin: 2rem auto;
+    padding: 2rem;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .feedback-container {
+    background: white;
+    border-radius: 1.6rem;
+    padding: 3.2rem;
+    box-shadow: 0 0.8rem 2rem rgba(0, 0, 0, 0.08);
+  }
+
+  .form-header {
+    margin-bottom: 2.4rem;
+    text-align: center;
+  }
+
+  .form-title {
+    font-size: 2.4rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+
+  .form-subtitle {
+    font-size: 1.4rem;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  .rating-section {
+    margin-bottom: 2.4rem;
+    text-align: center;
+  }
+
+  .rating-title {
+    font-size: 1.6rem;
+    color: #333;
+    margin-bottom: 1.6rem;
+  }
+
+  .rating-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .rating-btn {
+    width: 4.8rem;
+    height: 4.8rem;
+    border-radius: 50%;
+    border: 2px solid #E0E0E0;
+    background: white;
+    color: #666;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .rating-btn:hover {
+    border-color: #9A22F6;
+    color: #9A22F6;
+    transform: translateY(-2px);
+  }
+
+  .rating-btn.active {
+    background: #9A22F6;
+    border-color: #9A22F6;
+    color: white;
+  }
+
+  .feedback-section {
+    background: #F8F9FA;
+    border-radius: 1.2rem;
+    padding: 2.4rem;
+    margin-bottom: 2.4rem;
+  }
+
+  .textarea {
+    width: 100%;
+    min-height: 16rem;
+    padding: 1.6rem;
+    border: 2px solid #E0E0E0;
+    border-radius: 1.2rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.4rem;
+    line-height: 1.6;
+    color: #333;
+    resize: vertical;
+    transition: all 0.3s ease;
+    background: white;
+  }
+
+  .textarea:focus {
+    outline: none;
+    border-color: #9A22F6;
+    box-shadow: 0 0 0 3px rgba(154, 34, 246, 0.1);
+  }
+
+  .textarea::placeholder {
+    color: #999;
+  }
+
+  .form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .char-count {
+    font-size: 1.2rem;
+    color: #666;
+  }
+
+  .submit-button {
+    padding: 1.4rem 3.2rem;
+    background: linear-gradient(135deg, #9A22F6, #8410e0);
+    color: white;
+    border: none;
+    border-radius: 1.2rem;
+    font-size: 1.6rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .submit-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.4rem 1.2rem rgba(154, 34, 246, 0.3);
+  }
+
+  .submit-button:active {
+    transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      padding: 1.6rem;
+    }
+
+    .feedback-container {
+      padding: 2.4rem;
+    }
+
+    .form-title {
+      font-size: 2rem;
+    }
+
+    .rating-buttons {
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .rating-btn {
+      width: 4rem;
+      height: 4rem;
+    }
+
+    .submit-button {
+      width: 100%;
+      margin-top: 1.6rem;
+    }
+
+    .form-footer {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+</style>
+
+<div class="container">
+  <div class="feedback-container">
+    <div class="form-header">
+      <div class="form-title">Share Your Feedback</div>
+      <div class="form-subtitle">Help us improve our services by sharing your experience</div>
+    </div>
+
+    <div class="rating-section">
+      <div class="rating-title">How would you rate your experience?</div>
+      <div class="rating-buttons">
+        <button class="rating-btn" onclick="this.classList.toggle('active')">1</button>
+        <button class="rating-btn" onclick="this.classList.toggle('active')">2</button>
+        <button class="rating-btn" onclick="this.classList.toggle('active')">3</button>
+        <button class="rating-btn" onclick="this.classList.toggle('active')">4</button>
+        <button class="rating-btn" onclick="this.classList.toggle('active')">5</button>
+      </div>
+    </div>
+
+    <div class="feedback-section">
+      <textarea class="textarea" placeholder="Tell us what you liked or how we can improve..."
+        oninput="this.nextElementSibling.querySelector('.current').textContent = this.value.length"
+        maxlength="500"></textarea>
+      <div class="char-count">
+        <span class="current">0</span>/500 characters
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <button class="submit-button">Submit Feedback</button>
+    </div>
+  </div>
+</div>
