@@ -13,10 +13,9 @@ class userSummary extends HTMLElement {
     );
     this.render();
   }
-
   set data(value) {
     this._data = value;
-    this.updateContent(); // Update content when data is set
+    this.updateContent(); 
   }
 
   get data() {

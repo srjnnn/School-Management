@@ -10,9 +10,9 @@ class MyApp extends HTMLElement {
     this.attachShadow({ mode: "open" }); // Using Shadow DOM
   }
 
-  connectedCallback() {
+ async connectedCallback() {
     this.render();
-    this.loadPage();
+    await this.loadPage();
     Router.getMainPage();
     // Router.identifyRoutesChange(this.shadowRoot.querySelector('home-page').shadowRoot);
   }

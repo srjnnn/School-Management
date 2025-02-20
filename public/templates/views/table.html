@@ -3,221 +3,206 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    overflow: hidden;
-  }
-
-  #mainHeader {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  #mainHeader p,
-  #mainHeader .line {
-    margin: 0;
-  }
-
-  #Days {
-    align-self: flex-start;
-    font-size: 2rem;
-  }
-
-  #Periods {
-    align-self: flex-end;
-    font-size: 2rem;
-  }
-
-  .line {
-    height: 10%;
-    width: 100%;
-    border: 0.3rem solid rgba(134, 182, 255, 1);
-    transform: rotate(13.2deg);
-  }
-
-  .tableContainer {
-    width: 100%;
-    overflow-x: auto;
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: center;
-    font-size: 1.6rem;
-    margin: 0 auto;
-  }
-
-  td,
-  th {
-    padding: 10px;
-    text-align: center;
-  }
-
-  td {
-    height: 50px;
-    width: 150px;
-  }
-
-  th {
-    background-color: #f2f6ff;
-  }
-
-  tr:nth-child(even) {
-    background-color: #e3effd;
-  }
-
-
-
-
-  .periodsList p {
-    margin: 0;
-    justify-content: space-evenly;
-  }
-
-  .dataheader {
-    font-weight: 600;
-    font-size: 2rem;
-  }
-
-
-  .dataTime {
-    font-weight: 300;
-    font-size: 1.8rem;
+    font-family: system-ui, -apple-system, sans-serif;
   }
 
   .topHeader {
     display: flex;
-    gap: 1rem;
+    gap: 2rem;
     align-items: center;
-    justify-self: right;
-  }
-
-  .dataDays {
-    font-size: 2rem;
-  }
-
-
-  #timetableEdit {
-    font-size: 2rem;
-    cursor: pointer;
-    width: 9rem;
-    height: 3.5rem;
-    background-color: rgba(0, 122, 255, 0.15);
-    border: 0.1rem solid rgba(50, 173, 230, 1);
-    border-radius: 0.4rem;
-    padding: 0 .3rem;
-    position: relative;
-  }
-
-  #timetableEdit img {
-
-    margin-right: .5rem;
-    font-size: 3.5rem;
-
-  }
-
-  td {
-    font-size: 1.5rem;
+    justify-content: flex-end;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
   }
 
   .classSelector select {
     height: 4rem;
     width: 13rem;
     text-align: center;
-    background-color: rgba(255, 255, 255, 1);
-
-  }
-
-  select:focus {
-    border: none;
-  }
-
-  .hidden {
-    visibility: hidden;
-  }
-
-  .editButtonPopup {
-    height: 10rem;
-    border: .1rem solid rgba(207, 226, 255, 1);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    top: 0%;
-    right: 0;
-    position: absolute;
-    z-index: 10;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     background-color: white;
-
-
-
+    border: 1px solid #e0e4e8;
+    border-radius: 0.5rem;
+    font-size: 1.4rem;
+    margin-right: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
   }
 
-  .editButtonPopup a {
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    height: 50%;
-    width: 100%;
-    font-size: 2rem;
-    color: black;
-    padding: 1rem;
-    text-align: center;
+  .classSelector select:hover {
+    border-color: #007AFF;
+    box-shadow: 0 2px 4px rgba(0, 122, 255, 0.1);
   }
 
-  .editButtonPopup a:hover {
-    background-color: rgba(187, 200, 221, 1);
-  }
-
-  .crossButton {
-    display: flex;
-    justify-content: flex-end;
+  #timetableEdit {
+    font-size: 1.6rem;
+    cursor: pointer;
+    width: 9rem;
     height: 3.5rem;
-
+    background-color: rgba(0, 122, 255, 0.1);
+    border: 0.1rem solid #007AFF;
+    border-radius: 0.6rem;
+    padding: 0 1rem;
+    color: #007AFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
   }
 
-  .crossButton img {
-    height: 2.5rem;
-    width: 2rem;
+  #timetableEdit:hover {
+    background-color: rgba(0, 122, 255, 0.15);
+    transform: translateY(-1px);
   }
 
-  .crossButton img:hover {
-    background-color: rgba(123, 134, 122, 0.263);
-    cursor: pointer;
+  .tableContainer {
+    padding: 2rem;
+    background: white;
+    border-radius: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   }
 
-  button {
-    height: 4rem;
-    border: none;
-    cursor: pointer;
-    width: 8rem;
-    border-radius: 1rem;
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    text-align: center;
+    font-size: 1.4rem;
+    margin: 0 auto;
   }
 
-  #tableSave {
-    background-color: rgba(34, 139, 34, 0.8);
+  th {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    font-weight: 600;
+    color: #2c3e50;
+    border-bottom: 2px solid #e0e4e8;
   }
 
-  #tableCancel {
-    background-color: rgba(220, 20, 60, 0.8);
+  td {
+    padding: 1.5rem;
+    color: #34495e;
+    border-bottom: 1px solid #f0f0f0;
+    transition: all 0.2s ease;
+  }
+
+  tr:hover td {
+    background-color: #f8f9fa;
+  }
+
+  .dataDays {
+    font-weight: 600;
+    color: #2c3e50;
+  }
+
+  #mainHeader {
+    position: relative;
+    padding: 1rem;
+  }
+
+  .line {
+    position: absolute;
+    width: 120%;
+    height: 2px;
+    background: linear-gradient(90deg, #007AFF, #00C6FF);
+    transform: rotate(13.2deg);
+    left: -10%;
+    top: 50%;
+  }
+
+  #Days,
+  #Periods {
+    position: relative;
+    z-index: 1;
+    font-weight: 600;
+    color: #2c3e50;
+  }
+
+  .periodsList {
+    border-radius: 0.5rem;
+  }
+
+  .dataheader {
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0.3rem;
+  }
+
+  .dataTime {
+    font-size: 1.4rem;
+    color: #7f8c8d;
   }
 
   .buttonContainer {
     display: flex;
-    flex-direction: row-reverse;
-    gap: 2rem;
-    padding: 2rem;
-    height: 9rem;
-    justify-content: flex-start;
+    gap: 1rem;
+    justify-content: flex-end;
+    padding: 2rem 0 0 0;
   }
 
-  .absoluteDiv {
-    position: absolute;
-    top: 50%;
-    left: 40%;
+  .button {
+    padding: 1rem 2rem;
+    border-radius: 0.8rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+
+  #tableSave {
+    background-color: #2ecc71;
+    color: white;
+  }
+
+  #tableSave:hover:not(:disabled) {
+    background-color: #27ae60;
+    transform: translateY(-1px);
+  }
+
+  #tableSave:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  #tableCancel {
+    background-color: #e74c3c;
+    color: white;
+  }
+
+  #tableCancel:hover {
+    background-color: #c0392b;
+    transform: translateY(-1px);
+  }
+
+  .editButtonPopup {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border: 1px solid #e0e4e8;
+  }
+
+  .editButtonPopup a {
+    padding: 1.5rem;
+    color: #2c3e50;
+    transition: all 0.2s ease;
+  }
+
+  .editButtonPopup a:hover {
+    background-color: #f8f9fa;
+  }
+
+  tr#Saturday td {
+    color: #95a5a6;
+    background-color: #fafafa;
+  }
+
+  .hidden {
+    display: none;
   }
 </style>
-<div class="topHeader hidden" id="topHeader">
+
+<div class="topHeader" id="topHeader">
   <div class="classSelector">
     <select name="selectClass" id="selectClass">
       <option value="null">Select Class</option>
@@ -250,16 +235,16 @@
     </select>
   </div>
   <div class="editButton">
-    <button id="timetableEdit"><img src="/public/assets/icons/pencil-square.svg" alt="Edit Icon">Edit</button>
-    <div id="editButtonPopup" class="editButtonPopup hidden">
-      <div class="crossButton">
-        <img src="/public/assets/icons/x.svg" alt="Close Icon" id="cross-img">
-      </div>
-      <a href="#" id="existingData">Existing Details</a>
-      <a href="#" id="newTimetable">Add new Timetable</a>
-    </div>
+    <button id="timetableEdit">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+      </svg>
+      Edit
+    </button>
   </div>
 </div>
+
 <div class="tableContainer">
   <table id="table">
     <tr id="header">
@@ -298,7 +283,6 @@
       </th>
     </tr>
     <tr id="Sunday">
-      <!-- Data from the backend -->
       <td class="dataDays">Sunday</td>
       <td>Subject</td>
       <td>Subject</td>
@@ -309,7 +293,6 @@
       <td>Subject</td>
     </tr>
     <tr id="Monday">
-      <!-- Data from the backend -->
       <td class="dataDays">Monday</td>
       <td>Subject</td>
       <td>Subject</td>
@@ -320,7 +303,6 @@
       <td>Subject</td>
     </tr>
     <tr id="Tuesday">
-      <!-- Data from the backend -->
       <td class="dataDays">Tuesday</td>
       <td>Subject</td>
       <td>Subject</td>
@@ -369,10 +351,9 @@
       <td>Off</td>
       <td>Off</td>
       <td>Off</td>
-
     </tr>
   </table>
-  <div class=" tableActionsButtons hidden">
+  <div class="tableActionsButtons hidden">
     <div class="buttonContainer">
       <button id="tableSave" class="button" disabled>Save</button>
       <button id="tableCancel" class="button">Cancel</button>

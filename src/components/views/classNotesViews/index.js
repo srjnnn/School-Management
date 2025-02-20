@@ -14,27 +14,37 @@ constructor(){
 async connectedCallback(){
   this.templateContent = await loadTemplate('../public/templates/views/classNotesViews.html');
   this.render();
-  this.fetchData();
+}
+
+set data(value) {
+  this._data = value;
+  if(this._data){
+    this.updateContent(); 
+  }
+}
+get data(){
+  return this._data;
+}
+
+updateContent(){
+  this.addCards();
+  this._data = null;
 }
 
 render(){
   this.shadowRoot.innerHTML = this.templateContent;
 }
-
 addCards(){
   
   const notesContainer = this.shadowRoot.querySelector('.notesContainer');
-  // Append the data in the card and add the event listners to all the cards
+  notesContainer.innerHTML = "";
   this.data.forEach(data => {
     const card = document.createElement('my-card');
     notesContainer.appendChild(card);
     card.data = data;
     card.addEventListener('click',()=>{
       const hostElement = this.getHostElem();
-      // Open the summary page for the specific card
 
-      // Make the new div and pass the required data to the page based on the card clicked 
-      // LoadPage.renderPages("notes-summary",hostElement);
       LoadPage.changeHeaderRoutes(hostElement,"Notes Summary Page");
        
       // Get the summaryPage 
@@ -45,22 +55,12 @@ addCards(){
       mainContentContainer.replaceChildren();
 
       mainContentContainer.appendChild(summaryPage);
-      
-
-      // const SummaryPage = hostElement.querySelector('notes-summary')
-      // alert(card.data.title);
     })
 
   });
 
 }
-// Add event listners to the select 
-selectEventListners(){
-  const Classselector = this.shadowRoot.querySelector('#classSelector');
-  Classselector.addEventListener('change', ()=>{
-    alert("Changed....................")
-  })
-}
+
 // Get host elem
 getHostElem(){
   const host = this.shadowRoot.getRootNode().host;
@@ -71,15 +71,6 @@ getHostElem(){
   console.log();
   return superHost;
 }
-fetchData(){
-  apiRequest(apiRoutes.classNotes.getAllClassNotes, "GET")
-  .then((notesData)=>{
-    this.data = notesData && notesData.data;
-    // append the notes for every data 
-    this.addCards();
-  })
-}
-
 }
 const ClassNotes = customElements.define('class-notes',classNotes);
 export default ClassNotes;

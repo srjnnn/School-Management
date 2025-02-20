@@ -30,9 +30,9 @@ export const apiRoutes = {
   classNotes:{
     getAllClassNotes : `${v1Api}/classnotes`,
     sendClassNotesData : `${v1Api}/classnotes`,
-    getClassNotesbySubject : (subject) => `${v1Api}/classnotes/${subject}`,
-    getClassNotesbyClass :(classId) => `${v1Api}/classnotes/${classId}`,
-    getClassNotesbyTime : (time) => `${v1Api}/classnotes/${time}`
+    getClassNotesbySubject : (subject,Class) => `${v1Api}/classnotes/subject/${Class}/${subject}`,
+    getClassNotesbyClass :(classId) => `${v1Api}/classnotes/class/${classId}`,
+    // getClassNotesbyTime : (time) => `${v1Api}/classnotes/${time}`
 
   },
   attendence:{

@@ -1,75 +1,198 @@
-<style>
-  #lgout {
-    color: red;
-    height: 1.5rem;
-    width: 20rem;
-    cursor: pointer;
-  }
+<!DOCTYPE html>
+<html>
 
-  #lgYes {
-    background-color: red;
-  }
+<head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
 
-  #lgNo {
-    background-color: green;
-  }
+    body {
+      background: rgba(0, 0, 0, 0.1);
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+    }
 
-  .popupButtons {
-    display: flex;
-    justify-content: flex-end;
-    gap: 1rem;
-    padding: 1rem 0rem;
-  }
+    .popup {
+      width: 70%;
+      max-width: 500px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      position: relative;
+      animation: slideIn 0.3s ease-out;
+    }
 
-  .popup {
-    top: 0;
-    left: 0;
-    width: 70%;
-    height: 60%;
-    border-radius: 1.5rem;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(207, 226, 255, 0.7);
-    margin: 0 auto;
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
 
-  }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-  button {
-    height: 4rem;
-    border: none;
-    cursor: pointer;
-    width: 8rem;
-    border-radius: 1rem;
-  }
+    .text {
+      color: #2d3748;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 2.5rem;
+      position: relative;
+      padding-bottom: 1rem;
+    }
 
-  button:focus {
-    color: blue;
-  }
+    .text::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: #4299e1;
+      border-radius: 2px;
+    }
 
-  .popupText {
-    font-size: 2rem;
-    font-weight: 600;
-  }
+    .popupContainer {
+      background: #f7fafc;
+      padding: 2rem;
+      border-radius: 15px;
+      border: 1px solid #e2e8f0;
+    }
 
-  .text {
-    font-size: 2.5rem;
-    font-weight: 700;
-    align-self: flex-start;
-    justify-self: flex-start;
-    margin-top: 7rem;
-    text-decoration: underline;
-  }
-</style>
+    .popupText {
+      color: #4a5568;
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
 
-<div class="popup">
-  <div class="text">Logout Confirmation</div>
-  <div class="popupContainer">
-    <div class="popupText">Are you Sure You want to Log Out?</div>
-    <div class="popupButtons">
-      <button id="lgYes">Yes</button>
-      <button id="lgNo">No</button>
+    .popupButtons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+    }
+
+    button {
+      height: 3.5rem;
+      width: 8rem;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    #lgYes {
+      background: linear-gradient(135deg, #ff4757, #ff6b81);
+      color: white;
+      box-shadow: 0 4px 10px rgba(255, 71, 87, 0.2);
+    }
+
+    #lgYes:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(255, 71, 87, 0.3);
+    }
+
+    #lgNo {
+      background: linear-gradient(135deg, #2ecc71, #27ae60);
+      color: white;
+      box-shadow: 0 4px 10px rgba(46, 204, 113, 0.2);
+    }
+
+    #lgNo:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(46, 204, 113, 0.3);
+    }
+
+    button:focus {
+      outline: none;
+      ring: 2px solid rgba(66, 153, 225, 0.5);
+    }
+
+    /* Glassmorphism effect */
+    .popup::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      z-index: -1;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .popup {
+        width: 90%;
+        padding: 1.5rem;
+      }
+
+      .text {
+        font-size: 1.8rem;
+      }
+
+      .popupText {
+        font-size: 1.3rem;
+      }
+
+      .popupButtons {
+        justify-content: center;
+      }
+
+      button {
+        width: 7rem;
+      }
+    }
+
+    /* Dark mode support */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: rgba(0, 0, 0, 0.2);
+      }
+
+      .popup {
+        background: #1a202c;
+      }
+
+      .text {
+        color: #f7fafc;
+      }
+
+      .popupContainer {
+        background: #2d3748;
+        border-color: #4a5568;
+      }
+
+      .popupText {
+        color: #e2e8f0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="popup">
+    <div class="text">Logout Confirmation</div>
+    <div class="popupContainer">
+      <div class="popupText">Are you sure you want to log out?</div>
+      <div class="popupButtons">
+        <button id="lgYes">Yes</button>
+        <button id="lgNo">No</button>
+      </div>
     </div>
   </div>
-</div>
+</body>
+
+</html>
