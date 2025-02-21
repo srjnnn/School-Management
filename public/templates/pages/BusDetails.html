@@ -13,28 +13,37 @@
     body {
       background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
       min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       padding: 2rem;
     }
 
     .mainContainer {
       display: flex;
       gap: 3rem;
-      max-width: 1400px;
-      margin: 0 auto;
+      width: 100%;
+      background: white;
+      border-radius: 1rem;
+      padding: 2.5rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+      align-items: center;
     }
 
     .busList {
       flex-shrink: 0;
+      width: 20rem;
     }
 
     .busNumber {
-      margin-left: 2rem;
       margin-bottom: 1.5rem;
+      text-align: center;
     }
 
     .busNumber h1 {
-      font-size: 2.2rem;
+      font-size: 2rem;
       color: #2d3748;
+      font-weight: bold;
       position: relative;
       display: inline-block;
     }
@@ -42,132 +51,78 @@
     .busNumber h1::after {
       content: '';
       position: absolute;
-      bottom: -0.5rem;
-      left: 0;
-      width: 60%;
+      bottom: -0.4rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50%;
       height: 3px;
       background: #4299e1;
       border-radius: 2px;
     }
 
     .busListContainer {
-      width: 20rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
       background: white;
-      border-radius: 1rem;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      padding: 1.5rem 1rem;
-      transition: all 0.3s ease;
+      border-radius: 0.8rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+      padding: 1.5rem;
     }
 
     .busListContainer p {
       font-size: 1.4rem;
       font-weight: 600;
       color: #2d3748;
-      margin-bottom: 1.5rem;
-      padding-left: 1rem;
+      margin-bottom: 1rem;
     }
 
     .busListContainer a {
-      color: #4a5568;
       text-decoration: none;
+      font-size: 1.6rem;
+      cursor: pointer;
+      height: 3.5rem;
+      background-color: rgba(0, 122, 255, 0.1);
+      border: 0.1rem solid #007AFF;
+      border-radius: 0.6rem;
+      padding: 0 1rem;
+      color: #007AFF;
       display: flex;
+
       align-items: center;
-      padding: 1rem 1.5rem;
-      margin: 0.5rem 0;
-      font-size: 1.1rem;
-      border-radius: 0.5rem;
-      transition: all 0.3s ease;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
     }
 
     .busListContainer a:hover {
-      background: #ebf5ff;
-      color: #3182ce;
-      transform: translateX(5px);
-    }
-
-    .active {
-      background: #ebf8ff !important;
-      color: #2b6cb0 !important;
-      font-weight: 600;
-      position: relative;
-    }
-
-    .active::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 4px;
-      height: 60%;
-      background: #4299e1;
-      border-radius: 0 2px 2px 0;
-    }
-
-    img {
-      height: 1.2rem;
-      margin-right: 0.8rem;
+      background-color: rgba(0, 122, 255, 0.15);
+      transform: translateY(-1px);
     }
 
     .busDetails {
       flex-grow: 1;
-      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: transparent;
       border-radius: 1rem;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); */
       padding: 2rem;
-      min-height: 500px;
+      max-width: 89rem;
+      min-height: 400px;
     }
 
-    /* Add Bus link special styling */
-    .busListContainer a:last-child {
-      margin-top: 1rem;
-      border: 2px dashed #e2e8f0;
-      color: #4299e1;
-      font-weight: 600;
-    }
-
-    .busListContainer a:last-child:hover {
-      border-color: #4299e1;
-      background: #ebf8ff;
-    }
-
-    /* Responsive adjustments */
     @media (max-width: 768px) {
       .mainContainer {
         flex-direction: column;
+        align-items: center;
+        padding: 2rem;
       }
 
       .busListContainer {
         width: 100%;
       }
-
-      .busNumber {
-        margin-left: 0;
-        text-align: center;
-      }
-    }
-
-    /* Animation for hover effects */
-    @keyframes pulse {
-      0% {
-        transform: scale(1);
-      }
-
-      50% {
-        transform: scale(1.02);
-      }
-
-      100% {
-        transform: scale(1);
-      }
-    }
-
-    .busListContainer:hover {
-      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    .busDetails:hover {
-      animation: pulse 2s infinite;
     }
   </style>
 </head>
@@ -176,28 +131,27 @@
   <div class="mainContainer">
     <div class="busList">
       <div class="busNumber">
-        <h1 id="BusName">Bus no.1</h1>
+        <h1 id="BusName">Select BUS</h1>
       </div>
       <div class="busListContainer">
         <p>Bus List</p>
-        <a href="#" class="active">Bus No.1</a>
-        <a href="#">Bus No.2</a>
-        <a href="#">Bus No.3</a>
-        <a href="#">Bus No.4</a>
-        <a href="#">Bus No.5</a>
-        <a href="#">Bus No.6</a>
-        <a href="#">Bus No.7</a>
-        <a href="#">Bus No.8</a>
-        <a href="#">Bus No.9</a>
-        <a href="#">Bus No.10</a>
-        <a href="#">Bus No.11</a>
-        <a href="#">Bus No.12</a>
-        <a href="#"><img src="/public/assets/icons/plus.svg" alt="Plus Icon">Add Bus</a>
+        <a href="#" id="1">Bus No.1</a>
+        <a href="#" id="2">Bus No.2</a>
+        <a href="#" id="3">Bus No.3</a>
+        <a href="#" id="4">Bus No.4</a>
+        <a href="#" id="5">Bus No.5</a>
+        <a href="#" id="6">Bus No.6</a>
+        <a href="#" id="7">Bus No.7</a>
+        <a href="#" id="8">Bus No.8</a>
+        <a href="#" id="9">Bus No.9</a>
+        <a href="#" id="10">Bus No.10</a>
+        <a href="#" id="11">Bus No.11</a>
+        <a href="#" id="12">Bus No.12</a>
       </div>
     </div>
     <div class="busDetails">
       <div class="secondRow">
-        <div class="busInfo"></div>
+        <div class="busInfo">Bus Details Appear Here</div>
       </div>
     </div>
   </div>

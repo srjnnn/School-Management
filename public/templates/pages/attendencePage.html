@@ -41,7 +41,7 @@
     }
 
     .header {
-      background: linear-gradient(135deg, #6c95ff, #5f85ff);
+      background: rgba(207, 226, 255, 0.8);
       color: #fff;
       padding: 25px;
       text-align: center;
@@ -207,6 +207,28 @@
       padding: 1rem;
     }
 
+    #save {
+      font-size: 1.6rem;
+      cursor: pointer;
+      width: 12rem;
+      height: 4.5rem;
+      background-color: rgba(0, 122, 255, 0.1);
+      border: 0.1rem solid #007AFF;
+      padding: 0 1rem;
+      color: #007AFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+      border-radius: 1rem;
+    }
+
+    #save:hover {
+      background-color: rgba(0, 122, 255, 0.15);
+      transform: translateY(-1px);
+    }
+
     @media (max-width: 768px) {
       .attendance-container {
         margin: 1rem auto;
@@ -249,7 +271,7 @@
       </tbody>
     </table>
     <div class="btn-container">
-      <button id="save" class="btn present">Save</button>
+      <button id="save">Save</button>
     </div>
     <div class="footer">
       <select name="classSelector" id="classSelector">

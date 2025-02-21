@@ -10,18 +10,26 @@
       font-family: 'Inter', 'Segoe UI', sans-serif;
     }
 
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+
     .container {
-      width: 68.7rem;
-      height: 30rem;
-      border: 0.2rem solid #3182ce;
+      width: 70rem;
+      border: 0.2rem solid rgba(0, 122, 255, 0.5);
       border-radius: 1rem;
       background: white;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
       overflow: hidden;
     }
 
     .design-section {
-      background: linear-gradient(135deg, #3182ce, #2c5282);
+      background-color: rgba(207, 226, 255, 0.6);
       height: 5rem;
       display: flex;
       justify-content: center;
@@ -31,9 +39,11 @@
     }
 
     .head h1 {
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       font-weight: 600;
       letter-spacing: 0.5px;
+      color: #2d3748;
+
     }
 
     .design-section::after {
@@ -50,15 +60,15 @@
 
     .adjuster {
       display: flex;
-      gap: 9rem;
+      gap: 3rem;
       padding: 2rem;
     }
 
     .data-list {
-      padding: 1rem;
-      max-width: 36rem;
+      padding: 1.5rem;
+      width: 36rem;
       background: #f7fafc;
-      border-radius: 0.8rem;
+      border-radius: 1rem;
       box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
     }
 
@@ -66,45 +76,35 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.8rem 0;
+      padding: 1rem 0;
       border-bottom: 1px solid #e2e8f0;
-      transition: all 0.3s ease;
     }
 
     .data-item:last-child {
       border-bottom: none;
     }
 
-    .data-item:hover {
-      background: #edf2f7;
-      transform: translateX(5px);
-      border-radius: 0.5rem;
-    }
-
     .label {
       font-size: 1.2rem;
       font-weight: 600;
       color: #2d3748;
-      padding: 0.6rem;
     }
 
     .value {
       font-size: 1.2rem;
       color: #4a5568;
-      padding: 0.6rem;
     }
 
     .image-container {
-      margin-top: 0.4rem;
       display: flex;
       flex-direction: column;
-      gap: 2.8rem;
+      gap: 2rem;
     }
 
     .frontImageContainer,
     .backImageContainer {
       border: 2px solid #e2e8f0;
-      height: 9.5rem;
+      height: 9rem;
       width: 15rem;
       border-radius: 0.8rem;
       display: flex;
@@ -112,41 +112,28 @@
       align-items: center;
       background: #f7fafc;
       color: #718096;
-      font-size: 0.9rem;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
+      font-size: 1rem;
     }
 
     .frontImageContainer:hover,
     .backImageContainer:hover {
       border-color: #3182ce;
-      box-shadow: 0 4px 6px rgba(49, 130, 206, 0.1);
-      transform: translateY(-2px);
+      box-shadow: 0 2px 4px rgba(49, 130, 206, 0.1);
     }
 
-    .frontImageContainer::before,
-    .backImageContainer::before {
-      content: '📸';
-      font-size: 1.5rem;
-      margin-right: 0.5rem;
-    }
-
-    /* Responsive adjustments */
+    /* Responsive */
     @media (max-width: 1100px) {
       .container {
         width: 95%;
-        height: auto;
-        margin: 1rem auto;
       }
 
       .adjuster {
         flex-direction: column;
-        gap: 2rem;
+        align-items: center;
       }
 
       .data-list {
-        max-width: 100%;
+        width: 100%;
       }
 
       .image-container {
@@ -154,37 +141,6 @@
         justify-content: center;
         gap: 2rem;
       }
-    }
-
-    /* Animation for loading state */
-    @keyframes shimmer {
-      0% {
-        background-position: -468px 0
-      }
-
-      100% {
-        background-position: 468px 0
-      }
-    }
-
-    .value {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .value[id^="bus-"]::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg,
-          rgba(255, 255, 255, 0) 0%,
-          rgba(255, 255, 255, 0.6) 50%,
-          rgba(255, 255, 255, 0) 100%);
-      animation: shimmer 1.5s infinite;
-      transform: translateX(-100%);
     }
   </style>
 </head>
@@ -199,7 +155,7 @@
     <div class="adjuster">
       <div class="data-list">
         <div class="data-item">
-          <span class="label">Bus No : </span>
+          <span class="label">Bus No:</span>
           <span class="value" id="bus-numberValue">user-busNumber</span>
         </div>
         <div class="data-item">
@@ -207,26 +163,19 @@
           <span class="value" id="bus-numberPlateValue">user-busNumberPlate</span>
         </div>
         <div class="data-item">
+          <span class="label">Driver Name:</span>
+          <span class="value" id="bus-driver">Bus Driver</span>
+        </div>
+        <div class="data-item">
           <span class="label">Driver's Contact:</span>
           <span class="value" id="bus-driverContactValue">user-busDriverContact</span>
         </div>
         <div class="data-item">
-          <span class="label">Arrival Time:</span>
-          <span class="value" id="bus-arrivalTime">user-busArrivalTime</span>
-        </div>
-        <div class="data-item">
-          <span class="label">Pickup Location:</span>
-          <span class="value" id="bus-pickupLocationValue">user-pickupLocation</span>
-        </div>
-        <div class="data-item">
-          <span class="label">Dropoff Location:</span>
-          <span class="value" id="bus-dropOffLocationValue">user-dropoffLocation</span>
-        </div>
-        <div class="data-item">
-          <span class="label">Route: </span>
-          <span class="value" id="bus-routeValue">user-busRoute</span>
+          <span class="label">Seats:</span>
+          <span class="value" id="bus-seats">user-busSeats</span>
         </div>
       </div>
+
       <div class="image-container">
         <div class="frontImageContainer">Front Image of the bus</div>
         <div class="backImageContainer">Back image of the bus</div>

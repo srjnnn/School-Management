@@ -20,7 +20,6 @@ class userSummary extends HTMLElement {
 
   get data() {
     return this._data;
-
   }
 
   render() {

@@ -22,7 +22,6 @@ export const apiRoutes = {
 
   },
   timetable:{
-    getAllTimetableData : `${v1Api}/timetable`,
     sendTimetableData : `${v1Api}/timetable`,
     updateTimetableData : `${v1Api}/timetable`,
     getTimetableDataById : (classId, classSection) => `${v1Api}/timetable/${classId}/${classSection}`
@@ -49,6 +48,9 @@ export const apiRoutes = {
      resetRequest : `${v1Api}/reset`,
      updatePassword :`${v1Api}/update`
   },
+  bus:{
+    getBusById : (busId) =>`${v1Api}/bus/busId/${busId}`
+  }
 
   
 

@@ -32,8 +32,7 @@ return role;
     if(this.getRole()==="student"){
       const Class = JSON.parse(localStorage.getItem("authResponse"));
       const ClassData = Class.userData.profile.Class;
-      const classNumber = ClassData.split("-")[0];
-      this.fetchDataByClass(classNumber)
+      this.fetchDataByClass(ClassData)
     }
     
   }
@@ -54,17 +53,21 @@ return role;
   }
   // Add event listners to the select 
 selectEventListners(){
-  const Class = JSON.parse(localStorage.getItem("authResponse"));
-  const ClassData = Class.userData.profile.Class;
-  const classNumber = ClassData.split("-")[0];
   const Classselector = this.shadowRoot.querySelector('#classSelector');
   const notesSubject = this.shadowRoot.querySelector('#notesSubject');
   Classselector.addEventListener('change', (e)=>{
     this.fetchDataByClass(e.target.value);
   })
-  notesSubject.addEventListener('change', (e)=>{
-     this.fetchDataBySubject(classNumber,e.target.value);
-  })
+  if(sessionStorage.getItem('User')==='admin'){
+    notesSubject.addEventListener('change', (e)=>{
+      this.fetchDataBySubject(classNumber,e.target.value);
+   })
+  }else{
+    notesSubject.addEventListener('change',(e)=>{
+      this.fetchDataBySubject(this.getClass(), e.target.value);
+    })
+  }
+
 }
   addNotes(){
     const classNotesContainer = this.shadowRoot.querySelector('.classNotesContainer');
@@ -81,9 +84,9 @@ selectEventListners(){
     })
   }
 
-  fetchDataBySubject(subject){
+  fetchDataBySubject(Class ,subject){
     const otherPage = this.shadowRoot.querySelector('class-notes');
-    apiRequest(apiRoutes.classNotes.getClassNotesbySubject(subject), "GET")
+    apiRequest(apiRoutes.classNotes.getClassNotesbySubject(subject,Class), "GET")
     .then(response => {
       otherPage.data = response && response.data;
       // add the cards after getting the data 
@@ -94,7 +97,11 @@ selectEventListners(){
   fetchDataForStudents(){
     this.getRole()
   }
-
+ getClass(){
+  const authResponse = JSON.parse(localStorage.getItem('authResponse'));
+  const Class = authResponse.userData.profile.Class;
+  return Class
+ }
   
 }
 const ClassNotes = customElements.define('classnotes-page',classNotes);

@@ -30,9 +30,8 @@ class addClassNotes extends HTMLElement{
       const Description = this.shadowRoot.querySelector('#Description').value.trim();
       const Subject = this.shadowRoot.querySelector('#notesSubject').value;
       const Class = this.shadowRoot.querySelector('#Class').value;
-      const Section = this.shadowRoot.querySelector('#NotesSection').value;
       // make sure every value is received 
-      if(Title === ""||Summary=== ""||Description===""|| Subject==="null" || Class==="null" || Section ==="null" ){
+      if(Title === ""||Summary=== ""||Description===""|| Subject==="null" || Class==="null"  ){
         alert("make sure you fill all the fields")
       }else{
         // Send the data to the backend 
@@ -41,7 +40,6 @@ class addClassNotes extends HTMLElement{
         notesData.Title = Title;
         notesData.Description = Description;
         notesData.Subject = Subject;
-        notesData.Section = Section;
         notesData.Summary = Summary;
         
         // Load the data to the payload
@@ -57,7 +55,7 @@ class addClassNotes extends HTMLElement{
       Common.addSuccessPopup(this.shadowRoot, "Successfully added Notes");
     })
     .catch((error)=>{
-      console.error("Error sending data to the backend")
+      Common.addErrorPopup(this.shadowRoot, "Error adding the classNotes")
     })
   }
 }

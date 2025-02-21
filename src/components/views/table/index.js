@@ -18,7 +18,14 @@ class Table extends HTMLElement {
   async connectedCallback() {
     this.tableContent = await loadTemplate("../public/templates/views/table.html");
     this.render();
-    this.fetchData();
+    if(sessionStorage.getItem('User')==="student"){
+       // get the userClass and Section
+  const Class =JSON.parse(localStorage.getItem('authResponse')); 
+  const userClass = Class.userData.profile.Class;
+  const userSection = Class.userData.profile.section;
+    this.fetchData(userClass, userSection);
+    }
+    this.restrictUser();
   }
 
   render() {
@@ -30,18 +37,14 @@ class Table extends HTMLElement {
 restrictUser(){
   const User = sessionStorage.getItem("User");
   if(User === "admin"){
+    this.shadowRoot.querySelector('#topHeader').classList.remove('hidden');
     this.addEventListeners();
   }
 }
 // Fetch the table data 
 
-fetchData(){
-  // get the userClass and Section
-  this.data = localStorage.getItem('authResponse');
-  const parsedData = JSON.parse(this.data);
-  const userClass = parsedData.userData.profile.Class;
-  const userSection = parsedData.userData.profile.section;
-  
+fetchData(userClass, userSection){
+     if(!userClass || !userSection) return;
   // fetch the timetable by the class and the section of the students
   apiRequest(apiRoutes.timetable.getTimetableDataById(userClass, userSection))
   .then(response =>{
@@ -78,9 +81,27 @@ updateContent(){
 // Add eventListners  to the table 
 addEventListeners(){
   // method to edit the timetable and delete the timetable 
+  const classSelector = this.shadowRoot.querySelector('#selectClass');
+  const sectionSelector = this.shadowRoot.querySelector('#section');
+  
+  sectionSelector.disabled = true;
+    classSelector.addEventListener('change', ()=>{
+    sectionSelector.disabled = (classSelector.value === "null");
+    if(sectionSelector.value !== "null"){
+      // Call the api here 
+      this.fetchData(classSelector.value , sectionSelector.value)
+    }
+    })
+    sectionSelector.addEventListener('change', ()=>{
+      if(sectionSelector.value !== "null"){
+        // Call the api here 
+      this.fetchData(classSelector.value , sectionSelector.value);
+      }
+    })
+  }
 
 }
-}
+
 
 customElements.define("my-table", Table);
 export default Table;

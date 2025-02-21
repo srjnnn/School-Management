@@ -1,45 +1,103 @@
 <style>
   .upcomingEventsContainer {
     width: 40rem;
-    border: 0.2rem solid rgba(50, 173, 230, 1);
+    border: 2px solid rgba(50, 173, 230, 1);
     border-radius: 1rem;
     padding: 2rem;
+    background: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .header {
+    text-align: center;
+    font-weight: 600;
+    display: inline;
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.5px;
   }
 
   .monthContainer h1 {
-    font-size: 2rem;
-    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: rgba(50, 173, 230, 1);
+    border-bottom: 2px solid rgba(50, 173, 230, 0.7);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
   }
 
   .eventsDataContainer {
     display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-    align-items: baseline;
+    gap: 1rem;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    border-radius: 0.5rem;
+    transition: background 0.3s ease-in-out;
+  }
+
+  .eventsDataContainer:hover {
+    background: rgba(50, 173, 230, 0.1);
   }
 
   .dateContainer {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: bold;
     color: #2c3e50;
+    min-width: 4rem;
+    text-align: right;
   }
 
   .eventsContainer {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     flex: 1;
     color: #34495e;
     font-style: italic;
   }
 
-  .header {
-    text-align: center;
-    font-weight: 500;
-    font-size: 2rem;
+  #eventsEdit {
+    font-size: 1.6rem;
+    cursor: pointer;
+    width: 9rem;
+    height: 3.5rem;
+    background-color: rgba(0, 122, 255, 0.1);
+    border: 0.1rem solid #007AFF;
+    border-radius: 0.6rem;
+    padding: 0 1rem;
+    color: #007AFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+  }
+
+  #eventsEdit:hover {
+    background-color: rgba(0, 122, 255, 0.15);
+    transform: translateY(-1px);
+  }
+
+  .top-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
   }
 </style>
 
 <div class="upcomingEventsContainer">
-  <div class="header">Upcoming Events This Month</div>
+  <div class="top-header">
+    <div class="header">Upcoming Events This Month
+    </div>
+    <div class="editButton"> <button id="eventsEdit">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+          <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+        </svg>
+        Edit
+      </button>
+    </div>
+  </div>
   <div class="monthContainer">
     <h1>Baisakh</h1>
   </div>
