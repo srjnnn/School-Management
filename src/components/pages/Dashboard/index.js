@@ -20,9 +20,13 @@ class DashboardComponent extends HTMLElement {
     this.render();
     this.addContents();
   }
-
+ 
+  disconnectedCallback(){
+    localStorage.removeItem("Page");
+  }
   render() {
     this.shadowRoot.innerHTML = this.dashboardPageContent;
+    localStorage.setItem("Page", "Desktop");
   }
 
   
