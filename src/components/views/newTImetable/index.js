@@ -108,6 +108,9 @@ sendData(){
   apiRequest(apiRoutes.timetable.sendTimetableData, "POST", this.payload)
   .then((response)=>{
     this.addSuccessPopup();
+    setTimeout(() => {
+      this.connectedCallback();
+    }, 3000);
   })
   .catch((error)=>{
     console.error("Error sending data, ",error);

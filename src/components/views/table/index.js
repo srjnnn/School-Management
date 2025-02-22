@@ -10,7 +10,7 @@ class Table extends HTMLElement {
     super();
     this.attachShadow({ mode: "open" });
     this.tableContent = "";
-    this.originalData = {};
+    this.tableData = {};
     this.data = null;
     this.payLoad = null;
     this.timetableData = null;
@@ -31,6 +31,8 @@ class Table extends HTMLElement {
     if(this.getPageMode() === "Create"){
       this.shadowRoot.querySelector('#topHeader').classList.add('hidden');
       this.editableTable();
+    }else{
+      this.tableActionButton()
     }
   }
 
@@ -63,10 +65,8 @@ fetchData(userClass, userSection){
   })
 }
 
-// Update the content of the table {for students only}
+// // Update the content of the table {for students only}
 updateContent(){
-  console.log(this.tableId)
-  console.log(this.timetableData)
   Object.keys(this.timetableData).forEach(day =>{
     if(!day) return;
     const row = this.shadowRoot.getElementById(day);
@@ -86,6 +86,7 @@ updateContent(){
     });
   })
 }
+
 
 // Add eventListners  to the table 
 addEventListeners(){
@@ -136,129 +137,90 @@ addEventListeners(){
 
   // make the contents editable 
   editableTable(){
-    const table = this.shadowRoot.querySelector("table");
-    const tableActionButtonsDiv = this.shadowRoot.querySelector(".tableActionsButtons");
-    const saveButton = this.shadowRoot.querySelector("#tableSave");
-    const cancelButton = this.shadowRoot.querySelector("#tableCancel");
-    const dataTimeFields = this.shadowRoot.querySelectorAll(".dataTime");
-    const cells = table.querySelectorAll("td, .dataTime"); // Include `dataTime` fields
-  
-      cells.forEach((cell) => {
-        if (cell.contentEditable === "true") {
-          cell.contentEditable = false;
-          cell.classList.remove("editable");
-          tableActionButtonsDiv?.classList.add("hidden");
-        } else {
-          cell.contentEditable = true;
-          cell.classList.add("editable");
-          if(this.getPageMode()==="Create"){
-          }else{
-            tableActionButtonsDiv?.classList.remove("hidden");
-          }
-          if(cell.classList.contains('dataDays')){
-            cell.contentEditable=false;
-          }
-          
-        }
-      });
-
-    // Save initial data
-    table.querySelectorAll("tbody tr").forEach((row, rowIndex) => {
-      row.querySelectorAll("td").forEach((cell, cellIndex) => {
-        this.originalData[`${rowIndex}-${cellIndex}`] = cell.textContent.trim();
-      });
-    });
-  
-    // Save initial `dataTime` values
-    dataTimeFields.forEach((field, index) => {
-      this.originalData[`dataTime-${index}`] = field.textContent.trim();
-    });
-  
-    // Enable save button if changes are detected
-    table.addEventListener("input", () => {
-      const hasChanges = Array.from(table.querySelectorAll("tbody tr")).some(
-        (row, rIndex) =>
-          Array.from(row.querySelectorAll("td")).some(
-            (cell, cIndex) =>
-              cell.textContent.trim() !== this.originalData[`${rIndex}-${cIndex}`]
-          )
-      ) || Array.from(dataTimeFields).some(
-        (field, index) =>
-          field.textContent.trim() !== this.originalData[`dataTime-${index}`]
-      );
-  
-      saveButton.disabled = !hasChanges;
-    });
-  
-    // Save changes
-    saveButton.addEventListener("click", () => {
-      table.querySelectorAll("tbody tr").forEach((row, rowIndex) => {
-        row.querySelectorAll("td").forEach((cell, cellIndex) => {
-          this.originalData[`${rowIndex}-${cellIndex}`] = cell.textContent.trim();
-        });
-      });
-  
-      dataTimeFields.forEach((field, index) => {
-        this.originalData[`dataTime-${index}`] = field.textContent.trim();
-      });
-  
-      saveButton.disabled = true;
-      this.editTable();
-    });
-  
-    // Cancel changes
-    cancelButton.addEventListener("click", () => {
-      
-  
-      saveButton.disabled = true;
-      if(this.getPageMode() === "Create"){
-      }else{
-        table.querySelectorAll("tbody tr").forEach((row, rowIndex) => {
-          row.querySelectorAll("td").forEach((cell, cellIndex) => {
-            cell.textContent = this.originalData[`${rowIndex}-${cellIndex}`];
-            cell.contentEditable = false;
-          });
-        });
-    
-        dataTimeFields.forEach((field, index) => {
-          field.textContent = this.originalData[`dataTime-${index}`];
-          field.contentEditable = false;
-          });
-        tableActionButtonsDiv?.classList.add("hidden");
-        dataTimeFields.forEach((field, index) => {
-          field.textContent = this.originalData[`dataTime-${index}`];
-        field.contentEditable = false;
-         });
-        
-      }
-
-
-    });
-
+  const table = this.shadowRoot.querySelector("table");
+     this.contentEditableTrue(table);
   }
+
+
+  // Keep the record 
+  SaveData (rows){
+    const Data = {}
+    if(this.getPageMode === "Create"){
+      return;
+    }else{
+      rows.forEach((row , rowIndex) =>{
+        const cells = row.querySelectorAll('td , th');
+        if(rowIndex === 0) return; //skip the header 
+        const day = cells[0].innerText; //first column is the day 
+        Data[day] = [];
+
+        cells.forEach((cell, cellIndex) =>{
+          if(cellIndex === 0) return //skip the day i.e the first column
+          Data[day].push({
+            period : cellIndex,
+            subject : cell.innerText
+          })
+        })
+
+      })
+      return Data;
+    }
+  }
+
+  // Make the contents of the table Editable 
+  contentEditableTrue(table){
+    if(this.getPageMode()==="Create"){
+      return;
+    }else{
+      this.shadowRoot.querySelector('#tableButtons').classList.remove('hidden');
+      
+    }
+    const trs = table.querySelectorAll('tr');
+    trs.forEach(tr =>{
+      const td = tr.querySelectorAll('td');
+      td.forEach(td =>{
+        td.contentEditable = true;
+      })
+    })
+  }
+
+
   getPageMode(){
     const pageMode = localStorage.getItem("pageMode");
     return pageMode;
   }
  
+
   editTable(){
     const updateFields = {};
     updateFields.id = this.tableId;
-    updateFields.Data =  this.originalData;
+    updateFields.Data =  this.tableData;
     apiRequest(apiRoutes.timetable.updateTimetableData, "PATCH",updateFields)
     .then(response =>{
       Common.addSuccessPopup(this.shadowRoot,"Successfully Updated Timetable Data");
       setTimeout(() => {
         this.connectedCallback();
-        
       }, 3000);
     })
     .catch(error =>{
       Common.addErrorPopup(this.shadowRoot, "Error Updating Timeatble Data")
     })
   }
+
+
+tableActionButton(){
+  const saveButton = this.shadowRoot.querySelector("#tableSave");
+  const cancelButton = this.shadowRoot.querySelector('#tableCancel')
+  const table = this.shadowRoot.querySelector("table");
+  const rows = table.querySelectorAll('tr');
+
+  saveButton.addEventListener('click', ()=>{
+
+    this.tableData = this.SaveData(rows)
+    this.editTable();
+
+  })
 }
-
-
+}
 customElements.define("my-table", Table);
 export default Table;
