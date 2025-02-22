@@ -19,3 +19,4 @@ export {default as editTeachersPage} from '../views/editTeachersPage/index.js'
 export {default as changePassword} from '../views/changePassword/index.js'
 export {default as forgotPassword} from "../views/forgotPassword/index.js"
 export {default as newPassword} from "../views/forgotPassword/newPasswordPage.js"
+export {default as addUpcomingEvents} from "../views/upcomingEventsAddPage/index.js"

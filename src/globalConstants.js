@@ -50,7 +50,13 @@ export const apiRoutes = {
   },
   bus:{
     getBusById : (busId) =>`${v1Api}/bus/busId/${busId}`
-  }
+  },
+
+  
+  events:{
+     postRoutes : `${v1Api}/events`
+  } 
+
 
   
 
