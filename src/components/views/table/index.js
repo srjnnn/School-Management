@@ -44,7 +44,7 @@ class Table extends HTMLElement {
 // Method to restrict the user 
 restrictUser(){
   const User = sessionStorage.getItem("User");
-  if(User === "admin"){
+  if(User === 'admin' || User ===  'teacher'){
     this.shadowRoot.querySelector('#topHeader').classList.remove('hidden');
     this.addEventListeners();
   }
@@ -170,18 +170,25 @@ addEventListeners(){
   // Make the contents of the table Editable 
   contentEditableTrue(table){
     if(this.getPageMode()==="Create"){
-      return;
+      const trs = table.querySelectorAll('tr');
+      trs.forEach(tr =>{
+        const td = tr.querySelectorAll('td');
+        td.forEach(td =>{
+          td.contentEditable = true;
+        })
+      })
     }else{
       this.shadowRoot.querySelector('#tableButtons').classList.remove('hidden');
+      const trs = table.querySelectorAll('tr');
+      trs.forEach(tr =>{
+        const td = tr.querySelectorAll('td');
+        td.forEach(td =>{
+          td.contentEditable = true;
+        })
+      })
       
     }
-    const trs = table.querySelectorAll('tr');
-    trs.forEach(tr =>{
-      const td = tr.querySelectorAll('td');
-      td.forEach(td =>{
-        td.contentEditable = true;
-      })
-    })
+    
   }
 
 

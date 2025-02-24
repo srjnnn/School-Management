@@ -15,6 +15,7 @@ class classNotesSumamry extends HTMLElement{
     this._data = value;
     if(this.shadowRoot){
       this.updateContent();
+      this.addGoBackButton();
     }
   }
   get data(){
@@ -40,6 +41,20 @@ class classNotesSumamry extends HTMLElement{
       description.textContent = this.data?.description ?? "NULL";
     }
 
+
+  }
+  addGoBackButton(){
+    const gobackButton = document.createElement("go-back");
+    const hostElem = Common.getHostElem(this.shadowRoot);
+    const backButtonContainer = hostElem.shadowRoot.querySelector ("#backButtonContainer");
+    // backButtonContainer.innerHTML = ""
+    if(backButtonContainer){
+      backButtonContainer.appendChild(gobackButton);
+      gobackButton.data = {
+        elem : "classnotes-page",
+        header : "CLASSNOTES"
+      }
+    }
 
   }
 

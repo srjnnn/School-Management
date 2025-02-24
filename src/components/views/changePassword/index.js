@@ -17,16 +17,17 @@ class changePassword extends HTMLElement{
     this.templateContent = await loadTemplate("../public/templates/views/changePassword.html");
     this.render();
     this.addEventListeners();
+    this.addGoBackButton();
+  }
+
+  getAuthResponse(){
+    return JSON.parse(localStorage.getItem("authResponse"));
   }
   render(){
     this.shadowRoot.innerHTML = this.templateContent;
   }
   // Event Listners
   addEventListeners(){
-    const forgotPassword = this.shadowRoot.querySelector('#forgotten-link');
-    forgotPassword.addEventListener('click', ()=>{
-       this.loadPageWrap("forgot-password", "Forgot-password")
-    });
     // adding the event listner whent the user clicks the change password button
     const userName = this.shadowRoot.querySelector('#userName');
     const currentPassword = this.shadowRoot.querySelector('#old-pass');
@@ -86,6 +87,19 @@ class changePassword extends HTMLElement{
         }
 
       })
+    }
+    addGoBackButton(){
+      const gobackButton = document.createElement("go-back");
+      const hostElem = Common.getHostElem(this.shadowRoot);
+      const backButtonContainer = hostElem.shadowRoot.querySelector ("#backButtonContainer");
+      backButtonContainer.innerHTML = ""
+      if(backButtonContainer){
+        backButtonContainer.appendChild(gobackButton);
+        gobackButton.data = {
+          elem : "settings-page",
+          header : "SETTING"
+        }
+      };
     }
     
 }

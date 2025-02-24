@@ -16,9 +16,24 @@ class addClassNotes extends HTMLElement{
     );
     this.render();
     this.addEventListeners();
+    this.addGoBackButton();
   }
   render(){
     this.shadowRoot.innerHTML = this.templateContent;
+  }
+  addGoBackButton(){
+    const gobackButton = document.createElement("go-back");
+    const hostElem = Common.getHostElem(this.shadowRoot);
+    const backButtonContainer = hostElem.shadowRoot.querySelector ("#backButtonContainer");
+    // backButtonContainer.innerHTML = ""
+    if(backButtonContainer){
+      backButtonContainer.appendChild(gobackButton);
+      gobackButton.data = {
+        elem : "timetable-page",
+        header : "TIMETABLE"
+      }
+    }
+
   }
   // Add event Listners
   addEventListeners(){

@@ -1,7 +1,7 @@
 import { apiRoutes } from "../../../globalConstants.js";
 import apiRequest from "../../../utils/api.js";
+import Common from "../../../utils/common.js";
 import { loadTemplate } from "../../../utils/loadTemplate.js";
-
  
 class newTimetable extends HTMLElement {
   static route = "/new-timetable"
@@ -18,6 +18,7 @@ class newTimetable extends HTMLElement {
     this.addTable();
     localStorage.setItem("pageMode",this.pageMode);
     this.saveNewTimeTable();
+    this.addGoBackButton();
   }
   render() {
     this.shadowRoot.innerHTML = this.templateContent;
@@ -27,21 +28,26 @@ class newTimetable extends HTMLElement {
     const tableContainer = this.shadowRoot.querySelector('.tableContainer');
     const table = document.createElement('my-table');
 
-    const tableEditDiv = table.querySelector('.editButton');
     tableContainer.appendChild(table);
 
   }
   disconnectedCallback(){
     localStorage.removeItem("pageMode");
   }
-  // static EditTable(tableElement){
-  //   const tableShadowRoot = tableElement;
-  //   const tableEditDiv = tableShadowRoot.shadowRoot.querySelector('.editButton');
-  //   console.log("Table edit div : ",tableEditDiv);
 
-  // }
-  
-
+  addGoBackButton(){
+    const gobackButton = document.createElement("go-back");
+    const hostElem = Common.getHostElem(this.shadowRoot);
+    const backButtonContainer = hostElem.shadowRoot.querySelector ("#backButtonContainer");
+    backButtonContainer.innerHTML = ""
+    if(backButtonContainer){
+      backButtonContainer.appendChild(gobackButton);
+      gobackButton.data = {
+        elem : "classnotes-page",
+        header : "CLASSNOTES"
+      }
+    };
+  }
 
   // get the table data 
   saveNewTimeTable(){
@@ -142,7 +148,7 @@ sendData(){
       absoluteDiv.remove();
     }, 3000);
   }
-
+  
 }
 
 const newTimeTable = customElements.define("new-timetable", newTimetable);

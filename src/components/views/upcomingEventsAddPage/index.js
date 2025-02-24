@@ -16,6 +16,7 @@ class addUpcomingEvents extends HTMLElement {
   async connectedCallback() {
     this.templateContent = await loadTemplate("../public/templates/views/upcomingEventsAddpage.html");
     this.render();
+    this.addGoBackButton();
     
     await this.getData(); // Fetch existing data before adding listeners
 
@@ -116,6 +117,19 @@ class addUpcomingEvents extends HTMLElement {
         Common.addErrorPopup(this.shadowRoot, "Error updating events.");
         console.error(err);
       });
+  }
+  addGoBackButton(){
+    const gobackButton = document.createElement("go-back");
+    const hostElem = Common.getHostElem(this.shadowRoot);
+    const backButtonContainer = hostElem.shadowRoot.querySelector ("#backButtonContainer");
+    backButtonContainer.innerHTML = ""
+    if(backButtonContainer){
+      backButtonContainer.appendChild(gobackButton);
+      gobackButton.data = {
+        elem : "my-dashboard",
+        header : "DASHBOOARD"
+      }
+    };
   }
 }
 

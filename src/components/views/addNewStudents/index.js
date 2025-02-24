@@ -15,6 +15,7 @@ class addNewStudents extends HTMLElement{
     this.templateContent = await loadTemplate("../public/templates/views/addNewStudents.html");
     this.render();
     this.addButtons();
+    this.addGoBackButton();
 
   }
   render(){
@@ -28,7 +29,7 @@ class addNewStudents extends HTMLElement{
     })
     const submitButton = this.shadowRoot.querySelector('#submit');
     submitButton.addEventListener('click',()=>{
-
+ 
       // Get all the fields value 
       const name = this.shadowRoot.querySelector('#Name').value;
       const Class = this.shadowRoot.querySelector('#Class').value;
@@ -64,7 +65,14 @@ class addNewStudents extends HTMLElement{
     studentsData.password = Common.generateRandomPass();
     // Not sending the image 
     this.payload = studentsData;
-    this.sendData(studentsData);
+             // Validate all fields
+             if (!name || !gender  || !Attendence || !userName || !Address  ||  !Contact  || !id || !Class || !Section || !rollNumber || !Email || !userName) {
+              alert("All fields are required. Please fill in all the details.");
+              return;
+            }else{
+              this.sendData(studentsData);
+
+            }
     });
   }
   // Method to send the data to the database 
@@ -79,6 +87,20 @@ class addNewStudents extends HTMLElement{
     })
   }
   // Error
+  addGoBackButton(){
+    const gobackButton = document.createElement("go-back");
+    const hostElem = Common.getHostElem(this.shadowRoot);
+    const backButtonContainer = hostElem.shadowRoot.querySelector ("#backButtonContainer");
+    // backButtonContainer.innerHTML = ""
+    if(backButtonContainer){
+      backButtonContainer.appendChild(gobackButton);
+      gobackButton.data = {
+        elem : "students-page",
+        header : "STUDENTS"
+      }
+    }
+
+  }
 
 }
 export const AddNewStudents = customElements.define("addnew-students",addNewStudents);

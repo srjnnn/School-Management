@@ -22,7 +22,7 @@ return role;
     this.addNotes();
     this.selectEventListners();
     this.getRole();
-    if(this.getRole()=== "admin"){
+    if(this.getRole()=== "admin" || this.getRole()==="teacher"){
         this.shadowRoot.querySelector('#classSelector').classList.remove('hidden');
         this.shadowRoot.querySelector('#notesSubject').classList.add('hidden');
         this.shadowRoot.querySelector('#addNotes').classList.remove('hidden');
@@ -58,7 +58,7 @@ selectEventListners(){
   Classselector.addEventListener('change', (e)=>{
     this.fetchDataByClass(e.target.value);
   })
-  if(sessionStorage.getItem('User')==='admin'){
+  if(sessionStorage.getItem('User')===`admin || teacher`){
     notesSubject.addEventListener('change', (e)=>{
       this.fetchDataBySubject(classNumber,e.target.value);
    })

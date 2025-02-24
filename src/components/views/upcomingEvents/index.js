@@ -36,7 +36,7 @@ class upcomingEvents extends HTMLElement{
     })
   }
   renderNewPage(){
-    const path = "Add the timetable Page"
+    const path = "Add upcoming events"
     const hostElem = this.shadowRoot.getRootNode().host;
     const mainHostelem = hostElem.getRootNode().host
     const superHostElem = mainHostelem.getRootNode().host;

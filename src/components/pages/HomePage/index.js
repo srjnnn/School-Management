@@ -14,7 +14,6 @@ class HomePage extends HTMLElement {
       "../public/templates/pages/HomepageTemplate.html"
     );
     this.render();
-    this.addBreadCrumbs();
   }
 
   render() {
@@ -34,13 +33,8 @@ class HomePage extends HTMLElement {
     const navbarElement = document.createElement("my-navbar");
     navbarContainer.appendChild(navbarElement);
   }
-    //  Adding the event listner to the go-back button in the sidebar
+ 
 
-  addBreadCrumbs(){
-    const container = this.shadowRoot.querySelector('.breadCrumbs');
-    const breadCrumbs = document.createElement('bread-crumbs');
-    container.appendChild(breadCrumbs);
-  }
   
 
 }

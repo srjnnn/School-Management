@@ -61,7 +61,6 @@ verifyUser(){
         const button = this.shadowRoot.querySelectorAll('button');
         const hiddenButton = Array.from(button).filter(btn =>btn.classList.contains("button") && btn.classList.contains("hidden"));
         if(this.verifyUser() !== "student"){
-            console.log(hiddenButton)
             hiddenButton.forEach(button =>{
                 button.classList.remove('hidden');
             });

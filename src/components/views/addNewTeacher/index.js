@@ -15,6 +15,7 @@ class addNewTeachers extends HTMLElement {
     this.tempateContent = await loadTemplate("../public/templates/views/addNewTeachersPage.html");
     this.render();
     this.addEventListeners();
+    this.addGoBackButton();
   }
 
   render() {
@@ -28,7 +29,6 @@ class addNewTeachers extends HTMLElement {
     SaveButton.addEventListener('click', () => {
       const name = this.shadowRoot.querySelector('#Name').value;
       const gender = this.shadowRoot.querySelector('#gender').value;
-      const subject = this.shadowRoot.querySelector('#subject').value ;
       const attendence = this.shadowRoot.querySelector('#attendence').value ;
       const userName = this.shadowRoot.querySelector('#userName').value ;
       const Address = this.shadowRoot.querySelector("#address").value ;
@@ -36,12 +36,11 @@ class addNewTeachers extends HTMLElement {
       const pickupAddress = this.shadowRoot.querySelector('#pickup').value ;
       const dropoffAddress = this.shadowRoot.querySelector('#drop').value ;
       const Contact = this.shadowRoot.querySelector('#contact').value ;
-      const classes = this.shadowRoot.querySelector("#classes").value ;
-      const section = this.shadowRoot.querySelector('#sections').value ;
       const id = this.shadowRoot.querySelector('#ID').value ;
+      const email = this.shadowRoot.querySelector('#email').value
 
       // Validate all fields
-      if (!name || !gender || !subject || !attendence || !userName || !Address  ||  !Contact || !classes || !id || !section) {
+      if (!name || !gender  || !attendence || !userName || !Address  ||  !Contact  || !id || !email || !userName) {
         alert("All fields are required. Please fill in all the details.");
         return;
       }
@@ -49,26 +48,25 @@ class addNewTeachers extends HTMLElement {
       // Pack the data in the object
       const teachersData = {}
         teachersData.attendence = attendence;
-        teachersData.subject = subject;
         teachersData.gender = gender;
         teachersData.fullname= name;
-        teachersData.classes =classes;
         teachersData.username= userName;
         teachersData.address= Address;
         teachersData.bus=Bus;
         teachersData.pickup= pickupAddress;
         teachersData.drop=dropoffAddress;
         teachersData.phone= Contact;
+        teachersData.email = email;
         teachersData.id = id;
-        teachersData.section = section;
+        teachersData.password = Common.generateRandomPass();
 
       this.payload = teachersData;
 
       // Clear inputs
-      this.clearFields();
+      // this.clearFields();
 
       // Send data
-      this.sendData();
+      this.sendData(teachersData);
     });
 
     CancelButton.addEventListener('click', () => {
@@ -87,13 +85,14 @@ class addNewTeachers extends HTMLElement {
     });
   }
 
-  sendData() {
+  sendData(teachersData) {
     apiRequest(apiRoutes.teachers.sendTeachersData, "POST", this.payload)
       .then((response) => {
-        Common.addSuccessPopup(this.shadowRoot,"Successfully added Teacher");
+        Common.addSuccessPopup(this.shadowRoot,`Successfully added Teacher, Email : ${teachersData.email}, Password : ${teachersData.password}`,10000);
       })
       .catch((error) => {
-        console.error("Error sending data", error);
+        console.error(error);
+        Common.addErrorPopup(this.shadowRoot,"Error Adding new Teacher");
       });
   }
 
@@ -110,6 +109,20 @@ class addNewTeachers extends HTMLElement {
     setTimeout(() => {
       absoluteDiv.remove();
     }, 3000);
+  }
+  addGoBackButton(){
+    const gobackButton = document.createElement("go-back");
+    const hostElem = Common.getHostElem(this.shadowRoot);
+    const backButtonContainer = hostElem.shadowRoot.querySelector ("#backButtonContainer");
+    // backButtonContainer.innerHTML = ""
+    if(backButtonContainer){
+      backButtonContainer.appendChild(gobackButton);
+      gobackButton.data = {
+        elem : "my-teachers",
+        header : "TEACHERS"
+      }
+    }
+
   }
 }
 
