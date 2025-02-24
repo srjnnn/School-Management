@@ -8,7 +8,15 @@ export {default as timeline} from '../views/timeline/index.js'
 export {default as upcomingEvents} from '../views/upcomingEvents/index.js'
 export {default as recentClassNotes} from '../views/recentClassNotes/index.js'
 export {default as Table} from '../views/table/index.js'
-export {default as classDetails} from '../views/classDetails/index.js'
 export {default as newTimetable} from '../views/newTImetable/index.js'
-export {default as TeachersDetails} from '../views/teachersDetails/index.js'
 export {default as addNewTeachers} from '../views/addNewTeacher/index.js'
+export {default as classNotes} from '../views/classNotesViews/index.js'
+export {default as addStudents} from '../views/addNewStudents/index.js'
+export {default as addNotes} from "../views/addNotes/index.js"
+export {default as notesSummaryPage} from '../views/classNotesSummary/index.js';
+export {default as editStudentsPage} from '../views/editStudents/index.js'
+export {default as editTeachersPage} from '../views/editTeachersPage/index.js'
+export {default as changePassword} from '../views/changePassword/index.js'
+export {default as forgotPassword} from "../views/forgotPassword/index.js"
+export {default as newPassword} from "../views/forgotPassword/newPasswordPage.js"
+export {default as addUpcomingEvents} from "../views/upcomingEventsAddPage/index.js"

@@ -1,0 +1,177 @@
+<style>
+  :host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .upcomingEventsContainer {
+    width: 90rem;
+    border: 2px solid rgba(50, 173, 230, 1);
+    border-radius: 1rem;
+    padding: 2rem;
+    background: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .header {
+    text-align: center;
+    font-weight: 600;
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.5px;
+  }
+
+  .monthContainer h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: rgba(50, 173, 230, 1);
+    border-bottom: 2px solid rgba(50, 173, 230, 0.7);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .eventsDataContainer {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    border-radius: 0.5rem;
+    transition: background 0.3s ease-in-out;
+  }
+
+  .eventsDataContainer:hover {
+    background: rgba(50, 173, 230, 0.1);
+  }
+
+  .dateContainer {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #2c3e50;
+    min-width: 4rem;
+    text-align: right;
+  }
+
+  .eventsContainer {
+    font-size: 1.4rem;
+    flex: 1;
+    color: #34495e;
+    font-style: italic;
+  }
+
+  .inputContainer {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .inputContainer input,
+  .inputContainer select {
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.3rem;
+    width: 40rem;
+  }
+
+  select {
+    height: 4.8rem;
+    width: 24rem;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid rgba(108, 149, 255, 0.2);
+    font-size: 1.9rem;
+    color: #4a5568;
+    cursor: pointer;
+    background: white;
+    transition: all 0.3s ease;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%236c95ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 3rem;
+  }
+
+  select:hover {
+    border-color: rgba(108, 149, 255, 0.5);
+    transform: translateY(-2px);
+  }
+
+  select:focus {
+    border-color: #6c95ff;
+    box-shadow: 0 0 0 3px rgba(108, 149, 255, 0.1);
+    outline: none;
+  }
+
+  option {
+    padding: 1rem;
+  }
+
+
+  button {
+    font-size: 1.6rem;
+    cursor: pointer;
+    width: 12rem;
+    height: 4.5rem;
+    background-color: rgba(0, 122, 255, 0.1);
+    border: 0.1rem solid #007AFF;
+    padding: 0 1rem;
+    color: #007AFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+    border-radius: 1rem;
+  }
+
+  #saveBtn:hover {
+    background-color: rgba(0, 122, 255, 0.15);
+    transform: translateY(-1px);
+  }
+
+  .adjustterDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2rem;
+  }
+</style>
+
+<div class="upcomingEventsContainer">
+  <div class="header">Upcoming Events</div>
+  <div id="eventsList"></div>
+  <div class="inputContainer">
+    <select id="month">
+      <option value="" selected>Select Month</option>
+      <option value="Baisakh">Baisakh</option>
+      <option value="Jestha">Jestha</option>
+      <option value="Ashad">Ashad</option>
+      <option value="Shrawan">Shrawan</option>
+      <option value="Bhadra">Bhadra</option>
+      <option value="Ashoj">Ashoj</option>
+      <option value="Kartik">Kartik</option>
+      <option value="Mangsir">Mangsir</option>
+      <option value="Poush">Poush</option>
+      <option value="Magh">Magh</option>
+      <option value="Falgun">Falgun</option>
+      <option value="Chaitra">Chaitra</option>
+    </select>
+    <input type="number" id="date" placeholder="Date (e.g., 1,2)" />
+    <input type="text" id="event" placeholder="Event Name" />
+    <button class="addEventButton" id="addEvents">Add</button>
+  </div>
+
+  <div class="adjustterDiv">
+    <button id="saveBtn">Save</button>
+  </div>
+
+
+</div>

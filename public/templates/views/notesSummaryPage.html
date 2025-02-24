@@ -1,0 +1,150 @@
+<style>
+  /* Base reset */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: #f4f6fc;
+    color: #2d3748;
+    line-height: 1.6;
+    padding: 1rem;
+  }
+
+  .mainContainer {
+    max-width: 1200px;
+    margin: auto;
+    padding: 2rem;
+    gap: 2rem;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  .title {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    color: #1a365d;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  .summary,
+  .description,
+  .file {
+    margin-top: 1.5rem;
+  }
+
+  .summary b,
+  .description b,
+  .file b {
+    font-size: 1.4rem;
+    color: #2d3748;
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  .summary p,
+  .description p {
+    font-size: 1rem;
+    color: #4a5568;
+    line-height: 1.8;
+  }
+
+  .description {
+    max-height: 15rem;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+  }
+
+  /* Custom scrollbar */
+  .description::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .description::-webkit-scrollbar-track {
+    background: rgba(207, 226, 255, 0.3);
+    border-radius: 4px;
+  }
+
+  .description::-webkit-scrollbar-thumb {
+    background: rgba(160, 174, 192, 0.5);
+    border-radius: 4px;
+  }
+
+  .file {
+    min-height: 10rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    color: #a0aec0;
+    font-size: 1.2rem;
+    border: 2px dashed rgba(160, 174, 192, 0.5);
+    border-radius: 12px;
+  }
+
+  .file::after {
+    content: "No files attached";
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .mainContainer {
+      padding: 1.5rem;
+      gap: 1.5rem;
+    }
+
+    .card {
+      padding: 1.5rem;
+    }
+
+    .title {
+      font-size: 1.8rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .mainContainer {
+      padding: 1rem;
+    }
+
+    .title {
+      font-size: 1.6rem;
+    }
+  }
+</style>
+
+<div class="mainContainer">
+  <div class="card">
+    <h2 class="title" id="titleContent">Title Content Appears Here</h2>
+  </div>
+  <div class="card summary">
+    <b id="defaultText">Summary</b>
+    <p id="summaryContent">Summary content appears here</p>
+  </div>
+  <div class="card description">
+    <b>Description</b>
+    <p id="descriptionContent">Description Content Appears Here</p>
+  </div>
+  <div class="card file">
+    <b>Attached File</b>
+    <!-- Files uploaded will appear here -->
+  </div>
+</div>

@@ -1,7 +1,6 @@
 let value = '';
-import goBackButton from "../../../services/goBackButton.js";
 import LoadPage from "../../../services/loadPages.js";
-import RestrictUser from "../../../services/restrictUser.js";
+import Common from "../../../utils/common.js";
 import { loadTemplate } from "../../../utils/loadTemplate.js";
 class sidebarComponent extends HTMLElement {
     constructor() {
@@ -10,24 +9,26 @@ class sidebarComponent extends HTMLElement {
         this.SidebarTemplateContent = "";
 
     }
-
+verifyUser(){
+    const user =  sessionStorage.getItem("User");
+    return user;
+}
     async connectedCallback() {
         this.SidebarTemplateContent = await loadTemplate(
-            "templates/views/SidebarTemplate.html"
+            "../public/templates/views/SidebarTemplate.html"
         );
-
         this.render();
         this.prop();
-        this.verifyUserType();
+        this.toggle();
+     
 
         // Making the dashboard as the default button
         const dashboard = this.shadowRoot.querySelector('#dashboard');
         if(dashboard){
-            var hostElement = this.getHostElement();
+            var hostElement = Common.getHostElem(this.shadowRoot);
             dashboard.classList.add('active');
             LoadPage.renderPages("my-dashboard",hostElement);
-            goBackButton.savePagesRendered("my-dashboard","DASHBOARD");
-            this.getSidebarElement();
+            window.history.pushState({},"","/DASHBOARD")
             
         }
         
@@ -35,6 +36,8 @@ class sidebarComponent extends HTMLElement {
 
     render() {
         this.shadowRoot.innerHTML += this.SidebarTemplateContent;
+           // display or hide the actions buttons of the sidebar based on the users
+           this.displayActionsButton()
     }
     prop(){
 
@@ -48,95 +51,68 @@ class sidebarComponent extends HTMLElement {
                     activeButton.classList.remove('active');
                 });
                 button.classList.add('active');
-                return id;
             });
         });
         
     
     };
-
-    verifyUserType(){
-            const isSuperUser = RestrictUser.IdentifyUserType();
-            console.log("is user a super user ? ",isSuperUser);
-
-            return isSuperUser;
-
-            
+    // Restricting the students from accessing the buttons 
+    displayActionsButton(){
+        const button = this.shadowRoot.querySelectorAll('button');
+        const hiddenButton = Array.from(button).filter(btn =>btn.classList.contains("button") && btn.classList.contains("hidden"));
+        if(this.verifyUser() !== "student"){
+            hiddenButton.forEach(button =>{
+                button.classList.remove('hidden');
+            });
         }
-
+    }
+    
     loadPages(path){
         switch(path){
             case  "DASHBOARD":
-               var hostElement = this.getHostElement();
-                LoadPage.renderPages("my-dashboard",hostElement);
-                LoadPage.changeHeaderRoutes(hostElement,path);
-                // Call the change Routes and header method
-                // Add the history of the rendered pages
-                goBackButton.savePagesRendered("my-dashboard",path);
-                goBackButton.getEventDetails(hostElement);
+                this.loadPageWrap("my-dashboard", path)
               break;
+              
             case "TIMETABLE":
-               var hostElement = this.getHostElement();
-                LoadPage.renderPages("timetable-page",hostElement);
-                LoadPage.changeHeaderRoutes(hostElement,path);
-                goBackButton.savePagesRendered("timetable-page",path);
-                goBackButton.getEventDetails(hostElement);
+                this.loadPageWrap("timetable-page",path)
                 break;
+
             case "TEACHERS":
-               var hostElement = this.getHostElement();
-                LoadPage.renderPages("my-teachers",hostElement);
-                LoadPage.changeHeaderRoutes(hostElement,path);
-                goBackButton.savePagesRendered("my-teachers",path);
-                goBackButton.getEventDetails(hostElement);
+                this.loadPageWrap("my-teachers", path)
                  break;
+                 
             case "CLASSNOTES":
-               var hostElement = this.getHostElement();
-                LoadPage.renderPages("my-custompage",hostElement);
-                LoadPage.changeHeaderRoutes(hostElement,path);
-                goBackButton.savePagesRendered("my-custompage" ,path);
-                goBackButton.getEventDetails(hostElement);
+                this.loadPageWrap("classnotes-page",path)
                 break;
+
             case "BUSDETAILS":
-               var hostElement = this.getHostElement();
-                LoadPage.renderPages("my-custompage",hostElement);
-                LoadPage.changeHeaderRoutes(hostElement,path);
-                goBackButton.savePagesRendered("my-custompage",path);
-                goBackButton.getEventDetails(hostElement);
+                this.loadPageWrap("busdetails-page",path)
                 break;
-            case "LOCATION":
-               var hostElement = this.getHostElement();
-                LoadPage.renderPages("my-custompage",hostElement);
-                LoadPage.changeHeaderRoutes(hostElement,path);
-                goBackButton.savePagesRendered("my-custompage",path);
-                goBackButton.getEventDetails(hostElement);
+
+            case "ATTENDENCE":
+                if(this.verifyUser()==="student"){
+                    return
+                }
+                this.loadPageWrap("attendence-page",path)
                 break;
+
             case "HELP":
-               var hostElement = this.getHostElement();
-                LoadPage.renderPages("my-custompage",hostElement);
-                LoadPage.changeHeaderRoutes(hostElement,path);
-                goBackButton.savePagesRendered("my-custompage",path);
-                goBackButton.getEventDetails(hostElement);
+                this.loadPageWrap("help-page", path)
                 break;
+
             case "SETTINGS":
-               var hostElement = this.getHostElement();
-                LoadPage.renderPages("my-custompage",hostElement);
-                LoadPage.changeHeaderRoutes(hostElement,path);
-                goBackButton.savePagesRendered("my-custompage",path);
-                goBackButton.getEventDetails(hostElement);
+                this.loadPageWrap("settings-page", path)
                 break;
+
             case "STUDENTS":
-               var hostElement = this.getHostElement();
-                LoadPage.renderPages("my-custompage",hostElement);
-                LoadPage.changeHeaderRoutes(hostElement,path);
-                goBackButton.savePagesRendered("my-custompage",path);
-                goBackButton.getEventDetails(hostElement);
-                break;
+                if(this.verifyUser()==="student"){
+                    return
+                }
+                this.loadPageWrap("students-page",path);
+                break; 
+
             case "LOGOUT":
-               var hostElement = this.getHostElement();
-                LoadPage.renderPages("my-logout",hostElement);
-                goBackButton.getEventDetails(hostElement);
-                LoadPage.changeHeaderRoutes(hostElement,path);
-                goBackButton.savePagesRendered("my-logout",path);
+              this.loadPageWrap("my-logout",path);
                 break;
                 
             default:
@@ -146,17 +122,28 @@ class sidebarComponent extends HTMLElement {
         }
         
     };
-    getHostElement(){
-        const hostElement = this.shadowRoot.getRootNode().host;
-        const mainHostElement = hostElement.getRootNode().host;
-        return mainHostElement;
-    }
+
     getSidebarElement(){
         const sidebarElem = this.shadowRoot.getRootNode().host;
-        goBackButton.saveSidebarElement(sidebarElem);
     }
     
-    
+    toggle(){
+        const button = this.shadowRoot.querySelector('.toggleButton');
+        const sidebar = this.shadowRoot.getElementById('sidebar');
+        button.addEventListener('click', ()=>{
+             sidebar.classList.toggle('open');
+             
+        })
+    }
+
+    // Storing the common method 
+    loadPageWrap(customElementsName,path){
+        var hostElement = Common.getHostElem(this.shadowRoot);
+        LoadPage.renderPages(customElementsName,hostElement);
+        LoadPage.changeHeaderRoutes(hostElement,path);
+        window.history.pushState({},"",path);
+    }
+
 
 }
 

@@ -21,7 +21,7 @@ async function apiRequest(url, method = "GET", body = null, headers = {}) {
     };
 
     // Add body if present and method supports it
-    if (body && (method === "POST" || method === "PUT" || method === "PATCH")) {
+    if (body && (method === "POST" || method === "PUT" || method === "PATCH" || method === "DELETE")) {
       options.body = JSON.stringify(body);
     }
 

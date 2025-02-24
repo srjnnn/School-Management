@@ -10,25 +10,27 @@ class MyApp extends HTMLElement {
     this.attachShadow({ mode: "open" }); // Using Shadow DOM
   }
 
-  connectedCallback() {
+ async connectedCallback() {
     this.render();
-    this.loadPage();
+    await this.loadPage();
+    Router.getMainPage();
+    // Router.identifyRoutesChange(this.shadowRoot.querySelector('home-page').shadowRoot);
   }
 
-  loadPage() {
-    const user = AuthService.isLoggedIn();
+  async loadPage() {
+    const user =  await AuthService.isLoggedIn();
     const page = user
       ? Router._routePages[Router._routes.HOMEPAGE]
       : Router._routePages[Router._routes.LOGIN];
+      
 
     const main = this.shadowRoot.getElementById("main-app");
     const pageElement = document.createElement(page);
-    console.log("page element", pageElement, main);
     main.appendChild(pageElement);
   }
 
   clearContainer() {
-    const main = document.getElementById("main-app");
+    const main = document.getElementById("main-content-container");
     main.innerHTML = "";
   }
 

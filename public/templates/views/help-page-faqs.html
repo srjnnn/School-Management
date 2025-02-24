@@ -1,0 +1,213 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+  html {
+    font-size: 10px;
+  }
+
+  .container {
+    max-width: 120rem;
+    margin: 2rem auto;
+    padding: 2rem;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .contents-container {
+    display: grid;
+    gap: 1.2rem;
+    max-width: 80rem;
+    margin: 0 auto;
+  }
+
+  .content {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 0.4rem 0.6rem rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .content:hover {
+    transform: translateX(0.5rem);
+    box-shadow: 0 0.6rem 1rem rgba(0, 0, 0, 0.15);
+    background-color: #f8f5ff;
+  }
+
+  .content-header {
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .title {
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: #333;
+  }
+
+  .action {
+    width: 3rem;
+    height: 3rem;
+    background: #9A22F6;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.8rem;
+    transition: transform 0.3s ease;
+  }
+
+  .answer {
+    font-size: 1.4rem;
+    color: #666;
+    line-height: 1.6;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    padding: 0 2rem;
+  }
+
+  /* Using hidden checkbox for toggle functionality */
+  .toggle {
+    display: none;
+  }
+
+  .toggle:checked+.content-header+.answer {
+    max-height: 50rem;
+    padding: 0 2rem 2rem 2rem;
+  }
+
+  .toggle:checked+.content-header .action {
+    transform: rotate(90deg);
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      padding: 1.6rem;
+    }
+
+    .content-header {
+      padding: 1.6rem;
+    }
+
+    .title {
+      font-size: 1.4rem;
+    }
+
+    .action {
+      width: 2.6rem;
+      height: 2.6rem;
+      font-size: 1.6rem;
+    }
+
+    .answer {
+      font-size: 1.3rem;
+    }
+  }
+</style>
+
+<div class="container">
+  <div class="contents-container">
+    <div class="content">
+      <input type="checkbox" class="toggle" id="faq1">
+      <label class="content-header" for="faq1">
+        <div class="title">What payment methods are accepted?</div>
+        <div class="action">›</div>
+      </label>
+      <div class="answer">
+        We accept a wide range of payment methods including:
+        <br><br>
+        • All major credit/debit cards (Visa, MasterCard, American Express)
+        <br>
+        • PayPal
+        <br>
+        • Apple Pay and Google Pay
+        <br>
+        • Bank transfers
+        <br><br>
+        All payments are processed securely through our encrypted payment system.
+      </div>
+    </div>
+
+    <div class="content">
+      <input type="checkbox" class="toggle" id="faq2">
+      <label class="content-header" for="faq2">
+        <div class="title">How long does shipping usually take?</div>
+        <div class="action">›</div>
+      </label>
+      <div class="answer">
+        Our shipping times vary by location and selected method:
+        <br><br>
+        • Standard Domestic: 3-5 business days
+        <br>
+        • Express Domestic: 1-2 business days
+        <br>
+        • International: 7-14 business days
+        <br><br>
+        Orders are processed within 24 hours of receipt. Tracking information is provided via email once your order
+        ships.
+      </div>
+    </div>
+
+    <div class="content">
+      <input type="checkbox" class="toggle" id="faq3">
+      <label class="content-header" for="faq3">
+        <div class="title">What is your return policy?</div>
+        <div class="action">›</div>
+      </label>
+      <div class="answer">
+        We offer a hassle-free 30-day return policy:
+        <br><br>
+        • Items must be unused and in original packaging
+        <br>
+        • Return shipping is free for domestic orders
+        <br>
+        • Refunds are processed within 5-7 business days
+        <br><br>
+        Contact our customer service team for a return authorization before sending items back.
+      </div>
+    </div>
+
+    <div class="content">
+      <input type="checkbox" class="toggle" id="faq4">
+      <label class="content-header" for="faq4">
+        <div class="title">Do you ship internationally?</div>
+        <div class="action">›</div>
+      </label>
+      <div class="answer">
+        Yes, we ship to over 100 countries worldwide!
+        <br><br>
+        Important international shipping information:
+        <br>
+        • Customs fees may apply
+        <br>
+        • Delivery times vary by destination
+        <br>
+        • Full tracking provided for most countries
+        <br><br>
+        Check our shipping calculator for specific rates to your location.
+      </div>
+    </div>
+
+    <div class="content">
+      <input type="checkbox" class="toggle" id="faq5">
+      <label class="content-header" for="faq5">
+        <div class="title">How can I track my order?</div>
+        <div class="action">›</div>
+      </label>
+      <div class="answer">
+        Tracking your order is easy:
+        <br><br>
+        • Tracking numbers are sent via email once your order ships
+        <br>
+        • Log into your account to view real-time updates
+        <br>
+        • Use our order tracking page with your order number
+        <br><br>
+        Haven't received tracking info? Contact our support team for assistance.
+      </div>
+    </div>
+  </div>
+</div>

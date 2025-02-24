@@ -1,78 +1,100 @@
+import { apiRoutes } from "../../../globalConstants.js";
+import AuthService from "../../../services/AuthService.js";
+import LoadPage from "../../../services/loadPages.js";
+import apiRequest from "../../../utils/api.js";
+import Common from "../../../utils/common.js";
 import { loadTemplate } from "../../../utils/loadTemplate.js";
 class LoginformComponent extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: "open" });
         this.LoginTemplateContent = "";
-        this.onEmailChange = null;
-        this.onPassChange = null;
-        this.onButtonChange =null;
+        this.payLoad = null;
+        this.data = null
     }
 
     async connectedCallback() {
         this.LoginTemplateContent = await loadTemplate(
-            "templates/views/LoginForm.html"
+            "../public/templates/views/LoginForm.html"
         );
-
         this.render();
-        this.passProps();
+        this.addEventListeners();
     }
 
     render() {
         this.shadowRoot.innerHTML = this.LoginTemplateContent;
 
-        // Create custom input and button elements
-        const inputelement = document.createElement('my-input');
-        const inputelement1 = document.createElement('my-input');
-        const buttonelement = document.createElement('my-button');
-        buttonelement.onValueChange = this.onButtonChange;
-        // Select containers to append elements
-        const inputfield = this.shadowRoot.querySelector('.inputContainer');
-        const buttonContainer = this.shadowRoot.querySelector('.loginButton');
-        const passwordField = this.shadowRoot.querySelector('.passwordContainer');
+    }
 
-
-        // Append elements to the container
-        inputfield.appendChild(inputelement);
-        buttonContainer.appendChild(buttonelement);
-        passwordField.appendChild(inputelement1);
+    // Add eventListners
+    addEventListeners(){
+        const userName = this.shadowRoot.querySelector('#Username');
+        const password = this.shadowRoot.querySelector('#Password');
+        const button = this.shadowRoot.querySelector('#login');
+        const forgotPasswordButton = this.shadowRoot.querySelector('#forgot-password');
+        forgotPasswordButton.addEventListener('click',()=>{
+            this.loadPageWrap("forgot-password", "Forgot-password");
+        })
+        button.addEventListener('click',()=>{
+          const  userNameval = userName.value;
+          const  passval = password.value;
+          const addFields = {};
+         
+          if(userNameval === "" || passval === ""){
+            Common.addErrorPopup(this.shadowRoot, "Fields cannot be empty");
+            return;
+          }
+         addFields.password = passval;
+         addFields.email = userNameval;
+         this.payLoad = addFields;
 
         
-        // Set styles on the button
-        buttonelement.setStyle({ height: '4.5rem', width: '9rem', val: 'Login' });
+        apiRequest(apiRoutes.auth.login, "POST", this.payLoad)
+        .then(response =>{
+            this.data = response;
+            if(response.status === 200){
+                Common.addSuccessPopup(this.shadowRoot, "Success");
+                setTimeout(() => {
+                this.saveToken(response);
+                }, 1000);
 
-        inputelement.id = "email-input";
-        inputelement1.id ="password-input"
-        buttonContainer.id = "bbb"
-        // Set Styles to the Input field 
-        inputelement.setAttr({height : '3.9rem', width: '22rem' ,val: 'Enter the username' });
-        inputelement1.setAttr({height : '3.9rem', width: '22rem' ,val: 'Enter the password' });
-
+            }
+        })
+        .catch(error =>{
+            if(error.status === 401){
+                Common.addErrorPopup(this.shadowRoot, "Wrong authentication Credientials");
+            }
+        })
+        })
     }
-
-    addProps(props) {
-        // console.log("ading props", props);
-        const {onEmailChange} = props;
-        this.onEmailChange = onEmailChange;
-        const {onPassChange} = props;
-        this.onPassChange = onPassChange;
-        const {onButtonChange} = props;
-        this.onButtonChange = onButtonChange;
+    saveToken(response){
+        // check if the user has ticked the remember button or not ??
+        const rememberButton = this.shadowRoot.querySelector('#rememberMe');
+        if(rememberButton.checked){
+            // Store the access token in local storage
+            AuthService.saveToken(response.access_token);
+            localStorage.setItem("authResponse",JSON.stringify(response) );
+            window.location.reload();
+        }else{
+            if(response.refresh_token){
+            sessionStorage.setItem("refresh_token", response.refresh_token)
+            }
+            window.location.reload();
+        }
     }
- 
-
-    passProps() {
-        const inputfield = this.shadowRoot.querySelector('#email-input');
-        inputfield.onValueChange = this.onEmailChange;
-        // inputfield.handleEvents();
-        const inputfield1 = this.shadowRoot.querySelector('#password-input');
-        inputfield1.onValueChange = this.onPassChange;
-        console.log("email input", inputfield.onValueChange);
-        // Button
-        const buttonElement = this.shadowRoot.querySelector('#bbb');
-        buttonElement.onValueChange = this.onButtonChange;
-        
-    }
+          // Storing the common method 
+          loadPageWrap(customElementsName,path){
+            // console.log(this.shadowRoot)
+            var hostElement = Common.getHostElem(this.shadowRoot.getRootNode().host);
+            console.log(hostElement)
+            const mainContainer = hostElement.shadowRoot.querySelector('#main-app');
+            if(mainContainer.children.length > 0){
+                mainContainer.replaceChildren();
+                const page = document.createElement('forgot-password');
+                mainContainer.appendChild(page);
+            }
+            window.history.pushState({},"",path);
+        }
 }
 
 const Lgnform = customElements.define("my-loginform", LoginformComponent);

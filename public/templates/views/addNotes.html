@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    :root {
+      --primary-color: #0066cc;
+      --primary-light: #f0f7ff;
+      --border-color: #6e7783;
+      --text-color: #2c3e50;
+      --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 18px;
+      /* Increased base font size */
+      background-color: #f8f9fa;
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    .notesContainer {
+      max-width: 900px;
+      /* Slightly increased */
+      margin: 3rem auto;
+      /* More spacing */
+      padding: 3rem;
+      /* Increased padding */
+      background-color: white;
+      border-radius: 1.2rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .header h1 {
+      font-size: 2.4rem;
+      /* Bigger */
+      color: var(--text-color);
+      position: relative;
+      display: inline-block;
+    }
+
+    .header h1::after {
+      content: '';
+      position: absolute;
+      bottom: -0.6rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      /* Wider underline */
+      height: 4px;
+      /* Thicker underline */
+      background-color: var(--primary-color);
+      border-radius: 2px;
+    }
+
+    .form-group {
+      margin-bottom: 1.8rem;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 0.6rem;
+      color: var(--text-color);
+      font-weight: 600;
+      font-size: 1.2rem;
+      /* Bigger */
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 1rem 1.3rem;
+      /* Bigger */
+      border: 2px solid var(--border-color);
+      border-radius: 0.6rem;
+      font-size: 1.2rem;
+      /* Bigger */
+      transition: all 0.2s ease;
+      background-color: white;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.15);
+      outline: none;
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 120px;
+      /* Bigger */
+    }
+
+    .file-input-wrapper {
+      position: relative;
+      margin-bottom: 1.8rem;
+    }
+
+    .file-input-wrapper input[type="file"] {
+      width: 100%;
+      padding: 1rem;
+      border: 2px dashed var(--border-color);
+      border-radius: 0.6rem;
+      cursor: pointer;
+      font-size: 1.2rem;
+      /* Bigger */
+      transition: all 0.2s ease;
+    }
+
+    .file-input-wrapper input[type="file"]:hover {
+      border-color: var(--primary-color);
+      background-color: var(--primary-light);
+    }
+
+    .select-wrapper {
+      display: flex;
+      gap: 1.8rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .select-group {
+      flex: 1;
+    }
+
+    select.form-control {
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 1.2rem center;
+      background-size: 1.2em;
+      /* Slightly bigger */
+      padding-right: 3rem;
+      /* More spacing */
+    }
+
+    .submit-btn {
+      width: 100%;
+      background-color: #6e7783;
+      padding: 1.2rem;
+      /* Bigger */
+      /* background-color: var(--primary-color); */
+      color: white;
+      border: none;
+      border-radius: 0.6rem;
+      font-size: 1.3rem;
+      /* Bigger */
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .submit-btn:hover {
+      background-color: #6e7783;
+      transform: translateY(-1px);
+    }
+
+    .submit-btn:active {
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      .notesContainer {
+        margin: 1.5rem;
+        padding: 2rem;
+      }
+
+      .select-wrapper {
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+    }
+  </style>
+
+  <div class="notesContainer">
+    <div class="header">
+      <h1>Add Class Notes</h1>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="title">Title</label>
+      <input type="text" class="form-control" id="title" placeholder="Enter the title of the notes">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="summary">Summary</label>
+      <textarea class="form-control" id="summary" placeholder="Enter a short summary of the notes"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="Description">Description</label>
+      <textarea class="form-control" id="Description"
+        placeholder="Enter a detailed description of the notes"></textarea>
+    </div>
+
+    <div class="file-input-wrapper">
+      <label class="form-label" for="pdfFile">Attach PDF</label>
+      <input type="file" class="form-control" id="pdfFile" accept="application/pdf">
+    </div>
+
+    <div class="select-wrapper">
+      <div class="select-group">
+        <label class="form-label" for="notesSubject">Subject</label>
+        <select class="form-control" id="notesSubject">
+          <option value="null" selected>Select Subject</option>
+          <option value="English">English</option>
+          <option value="Science">Science</option>
+          <option value="Economics">Economics</option>
+          <option value="Computer">Computer</option>
+          <option value="EPH">EPH</option>
+        </select>
+      </div>
+
+      <div class="select-group">
+        <label class="form-label" for="Class">Class</label>
+        <select class="form-control" id="Class">
+          <option value="null" selected>Select Class</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="submit-btn" id="submit">Submit</button>
+  </div>
+</head>
+
+</html>

@@ -1,91 +1,149 @@
 <style>
-  /* * {
-    font-size: 62.5%;
-  } */
   * {
     box-sizing: border-box;
   }
 
   .mainContainer {
-    height: auto;
     width: 100%;
-    border: .1rem solid rgba(164, 169, 194, 1);
-
+    border: 0.1rem solid rgba(164, 169, 194, 1);
+    border-radius: 0.8rem;
+    background-color: #f9f9f9;
+    /* Soft background color for visual contrast */
   }
 
   .textContent {
     display: flex;
     justify-content: center;
-    border-bottom: .1rem solid rgba(0, 0, 0, 1);
-
+    border-bottom: 0.1rem solid rgba(0, 0, 0, 1);
+    padding: 1.6rem;
   }
 
   .textContent p {
-    font-size: 2.4rem;
-
+    font-size: 3.2rem;
+    color: rgba(34, 34, 34, 0.85);
+    /* Slightly dark text color for readability */
   }
 
   input[type="number"]::-webkit-inner-spin-button,
   input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
-
   }
 
   input {
     text-align: center;
+    padding: 1.2rem;
+    font-size: 2rem;
+    border-radius: 0.8rem;
+    border: 0.1rem solid rgba(164, 169, 194, 1);
+    transition: border-color 0.3s ease;
+  }
+
+  input:focus {
+    border-color: rgba(34, 139, 34, 1);
+    /* Focus effect for better interaction */
+    outline: none;
   }
 
   .classDetailsContainer {
     display: flex;
     flex-direction: column;
-    font-size: 1.8rem;
-    gap: 2rem;
-    padding: 2rem;
+    font-size: 2rem;
+    gap: 2.4rem;
+    padding: 2.4rem;
   }
 
   label {
-    display: inline;
+    font-size: 2rem;
+    color: rgba(34, 34, 34, 0.85);
+    /* Ensures legible label text */
   }
 
   .design-line {
-    /* height: 0.3rem; */
-    margin: 0 auto;
+    margin: 2.4rem auto;
     width: 80%;
     border: 0.1rem solid rgba(157, 157, 164, 1);
   }
 
   .fieldGroup {
     display: flex;
-    gap: 1rem;
-    font-size: 1.9rem;
-  }
-
-  button {
-    height: 4rem;
-    border: none;
-    cursor: pointer;
-    width: 8rem;
-    border-radius: 1rem;
-  }
-
-  #tableSave {
-    background-color: rgba(34, 139, 34, 0.8);
-  }
-
-  #tableCancel {
-    background-color: rgba(220, 20, 60, 0.8);
+    gap: 1.2rem;
+    font-size: 2.4rem;
   }
 
   .buttonContainer {
     display: flex;
     flex-direction: row-reverse;
-    gap: 2rem;
-    padding: 2rem;
-    height: 9rem;
+    gap: 2.4rem;
+    padding: 2.4rem;
+    height: 12rem;
     justify-content: flex-start;
   }
+
+  .absoluteDiv {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+  }
+
+  .tableActionsButtons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2.4rem;
+  }
+
+  /* Hidden class used for initially hiding table action buttons */
+  .hidden {
+    display: none;
+  }
+
+  .tableContainer {
+    padding: 2.4rem;
+    background-color: #ffffff;
+    border-radius: 1.2rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 2.4rem 0;
+  }
+
+  input,
+  select {
+    height: 4rem;
+    width: 13rem;
+    text-align: center;
+    background-color: white;
+    border: 1px solid #e0e4e8;
+    border-radius: 0.5rem;
+    font-size: 1.4rem;
+    margin-right: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  select:hover {
+    border-color: #007AFF;
+    box-shadow: 0 2px 4px rgba(0, 122, 255, 0.1);
+  }
+
+  button {
+    cursor: pointer;
+    height: 3rem;
+    width: 8rem;
+    font-size: 1.4rem;
+    border-radius: 5px;
+    background: linear-gradient(135deg, #6c95ff, #5f85ff);
+    color: #fff;
+    box-shadow: 0 8px 15px rgba(108, 149, 255, 0.2);
+    transition: background-color 0.3s ease;
+  }
+
+  button :hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 20px rgba(108, 149, 255, 0.3);
+  }
 </style>
+
 <div class="mainContainer">
   <div class="textContent">
     <p>Fillout the form to add timetable of a class</p>
@@ -93,7 +151,8 @@
   <div class="classDetailsContainer">
     <div class="fieldGroup">
       <label for="Class">Select Class :</label>
-      <select name="" id="selectClass">
+      <select name="" id="selectClass" required>
+        <option value="null">Select Class</option>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -104,12 +163,18 @@
         <option value="8">8</option>
         <option value="9">9</option>
         <option value="10">10</option>
+        <option value="11-CS">11 CS</option>
+        <option value="11-BS">11 BS</option>
+        <option value="11-HM">11 HM</option>
+        <option value="12-CS">12 CS</option>
+        <option value="12-HM">12 HM</option>
+        <option value="12-BS">12 BS</option>
       </select>
-
     </div>
     <div class="fieldGroup">
       <label for="Section">Select Section :</label>
       <select name="" id="section" required>
+        <option value="null">Select Section</option>
         <option value="A">A</option>
         <option value="B">B</option>
         <option value="C">C</option>
@@ -137,14 +202,13 @@
   </div>
   <div class="design-line"></div>
   <div class="tableContainer">
-
+    <!-- Table contents will be dynamically inserted here -->
   </div>
-
 </div>
-<div class="tableActionsButtons hidden">
+
+<div class="tableActionsButtons">
   <div class="buttonContainer">
     <button id="tableSave" class="button">Save</button>
     <button id="tableCancel" class="button">Cancel</button>
   </div>
-</div>
 </div>

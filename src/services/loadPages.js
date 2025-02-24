@@ -1,12 +1,11 @@
 
 class LoadPage{
-  static renderPages(customElement ,homepageElem){
-    const homePage = homepageElem;
-    if (homePage){
-    const mainContainer = homePage.shadowRoot.querySelector('#main-content-container');
+  static renderPages(customElement ,homepageElem, data){
+    if (homepageElem){
+    const mainContainer = homepageElem.shadowRoot.querySelector('#main-content-container');
     if (mainContainer.children.length > 0) {
         mainContainer.replaceChildren();
-        this.addPage(customElement, mainContainer);
+        this.addPage(customElement, mainContainer,data);
         
 
         
@@ -16,12 +15,15 @@ class LoadPage{
     
 
     }
-    return homePage;
+    return homepageElem;
 
 };
 // Add page to the main container 
-static addPage(customElement , mainContainer){
+static addPage(customElement , mainContainer , data){
     const customPage = document.createElement(customElement);
+    if(data){
+        customPage.data = data;
+    }
     mainContainer.appendChild(customPage);
 
 };

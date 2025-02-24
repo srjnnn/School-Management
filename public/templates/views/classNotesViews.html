@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    .mainContainer {
+      max-width: 1400px;
+      /* Increased width */
+      margin: 0 auto;
+      padding: 3rem;
+      /* Increased padding */
+    }
+
+    .notesData {
+      background-color: white;
+      border-radius: 1.5rem;
+      /* Slightly larger border radius */
+      padding: 3rem;
+      /* Increased padding */
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .dateContainer {
+      position: relative;
+      margin-bottom: 3rem;
+      /* Increased spacing */
+    }
+
+    .dateContainer h1 {
+      font-size: 3rem;
+      /* Larger font size */
+      color: #2c3e50;
+      font-weight: 700;
+      position: relative;
+      display: inline-block;
+    }
+
+    .dateContainer h1::after {
+      content: '';
+      position: absolute;
+      bottom: -0.75rem;
+      left: 0;
+      width: 4rem;
+      /* Slightly longer underline */
+      height: 0.35rem;
+      background-color: #0066cc;
+      border-radius: 0.35rem;
+    }
+
+    .notesContainer {
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      /* Increased gap */
+      margin: 4rem 0;
+      /* Increased spacing */
+      padding: 1.5rem;
+      min-height: 350px;
+      /* Slightly taller */
+      overflow-y: auto;
+      max-height: 75vh;
+      /* Increased height */
+      scrollbar-width: thin;
+      scrollbar-color: #0066cc #f0f7ff;
+    }
+
+    .notesContainer::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    .notesContainer::-webkit-scrollbar-track {
+      background: #f0f7ff;
+      border-radius: 5px;
+    }
+
+    .notesContainer::-webkit-scrollbar-thumb {
+      background-color: #0066cc;
+      border-radius: 5px;
+    }
+
+    .design {
+      height: 0;
+      width: 85%;
+      border: 2.5px solid #e1e8f0;
+      margin: 3rem auto;
+      position: relative;
+    }
+
+    .design::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 2.5rem;
+      height: 2.5rem;
+      background-color: white;
+      border: 2.5px solid #e1e8f0;
+      border-radius: 50%;
+    }
+
+    /* Updated Note Card Styling */
+    .note-card {
+      background: white;
+      border-radius: 1rem;
+      /* Increased border-radius */
+      padding: 2rem;
+      /* More padding */
+      width: calc(33.333% - 1.5rem);
+      min-width: 300px;
+      /* Slightly larger min-width */
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+      border: 1.5px solid #e1e8f0;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .note-card:hover {
+      transform: translateY(-4px);
+      /* Slightly increased hover effect */
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 1024px) {
+      .note-card {
+        width: calc(50% - 1.5rem);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .mainContainer {
+        padding: 2rem;
+      }
+
+      .notesData {
+        padding: 2rem;
+      }
+
+      .dateContainer h1 {
+        font-size: 2.5rem;
+      }
+
+      .note-card {
+        width: 100%;
+      }
+
+      .design {
+        width: 90%;
+      }
+    }
+
+    /* Animation for new notes */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .note-card {
+      animation: fadeIn 0.3s ease-out;
+    }
+  </style>
+
+  <div class="mainContainer">
+    <div class="notesData">
+      <div class="dateContainer">
+        <h1>Notes</h1>
+      </div>
+      <section class="notesContainer">
+        <!-- Notes comes here -->
+      </section>
+      <div class="design"></div>
+    </div>
+  </div>
+</head>
+
+</html>

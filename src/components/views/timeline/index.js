@@ -8,7 +8,7 @@ class timeline extends HTMLElement{
   }
   async connectedCallback(){
     this.timelineContent = await loadTemplate(
-      "templates/views/timelineTemplate.html"
+      "../public/templates/views/timelineTemplate.html"
     );
     this.render();
   }

@@ -11,7 +11,7 @@ class recentClassNotes extends HTMLElement{
   }
 
   async connectedCallback(){
-    this.recentClassNotesContent = await loadTemplate("templates/views/recentClassNotes.html");
+    this.recentClassNotesContent = await loadTemplate("../public/templates/views/recentClassNotes.html");
     this.render();
     this.addCards();
     this.applyAttr();

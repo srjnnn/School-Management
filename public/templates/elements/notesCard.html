@@ -2,48 +2,126 @@
   .cardContainer {
     width: 22rem;
     height: 13rem;
-    border: 0.1rem solid rgba(134, 182, 255, 1);
-    border-radius: .4rem;
+    border: 0.1rem solid rgba(134, 182, 255, 0.3);
+    border-radius: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: rgba(207, 226, 255, 0.2);
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(207, 226, 255, 0.2));
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(134, 182, 255, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cardContainer:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(134, 182, 255, 0.2);
+    border-color: rgba(134, 182, 255, 0.8);
+  }
+
+  .cardContainer::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    transform: rotate(45deg);
+    pointer-events: none;
   }
 
   .topContainers {
     display: flex;
-    gap: 11rem;
-    padding: 1rem;
-    font-weight: 400;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 1.5rem;
+    font-weight: 500;
     font-size: 1.1rem;
+    color: #445577;
+  }
 
+  .subjectContainer {
+    background: rgba(134, 182, 255, 0.1);
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
+    color: #2d62c5;
+  }
+
+  .teacherContainer {
+    font-style: italic;
+    color: #666;
   }
 
   .midContainer {
-    padding: 0.5rem 0rem;
-    margin-left: 1rem;
-    font-size: 1.4rem;
-    font-weight: 400;
+    padding: 1rem 1.5rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #1a1f36;
+    letter-spacing: 0.02em;
+  }
+
+  .titleContainer {
+    position: relative;
+    display: inline-block;
+  }
+
+  .titleContainer::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background: rgba(134, 182, 255, 0.8);
+    transition: width 0.3s ease;
+  }
+
+  .cardContainer:hover .titleContainer::after {
+    width: 100%;
+  }
+
+  .bottomContainer {
+    padding: 1rem 1.5rem;
+    background: rgba(247, 250, 255, 0.8);
+    border-radius: 0 0 1rem 1rem;
+  }
+
+  .dateContainer {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #666;
   }
 
   .dateContainer p {
-    display: inline-flex;
-    margin-left: 1rem;
+    margin: 0;
+  }
 
+  #dateText {
+    color: #888;
+    margin-right: 0.5rem;
+  }
+
+  #date {
+    color: #2d62c5;
+    font-weight: 500;
   }
 </style>
 <div class="cardContainer">
   <div class="topContainers">
-    <div class="subjectContainer">English</div>
-    <div class="teacherContainer">by Srijan</div>
+    <div class="subjectContainer" id="subject">English</div>
+    <div class="teacherContainer" id="teacherName">by Srijan</div>
   </div>
   <div class="midContainer">
-    <div class="titleContainer">Red Red Rose</div>
+    <div class="titleContainer" id="title">Red Red Rose</div>
   </div>
   <div class="bottomContainer">
     <div class="dateContainer">
       <p id="dateText">Assigned on : </p>
-      <p id="assignedate">2081/5/6</p>
+      <p id="date">2081/5/6</p>
     </div>
   </div>
 </div>

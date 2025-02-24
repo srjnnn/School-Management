@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Daily Attendance</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #f0f4f8;
+      min-height: 100vh;
+      padding: 2rem;
+      margin: 0;
+    }
+
+    .attendance-container {
+      width: 100%;
+      max-width: 1000px;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(108, 149, 255, 0.1);
+      overflow: hidden;
+      border: 2px solid rgba(108, 149, 255, 0.2);
+      transition: all 0.3s ease;
+      margin: auto;
+    }
+
+    .attendance-container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 25px 50px rgba(108, 149, 255, 0.15);
+    }
+
+    .header {
+      background: rgba(207, 226, 255, 0.8);
+      color: #fff;
+      padding: 25px;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 3px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      padding: 1rem;
+      margin: 0 auto;
+    }
+
+    thead {
+      background: rgba(108, 149, 255, 0.05);
+    }
+
+    th {
+      padding: 1.8rem;
+      font-weight: 600;
+      font-size: 1.5rem;
+      color: #6c95ff;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 2px solid rgba(108, 149, 255, 0.1);
+      text-align: center;
+    }
+
+    td {
+      padding: 1.6rem;
+      font-size: 1.3rem;
+      color: #4a5568;
+      border-bottom: 1px solid rgba(108, 149, 255, 0.08);
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    tr:nth-child(even) {
+      background: #f8faff;
+    }
+
+    tr:hover td {
+      background: rgba(108, 149, 255, 0.05);
+      transform: scale(1.01);
+    }
+
+    .btn-container {
+      padding: 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .btn {
+      padding: 1.5rem 3rem;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.5rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn.present {
+      background: linear-gradient(135deg, #6c95ff, #5f85ff);
+      color: #fff;
+      box-shadow: 0 8px 15px rgba(108, 149, 255, 0.2);
+    }
+
+    .btn.present:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 20px rgba(108, 149, 255, 0.3);
+    }
+
+    .btn.absent {
+      background: linear-gradient(135deg, #ff5757, #ff4747);
+      color: #fff;
+      box-shadow: 0 8px 15px rgba(255, 87, 87, 0.2);
+    }
+
+    .btn.absent:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 20px rgba(255, 87, 87, 0.3);
+    }
+
+    .btn:disabled {
+      background: #e2e8f0;
+      color: #a0aec0;
+      cursor: not-allowed;
+      box-shadow: none;
+      transform: none;
+    }
+
+    .name {
+      border-radius: 8px;
+      font-weight: 500;
+      outline: none;
+      border: none;
+      text-align: center;
+      font-size: 1.5rem;
+      padding: 0.8rem;
+      color: #4a5568;
+      background: transparent;
+    }
+
+    .footer {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+      background: #f8faff;
+      border-top: 2px solid rgba(108, 149, 255, 0.1);
+    }
+
+    select {
+      height: 4.8rem;
+      width: 14rem;
+      border-radius: 10px;
+      text-align: center;
+      border: 2px solid rgba(108, 149, 255, 0.2);
+      font-size: 1.4rem;
+      color: #4a5568;
+      cursor: pointer;
+      background: white;
+      transition: all 0.3s ease;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%236c95ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 3rem;
+    }
+
+    select:hover {
+      border-color: rgba(108, 149, 255, 0.5);
+      transform: translateY(-2px);
+    }
+
+    select:focus {
+      border-color: #6c95ff;
+      box-shadow: 0 0 0 3px rgba(108, 149, 255, 0.1);
+      outline: none;
+    }
+
+    option {
+      padding: 1rem;
+    }
+
+    #save {
+      font-size: 1.6rem;
+      cursor: pointer;
+      width: 12rem;
+      height: 4.5rem;
+      background-color: rgba(0, 122, 255, 0.1);
+      border: 0.1rem solid #007AFF;
+      padding: 0 1rem;
+      color: #007AFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+      border-radius: 1rem;
+    }
+
+    #save:hover {
+      background-color: rgba(0, 122, 255, 0.15);
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 768px) {
+      .attendance-container {
+        margin: 1rem auto;
+        border-radius: 15px;
+      }
+
+      th,
+      td {
+        padding: 1.2rem;
+        font-size: 1.2rem;
+      }
+
+      .footer {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      select {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="attendance-container">
+    <div class="header">
+      Daily Attendance
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Student Name</th>
+          <th>Status</th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody id="table">
+      </tbody>
+    </table>
+    <div class="btn-container">
+      <button id="save">Save</button>
+    </div>
+    <div class="footer">
+      <select name="classSelector" id="classSelector">
+        <option value="null">Select Class</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11-CS">11-CS</option>
+        <option value="11-HM">11-HM</option>
+        <option value="11-BS">11-BS</option>
+        <option value="12-CS">12-CS</option>
+        <option value="12-HM">12-HM</option>
+        <option value="12-BS">12-BS</option>
+      </select>
+      <select name="" id="sectionSelector">
+        <option value="null">Select Section</option>
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+        <option value="A1">A1</option>
+        <option value="A2">A2</option>
+        <option value="A3">A3</option>
+        <option value="A4">A4</option>
+      </select>
+    </div>
+  </div>
+</body>
+
+</html>

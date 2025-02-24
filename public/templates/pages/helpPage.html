@@ -1,0 +1,179 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+  html {
+    font-size: 10px;
+  }
+
+  .container {
+    max-width: 120rem;
+    margin: 2rem auto;
+    padding: 2rem;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .menus {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .menu-button {
+    background: transparent;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1.6rem;
+    color: #666;
+    position: relative;
+    transition: color 0.3s ease;
+    cursor: pointer;
+  }
+
+  .menu-button.active {
+    color: #9A22F6;
+  }
+
+  .menu-button::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0.2rem;
+    background-color: #9A22F6;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+
+  .menu-button.active::after {
+    transform: scaleX(1);
+  }
+
+  .contents-container {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .content {
+    background: white;
+    border-radius: 1rem;
+    padding: 2.4rem;
+    box-shadow: 0 0.4rem 0.6rem rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .content:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: 0 0.8rem 1.2rem rgba(0, 0, 0, 0.15);
+  }
+
+  .title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1.6rem;
+  }
+
+  .action {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+    margin: 1.6rem 0;
+  }
+
+  .icon {
+    width: 4rem;
+    height: 4rem;
+    background: #9A22F6;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.8rem;
+  }
+
+  .phone {
+    color: #666;
+    font-weight: 500;
+    font-size: 1.6rem;
+  }
+
+  .description {
+    color: #666;
+    line-height: 1.5;
+    font-size: 1.4rem;
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      padding: 1.6rem;
+    }
+
+    .menus {
+      flex-wrap: wrap;
+    }
+
+    .content {
+      padding: 1.6rem;
+    }
+
+    .title {
+      font-size: 1.8rem;
+    }
+
+    .phone {
+      font-size: 1.4rem;
+    }
+
+    .description {
+      font-size: 1.3rem;
+    }
+  }
+</style>
+
+<div class="container">
+  <div class="menus">
+    <button class="menu-button active" id="customer">Customer Service</button>
+    <button class="menu-button" id="faqs">FAQs</button>
+    <button class="menu-button" id="feedback">Feedback</button>
+  </div>
+
+  <div class="contents-container">
+    <div class="content">
+      <div class="title">Maintenance Service</div>
+      <div class="action">
+        <div class="icon">?</div>
+        <span class="phone">Call: 908-392-7492</span>
+      </div>
+      <div class="description">
+        Get professional maintenance service with our monthly subscription plan. Our expert team ensures your systems
+        run smoothly and efficiently.
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="title">Troubleshoot Service</div>
+      <div class="action">
+        <div class="icon">?</div>
+        <span class="phone">Call: 908-392-7492</span>
+      </div>
+      <div class="description">
+        Quick and reliable troubleshooting service to resolve any technical issues. Available 24/7 for your convenience.
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="title">Upgrade Service</div>
+      <div class="action">
+        <div class="icon">?</div>
+        <span class="phone">Call: 908-392-7492</span>
+      </div>
+      <div class="description">
+        Stay ahead with our upgrade service. We help you implement the latest technologies and improvements to enhance
+        your system's performance.
+      </div>
+    </div>
+  </div>
+</div>

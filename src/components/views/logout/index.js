@@ -8,7 +8,7 @@ class logOut extends HTMLElement{
   }
   async connectedCallback(){
     this.logOutContent= await loadTemplate(
-      "templates/views/logoutTemplate.html"
+      "../public/templates/views/logoutTemplate.html"
     )
     this.render();
   }
