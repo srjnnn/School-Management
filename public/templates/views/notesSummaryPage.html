@@ -37,6 +37,7 @@
   }
 
   .title {
+    text-align: center;
     font-size: clamp(2rem, 4vw, 2.5rem);
     color: #1a365d;
     font-weight: bold;
@@ -52,22 +53,23 @@
   .summary b,
   .description b,
   .file b {
-    font-size: 1.4rem;
+    font-size: 2.4rem;
     color: #2d3748;
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    text-decoration: underline;
     font-weight: 600;
   }
 
   .summary p,
   .description p {
-    font-size: 1rem;
+    font-size: 2rem;
     color: #4a5568;
     line-height: 1.8;
   }
 
   .description {
-    max-height: 15rem;
+    max-height: 30rem;
     overflow-y: auto;
     padding-right: 0.5rem;
   }
@@ -100,9 +102,40 @@
     border-radius: 12px;
   }
 
-  .file::after {
-    content: "No files attached";
+  .download-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-decoration: none;
   }
+
+  .download-btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+  }
+
+  .download-btn:active {
+    background-color: #004085;
+    transform: translateY(1px);
+  }
+
+  .download-btn .icon {
+    margin-right: 8px;
+    font-size: 1.2rem;
+  }
+
+  .download-btn span {
+    font-size: 1rem;
+  }
+
 
   /* Responsive adjustments */
   @media (max-width: 768px) {
@@ -129,6 +162,13 @@
       font-size: 1.6rem;
     }
   }
+
+  a {
+    font-size: 2rem;
+    text-decoration: none;
+    display: flex;
+    cursor: pointer;
+  }
 </style>
 
 <div class="mainContainer">
@@ -143,8 +183,7 @@
     <b>Description</b>
     <p id="descriptionContent">Description Content Appears Here</p>
   </div>
-  <div class="card file">
+  <div class="card file" id="file">
     <b>Attached File</b>
-    <!-- Files uploaded will appear here -->
   </div>
 </div>

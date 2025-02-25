@@ -49,7 +49,9 @@ class editTeachers extends HTMLElement{
        phone : this.shadowRoot.querySelector('#contact'),
        attendence : this.shadowRoot.querySelector('#attendence'),
        image : this.shadowRoot.querySelector('#imageUpload'),
-       id : this.shadowRoot.querySelector('#ID')
+       id : this.shadowRoot.querySelector('#ID'),
+       email : this.shadowRoot.querySelector('#email')
+
     };
   }
   // Update content 
