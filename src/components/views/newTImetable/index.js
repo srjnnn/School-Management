@@ -43,8 +43,8 @@ class newTimetable extends HTMLElement {
     if(backButtonContainer){
       backButtonContainer.appendChild(gobackButton);
       gobackButton.data = {
-        elem : "classnotes-page",
-        header : "CLASSNOTES"
+        elem : "timetable-page",
+        header : "Time table"
       }
     };
   }

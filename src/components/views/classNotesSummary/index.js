@@ -1,3 +1,4 @@
+import Common from "../../../utils/common.js";
 import { loadTemplate } from "../../../utils/loadTemplate.js";
 
 class classNotesSumamry extends HTMLElement{
@@ -11,13 +12,19 @@ class classNotesSumamry extends HTMLElement{
     this.templateContent = await loadTemplate("../public/templates/views/notesSummaryPage.html");
     this.render();
   }
-  set data(value){
-    this._data = value;
-    if(this.shadowRoot){
-      this.updateContent();
-      this.addGoBackButton();
+  set data(value) {
+    if (this._data !== value) {
+      this._data = value;
+  
+      // Ensure shadowRoot exists before calling methods that use it
+      if (this.shadowRoot && this.shadowRoot.innerHTML) {
+        this.updateContent();
+        this.addGoBackButton();
+      }
     }
   }
+  
+  
   get data(){
     return this._data;
   }
@@ -47,15 +54,14 @@ class classNotesSumamry extends HTMLElement{
     const gobackButton = document.createElement("go-back");
     const hostElem = Common.getHostElem(this.shadowRoot);
     const backButtonContainer = hostElem.shadowRoot.querySelector ("#backButtonContainer");
-    // backButtonContainer.innerHTML = ""
+    backButtonContainer.innerHTML = ""
     if(backButtonContainer){
       backButtonContainer.appendChild(gobackButton);
       gobackButton.data = {
         elem : "classnotes-page",
-        header : "CLASSNOTES"
+        header : "Class Notes"
       }
-    }
-
+    };
   }
 
 }
