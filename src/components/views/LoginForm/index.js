@@ -56,6 +56,7 @@ class LoginformComponent extends HTMLElement {
                 Common.addSuccessPopup(this.shadowRoot, "Success");
                 setTimeout(() => {
                 this.saveToken(response);
+                localStorage.setItem("email", JSON.stringify(addFields.email));
                 }, 1000);
 
             }

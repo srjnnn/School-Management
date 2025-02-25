@@ -28,8 +28,10 @@ class changePassword extends HTMLElement{
   }
   // Event Listners
   addEventListeners(){
+
     // adding the event listner whent the user clicks the change password button
     const userName = this.shadowRoot.querySelector('#userName');
+    userName.value = JSON.parse(localStorage.getItem("email")); 
     const currentPassword = this.shadowRoot.querySelector('#old-pass');
     const newPassword = this.shadowRoot.querySelector('#new-pass');
     const retypePassword = this.shadowRoot.querySelector('#re-new');
