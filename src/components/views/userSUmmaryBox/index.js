@@ -28,7 +28,6 @@ class userSummary extends HTMLElement {
   }
 
   updateContent() {
-   console.log(this.data)
     if (this._data && this.shadowRoot) {
       // Update the DOM with the new data
       const userNameElement = this.shadowRoot.querySelector("#name-value");
@@ -58,7 +57,6 @@ class userSummary extends HTMLElement {
         userDropOffElement.textContent = this._data.drop || "Null"
       }
       if(imageContainerElem){
-        console.log(imageContainerElem)
         imageContainerElem.style.backgroundImage = `url(${this._data.image || `../public/assets/avatar/${this._data.gender}.png`})`;
 
 

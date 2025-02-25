@@ -57,10 +57,8 @@ class upcomingEvents extends HTMLElement{
 
   // Update contents
   updateContent(){
-    console.log(this.data)
     if(!this.data) return;
 
-    console.log("Code has reacherd there ...")
 
     const container = this.shadowRoot.querySelector('.upcomingEventsContainer');
     container.innerHTML = "";

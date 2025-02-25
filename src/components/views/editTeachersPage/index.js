@@ -16,6 +16,7 @@ class editTeachers extends HTMLElement{
   // Reusing the addNewStudents form
   this.templateContent = await loadTemplate("../public/templates/views/addNewTeachersPage.html");
   this.render();
+  this.addGoBackButton();
   }
 
   set data(value){
@@ -96,6 +97,19 @@ class editTeachers extends HTMLElement{
     .catch((error)=>{
       console.error("Error Updating Teachers data")
     })
+  }
+  addGoBackButton(){
+    const gobackButton = document.createElement("go-back");
+    const hostElem = Common.getHostElem(this.shadowRoot);
+    const backButtonContainer = hostElem.shadowRoot.querySelector ("#backButtonContainer");
+    backButtonContainer.innerHTML = ""
+    if(backButtonContainer){
+      backButtonContainer.appendChild(gobackButton);
+      gobackButton.data = {
+        elem : "my-dashboard",
+        header : "DASHBOOARD"
+      }
+    };
   }
 
 }

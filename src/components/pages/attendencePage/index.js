@@ -144,7 +144,6 @@ changeClass(){
         
       }else{
        this.payload = this.attendenceData;
-       console.log(this.payload)
       this.sendData();     
       }
     })
@@ -259,7 +258,6 @@ sendData(){
       // Show alert if all the stuents are not marked
       
        this.payload = this.updatedData;
-       console.log(this.payload)
        if(this.payload === null){
         this.shadowRoot.querySelector('#save').disabled = true;
        }

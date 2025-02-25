@@ -16,7 +16,6 @@ class HelpPage extends HTMLElement{
   }
   addEventListeners(){
     const buttons = this.shadowRoot.querySelectorAll('.menu-button');
-    console.log(buttons)
     Array.from(buttons).forEach(button => {
       button.addEventListener('click',()=>{
         // Add the class active to the clicked buttons

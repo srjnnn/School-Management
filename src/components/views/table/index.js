@@ -47,6 +47,12 @@ restrictUser(){
   if(User === 'admin' || User ===  'teacher'){
     this.shadowRoot.querySelector('#topHeader').classList.remove('hidden');
     this.addEventListeners();
+  }else{};
+
+  if(User === "admin"){
+    this.shadowRoot.querySelector('#buttonDiv').classList.remove('hidden');
+    this.shadowRoot.querySelector("#timetableEdit").disabled = false;
+
   }
 }
 // Fetch the table data 
@@ -92,6 +98,10 @@ updateContent(){
 addEventListeners(){
   const editButton = this.shadowRoot.querySelector('#timetableEdit');
   const confirtamtion = this.shadowRoot.querySelector('#confirmationBox');
+  const User = sessionStorage.getItem("User");
+  if(User=== "teacher" || User === "student"){
+    return;
+  }
   editButton.addEventListener('click', ()=>{
       confirtamtion.classList.remove('hidden');
       const closeButton = this.shadowRoot.querySelector('#close');

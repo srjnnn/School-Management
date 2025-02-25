@@ -14,7 +14,6 @@ class studentsPage extends HTMLElement{
     this.templateContent = await loadTemplate('../public/templates/pages/StudentPages.html');
     this.render();
     this.getStudentsData();
-    this.renderAddNewStudentsPage();
     this.changeClass();
     
   }
@@ -24,7 +23,11 @@ class studentsPage extends HTMLElement{
     .then((studentData)=>{
       this.studentData = studentData && studentData.data;
       this.addTable();
-      this.addEditButtons();
+      if(sessionStorage.getItem("User")==="admin"){
+        this.addEditButtons();
+        this.shadowRoot.querySelector("#addbtnDiv").classList.remove("hidden");
+        this.renderAddNewStudentsPage();
+      }
       Common.detailsClick(this.shadowRoot, this.studentData,"studentsDetails");
     })
   };
@@ -154,7 +157,6 @@ findStudentDataByID(row){
     const table = this.shadowRoot.querySelector('#studentsDetails');
     const rows = table.querySelectorAll("tr");
     rows.forEach(row =>{
-      console.log(row)
       if(row.id.includes('first')){
         return;
       }else{
