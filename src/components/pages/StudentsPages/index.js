@@ -154,7 +154,6 @@ findStudentDataByID(row){
     const table = this.shadowRoot.querySelector('#studentsDetails');
     const rows = table.querySelectorAll("tr");
     rows.forEach(row =>{
-      console.log(row)
       if(row.id.includes('first')){
         return;
       }else{

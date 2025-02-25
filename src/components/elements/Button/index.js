@@ -9,7 +9,6 @@ export class ButtonComponent extends HTMLElement {
     super();
     this.attachShadow({ mode: "open" });
     this.onValueChange = () =>{
-      console.log("Button Clicked , button triggered");
     }
     // this.onValueChange = this.onButtonChange;
     

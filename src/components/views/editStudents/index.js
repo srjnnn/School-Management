@@ -16,6 +16,7 @@ class editStudents extends HTMLElement{
   // Reusing the addNewStudents form
   this.templateContent = await loadTemplate("../public/templates/views/addNewStudents.html");
   this.render();
+  this.addGoBackButton();
   }
 
   set data(value){
@@ -95,7 +96,19 @@ class editStudents extends HTMLElement{
       console.error("Error Updating Students data")
     })
   }
-
+  addGoBackButton(){
+    const gobackButton = document.createElement("go-back");
+    const hostElem = Common.getHostElem(this.shadowRoot);
+    const backButtonContainer = hostElem.shadowRoot.querySelector ("#backButtonContainer");
+    backButtonContainer.innerHTML = ""
+    if(backButtonContainer){
+      backButtonContainer.appendChild(gobackButton);
+      gobackButton.data = {
+        elem : "my-dashboard",
+        header : "DASHBOOARD"
+      }
+    };
+  }
 }
 export const EditStudents = customElements.define('edit-students',editStudents);
 export default EditStudents;

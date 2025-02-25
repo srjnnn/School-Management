@@ -81,7 +81,6 @@ class addClassNotes extends HTMLElement {
       fileType: fileType  // Add the file type
     };
   
-    console.log(notesData);
   
     apiRequest(apiRoutes.classNotes.sendClassNotesData, "POST", notesData)
       .then((response) => {

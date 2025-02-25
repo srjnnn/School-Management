@@ -36,7 +36,6 @@ class classNotesSumamry extends HTMLElement{
   updateContent(){
     if(!this.data || !this.shadowRoot) return;
     // Method to update the content of the summary page
-    console.log(this.data.file_type)
     const title = this.shadowRoot.querySelector('#titleContent');
     const summary = this.shadowRoot.querySelector("#summaryContent");
     const description = this.shadowRoot.querySelector("#descriptionContent");

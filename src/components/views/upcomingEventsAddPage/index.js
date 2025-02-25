@@ -111,7 +111,6 @@ class addUpcomingEvents extends HTMLElement {
     apiRequest(apiRoutes.events.postRoutes, "PATCH", payLoad)
       .then((res) => {
         Common.addSuccessPopup(this.shadowRoot, "Successfully updated the events!");
-        console.log(res);
       })
       .catch((err) => {
         Common.addErrorPopup(this.shadowRoot, "Error updating events.");
