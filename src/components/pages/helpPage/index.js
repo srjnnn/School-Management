@@ -41,6 +41,7 @@ class HelpPage extends HTMLElement{
          this.clearContent();
          this.templateContent = await loadTemplate("../public/templates/views/help-page-feedback.html");
          this.changeContent();
+        //  const feedbackPage = this.shadowRoot.querySelector("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaa")
          break;
       case "customer":
         this.connectedCallback();

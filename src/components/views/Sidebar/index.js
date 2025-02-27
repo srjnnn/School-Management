@@ -114,6 +114,10 @@ verifyUser(){
             case "LOGOUT":
               this.loadPageWrap("my-logout",path);
                 break;
+
+            case "FEEDBACKS":
+                this.loadPageWrap("feedback-page",path);
+                break;
                 
             default:
                 break;

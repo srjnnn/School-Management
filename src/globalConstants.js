@@ -55,9 +55,12 @@ export const apiRoutes = {
   
   events:{
      postRoutes : `${v1Api}/events`
-  } 
+  } ,
 
-
+  feedback:{
+    getFeedbackData : `${v1Api}/feedbacks`,
+    postFeedbackData : `${v1Api}/feedbacks`,
+  }
   
 
 };
