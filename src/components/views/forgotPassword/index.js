@@ -42,19 +42,31 @@ class forgotPassword extends HTMLElement{
 }
 
 requestPasswordReset(userNameField){
-  apiRequest(apiRoutes.auth.resetRequest, "POST", this.payload)
+  apiRequest(apiRoutes.auth.resetEmail, "POST", this.payload)
   .then(response =>{
     this.shadowRoot.querySelector('#infoText').innerHTML = 
       `Verification code has been sent to the email ,<strong> ${userNameField.value}!</strong>`;
-    console.log(response)
+    localStorage.setItem("passEmail",userNameField.value);
+    setTimeout(() => {
+      const mainHost = this.getHost();
+      mainHost.shadowRoot.querySelector('.app-container').replaceChildren();
+      const validateOtpPage = document.createElement("validate-otp");
+      mainHost.shadowRoot.querySelector('.app-container').appendChild(validateOtpPage);
+    }, 4000);
   })
   .catch(error =>{
     console.error(error)
-    Common.addErrorPopup(this.shadowRoot, `An error occured please try again later`)
+    Common.addErrorPopup(this.shadowRoot, error.message);
   })
+}
+getHost (){
+  const shadowRoot = this.shadowRoot.getRootNode().host;
+  const mainHost = shadowRoot.getRootNode().host;
+  return mainHost;
 }
 
 }
+
 
 const ForgotPassword = customElements.define("forgot-password", forgotPassword);
 export default ForgotPassword;

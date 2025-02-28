@@ -1,4 +1,10 @@
 <style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   :host {
     display: flex;
     justify-content: center;
@@ -15,6 +21,12 @@
     box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 45rem;
+  }
+
+  .absoluteDiv {
+    position: absolute;
+    top: 50%;
+    left: 30%;
   }
 
   .header h1 {
@@ -50,12 +62,16 @@
     margin-bottom: 2rem;
   }
 
-  .saveButton {
+  .requestButton {
     display: flex;
     justify-content: center;
   }
 
-  .saveButton button {
+  #infoText {
+    font-size: 1.9rem;
+  }
+
+  .requestButton button {
     background-color: rgba(130, 180, 255, 1);
     color: white;
     padding: 1.2rem 3rem;
@@ -66,13 +82,15 @@
     transition: background-color 0.3s;
   }
 
-  .saveButton button:disabled {
+  .requestButton button:disabled {
     background-color: #c0c7d1;
+    color: #ffffff;
     cursor: not-allowed;
+    box-shadow: none;
     opacity: 0.6;
   }
 
-  .saveButton button:hover {
+  .requestButton button:hover {
     background-color: rgba(100, 150, 230, 1);
   }
 
@@ -95,7 +113,7 @@
       font-size: 1.4rem;
     }
 
-    .saveButton button {
+    .requestButton button {
       font-size: 1.6rem;
       padding: 1rem 2.5rem;
     }
@@ -104,21 +122,18 @@
 
 <div class="mainContainer">
   <div class="header">
-    <h1>New Password</h1>
+    <h1>Verify OTP</h1>
   </div>
   <div class="inputSection">
-    <input type="text" placeholder="Enter a new Password" id="newPass">
-  </div>
-  <div class="inputSection">
-    <input type="text" placeholder="Retype your new Password" id="confirmPass">
+    <input type="text" placeholder="Enter OTP" id="otp" maxlength="6">
   </div>
   <div class="infoText">
-    <p>Make sure your password is at least 8 characters long.</p>
+    <p>Please enter the 6-digit OTP sent to your email address to verify.</p>
   </div>
-  <div class="saveButton">
-    <button id="saveBtn" disabled>Save Password</button>
+  <div class="requestButton">
+    <button id="verify" disabled>Verify OTP</button>
   </div>
   <div class="text-content">
-    <p id="statusMessage"></p>
+    <p id="infoText"></p>
   </div>
 </div>
