@@ -45,7 +45,9 @@ export const apiRoutes = {
      login: `${v1Api}/login`,
      validateToken : `${v1Api}/isValid`,
      changePassword : `${v1Api}/change`,
-     resetRequest : `${v1Api}/reset`,
+     resetEmail : `${v1Api}/reset/email`,
+     verifyOtp : `${v1Api}/reset/otp`,
+     resetPass : `${v1Api}/reset/newPass`,
      updatePassword :`${v1Api}/update`
   },
   bus:{

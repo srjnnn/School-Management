@@ -87,14 +87,12 @@ class LoginformComponent extends HTMLElement {
           loadPageWrap(customElementsName,path){
             // console.log(this.shadowRoot)
             var hostElement = Common.getHostElem(this.shadowRoot.getRootNode().host);
-            console.log(hostElement)
             const mainContainer = hostElement.shadowRoot.querySelector('#main-app');
             if(mainContainer.children.length > 0){
                 mainContainer.replaceChildren();
                 const page = document.createElement('forgot-password');
                 mainContainer.appendChild(page);
             }
-            window.history.pushState({},"",path);
         }
 }
 
