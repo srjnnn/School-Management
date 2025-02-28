@@ -197,15 +197,15 @@
 
     <div class="feedback-section">
       <textarea class="textarea" placeholder="Tell us what you liked or how we can improve..."
-        oninput="this.nextElementSibling.querySelector('.current').textContent = this.value.length"
-        maxlength="500"></textarea>
+        oninput="this.nextElementSibling.querySelector('.current').textContent = this.value.length" maxlength="500"
+        id="feedback-textArea"></textarea>
       <div class="char-count">
         <span class="current">0</span>/500 characters
       </div>
     </div>
 
     <div class="form-footer">
-      <button class="submit-button">Submit Feedback</button>
+      <button class="submit-button" id="feedbackSubmit">Submit Feedback</button>
     </div>
   </div>
 </div>

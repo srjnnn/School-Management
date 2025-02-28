@@ -28,6 +28,7 @@ class teachersPage extends HTMLElement {
         const user = sessionStorage.getItem("User");
 
         if (user === "admin") {
+          this.shadowRoot.querySelector('#tcherbtns').classList.remove('hidden');
           this.addEditButtons();
           this.addNewPage();
           this.shadowRoot.querySelector("#varTHb").classList.remove('hidden');

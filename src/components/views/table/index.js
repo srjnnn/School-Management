@@ -224,6 +224,17 @@ addEventListeners(){
     })
   }
 
+  hideTable(){
+    this.shadowRoot.querySelector('#tableButtons').classList.add('hidden');
+   
+  }
+
+  
+
+
+   
+
+
 
 tableActionButton(){
   const saveButton = this.shadowRoot.querySelector("#tableSave");
@@ -237,6 +248,14 @@ tableActionButton(){
     this.editTable();
 
   })
+  cancelButton.addEventListener('click', ()=>{
+    this.hideTable()
+    this.connectedCallback();
+  })
+
+
+  
+
 }
 }
 customElements.define("my-table", Table);

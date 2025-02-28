@@ -19,7 +19,6 @@ class feedbackPage extends HTMLElement{
   getFeedbackData(){
     apiRequest(apiRoutes.feedback.getFeedbackData, "GET")
     .then(feedbackData=>{
-      console.log(this.feedbackData)
       this.feedbackData = feedbackData && feedbackData.data;
       this.addData();
       
@@ -29,9 +28,21 @@ class feedbackPage extends HTMLElement{
     })
   };
   addData(){
-    const mainContainer = this.shadowRoot.querySelector('.main-main-container');
-    
-      console.log(this.data);
+    const mainContainer = this.shadowRoot.querySelector('.main-container');
+     this.feedbackData.forEach(data => {
+      const div = document.createElement('div');
+      div.className = "card";
+
+      div.innerHTML = `
+           ${data.your_feedback};
+           <br>
+           <br>
+            <span class="author"><i> By: ${data.name} </i></span>
+      `
+
+    mainContainer.innerHTML += div.outerHTML;
+      
+     });
   }
   
 }
