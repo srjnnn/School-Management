@@ -47,6 +47,7 @@ restrictUser(){
   if(User === 'admin' || User ===  'teacher'){
     this.shadowRoot.querySelector('#topHeader').classList.remove('hidden');
     this.addEventListeners();
+    this.classChangeEventListners();
   }else{};
 
   if(User === "admin"){
@@ -125,7 +126,11 @@ addEventListeners(){
     LoadPage.changeHeaderRoutes(superHostElem,"Add a new Timetable")
   })
 
-  // method to edit the timetable and delete the timetable 
+  
+  }
+
+  classChangeEventListners(){
+    // method to edit the timetable and delete the timetable 
   const classSelector = this.shadowRoot.querySelector('#selectClass');
   const sectionSelector = this.shadowRoot.querySelector('#section');
   
@@ -144,7 +149,6 @@ addEventListeners(){
       }
     })
   }
-
   // make the contents editable 
   editableTable(){
   const table = this.shadowRoot.querySelector("table");
@@ -224,6 +228,17 @@ addEventListeners(){
     })
   }
 
+  hideTable(){
+    this.shadowRoot.querySelector('#tableButtons').classList.add('hidden');
+   
+  }
+
+  
+
+
+   
+
+
 
 tableActionButton(){
   const saveButton = this.shadowRoot.querySelector("#tableSave");
@@ -237,6 +252,14 @@ tableActionButton(){
     this.editTable();
 
   })
+  cancelButton.addEventListener('click', ()=>{
+    this.hideTable()
+    this.connectedCallback();
+  })
+
+
+  
+
 }
 }
 customElements.define("my-table", Table);

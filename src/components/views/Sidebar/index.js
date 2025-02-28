@@ -65,6 +65,9 @@ verifyUser(){
                 button.classList.remove('hidden');
             });
         }
+        if(this.verifyUser()==='teacher'){
+            this.shadowRoot.querySelector("#feedbacks").classList.add('hidden');
+        }
     }
     
     loadPages(path){
@@ -113,6 +116,12 @@ verifyUser(){
 
             case "LOGOUT":
               this.loadPageWrap("my-logout",path);
+                break;
+
+            case "FEEDBACKS":
+                if(this.verifyUser()==="admin"){
+                this.loadPageWrap("feedback-page",path);
+                }
                 break;
                 
             default:

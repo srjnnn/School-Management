@@ -104,8 +104,8 @@ class editStudents extends HTMLElement{
     if(backButtonContainer){
       backButtonContainer.appendChild(gobackButton);
       gobackButton.data = {
-        elem : "my-dashboard",
-        header : "DASHBOOARD"
+        elem : "student-page",
+        header : "Students"
       }
     };
   }

@@ -113,20 +113,6 @@ static getHostElem(shadowRoot){
   const mainHostElement = hostElement.getRootNode().host;
   return mainHostElement;
 };
-//  Generate the random password
-static generateRandomPass(){
-  const characters = "AMITY123456789@#";
-  let password = "";
-  
-  for (let i = 0; i < 6; i++) {
-      const randomIndex = Math.floor(Math.random() * characters.length);
-      password += characters[randomIndex];
-  }
-
-  return password;
-
-}
-
 }
 
 export default Common;

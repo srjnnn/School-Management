@@ -58,7 +58,6 @@ class addNewTeachers extends HTMLElement {
         teachersData.phone= Contact;
         teachersData.email = email;
         teachersData.id = id;
-        teachersData.password = Common.generateRandomPass();
 
       this.payload = teachersData;
 
@@ -88,11 +87,13 @@ class addNewTeachers extends HTMLElement {
   sendData(teachersData) {
     apiRequest(apiRoutes.teachers.sendTeachersData, "POST", this.payload)
       .then((response) => {
-        Common.addSuccessPopup(this.shadowRoot,`Successfully added Teacher, Email : ${teachersData.email}, Password : ${teachersData.password}`,10000);
+        Common.addSuccessPopup(this.shadowRoot,`Successfully added Teacher, Password has been sent to the  : ${teachersData.email}`);
+        setTimeout(() => {
+          this.connectedCallback();
+        }, 3000);
       })
       .catch((error) => {
-        console.error(error);
-        Common.addErrorPopup(this.shadowRoot,"Error Adding new Teacher");
+        Common.addErrorPopup(this.shadowRoot,`Error Adding new Teacher, ${error} `);
       });
   }
 
@@ -114,7 +115,7 @@ class addNewTeachers extends HTMLElement {
     const gobackButton = document.createElement("go-back");
     const hostElem = Common.getHostElem(this.shadowRoot);
     const backButtonContainer = hostElem.shadowRoot.querySelector ("#backButtonContainer");
-    // backButtonContainer.innerHTML = ""
+    backButtonContainer.innerHTML = ""
     if(backButtonContainer){
       backButtonContainer.appendChild(gobackButton);
       gobackButton.data = {

@@ -12,5 +12,6 @@ export {default as AttendencePage} from './attendencePage/index.js'
 export {default as forBidden} from './forbiddenPage/index.js'
 export {default as helpPage} from './helpPage/index.js'
 export {default as SettingsPage} from './settingsPage/index.js'
+export {default as feedbackPage} from './feedback/index.js'
 
 
