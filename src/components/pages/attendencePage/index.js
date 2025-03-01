@@ -17,10 +17,18 @@ class attendencePage extends HTMLElement{
     this.updatedData = [];
     this.updatedEventlistner = false;
   }
+  getHomePageData (){
+    const attendencePage = this.shadowRoot.getRootNode().host;
+    const homePage = attendencePage.getRootNode().host;
+    console.log(homePage);
+    attendencePage.attendencePageData = "helloworld"
+    console.log(homePage.attendencePageData)
+  }
   async connectedCallback(){
     this.templateContent = await loadTemplate("../public/templates/pages/attendencePage.html");
     this.render();
     this.changeClass();
+    this.getHomePageData();
   }
 // Select the selector and identify the change everytime
 changeClass(){

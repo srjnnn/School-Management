@@ -28,7 +28,6 @@ verifyUser(){
             var hostElement = Common.getHostElem(this.shadowRoot);
             dashboard.classList.add('active');
             LoadPage.renderPages("my-dashboard",hostElement);
-            window.history.pushState({},"","/DASHBOARD")
             
         }
         
@@ -114,10 +113,6 @@ verifyUser(){
                 this.loadPageWrap("students-page",path);
                 break; 
 
-            case "LOGOUT":
-              this.loadPageWrap("my-logout",path);
-                break;
-
             case "FEEDBACKS":
                 if(this.verifyUser()==="admin"){
                 this.loadPageWrap("feedback-page",path);
@@ -150,7 +145,6 @@ verifyUser(){
         var hostElement = Common.getHostElem(this.shadowRoot);
         LoadPage.renderPages(customElementsName,hostElement);
         LoadPage.changeHeaderRoutes(hostElement,path);
-        window.history.pushState({},"",path);
     }
 
 

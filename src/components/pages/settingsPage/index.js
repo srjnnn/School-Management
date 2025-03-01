@@ -18,11 +18,12 @@ class Settings extends HTMLElement{
   }
   // add event listners to the two actions buttons
   addEventListeners(){
-
     const anchors = this.shadowRoot.querySelector('.anchors');
     anchors.addEventListener('click', (event)=>{
            if (event.target.matches('#change')){
             this.loadPageWrap("change-password","Change-password")
+           }else if(event.target.matches("#logout")){
+            Common.addLogoutAlert(this.shadowRoot);
            }
     })
 
@@ -33,7 +34,6 @@ class Settings extends HTMLElement{
       var hostElement = Common.getHostElem(this.shadowRoot);
       LoadPage.renderPages(customElementsName,hostElement);
       LoadPage.changeHeaderRoutes(hostElement,path);
-      window.history.pushState({},"",path);
   }
 
 }

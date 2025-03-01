@@ -5,6 +5,7 @@ class logOut extends HTMLElement{
     super();
     this.attachShadow({mode:"open"});
     this.logOutContent ="";
+    this.noEvent = ()=>{};
   }
   async connectedCallback(){
     this.logOutContent= await loadTemplate(
@@ -18,9 +19,14 @@ class logOut extends HTMLElement{
   }
   addFunctions(){
     const logOutYes = this.shadowRoot.querySelector('#lgYes');
+    const logoutNo = this.shadowRoot.querySelector('#lgNo');
     logOutYes.addEventListener('click' , () =>{
       localStorage.clear();
       window.location.reload();
+    })
+    logoutNo.addEventListener('click', ()=>{
+      this.noEvent();
+
     })
   }
 }
