@@ -33,9 +33,10 @@ static changeHeaderRoutes(homePage,path){
     // const homePage = value;
     
     const homepageShadowRoot = homePage.shadowRoot;
-    const navBar = homepageShadowRoot.querySelector('my-navbar');
-    const navBarShadowRoot = navBar.shadowRoot;
-    const header = navBarShadowRoot.querySelector('#navHeader');
+    // const navBar = homepageShadowRoot.querySelector('my-navbar');
+    // const navBarShadowRoot = navBar.shadowRoot;
+
+    const header = homepageShadowRoot.querySelector('#navHeader');
 
     // change the header based on the routes they goooooo... 
     header.innerHTML = path;

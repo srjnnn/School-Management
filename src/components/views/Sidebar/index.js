@@ -131,13 +131,15 @@ verifyUser(){
         const sidebarElem = this.shadowRoot.getRootNode().host;
     }
     
-    toggle(){
+    toggle() {
         const button = this.shadowRoot.querySelector('.toggleButton');
         const sidebar = this.shadowRoot.getElementById('sidebar');
-        button.addEventListener('click', ()=>{
-             sidebar.classList.toggle('open');
-             
-        })
+    
+        button.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+            
+           
+    });
     }
 
     // Storing the common method 

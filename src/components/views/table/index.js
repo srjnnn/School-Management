@@ -52,8 +52,17 @@ restrictUser(){
 
   if(User === "admin"){
     this.shadowRoot.querySelector('#buttonDiv').classList.remove('hidden');
-    this.shadowRoot.querySelector("#timetableEdit").disabled = false;
+    const classValue = localStorage.getItem("classValue");
+    const sectionValue = localStorage.getItem("sectionValue");
+    if(classValue && sectionValue){
+      this.shadowRoot.querySelector("#selectClass").value = classValue;
+      this.shadowRoot.querySelector("#section").value = sectionValue;
+      this.shadowRoot.querySelector("#section").disabled = false;
+      this.shadowRoot.querySelector("#timetableEdit").disabled = false;
+      this.fetchData(classValue, sectionValue);   
 
+    }
+     
   }
 }
 // Fetch the table data 
@@ -136,14 +145,26 @@ addEventListeners(){
   
   sectionSelector.disabled = true;
     classSelector.addEventListener('change', ()=>{
+      localStorage.setItem("classValue", classSelector.value)
+
+
     sectionSelector.disabled = (classSelector.value === "null");
     if(sectionSelector.value !== "null"){
+      this.shadowRoot.querySelector("#timetableEdit").disabled = false;
+
+      localStorage.setItem("sectionValue", sectionSelector.value);
+
       // Call the api here 
       this.fetchData(classSelector.value , sectionSelector.value)
     }
     })
     sectionSelector.addEventListener('change', ()=>{
+      localStorage.setItem("sectionValue", sectionSelector.value);
+     
       if(sectionSelector.value !== "null"){
+        localStorage.setItem("classValue", classSelector.value)
+      this.shadowRoot.querySelector("#timetableEdit").disabled = false;
+
         // Call the api here 
       this.fetchData(classSelector.value , sectionSelector.value);
       }
@@ -260,6 +281,11 @@ tableActionButton(){
 
   
 
+}
+disconnectedCallback(){
+  // remove the classSelector and the section selector value 
+  localStorage.removeItem("classValue");
+  localStorage.removeItem("sectionValue");
 }
 }
 customElements.define("my-table", Table);
