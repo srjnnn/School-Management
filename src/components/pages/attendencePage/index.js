@@ -29,12 +29,27 @@ class attendencePage extends HTMLElement{
     this.render();
     this.changeClass();
     this.getHomePageData();
-    const classValue = localStorage.getItem("classValue");
-    const sectionValue = localStorage.getItem("sectionValue");
-    if(classValue && sectionValue){
-      this.shadowRoot.querySelector("#classSelector").value = classValue;
-      this.shadowRoot.querySelector("#sectionSelector").value = sectionValue;
-      this.shadowRoot.querySelector("#sectionSelector").disabled = false;
+    this.restoreSelections();
+  }
+
+  restoreSelections(){
+    const Classselector = this.shadowRoot.querySelector('#classSelector');
+    const sectionSelector = this.shadowRoot.querySelector('#sectionSelector');
+    if (this.class) Classselector.value = this.class;
+    if (this.section) sectionSelector.value = this.section;
+    
+    if (this.class && this.section) {
+      this.loadAttendanceData();
+    }
+  }
+
+  async loadAttendanceData() {
+    this.clearTable();
+    await this.checkAttendence();
+    if (this.response !== null && this.response.attendanceTaken === true) {
+      this.updateContents();
+    } else {
+      this.getStudentsData(this.class, this.section);
     }
   }
 // Select the selector and identify the change everytime
@@ -42,43 +57,43 @@ changeClass(){
   const Classselector = this.shadowRoot.querySelector('#classSelector');
   const sectionSelector = this.shadowRoot.querySelector('#sectionSelector');
   sectionSelector.disabled = true;
+  
   Classselector.addEventListener('change', async ()=>{
-    localStorage.setItem("classValue", Classselector.value)
-
-  sectionSelector.disabled = (Classselector.value === "null");
-  if(sectionSelector.value !== "null"){
-    localStorage.setItem("sectionValue", sectionSelector.value);
-    this.class = Classselector.value;
-    this.section = sectionSelector.value;
-    this.clearTable();
-     await this.checkAttendence();
-    if(this.response !== null &&  this.response.attendanceTaken === true){
-      if(this.payload === null){
-        this.shadowRoot.querySelector('#save').disabled = true;
+    sectionSelector.disabled = (Classselector.value === "null");
+    if(sectionSelector.value !== "null"){
+      this.class = Classselector.value;
+      this.section = sectionSelector.value;
+      localStorage.setItem('selectedClass', this.class);
+      localStorage.setItem('selectedSection', this.section);
+      this.clearTable();
+      await this.checkAttendence();
+      if(this.response !== null &&  this.response.attendanceTaken === true){
+        if(this.payload === null){
+          this.shadowRoot.querySelector('#save').disabled = true;
+        }else{
+          this.updateContents();
+        }
       }else{
-      this.updateContents();
+        this.getStudentsData(Classselector.value, sectionSelector.value);
       }
-    }else{
-    this.getStudentsData(Classselector.value, sectionSelector.value);
-
     }
-  }
-  })
+  });
+  
   sectionSelector.addEventListener('change',async ()=>{
     if(sectionSelector.value !== "null"){
       this.class = Classselector.value;
       this.section = sectionSelector.value;
+      localStorage.setItem('selectedClass', this.class);
+      localStorage.setItem('selectedSection', this.section);
       this.clearTable();
-   await  this.checkAttendence();
-     if(this.response !== null &&  this.response.attendanceTaken === true){
-      this.updateContents();
-             
-     }else{
-      this.getStudentsData(Classselector.value,sectionSelector.value);
-      
-     }
+      await this.checkAttendence();
+      if(this.response !== null &&  this.response.attendanceTaken === true){
+        this.updateContents();
+      }else{
+        this.getStudentsData(Classselector.value, sectionSelector.value);
+      }
     }
-  })
+  });
 }
 
   // get the students data
@@ -298,11 +313,6 @@ sendData(){
       Common.addErrorPopup(this.shadowRoot, "An error occured while updating the students data please try again later......")
     })
 
-  }
-  disconnectedCallback(){
-    // remove the classSelector and the section selector value 
-    localStorage.removeItem("classValue");
-    localStorage.removeItem("sectionValue");
   }
 }
 const AttendencePage = customElements.define("attendence-page",attendencePage);
