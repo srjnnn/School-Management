@@ -1,5 +1,7 @@
 // All the repeated functions are written here to minimize code
 
+
+
 class Common {
 // Add success PopUp
  static addSuccessPopup(hostShadowroot,response,timer){
@@ -115,16 +117,21 @@ static getHostElem(shadowRoot){
 };
 
 // addTheLogout Popup
-static addLogoutAlert(hostShadowroot){
+static async  addLogoutAlert(hostShadowroot){
+
   const absoluteDiv = document.createElement('div');
   absoluteDiv.id = "absoluteDiv";
   absoluteDiv.className = "absoluteDiv";
   absoluteDiv.style.position = "absolute";
-  absoluteDiv.style.top = "50%";
+  absoluteDiv.style.top = "20%";
   absoluteDiv.style.left = "35%";
   const logOut = document.createElement('my-logout');
-  absoluteDiv.appendChild(logOut);
-  hostShadowroot.appendChild(absoluteDiv);
+  absoluteDiv.appendChild(logOut)
+  hostShadowroot.appendChild(absoluteDiv)
+   logOut.noEvent =()=>{
+      absoluteDiv.remove();
+   }
+  
 }
 }
 
