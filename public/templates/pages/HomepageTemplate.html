@@ -47,12 +47,24 @@
 
 
   @media (max-width: 768px) {
-  #sidebar {
-position: absolute;
-}
+    #sidebar {
+      position: absolute;
+    }
   }
 
+  .top-containers {
+    display: flex;
+    gap: 3rem;
+  }
 
+  .backButtonContainer {
+    margin-left: 0.3rem;
+  }
+
+  #navHeader {
+    font-size: 3rem;
+    padding-top: 2.7rem;
+  }
 </style>
 
 <div class="homepage-wrapper">
@@ -64,9 +76,13 @@ position: absolute;
   <!-- Content Area -->
   <section class="content-area">
     <!-- Top Navbar -->
-    <section id="backButtonContainer"></section>
+
     <section id="top-navbar" class="top">
       <!-- Placeholder for topNavbar -->
+      <div class="top-containers">
+        <section id="backButtonContainer"></section>
+        <h1 id="navHeader">Dashboard</h1>
+      </div>
 
     </section>
 
