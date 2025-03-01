@@ -28,7 +28,6 @@ verifyUser(){
             var hostElement = Common.getHostElem(this.shadowRoot);
             dashboard.classList.add('active');
             LoadPage.renderPages("my-dashboard",hostElement);
-            window.history.pushState({},"","/DASHBOARD")
             
         }
         
@@ -150,7 +149,6 @@ verifyUser(){
         var hostElement = Common.getHostElem(this.shadowRoot);
         LoadPage.renderPages(customElementsName,hostElement);
         LoadPage.changeHeaderRoutes(hostElement,path);
-        window.history.pushState({},"",path);
     }
 
 

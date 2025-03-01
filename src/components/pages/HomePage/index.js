@@ -7,6 +7,8 @@ class HomePage extends HTMLElement {
     super();
     this.attachShadow({ mode: "open" });
     this.templateContent = "";
+    this.attendencePageData = "";
+    this.timetablePageData = "";
   }
 
   async connectedCallback() {
