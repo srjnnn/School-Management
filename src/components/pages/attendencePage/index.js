@@ -29,6 +29,13 @@ class attendencePage extends HTMLElement{
     this.render();
     this.changeClass();
     this.getHomePageData();
+    const classValue = localStorage.getItem("classValue");
+    const sectionValue = localStorage.getItem("sectionValue");
+    if(classValue && sectionValue){
+      this.shadowRoot.querySelector("#classSelector").value = classValue;
+      this.shadowRoot.querySelector("#sectionSelector").value = sectionValue;
+      this.shadowRoot.querySelector("#sectionSelector").disabled = false;
+    }
   }
 // Select the selector and identify the change everytime
 changeClass(){
@@ -36,8 +43,11 @@ changeClass(){
   const sectionSelector = this.shadowRoot.querySelector('#sectionSelector');
   sectionSelector.disabled = true;
   Classselector.addEventListener('change', async ()=>{
+    localStorage.setItem("classValue", Classselector.value)
+
   sectionSelector.disabled = (Classselector.value === "null");
   if(sectionSelector.value !== "null"){
+    localStorage.setItem("sectionValue", sectionSelector.value);
     this.class = Classselector.value;
     this.section = sectionSelector.value;
     this.clearTable();
@@ -288,6 +298,11 @@ sendData(){
       Common.addErrorPopup(this.shadowRoot, "An error occured while updating the students data please try again later......")
     })
 
+  }
+  disconnectedCallback(){
+    // remove the classSelector and the section selector value 
+    localStorage.removeItem("classValue");
+    localStorage.removeItem("sectionValue");
   }
 }
 const AttendencePage = customElements.define("attendence-page",attendencePage);
