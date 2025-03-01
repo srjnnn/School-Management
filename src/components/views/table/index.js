@@ -58,6 +58,7 @@ restrictUser(){
       this.shadowRoot.querySelector("#selectClass").value = classValue;
       this.shadowRoot.querySelector("#section").value = sectionValue;
       this.shadowRoot.querySelector("#section").disabled = false;
+      this.shadowRoot.querySelector("#timetableEdit").disabled = false;
       this.fetchData(classValue, sectionValue);   
 
     }

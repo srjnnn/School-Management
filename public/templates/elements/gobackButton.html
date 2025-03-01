@@ -7,7 +7,7 @@
     padding: 0 1rem;
     height: 7rem;
     width: 7rem;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: transform 0.2s ease, background-color 0.3s ease;
   }
 
   .backButton:hover {
@@ -15,17 +15,17 @@
   }
 
   .backButton img {
+    display: block;
+    height: 3rem;
+    width: 3rem;
     border: 0.1rem solid #6c757d;
     border-radius: 50%;
-    padding: 0 1rem;
-    height: 5rem;
-    width: 5rem;
+    padding: 1rem;
     transition: box-shadow 0.2s ease, background-color 0.3s ease;
   }
 
-  .backButton img:focus,
+  .backButton img:focus-visible,
   .backButton img:active {
-    outline: none;
     background-color: #4e555b;
     box-shadow: 0 0 0 2px rgba(150, 150, 150, 0.6);
   }
@@ -34,6 +34,7 @@
     display: none;
   }
 </style>
+
 <div class="gobackButton">
   <button class="backButton" id="back">
     <img src="../../../public/assets/icons/arrow-left.svg" alt="Go Back">
