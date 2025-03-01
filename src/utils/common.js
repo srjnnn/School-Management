@@ -113,6 +113,19 @@ static getHostElem(shadowRoot){
   const mainHostElement = hostElement.getRootNode().host;
   return mainHostElement;
 };
+
+// addTheLogout Popup
+static addLogoutAlert(hostShadowroot){
+  const absoluteDiv = document.createElement('div');
+  absoluteDiv.id = "absoluteDiv";
+  absoluteDiv.className = "absoluteDiv";
+  absoluteDiv.style.position = "absolute";
+  absoluteDiv.style.top = "50%";
+  absoluteDiv.style.left = "35%";
+  const logOut = document.createElement('my-logout');
+  absoluteDiv.appendChild(logOut);
+  hostShadowroot.appendChild(absoluteDiv);
+}
 }
 
 export default Common;

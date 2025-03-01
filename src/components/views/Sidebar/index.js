@@ -113,10 +113,6 @@ verifyUser(){
                 this.loadPageWrap("students-page",path);
                 break; 
 
-            case "LOGOUT":
-              this.loadPageWrap("my-logout",path);
-                break;
-
             case "FEEDBACKS":
                 if(this.verifyUser()==="admin"){
                 this.loadPageWrap("feedback-page",path);

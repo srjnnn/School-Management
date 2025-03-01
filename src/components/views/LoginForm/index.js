@@ -85,7 +85,6 @@ class LoginformComponent extends HTMLElement {
     }
           // Storing the common method 
           loadPageWrap(customElementsName,path){
-            // console.log(this.shadowRoot)
             var hostElement = Common.getHostElem(this.shadowRoot.getRootNode().host);
             const mainContainer = hostElement.shadowRoot.querySelector('#main-app');
             if(mainContainer.children.length > 0){
