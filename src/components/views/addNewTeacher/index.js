@@ -94,7 +94,7 @@ class addNewTeachers extends HTMLElement {
         }, 3000);
       })
       .catch((error) => {
-        Common.addErrorPopup(this.shadowRoot,`Error Adding new Teacher, ${error} `);
+        Common.addErrorPopup(this.shadowRoot,`Error Adding new Teacher, ${error.message} `);
       });
   }
 
