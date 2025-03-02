@@ -120,6 +120,9 @@ class studentsPage extends HTMLElement{
               .then((response)=>{
                 Common.addSuccessPopup(this.shadowRoot,"Deletion of Student was Successful");
                 div.remove();
+                setTimeout(() => {
+                  this.connectedCallback();
+                }, 3000);
               })
               .catch((error)=>{
                 console.error(error);

@@ -69,6 +69,9 @@ class teachersPage extends HTMLElement {
               .then(() => {
                 Common.addSuccessPopup(this.shadowRoot, "Teacher deletion was successful.");
                 div.remove();
+                setTimeout(() => {
+                  this.connectedCallback();
+                }, 3000);
               })
               .catch((error) => {
                 console.error("Error deleting teacher:", error);
