@@ -20,7 +20,7 @@ class HomePage extends HTMLElement {
 
   render() {
     this.shadowRoot.innerHTML = this.templateContent;
-    this.addNavbar();
+    // this.addNavbar();
     this.addSidebar();
   }
 
@@ -30,11 +30,11 @@ class HomePage extends HTMLElement {
     SidebarContainer.appendChild(sidebarElement);
   }
 
-  addNavbar() {
-    const navbarContainer = this.shadowRoot.getElementById("top-navbar");
-    const navbarElement = document.createElement("my-navbar");
-    navbarContainer.appendChild(navbarElement);
-  }
+  // addNavbar() {
+  //   const navbarContainer = this.shadowRoot.getElementById("top-navbar");
+  //   const navbarElement = document.createElement("my-navbar");
+  //   navbarContainer.appendChild(navbarElement);
+  // }
  
 
   
