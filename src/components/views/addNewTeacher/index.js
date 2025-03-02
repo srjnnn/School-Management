@@ -26,7 +26,8 @@ class addNewTeachers extends HTMLElement {
     const SaveButton = this.shadowRoot.querySelector('#submit');
     const CancelButton = this.shadowRoot.querySelector('#reset');
 
-    SaveButton.addEventListener('click', () => {
+    SaveButton.addEventListener('click', (e) => {
+      e.preventDefault();
       const name = this.shadowRoot.querySelector('#Name').value;
       const gender = this.shadowRoot.querySelector('#gender').value;
       const attendence = this.shadowRoot.querySelector('#attendence').value ;
