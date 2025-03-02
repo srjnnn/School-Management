@@ -1,3 +1,4 @@
+//  LOCAL URL
 // const baseUrl = "http://localhost:4000/api";
 //  PROD URL
 const baseUrl = "https://amity-api-server.onrender.com/api";
