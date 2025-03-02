@@ -1,4 +1,5 @@
 // const baseUrl = "http://localhost:4000/api";
+//  PROD URL
 const baseUrl = "https://amity-api-server.onrender.com/api";
 
 const v1Api = `${baseUrl}/v1`;
