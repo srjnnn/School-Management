@@ -84,7 +84,7 @@ class addNewStudents extends HTMLElement{
       }, 3000);
     })
     .catch((error)=>{
-      Common.addErrorPopup("Error adding the student", error);
+      Common.addErrorPopup(this.shadowRoot,`Error adding the new student, ${error.message}`);
     })
   }
   // Error
