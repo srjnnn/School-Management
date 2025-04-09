@@ -17,6 +17,10 @@
     display: flex;
     flex-direction: row;
     height: 100vh;
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(to bottom, #cbd5f1, #b7b2eb);
+    gap: 1rem;
   }
 
   #sidebar {
@@ -28,6 +32,8 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    border-radius: 1rem;
+    background: #ffffff;
   }
 
   .top {
@@ -45,16 +51,26 @@
     display: inline-flex;
   }
 
-
   @media (max-width: 768px) {
     #sidebar {
       position: absolute;
+    }
+    .content-area {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100vh;
+    }
+    .homepage-wrapper {
+      padding: 0;
     }
   }
 
   .top-containers {
     display: flex;
     gap: 3rem;
+    margin-left: 2rem;
   }
 
   .backButtonContainer {
@@ -83,11 +99,8 @@
         <section id="backButtonContainer"></section>
         <h1 id="navHeader">Dashboard</h1>
       </div>
-
     </section>
 
-    <section id="main-content-container">
-
-    </section>
+    <section id="main-content-container"></section>
   </section>
 </div>
