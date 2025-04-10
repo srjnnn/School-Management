@@ -1,152 +1,137 @@
 <div class="mainContentContainer">
   <div class="holder">
-    <div class="textContainer">
-      <p>Login To Connect With Amity</p>
-    </div>
+  
     <div class="inputContainer">
-      <input type="text" placeholder="Enter the Username" id="Username">
+      <input type="text" placeholder="Username" id="Username" />
     </div>
     <div class="passwordContainer">
-      <input type="text" placeholder="Enter the password" id="Password">
+      <input type="text" placeholder="Password" id="Password" />
     </div>
-    <div class="toggleContainer">
-      <div class="toggle-container">
-        <label class="toggle-switch">
-          <input type="checkbox" id="rememberMe" checked disabled>
-          <span class="slider"></span>
-        </label>
-        <span class="toggle-label">Remember me</span>
+    <div class="optionsContainer">
+      <div class="toggleContainer">
+        <div class="toggle-container">
+          <label class="toggle-switch">
+            <input type="checkbox" id="rememberMe" checked />
+            <span class="slider"></span>
+          </label>
+          <span class="toggle-label">Remember me</span>
+        </div>
       </div>
-
-
-
+      <div class="anchor">
+        <a href="#" id="forgot-password">Forgot Password?</a>
+      </div>
     </div>
     <div class="loginButton">
-
       <button id="login">Login</button>
-
     </div>
-    <div class="anchor">
-      <a href="#" id="forgot-password">Forgot Password?</a>
-
-
+    <div class="signupPrompt">
+      Don't have an account? <a href="#" id="signup">Sign Up</a>
     </div>
   </div>
 </div>
-</div>
 
 <style>
+ .mainContentContainer {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+  font-size: 1.1rem; /* Base font size */
+  color: #222; /* Improved contrast */
+}
+
+.holder {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.inputContainer input,
+.passwordContainer input {
+  width: 100%;
+  padding: 1.2rem;
+  height: auto;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  box-sizing: border-box;
+}
+
+.optionsContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem 0;
+  width: 100%;
+}
+
+.toggle-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.toggle-label {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.anchor a {
+  font-size: 1rem;
+  color: #2a166f;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+#login {
+  width: 100%;
+  padding: 1.2rem;
+  background-color: #2a166f;
+  color: #ffffff;
+  border: none;
+  border-radius: 37px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#login:hover {
+  background-color: #3b2a8f;
+}
+
+.signupPrompt {
+  text-align: center;
+  font-size: 1rem;
+  color: #444;
+}
+
+.signupPrompt a {
+  color: #2a166f;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
   .mainContentContainer {
-    height: 23rem;
-    width: 50%;
-    align-items: center;
-    display: block;
-    margin: 0 auto;
+    padding: 1rem;
+    font-size: 1rem;
+    max-width: 90%;
   }
 
-  .inputContainer {
-    /* border: 2px solid black; */
-    text-align: center;
-  }
-
-  .anchor a {
-    color: black;
-    text-decoration: none;
-    font-size: 1.5rem;
-  }
-
-  .toggle-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .toggle-label {
-    color: black;
-    font-weight: 700;
-    font-size: 1.5rem;
-  }
-
-  .toggle-switch {
-    position: relative;
-    display: inline-block;
-    width: 50px;
-    height: 24px;
-  }
-
-  .toggle-switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: 0.4s;
-    border-radius: 24px;
-  }
-
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 18px;
-    width: 18px;
-    left: 3px;
-    bottom: 3px;
-    background-color: white;
-    transition: 0.4s;
-    border-radius: 50%;
-  }
-
-  input:checked+.slider {
-    background-color: rgba(111, 142, 255, .8);
-  }
-
-  input:checked+.slider:before {
-    transform: translateX(26px);
-  }
-
-  .textContainer p {
-    font-size: 1.7rem;
-    font-weight: 700;
-    text-align: center;
-
-
-  }
-
-  .holder {
-    display: flex;
-    flex-direction: column;
-    gap: .5rem;
-    align-items: center;
+  .inputContainer input,
+  .passwordContainer input {
+    font-size: 1rem;
+    padding: 1rem;
   }
 
   #login {
-    width: 13rem;
-    height: 4rem;
-    padding: 1rem 1.6rem 1rem 1.6rem;
-    border-radius: 0.6rem 0 0 0;
-    border: 0.1rem 0 0 0;
-    background-color: rgba(0, 122, 255, 0.15);
-    cursor: pointer;
+    font-size: 1.1rem;
   }
 
-  input {
-    height: 4rem;
-    width: 23rem;
-    border-radius: 0.5rem;
-    text-align: center;
+  .signupPrompt {
+    font-size: 0.95rem;
   }
-
-  .absoluteDiv {
-    position: absolute;
-    top: 50%;
-    left: 35%;
-  }
+}
 </style>
