@@ -3,88 +3,86 @@
     width: 40rem;
     height: 37rem;
     overflow-y: scroll;
-    border: 2px solid #29166F;
+    border: 2px solid #2A166F;
     border-radius: 1rem;
     padding: 2rem;
     background: #ffffff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .header {
-    text-align: center;
-    font-weight: 600;
-    display: inline;
+    font-weight: 700;
     font-size: 2rem;
-    color: #2c3e50;
-    margin-bottom: 1.5rem;
+    color: #2A166F;
     letter-spacing: 0.5px;
-    
+  }
+
+  .editButton button {
+    font-size: 1.4rem;
+    cursor: pointer;
+    height: 3.2rem;
+    background-color: #f0f2ff;
+    border: 1px solid #2A166F;
+    border-radius: 0.5rem;
+    padding: 0 1.2rem;
+    color: #2A166F;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: all 0.2s ease;
+  }
+
+  .editButton button:hover {
+    background-color: #e4e8ff;
+    transform: translateY(-1px);
   }
 
   .monthContainer h1 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: 600;
-    color: rgba(50, 173, 230, 1);
-    border-bottom: 2px solid rgba(50, 173, 230, 0.7);
-    padding-bottom: 0.5rem;
-    margin-bottom: 1.5rem;
+    color: #2A166F;
+    border-bottom: 2px solid #2A166F;
+    padding-bottom: 0.3rem;
+    margin-bottom: 0.8rem;
   }
 
   .eventsDataContainer {
     display: flex;
-    gap: 1rem;
+    gap: 1.2rem;
     align-items: center;
     padding: 0.8rem 1rem;
-    border-radius: 0.5rem;
+    border-radius: 0.6rem;
     transition: background 0.3s ease-in-out;
+    background: #f9f9fb;
   }
 
   .eventsDataContainer:hover {
-    background: rgba(50, 173, 230, 0.1);
+    background: #f0f2ff;
   }
 
   .dateContainer {
-    font-size: 1.4rem;
-    font-weight: bold;
-    color: #2c3e50;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #2A166F;
     min-width: 4rem;
     text-align: right;
   }
 
   .eventsContainer {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     flex: 1;
-    color: #34495e;
+    color: #333;
     font-style: italic;
-  }
-
-  #eventsEdit {
-    font-size: 1.6rem;
-    cursor: pointer;
-    width: 9rem;
-    height: 3.5rem;
-    background-color: rgba(0, 122, 255, 0.1);
-    border: 0.1rem solid #007AFF;
-    border-radius: 0.6rem;
-    padding: 0 1rem;
-    color: #007AFF;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    transition: all 0.2s ease;
-  }
-
-  #eventsEdit:hover {
-    background-color: rgba(0, 122, 255, 0.15);
-    transform: translateY(-1px);
-  }
-
-  .top-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    justify-content: space-between;
   }
 
   .hidden {
@@ -92,22 +90,22 @@
   }
 
   .upcomingEventsContainer::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
   }
 
   .upcomingEventsContainer::-webkit-scrollbar-track {
-    background: rgba(50, 173, 230, 0.1);
+    background: #f0f2ff;
     border-radius: 8px;
   }
 
   .upcomingEventsContainer::-webkit-scrollbar-thumb {
-    background: rgba(50, 173, 230, 0.6);
+    background: #2A166F;
     border-radius: 8px;
     border: 2px solid #ffffff;
   }
 
   .upcomingEventsContainer::-webkit-scrollbar-thumb:hover {
-    background: rgba(50, 173, 230, 0.8);
+    background: #201054;
   }
 </style>
 
