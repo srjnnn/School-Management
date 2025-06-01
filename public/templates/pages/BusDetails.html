@@ -9,45 +9,47 @@
       box-sizing: border-box;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-
+  
     body {
-      background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+      background: linear-gradient(135deg, #f5f7fa 0%, #dbe9f4 100%);
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 2rem;
     }
-
+  
     .mainContainer {
       display: flex;
       gap: 3rem;
       width: 100%;
-      background: white;
-      border-radius: 1rem;
+      max-width: 1200px;
+      background: #fff;
+      /* border-radius: 1.2rem; */
       padding: 2.5rem;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
-      align-items: center;
+      /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); */
+      align-items: flex-start;
+      transition: 0.3s ease-in-out;
     }
-
+  
     .busList {
       flex-shrink: 0;
-      width: 20rem;
+      width: 22rem;
     }
-
+  
     .busNumber {
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
       text-align: center;
     }
-
+  
     .busNumber h1 {
       font-size: 2rem;
-      color: #2d3748;
+      color: #2A166F;
       font-weight: bold;
       position: relative;
       display: inline-block;
     }
-
+  
     .busNumber h1::after {
       content: '';
       position: absolute;
@@ -56,72 +58,80 @@
       transform: translateX(-50%);
       width: 50%;
       height: 3px;
-      background: #4299e1;
+      background: #2A166F;
       border-radius: 2px;
     }
-
+  
     .busListContainer {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
-      background: white;
+      gap: 0.8rem;
+      background: #f9fafb;
       border-radius: 0.8rem;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
       padding: 1.5rem;
+      border: 1px solid #e5e7eb;
     }
-
+  
     .busListContainer p {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       font-weight: 600;
-      color: #2d3748;
+      color: #1f2937;
       margin-bottom: 1rem;
     }
-
+  
     .busListContainer a {
       text-decoration: none;
-      font-size: 1.6rem;
+      font-size: 1rem;
+      font-weight: 500;
       cursor: pointer;
-      height: 3.5rem;
-      background-color: rgba(0, 122, 255, 0.1);
-      border: 0.1rem solid #007AFF;
-      border-radius: 0.6rem;
-      padding: 0 1rem;
-      color: #007AFF;
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      background-color: rgba(42, 22, 111, 0.05);
+      color: #2A166F;
+      border: 1px solid #2A166F;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
       display: flex;
-
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
-      transition: all 0.2s ease;
     }
-
+  
     .busListContainer a:hover {
-      background-color: rgba(0, 122, 255, 0.15);
-      transform: translateY(-1px);
+      background-color: rgba(42, 22, 111, 0.08);
+      transform: translateY(-2px);
     }
-
+  
     .busDetails {
       flex-grow: 1;
+      background: #f9fafb;
+      border-radius: 1rem;
+      padding: 2rem;
+      border: 1px solid #e2e8f0;
+      min-height: 400px;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: transparent;
-      border-radius: 1rem;
-      /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); */
-      padding: 2rem;
-      max-width: 89rem;
-      min-height: 400px;
+      font-size: 1.2rem;
+      color: #4b5563;
     }
-
+  
     @media (max-width: 768px) {
       .mainContainer {
         flex-direction: column;
-        align-items: center;
         padding: 2rem;
       }
-
+  
+      .busList {
+        width: 100%;
+      }
+  
       .busListContainer {
         width: 100%;
+      }
+  
+      .busDetails {
+        width: 100%;
+        margin-top: 2rem;
       }
     }
   </style>

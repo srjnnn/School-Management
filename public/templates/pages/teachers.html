@@ -1,62 +1,68 @@
 <style>
   * {
     box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  body {
+    margin: 0;
+    background-color: #ffffff;
   }
 
   .mainContainer {
-    width: 90%;
+    width: 95%;
     max-width: 1200px;
     margin: 2rem auto;
     padding: 2rem;
     background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
+    border: 1px solid #e0e0e0;
   }
 
   .headers {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     align-items: center;
     margin-bottom: 2rem;
+    gap: 1rem;
   }
 
   .selectClass select {
-    width: 15rem;
-    text-align: center;
-    font-size: 1.5rem;
-    padding: 0.5rem;
-    border: 0.1rem solid #cfe2ff;
-    border-radius: 5px;
-    background-color: #f2f6ff;
-    transition: 0.3s ease;
+    padding: 0.7rem 1rem;
+    font-size: 1.1rem;
+    border: 1px solid #cfe2ff;
+    border-radius: 0.5rem;
+    background-color: #f0f6ff;
+    transition: all 0.3s ease;
   }
 
   .selectClass select:hover {
-    border-color: #007bff;
+    border-color: #2c1e8e;
   }
 
   .addButton button {
     display: flex;
-    justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 0.8rem 1.5rem;
-    border: 0.1rem solid #2aadff;
+    gap: 0.6rem;
+    padding: 0.7rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border: 1px solid #2c1e8e;
     background-color: rgba(0, 122, 255, 0.1);
-    border-radius: 5px;
-    height: 3rem;
-    transition: background-color 0.3s, transform 0.3s;
+    color: #2c1e8e;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
   }
 
   .addButton button:hover {
-    background-color: rgba(0, 122, 255, 0.15);
-    transform: translateY(-1px);
+    background-color: rgba(44, 114, 189, 0.2);
+    transform: translateY(-2px);
   }
 
   .addButton img {
-    height: 1.5rem;
-    margin-right: 0.5rem;
+    height: 1.2rem;
   }
 
   .tableContainer {
@@ -68,44 +74,38 @@
     width: 100%;
     border-collapse: collapse;
     text-align: center;
-    font-size: 1.6rem;
-    margin: 0 auto;
+    font-size: 1rem;
+    background-color: #fff;
+    border: 1px solid #ccc;
   }
 
   th,
   td {
-    border: 0.1rem solid #6c95ff;
-    padding: 1.2rem;
-    color: #333;
-    font-weight: 400;
-    cursor: pointer;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    color: #444;
   }
 
   th {
-    background-color: #f2f6ff;
+    background-color: #ffffff;
+    font-weight: 600;
   }
 
-  tr:nth-child(even) {
-    background-color: #e3effd;
-  }
-
-  tr:hover {
-    background-color: rgba(0, 122, 255, 0.1);
-  }
-
-  tr td:last-child {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
+  tr:hover td {
+    background-color: #f9fcff;
   }
 
   .absoluteDiv {
     position: absolute;
     top: 50%;
     left: 50%;
+    transform: translate(-50%, -50%);
     background-color: white;
-    border-radius: 1.2rem;
+    border-radius: 1rem;
+    padding: 2rem;
+    width: 90%;
+    max-width: 500px;
+    border: 1px solid #ccc;
   }
 
   .hidden {
@@ -115,96 +115,69 @@
   #contentDiv {
     display: flex;
     flex-direction: column-reverse;
+    gap: 1rem;
   }
 
-  /* Media Queries */
+  /* Responsive */
   @media (max-width: 768px) {
-    .mainContainer {
-      padding: 1rem;
-    }
-
     .headers {
       flex-direction: column;
-      align-items: flex-start;
+      align-items: stretch;
     }
 
+    .addButton button,
     .selectClass select {
       width: 100%;
-      margin-bottom: 1rem;
-    }
-
-    .addButton button {
-      width: 100%;
-      margin-top: 1rem;
+      font-size: 1rem;
     }
 
     table {
-      font-size: 1.4rem;
-    }
-
-    th,
-    td {
-      padding: 1rem;
+      font-size: 0.95rem;
     }
 
     .absoluteDiv {
-      width: 90%;
+      padding: 1rem;
     }
   }
 
   @media (max-width: 480px) {
     .mainContainer {
-      width: 95%;
-      padding: 0.5rem;
-    }
-
-    .headers {
-      flex-direction: column;
-    }
-
-    .selectClass select {
-      width: 100%;
-      font-size: 1.4rem;
-    }
-
-    .addButton button {
-      width: 100%;
-      font-size: 1.4rem;
-      padding: 0.7rem;
+      padding: 1rem;
     }
 
     table {
-      font-size: 1.2rem;
+      font-size: 0.85rem;
     }
 
     th,
     td {
-      padding: 0.8rem;
+      padding: 0.75rem;
     }
-
-    .absoluteDiv {
-      width: 100%;
-      padding: 1rem;
-    }
-
   }
 </style>
 
 <div class="mainContainer">
   <div class="headers">
     <div class="addButton hidden" id="tcherbtns">
-      <button id="addTeachersButton"><img src="/public/assets/icons/plus.svg" alt="Plus Icon">Add Teachers</button>
+      <button id="addTeachersButton">
+        <img src="/public/assets/icons/plus.svg" alt="Plus Icon" />Add Teachers
+      </button>
     </div>
   </div>
 
   <div class="tableContainer">
     <table id="teachersDetails">
-      <tr>
-        <th>SN No.</th>
-        <th>Name</th>
-        <th id="varTHa">Contact</th>
-        <th id="varTHb" class="hidden">Attendence</th>
-      </tr>
+      <thead>
+        <tr>
+          <th>SN No.</th>
+          <th>Name</th>
+          <th id="varTHa">Contact</th>
+          <th id="varTHb" class="hidden">Attendance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Table rows go here -->
+      </tbody>
     </table>
   </div>
 </div>

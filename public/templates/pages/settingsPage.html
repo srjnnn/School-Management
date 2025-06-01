@@ -1,21 +1,95 @@
 <style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    background: #f4f5f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1.5rem;
+  }
+
+  .mainContainer {
+    padding: 3rem;
+    max-width: 500px;
+    width: 100%;
+    background-color: white;
+    border-radius: 1.5rem;
+    border: 1px solid #e0e0e0;
+    margin: 0 auto;
+  }
+
   .anchors {
     display: flex;
     flex-direction: column;
-    padding: 3rem;
+    gap: 2rem;
   }
 
-  p {
-    font-size: 2.5rem;
-    color: rgba(130, 180, 255, 1);
+  .action-item {
+    display: block;
+    padding: 1.8rem;
+    font-size: 2.2rem; /* Increased font size for buttons */
+    color: white;
+    background-color: #2a166f;
+    border: none;
+    border-radius: 0.8rem;
     cursor: pointer;
-    text-decoration: underline;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  }
+
+  .action-item:hover {
+    background-color: #3a1f8f;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(42, 22, 111, 0.2);
+  }
+
+  .action-item:active {
+    transform: translateY(0);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .mainContainer {
+      padding: 2.5rem;
+      border-radius: 1.2rem;
+    }
+
+    .action-item {
+      font-size: 2rem; /* Slightly smaller for medium screens */
+      padding: 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    body {
+      padding: 1rem;
+    }
+
+    .mainContainer {
+      padding: 1.5rem;
+      border-radius: 1rem;
+    }
+
+    .anchors {
+      gap: 1.5rem;
+    }
+
+    .action-item {
+      font-size: 1.7rem; /* Slightly smaller for mobile */
+      padding: 1.3rem;
+    }
   }
 </style>
-
-
-
-
 
 <div class="mainContainer">
   <div class="anchors">
