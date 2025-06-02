@@ -49,6 +49,8 @@ class teachersPage extends HTMLElement {
       if (lastCell) {
         const editButton = document.createElement('edit-buttons');
         const deleteButton = document.createElement('delete-buttons');
+        lastCell.style.display = 'flex'
+        lastCell.style.justifyContent = "space-between";
 
         deleteButton.addEventListener('click', () => {
           // Create a confirmation box when deleting

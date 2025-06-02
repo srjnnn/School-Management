@@ -1,156 +1,200 @@
 <style>
-    /* Base Sidebar Styles (unchanged) */
-    .SidebarContainer {
-        height: 100vh;
-        width: 20rem;
-        display: flex;
-        flex-direction: column;
-        border-right: 0.1rem solid rgba(207, 226, 255, 1);
-        background-color: #ffffff;
-        position: fixed;
-        top: 0;
-        left: 0;
-        transition: transform 0.3s ease-in-out;
+  /* Base Sidebar Styles (unchanged) */
+  .SidebarContainer {
+    height: 100vh;
+    width: 20rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(to bottom, #cbd5f1, #b7b2eb);
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 1rem;
+    margin: 0 auto;
+    margin-left: 1.1rem;
+  }
+
+  .imageContainer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .imageContainer img {
+    height: 10rem;
+    width: 10rem;
+  }
+
+  .wrappers {
+    background: #ffffff;
+    border-radius: 1rem;
+    width: 90%;
+    padding: 1rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* flex: 1; */
+    height: 81vh;
+  }
+
+  .topWrapper,
+  .bottomWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .button {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 2rem;
+    gap: 1rem;
+    font-size: 1.5rem;
+    border: none;
+    background: none;
+    border-radius: 0.8rem;
+    cursor: pointer;
+    color: black;
+    transition: all 0.2s;
+    text-align: left;
+  }
+
+  .button img {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .button:hover {
+    background-color: #f1f1f1;
+  }
+
+  .button.active {
+    background-color: #2c1e8f;
+    color: white;
+  }
+
+  .button.active img {
+    filter: brightness(0) invert(1);
+  }
+
+  /* Responsive toggle button */
+  .toggleButton {
+    display: none;
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    z-index: 1000;
+    font-size: 2rem;
+    background-color: #fff;
+    border: 0.1rem solid #ddd;
+    border-radius: 50%;
+    padding: 0.5rem;
+    cursor: pointer;
+  }
+  .hidden {
+    display: none;
+  }
+
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    #sidebar {
+      position: absolute;
+      background-color: #fff;
+      z-index: 100;
     }
 
-    .imageContainer {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 1rem;
+    .SidebarContainer {
+      width: 18rem; /* Slightly wider sidebar on mobile */
+      transform: translateX(-120%);
+      transition: transform 0.3s ease-in-out;
+      margin-left: 0 !important;
+      left: 0;
+    }
+
+    .SidebarContainer.open {
+      transform: translateX(0);
+    }
+
+    .toggleButton {
+      display: block;
     }
 
     .imageContainer img {
-        height: 10rem;
-        width: 10rem;
-    }
-
-    .topWrapper,
-    .bottomWrapper {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .bottomWrapper {
-        margin-bottom: 2rem;
+      width: 8rem; /* Slightly larger logo */
+      height: 8rem;
     }
 
     .wrappers {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        height: 100%;
+      width: 95%; /* Give more space inside the wrapper */
+      padding: 1.5rem 1rem;
     }
 
     .button {
-        font-size: 1.6rem;
-        display: flex;
-        align-items: center;
-        justify-content: start;
-        width: 100%;
-        padding: 1rem;
-        color: #333;
-        background: none;
-        border: none;
-        text-align: left;
-        cursor: pointer;
-        transition: background-color 0.3s, color 0.3s;
-        border-radius: 0.5rem;
+      font-size: 1.6rem; /* Slightly bigger font */
+      padding: 1rem 2.5rem;
     }
 
     .button img {
-        font-size: 2.5rem;
-        margin-right: 2.5rem;
+      width: 1.8rem;
+      height: 1.8rem;
     }
-
-    .button:hover {
-        background-color: #e9ecef;
-        color: #0056b3;
-    }
-
-    .button.active {
-        background-color: #cfe2ff;
-        border: 0.1rem solid blue;
-        color: blue;
-    }
-
-    /* Toggle Button */
-    .toggleButton {
-        display: none;
-        position: fixed;
-        top: 1rem;
-        left: 1rem;
-        z-index: 1000;
-        font-size: 2rem;
-        background-color: #fff;
-        border: 0.1rem solid #ddd;
-        border-radius: 50%;
-        padding: 0.5rem;
-        cursor: pointer;
-    }
-
-    .hidden {
-        display: none;
-    }
-
-    /* Responsive Styles */
-    @media (max-width: 768px) {
-        
-
-  #sidebar {
-position: absolute;
-background-color: #fff;
-z-index: 100;
-  
-}
-
-
-
-        .SidebarContainer {
-            width: 16rem;
-            transform: translateX(-100%);
-        }
-
-        .SidebarContainer.open {
-            transform: translateX(0);
-        }
-
-        .toggleButton {
-            display: block;
-        }
-    }
+  }
 </style>
 <button class="toggleButton">☰</button>
 <div class="SidebarContainer" id="sidebar">
-    <div class="imageContainer">
-        <img src="../../../public/assets/amity-logo.svg" alt="Amity Logo">
+  <div class="imageContainer">
+    <img src="../../../public/assets/amity-logo.svg" alt="Amity Logo" />
+  </div>
+  <div class="wrappers">
+    <div class="topWrapper">
+      <button id="dashboard" class="button">
+        <img
+          src="/public/assets/icons/house.svg"
+          alt="Dashboard Icon"
+        />Dashboard
+      </button>
+      <button id="timetable" class="button">
+        <img src="/public/assets/icons/watch.svg" alt="Timetable Icon" />
+        Timetable
+      </button>
+      <button id="teachers" class="button">
+        <img src="/public/assets/icons/person.svg" alt="Teacher Icon" />
+        Teachers
+      </button>
+      <button id="classnotes" class="button">
+        <img src="/public/assets/icons/book.svg" alt="ClassNotes Icon" />Class
+        Notes
+      </button>
+      <button id="busdetails" class="button">
+        <img src="/public/assets/icons/bus-front.svg" alt="Bus Icon" /> Bus
+        Details
+      </button>
+      <button id="Attendence" class="button hidden">
+        <img
+          src="/public/assets/icons/clipboard-check.svg"
+          alt="Location Icon"
+        />
+        Attendence
+      </button>
+      <button id="students" class="button hidden">
+        <img
+          src="/public/assets/icons/person.svg"
+          alt="Students Icons"
+        />Students
+      </button>
     </div>
-    <div class="wrappers">
-        <div class="topWrapper">
-            <button id="dashboard" class="button"><img src="/public/assets/icons/house.svg"
-                    alt="Dashboard Icon">Dashboard</button>
-            <button id="timetable" class="button"> <img src="/public/assets/icons/watch.svg" alt="Timetable Icon">
-                Timetable</button>
-            <button id="teachers" class="button"><img src="/public/assets/icons/person.svg" alt="Teacher Icon">
-                Teachers</button>
-            <button id="classnotes" class="button"> <img src="/public/assets/icons/book.svg" alt="ClassNotes Icon">Class
-                Notes</button>
-            <button id="busdetails" class="button"><img src="/public/assets/icons/bus-front.svg" alt="Bus Icon"> Bus
-                Details</button>
-            <button id="Attendence" class="button hidden"> <img src="/public/assets/icons/clipboard-check.svg"
-                    alt="Location Icon">
-                Attendence</button>
-            <button id="students" class="button hidden"> <img src="/public/assets/icons/person.svg"
-                    alt="Students Icons">Students</button>
-        </div>
-        <div class="bottomWrapper">
-            <button id="feedbacks" class="button hidden">
-                <img src="/public/assets/icons/book.svg" alt="Feedback Logo">Feedbacks
-            </button>
-            <button id="settings" class="button"> <img src="/public/assets/icons/gear.svg"
-                    alt="Settings Icon">Settings</button>
-            <button id="help" class="button"> <img src="/public/assets/icons/question-circle.svg" alt="Help Icon">
-                Help</button>
-        </div>
+    <div class="bottomWrapper">
+      <button id="feedbacks" class="button hidden">
+        <img src="/public/assets/icons/book.svg" alt="Feedback Logo" />Feedbacks
+      </button>
+      <button id="settings" class="button">
+        <img src="/public/assets/icons/gear.svg" alt="Settings Icon" />Settings
+      </button>
+      <button id="help" class="button">
+        <img src="/public/assets/icons/question-circle.svg" alt="Help Icon" />
+        Help
+      </button>
     </div>
+  </div>
 </div>

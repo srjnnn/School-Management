@@ -1,66 +1,93 @@
 <style>
-  /* Success Container */
+  * {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: #f5f6fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
   .mainContainer {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: transparent;
   }
 
-  /* Success Popup */
   .popupContainer {
-    width: 40rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: #fff;
+    border: 1.5px solid #2A166F;
+    border-left: 6px solid #2A166F;
+    border-radius: 0.75rem;
+    padding: 1.25rem 1.75rem;
     max-width: 90%;
-    background: linear-gradient(135deg, #28a745 0%, #218838 100%);
-    border: 0.25rem solid #28a745;
-    border-radius: 1rem;
-    padding: 1.5rem 2rem;
+    width: 420px;
+    box-shadow: 0 10px 25px rgba(42, 22, 111, 0.1);
+    animation: fadeIn 0.4s ease;
+  }
+
+  .successIcon {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.2);
-  }
-
-  /* Success Icon */
-  .popupContainer::before {
-    content: '✔️';
-    position: absolute;
-    left: 1rem;
-    font-size: 2rem;
-    color: #fff;
-  }
-
-  /* Success Text */
-  #popupText {
+    background-color: #2A166F;
+    color: white;
+    border-radius: 50%;
+    width: 2.75rem;
+    height: 2.75rem;
     font-size: 1.4rem;
-    font-weight: 600;
-    color: #fff;
-    text-align: center;
-    margin-left: 2.5rem;
-    line-height: 1.5;
+    flex-shrink: 0;
   }
 
-  /* Responsive Design */
-  @media (max-width: 600px) {
+  .popupText {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #2A166F;
+    line-height: 1.4;
+    flex-grow: 1;
+  }
+
+  @media (max-width: 480px) {
     .popupContainer {
-      padding: 1rem 1.5rem;
+      padding: 1rem 1.25rem;
+      gap: 0.75rem;
     }
 
-    #popupText {
+    .successIcon {
+      width: 2.3rem;
+      height: 2.3rem;
       font-size: 1.2rem;
-      margin-left: 2rem;
     }
 
-    .popupContainer::before {
-      font-size: 1.6rem;
-      left: 0.8rem;
+    .popupText {
+      font-size: 1rem;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 </style>
 
 <div class="mainContainer">
   <div class="popupContainer">
-    <p id="popupText">Successful!!</p>
+    <div class="successIcon">✔</div>
+    <div class="popupText">Success! Your action has been completed.</div>
   </div>
 </div>
