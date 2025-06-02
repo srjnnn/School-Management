@@ -90,7 +90,7 @@ class Common {
         closeButton.style.top = '0%'
         closeButton.innerHTML = `
         <style>
-           #close {border: none; background-color : transparent; cursor : pointer;}
+           #close {border: none; background-color : transparent; cursor : pointer;margin-top: 1.8rem;}
            #closeImg {height: 3rem; z-index: 500;}
           .buttons {display: flex; justify-content: flex-end;}
         </style>
