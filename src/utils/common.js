@@ -102,6 +102,7 @@ class Common {
         contentDiv.appendChild(closeButton);
         closeButton.addEventListener('click',()=>{
            contentDiv.replaceChildren();
+           absoluteDiv.classList.add("hidden");
 
         })
       };
